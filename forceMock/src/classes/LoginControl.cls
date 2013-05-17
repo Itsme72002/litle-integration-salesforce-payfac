@@ -6,7 +6,7 @@ public class LoginControl {
     public LoginControl(ApexPages.StandardController controller) {
     	this.acct = (Account)controller.getRecord();
     	//this.username = acct.Name;
-    	
+    	 
     }
 
 	private Account acct;
