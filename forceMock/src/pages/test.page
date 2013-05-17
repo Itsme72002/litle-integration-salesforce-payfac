@@ -1,11 +1,16 @@
-<apex:page controller="LoginControl">
+<apex:page standardController="Account" extensions="LoginControl">
 <h1 >SalesForce Form Mock Up</h1>
-
+<br />
+<h1>Welcome {!$User.FirstName}</h1>
 <p><b>Enter your login details</b></p>
 <apex:form >
     <apex:panelGrid columns="2">
-        <apex:outputLabel value="Username"></apex:outputLabel>
+        <apex:outputLabel value="Account Name"></apex:outputLabel>
         <apex:inputText value="{!username}"/>
+        <apex:outputLabel value="Billing City"></apex:outputLabel>
+        <apex:inputText value="{!account.BillingCity}"/>
+        <apex:outputLabel value="Billing State"></apex:outputLabel>
+        <apex:inputText value="{!account.BillingState}"/>
         <apex:outputLabel value="Password"></apex:outputLabel>
         <apex:inputSecret value="{!password}"/>
         <br />

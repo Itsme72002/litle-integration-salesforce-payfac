@@ -4,10 +4,12 @@ public class LoginControl {
 		
 	}
     public LoginControl(ApexPages.StandardController controller) {
-
+    	this.acct = (Account)controller.getRecord();
+    	//this.username = acct.Name;
+    	
     }
 
-	
+	private Account acct;
 	private String username;
 	private String password;
 	private String status;
@@ -26,7 +28,7 @@ public class LoginControl {
 	}
 	
 	public String getUsername(){
-		return username;
+		return acct.BillingCity;
 	}
 	
 	public void setStatus(String status){
@@ -35,6 +37,14 @@ public class LoginControl {
 	
 	public String getStatus(){
 		return status;
+	}
+	
+	public void setAcct(Account account){
+		this.acct = account;
+	}
+	
+	public Account getAcct(){
+		return acct;
 	}
 	
 	public void submit(){
