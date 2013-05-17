@@ -1,4 +1,12 @@
 public class LoginControl {
+
+	public LoginControl(){
+		
+	}
+    public LoginControl(ApexPages.StandardController controller) {
+
+    }
+
 	
 	private String username;
 	private String password;
