@@ -11,6 +11,9 @@
         <apex:inputText value="{!billingCity}"/>
         <apex:outputLabel value="Billing State"></apex:outputLabel>
         <apex:inputText value="{!billingState}"/>
+        <apex:outputLabel value="Account Number"></apex:outputLabel>
+        <apex:inputText value="{!account.accountNumber}" rendered="false"/>
+        <apex:inputText value="{!accountNumber}" />
         <br />
         <apex:commandButton value="Submit" action="{!submit}"/>
     </apex:panelGrid>

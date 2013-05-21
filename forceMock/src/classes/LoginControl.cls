@@ -8,16 +8,26 @@ public class LoginControl {
         this.accountName = [select name from account where id= :account.Id].name;
        this.billingCity = [select BillingCity from account where id= :account.Id].billingCity;
         this.billingState = [select BillingState from account where id= :account.Id].billingState;
+        this.accountNumber = account.AccountNumber;
     }
 
     private Account account;
     private String accountName;
     private String billingCity;
     private String billingState;
+    private String accountNumber;
     
     
     private String status;
     //private MapResult result;
+    
+    public void setAccountNumber(String accountNumber){
+        this.accountNumber = accountNumber;
+    }
+    
+    public String getAccountNumber(){
+        return accountNumber;
+    }
     
     public void setAccountName(String accountName){
         this.accountName = accountName;
