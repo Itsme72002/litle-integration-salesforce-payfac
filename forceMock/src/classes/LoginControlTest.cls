@@ -22,30 +22,57 @@
 @isTest
 private class LoginControlTest {
 	
-	// Test for username
-    static testMethod void testUsername() {
+	// Test for account
+    static testMethod void testAccount() {
     	LoginControl loginControl = new LoginControl() ;
-        // Check if the username is null initially
-        System.assertEquals(loginControl.getUsername(), null);
-        String uname = 'test';
-        loginControl.setUsername(uname);
+        // Check if the account is null initially
+        System.assertEquals(loginControl.getAccount(), null);
+        Account account = new Account(name='testAccount');
+        loginControl.setAccount(account);
         // First check if the value is set
-        System.assertNotEquals(loginControl.getUsername(), null);
+        System.assertNotEquals(loginControl.getAccount(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(loginControl.getUsername(), uname);
+        System.assertEquals(loginControl.getAccount().name, account.name);
+    }
+	
+	
+	// Test for accountName
+    static testMethod void testAccountName() {
+    	LoginControl loginControl = new LoginControl() ;
+        // Check if the accountName is null initially
+        System.assertEquals(loginControl.getAccountName(), null);
+        String accountName = 'test';
+        loginControl.setAccountName(accountName);
+        // First check if the value is set
+        System.assertNotEquals(loginControl.getAccountName(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(loginControl.getAccountName(), accountName);
     }
     
-    // Test for password
-    static testMethod void testPassword() {
+    // Test for billingCity
+    static testMethod void testBillingCity() {
     	LoginControl loginControl = new LoginControl() ;
-        // Check if the password is null initially
-        System.assertEquals(loginControl.getPassword(), null);
-        String password = 'test';
-        loginControl.setPassword(password);
+        // Check if the billingCity is null initially
+        System.assertEquals(loginControl.getBillingCity(), null);
+        String billingCity = 'lowell';
+        loginControl.setBillingCity(billingCity);
         // First check if the value is set
-        System.assertNotEquals(loginControl.getPassword(), null);
+        System.assertNotEquals(loginControl.getBillingCity(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(loginControl.getPassword(), password);
+        System.assertEquals(loginControl.getBillingCity(), billingCity);
+    }
+    
+    //Test for billingState
+     static testMethod void testBillingState() {
+    	LoginControl loginControl = new LoginControl() ;
+        // Check if the billingState is null initially
+        System.assertEquals(loginControl.getBillingState(), null);
+        String billingState = 'MA';
+        loginControl.setBillingState(billingState);
+        // First check if the value is set
+        System.assertNotEquals(loginControl.getBillingState(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(loginControl.getBillingState(), billingState);
     }
     
      // Test for status
@@ -79,5 +106,16 @@ private class LoginControlTest {
     	HttpResponse res = loginControl.getApiResponse();
     	// Check if the status of response is OK
         System.assertEquals(res.getStatus(), 'OK');
+    }
+    
+    //Testing the LoginControl Constructor
+    static testMethod void testStandardControllerConstructor(){
+    	Account account = new Account(name='testAccount', billingState='MA', billingCity='lowell');
+    	insert account;
+    	ApexPages.StandardController controller = new Apexpages.Standardcontroller(account);
+    	LoginControl loginControl = new LoginControl(controller);
+    	System.assertEquals(loginControl.getAccountName(), account.name);
+    	System.assertEquals(loginControl.getBillingCity(), account.billingCity);
+    	System.assertEquals(loginControl.getBillingState(), account.billingState);
     }
 }

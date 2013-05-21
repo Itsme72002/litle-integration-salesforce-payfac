@@ -6,13 +6,11 @@
 <apex:form >
     <apex:panelGrid columns="2">
         <apex:outputLabel value="Account Name"></apex:outputLabel>
-        <apex:inputText value="{!username}"/>
+        <apex:inputText value="{!accountName}"/>
         <apex:outputLabel value="Billing City"></apex:outputLabel>
-        <apex:inputText value="{!account.BillingCity}"/>
+        <apex:inputText value="{!billingCity}"/>
         <apex:outputLabel value="Billing State"></apex:outputLabel>
-        <apex:inputText value="{!account.BillingState}"/>
-        <apex:outputLabel value="Password"></apex:outputLabel>
-        <apex:inputSecret value="{!password}"/>
+        <apex:inputText value="{!billingState}"/>
         <br />
         <apex:commandButton value="Submit" action="{!submit}"/>
     </apex:panelGrid>
