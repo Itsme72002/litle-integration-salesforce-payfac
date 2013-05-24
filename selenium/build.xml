@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<project name="salesforce-selenium" basedir="." default="test">
+	
+	<property file="build.properties" />
+	
+	<!-- add the jars to the classpath -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+	
+	<path id="test.path">
+		<pathelement location="${build.classes}" />
+	</path>
+	
+	<!-- Clean the classes directory -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${build.classes}" />
+	</target>
+
+	<!-- Create the directories for class files -->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes}" />
+	</target>
+
+	<!-- Compile all the classes to the location -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="test" destdir="${build.classes}" classpathref="build.classpath" />
+	</target>
+
+	<!-- Run all the test classes starting with 'Test' -->
+	<target name="test" depends="compile">
+		<junit printsummary="on" fork="true" haltonfailure="yes">
+			<classpath refid="build.classpath" />
+			<classpath refid="test.path" />
+			<formatter type="plain" usefile="false" />
+			<batchtest>
+				<fileset dir="${src.dir}" includes="**/Test*.java" />
+			</batchtest>
+		</junit>
+	</target>
+</project>
