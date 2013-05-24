@@ -1,0 +1,46 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version:0.15:$
+Arch:x86_64-gcc3:$
+
+[PLUGINS]
+nswrapper_32_64.nppdf.so:$
+/usr/lib64/mozilla/plugins-wrapped/nswrapper_32_64.nppdf.so:$
+:$
+1369319177000:0:1:$
+The Adobe Reader plugin is used to enable viewing of PDF and FDF files from within the browser. :$
+Adobe Reader 9.4:$
+5
+0:application/pdf:Portable Document Format:pdf:$
+1:application/vnd.fdf:Acrobat Forms Data Format:fdf:$
+2:application/vnd.adobe.xfdf:XML Version of Acrobat Forms Data Format:xfdf:$
+3:application/vnd.adobe.xdp+xml:Acrobat XML Data Package:xdp:$
+4:application/vnd.adobe.xfd+xml:Adobe FormFlow99 Data File:xfd:$
+nswrapper_32_64.npica.so:$
+/usr/lib64/mozilla/plugins-wrapped/nswrapper_32_64.npica.so:$
+:$
+1369319177000:0:1:$
+ICA Plugin (Linux) Version 11.100.158406 (/usr/lib/ICAClient/wfica):$
+Citrix Receiver for Linux:$
+1
+0:application/x-ica:Handles ICA connections:ica:$
+nswrapper_32_64.libflashplayer.so:$
+/usr/lib64/mozilla/plugins-wrapped/nswrapper_32_64.libflashplayer.so:$
+:$
+1369319177000:0:1:$
+Shockwave Flash 11.1 r102:$
+Shockwave Flash:$
+2
+0:application/x-shockwave-flash:Shockwave Flash:swf:$
+1:application/futuresplash:FutureSplash Player:spl:$
+npwrapper.so:$
+/usr/lib64/nspluginwrapper/npwrapper.so:$
+:$
+1268906028000:0:1:$
+<a href="http://gwenole.beauchesne.info/projects/nspluginwrapper/">nspluginwrapper</a>  is a cross-platform NPAPI plugin viewer, in particular for linux/i386 plugins.<br>This <b>beta</b> software is available under the terms of the GNU General Public License.<br>:$
+NPAPI Plugins Wrapper 1.3.0:$
+1
+0:unknown/mime-type:Do not open:none:$
+
+[INVALID]
