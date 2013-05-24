@@ -1,34 +1,37 @@
 <apex:page controller="AccountLitleMapping" >
-	<h1>Select the mappings accordingly:</h1>
-	<br />
-	<br />
-	<apex:form >
-		<apex:panelGrid columns="5">
-  			<apex:outputLabel value="Account Fields" />
-  			<apex:outputLabel value="" />
-  			<apex:outputLabel value="Litle Fields" />
-  			<apex:outputLabel value="" />
-  			<apex:outputLabel value="" />
-  			<apex:repeat value="{!repeatList}" var="r">
-	  			<apex:SelectList value="{!accountValue}" size="1">
-	      			<apex:selectOptions value="{!accountFieldList}"></apex:selectOptions>
-	    		</apex:SelectList>
-	    		<apex:outputLabel value="" />
-	    		<apex:SelectList value="{!litleValue}" size="1">
-	      			<apex:selectOptions value="{!litleFieldList}"></apex:selectOptions>
-	    		</apex:SelectList>
-	    		<apex:outputLabel value="" />
-	    		<apex:commandButton value="Delete" />
-	    		<br />
-    		</apex:repeat>
-    		<apex:outputLabel value="" />
-    		<apex:outputLabel value="" />
-    		<apex:outputLabel value="" />
-    	</apex:panelGrid>
-    	<br />
-    	<apex:commandButton value="Add Another Mapping" action="{!addAnotherMapping}"/>
-    	<br />
-    	<apex:commandButton value="Save" />
-   		<apex:commandButton value="Cancel" />
-	</apex:form>
+    <h1>Select the mappings accordingly:</h1>
+    <br />
+    <br />
+    <apex:form >
+        <apex:panelGrid columns="5">
+            <apex:outputLabel value="Account Fields" />
+            <apex:outputLabel value="" />
+            <apex:outputLabel value="Litle Fields" />
+            <apex:outputLabel value="" />
+            <apex:outputLabel value="" />
+            <apex:repeat value="{!repeatList}" var="r">
+                <apex:SelectList value="{!r.accountValue}" size="1">
+                    <apex:selectOptions value="{!accountFieldList}"></apex:selectOptions>
+                </apex:SelectList>
+                <apex:outputLabel value="" />
+                <apex:SelectList value="{!r.litleValue}" size="1">
+                    <apex:selectOptions value="{!litleFieldList}"></apex:selectOptions>
+                </apex:SelectList>
+                <apex:outputLabel value="" />
+                <apex:commandLink value="Delete" action="{!deleteMapping}">
+                	<apex:param name="{!r.accountValue}" value="{!accountFieldDeleted}" />
+                	<apex:param name="{!r.litleValue}" value="{!litleFieldDeleted}" />
+                </apex:commandLink>
+                <br />
+            </apex:repeat>
+            <apex:outputLabel value="" />
+            <apex:outputLabel value="" />
+            <apex:outputLabel value="" />
+        </apex:panelGrid>
+        <br />
+        <apex:commandButton value="Add Another Mapping" action="{!addAnotherMapping}"/>
+        <br />
+        <apex:commandButton value="Save" />
+        <apex:commandButton value="Cancel" />
+    </apex:form>
 </apex:page>
