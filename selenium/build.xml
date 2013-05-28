@@ -41,4 +41,7 @@
 			</batchtest>
 		</junit>
 	</target>
+	
+	<!-- Run deployCodeCheckOnly of salesforce project -->
+	<ant dir="${salesforce.project.path}" target="deployCodeCheckOnly"></ant>
 </project>
