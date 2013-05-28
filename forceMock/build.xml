@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+	
+<project name="Sample usage of Salesforce Ant tasks" default="deployCodeCheckOnly" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+	<!-- proxy settings -->
+	<target name="proxy" if="proxy.enabled">
+	    <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"/>
+	  </target>
+
+    <!-- deploying code & running tests for code in directory -->
+    <target name="deployCode" depends="proxy">
+      <!-- Upload the contents of the "codepkg" directory, running the tests for just 1 class -->
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src">
+        <runTest>LoginControlTest</runTest>
+      </sf:deploy>
+    </target>
+
+    <!-- Shows removing code; only succeeds if done after deployCode -->
+    <target name="undeployCode" depends="proxy">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"/>
+    </target>
+
+    
+    <!-- Shows deploying code, running all tests, and running tests (1 of which fails), and logging. -->
+    <target name="deployCodeFailingTest" depends="proxy">
+      <!-- Upload the contents of the "codepkg" package, running all tests -->
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" runAllTests="true" logType="Debugonly"/>
+    </target>
+
+    <!-- Shows check only; never actually saves to the server -->
+    <target name="deployCodeCheckOnly" depends="proxy">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" checkOnly="true"/>
+    </target>
+
+	
+</project>
