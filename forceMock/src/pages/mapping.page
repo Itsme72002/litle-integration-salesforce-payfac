@@ -1,37 +1,398 @@
-<apex:page controller="AccountLitleMapping" >
-    <h1>Select the mappings accordingly:</h1>
-    <br />
-    <br />
+<apex:page controller="AccountLitleMapping">
     <apex:form >
-        <apex:panelGrid columns="5">
-            <apex:outputLabel value="Account Fields" />
-            <apex:outputLabel value="" />
-            <apex:outputLabel value="Litle Fields" />
-            <apex:outputLabel value="" />
-            <apex:outputLabel value="" />
-            <apex:repeat value="{!repeatList}" var="r">
-                <apex:SelectList value="{!r.accountValue}" size="1">
-                    <apex:selectOptions value="{!accountFieldList}"></apex:selectOptions>
-                </apex:SelectList>
-                <apex:outputLabel value="" />
-                <apex:SelectList value="{!r.litleValue}" size="1">
-                    <apex:selectOptions value="{!litleFieldList}"></apex:selectOptions>
-                </apex:SelectList>
-                <apex:outputLabel value="" />
-                <apex:commandLink value="Delete" action="{!deleteMapping}">
-                	<apex:param name="{!r.accountValue}" value="{!accountFieldDeleted}" />
-                	<apex:param name="{!r.litleValue}" value="{!litleFieldDeleted}" />
-                </apex:commandLink>
-                <br />
-            </apex:repeat>
-            <apex:outputLabel value="" />
-            <apex:outputLabel value="" />
-            <apex:outputLabel value="" />
-        </apex:panelGrid>
-        <br />
-        <apex:commandButton value="Add Another Mapping" action="{!addAnotherMapping}"/>
-        <br />
+
+        <apex:pageBlock title="Litle Salesforce MP">
+            <p>In the list below, select the field of salesforce.com corresponding to Litle's field. Once done, click
+                Save:
+            </p>
+            <br />
+            <apex:pageBlockSection title="Legal Entity" collapsible="true">
+                <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
+                    <apex:outputText value="Litle Field" style="font-weight: bold" />
+                    <apex:outputText value="" />
+                    <apex:outputText value="Salesforce Field" style="font-weight: bold" />
+                    <apex:outputText value="" />
+                    <apex:outputText value="Default" style="font-weight: bold" />
+                    <apex:outputtext value=""></apex:outputtext>
+                    <apex:outputtext value=""></apex:outputtext>
+                    <apex:outputtext value=""></apex:outputtext>
+                    <apex:outputtext value=""></apex:outputtext>
+                    <apex:outputtext value=""></apex:outputtext>
+                    <apex:outputText value="Entity Name: " />
+                    <apex:outputtext value="" />
+
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText value="{!legalEntityModel.legalEntityType}" disabled="true"/>
+                    <apex:outputText value="EntityType: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityStreetAddress1}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Street Address 1: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityStreetAddress2}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Street Address 2: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityCity}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="City: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="State/Province: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityStateProvince}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Postal Code: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityPostalCode}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Country Code: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityCountryCode}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="First Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityFirstName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Last Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityLastName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Email Address: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityEmailAddress}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Contact Phone: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityContactPhone}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Date Of Birth: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityDateOfBirth}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Drivers License: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityDriversLicense}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Drivers License State: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityDriversLicenseState}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="SSN: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntitySsn}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Tax ID: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityTaxId}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Is Exclusive To PSP : " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityIsExclusiveToPsp}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Is PCI Compliance Validated: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityIsPciComplianceValidated}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="PCI Level: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityPciLevel}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Scanning Vendor: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityScanningVendor}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Qualified Security Assessor: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityQualifiedSecurityAssessor}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Most Recently Passed Scan: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityMostRecentlyPassedScan}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Report On Compliance: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityReportOnCompliance}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Annual Credit Card Sales Volume: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityAnnualCreditCardSalesVolume}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Has Accepted Credit Cards: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityHasAcceptedCreditCards}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                </apex:panelGrid>
+
+
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Sub-Merchant" collapsible="true">
+                <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
+                    <apex:outputText value="Litle Field" style="font-weight: bold" />
+                    <apex:outputtext value="" />
+                    <apex:outputText value="Salesforce Field" style="font-weight: bold" />
+                    <apex:outputtext value="" />
+                    <apex:outputText value="Default" style="font-weight: bold" />
+                    <apex:outputtext value="" />
+                    <apex:outputtext value="" />
+                    <apex:outputtext value="" />
+                    <apex:outputtext value="" />
+                    <apex:outputtext value="" />
+
+                    <apex:outputText value="Street Address 1: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Street Address 2: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="City: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="State/Province: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Postal Code: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Country Code: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Amex MID: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Bank Account Number: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Bank Routing Number: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Create Credentials: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Customer Service Number: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Discover Convey MID: " />
+                    <apex:outputtext value="" />
+
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Hard Code Billing Descriptor: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Max Transaction Amount: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Merchant Category Code: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Merchant Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+
+                    <apex:outputText value="First Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Last Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Email Address: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="Phone: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="PSP Merchant ID: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="URL: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="eCheck Billing Descriptor: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                    <apex:outputText value="eCheck Company Name: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList value="{!legalEntityModel.legalEntityName}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText />
+                </apex:panelGrid>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
         <apex:commandButton value="Save" />
         <apex:commandButton value="Cancel" />
+
     </apex:form>
 </apex:page>
