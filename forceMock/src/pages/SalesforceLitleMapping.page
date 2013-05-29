@@ -1,4 +1,4 @@
-<apex:page controller="AccountLitleMapping">
+<apex:page controller="SalesforceLitleMappingController">
     <apex:form >
 
         <apex:pageBlock title="Litle Salesforce MP">

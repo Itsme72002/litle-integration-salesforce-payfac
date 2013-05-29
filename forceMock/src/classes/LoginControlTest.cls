@@ -49,6 +49,19 @@ private class LoginControlTest {
         System.assertEquals(loginControl.getAccountName(), accountName);
     }
     
+    // Test for accountNumber
+    static testMethod void testAccountNumber() {
+    	LoginControl loginControl = new LoginControl() ;
+        // Check if the accountNumber is null initially
+        System.assertEquals(loginControl.getAccountNumber(), null);
+        String accountNumber = 'test';
+        loginControl.setAccountNumber(accountNumber);
+        // First check if the value is set
+        System.assertNotEquals(loginControl.getAccountNumber(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(loginControl.getAccountNumber(), accountNumber);
+    }
+    
     // Test for billingCity
     static testMethod void testBillingCity() {
     	LoginControl loginControl = new LoginControl() ;

@@ -1,11 +1,9 @@
-public class AccountLitleMapping {
-    // private AccountLitleMappedField accountLitleMappedObject;
-
-    private LegalEntityModel legalEntityModel;
+public class SalesforceLitleMappingController {
+	private LegalEntityModel legalEntityModel;
     private SubMerchantModel subMerchantModel;
     private List<Selectoption> salesforceFields;
     
-    public AccountLitleMapping(){
+    public SalesforceLitleMappingController(){
     	legalEntityModel = new LegalEntityModel();
     	subMerchantModel = new SubMerchantModel();
     }
@@ -512,6 +510,6 @@ public class AccountLitleMapping {
 	}
 		 
 	 
-	 
+	
 
 }
