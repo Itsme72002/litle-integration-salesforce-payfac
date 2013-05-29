@@ -1,5 +1,6 @@
 public class SubMerchantModel {
 	
+	//Select options values
 	private String subMerchantStreetAddress1;
     private String subMerchantStreetAddress2;
     private String subMerchantCity;
@@ -25,7 +26,7 @@ public class SubMerchantModel {
     private String subMerchanteCheckBillingDescriptor;
     private String subMerchanteCheckCompanyName;
     
-    // Default values
+    // Default textbox values
     private String subMerchantStreetAddress1Default;
     private String subMerchantStreetAddress2Default;
     private String subMerchantCityDefault;
@@ -50,6 +51,201 @@ public class SubMerchantModel {
     private String subMerchantUrlDefault;
     private String subMerchanteCheckBillingDescriptorDefault;
     private String subMerchanteCheckCompanyNameDefault;
+    
+    //Enabled-Disabled flags
+    private Boolean isSubMerchantStreetAddress1DefaultDisabled;
+    private Boolean isSubMerchantStreetAddress2DefaultDisabled;
+    private Boolean isSubMerchantCityDefaultDisabled;
+    private Boolean isSubMerchantStateProvinceDefaultDisabled;
+    private Boolean isSubMerchantPostalCodeDefaultDisabled;
+    private Boolean isSubMerchantCountryCodeDefaultDisabled;
+    private Boolean isSubMerchantAmexMidDefaultDisabled;
+    private Boolean isSubMerchantBankAccountNumberDefaultDisabled;
+    private Boolean isSubMerchantBankRoutingNumberDefaultDisabled;
+    private Boolean isSubMerchantCreateCredentialsDefaultDisabled;
+    private Boolean isSubMerchantCustomerServiceNumberDefaultDisabled;
+    private Boolean isSubMerchantDiscoverConveyMidDefaultDisabled;
+    private Boolean isSubMerchantHardCodeBillingDescriptorDefaultDisabled;
+    private Boolean isSubMerchantMaxTransactionAmountDefaultDisabled;
+    private Boolean isSubMerchantMerchantCategoryCodeDefaultDisabled;
+    private Boolean isSubMerchantMerchantNameDefaultDisabled;
+    private Boolean isSubMerchantFirstNameDefaultDisabled;
+    private Boolean isSubMerchantLastNameDefaultDisabled;
+    private Boolean isSubMerchantEmailAddressDefaultDisabled;
+    private Boolean isSubMerchantPhoneDefaultDisabled;
+    private Boolean isSubMerchantPspMerchantIdDefaultDisabled;
+    private Boolean isSubMerchantUrlDefaultDisabled;
+    private Boolean isSubMerchanteCheckBillingDescriptorDefaultDisabled;
+    private Boolean isSubMerchanteCheckCompanyNameDefaultDisabled;
+    
+    public Boolean getIsSubMerchantStreetAddress1DefaultDisabled() {
+        return isSubMerchantStreetAddress1DefaultDisabled;
+    }
+    public void setIsSubMerchantStreetAddress1DefaultDisabled(
+            Boolean isSubMerchantStreetAddress1DefaultDisabled) {
+        this.isSubMerchantStreetAddress1DefaultDisabled = isSubMerchantStreetAddress1DefaultDisabled;
+    }
+    public Boolean getIsSubMerchantStreetAddress2DefaultDisabled() {
+        return isSubMerchantStreetAddress2DefaultDisabled;
+    }
+    public void setIsSubMerchantStreetAddress2DefaultDisabled(
+            Boolean isSubMerchantStreetAddress2DefaultDisabled) {
+        this.isSubMerchantStreetAddress2DefaultDisabled = isSubMerchantStreetAddress2DefaultDisabled;
+    }
+    public Boolean getIsSubMerchantCityDefaultDisabled() {
+        return isSubMerchantCityDefaultDisabled;
+    }
+    public void setIsSubMerchantCityDefaultDisabled(
+            Boolean isSubMerchantCityDefaultDisabled) {
+        this.isSubMerchantCityDefaultDisabled = isSubMerchantCityDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantStateProvinceDefaultDisabled() {
+        return isSubMerchantStateProvinceDefaultDisabled;
+    }
+    public void setIsSubMerchantStateProvinceDefaultDisabled(
+            Boolean isSubMerchantStateProvinceDefaultDisabled) {
+        this.isSubMerchantStateProvinceDefaultDisabled = isSubMerchantStateProvinceDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantPostalCodeDefaultDisabled() {
+        return isSubMerchantPostalCodeDefaultDisabled;
+    }
+    public void setIsSubMerchantPostalCodeDefaultDisabled(
+            Boolean isSubMerchantPostalCodeDefaultDisabled) {
+        this.isSubMerchantPostalCodeDefaultDisabled = isSubMerchantPostalCodeDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantCountryCodeDefaultDisabled() {
+        return isSubMerchantCountryCodeDefaultDisabled;
+    }
+    public void setIsSubMerchantCountryCodeDefaultDisabled(
+            Boolean isSubMerchantCountryCodeDefaultDisabled) {
+        this.isSubMerchantCountryCodeDefaultDisabled = isSubMerchantCountryCodeDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantAmexMidDefaultDisabled() {
+        return isSubMerchantAmexMidDefaultDisabled;
+    }
+    public void setIsSubMerchantAmexMidDefaultDisabled(
+            Boolean isSubMerchantAmexMidDefaultDisabled) {
+        this.isSubMerchantAmexMidDefaultDisabled = isSubMerchantAmexMidDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantBankAccountNumberDefaultDisabled() {
+        return isSubMerchantBankAccountNumberDefaultDisabled;
+    }
+    public void setIsSubMerchantBankAccountNumberDefaultDisabled(
+            Boolean isSubMerchantBankAccountNumberDefaultDisabled) {
+        this.isSubMerchantBankAccountNumberDefaultDisabled = isSubMerchantBankAccountNumberDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantBankRoutingNumberDefaultDisabled() {
+        return isSubMerchantBankRoutingNumberDefaultDisabled;
+    }
+    public void setIsSubMerchantBankRoutingNumberDefaultDisabled(
+            Boolean isSubMerchantBankRoutingNumberDefaultDisabled) {
+        this.isSubMerchantBankRoutingNumberDefaultDisabled = isSubMerchantBankRoutingNumberDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantCreateCredentialsDefaultDisabled() {
+        return isSubMerchantCreateCredentialsDefaultDisabled;
+    }
+    public void setIsSubMerchantCreateCredentialsDefaultDisabled(
+            Boolean isSubMerchantCreateCredentialsDefaultDisabled) {
+        this.isSubMerchantCreateCredentialsDefaultDisabled = isSubMerchantCreateCredentialsDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantCustomerServiceNumberDefaultDisabled() {
+        return isSubMerchantCustomerServiceNumberDefaultDisabled;
+    }
+    public void setIsSubMerchantCustomerServiceNumberDefaultDisabled(
+            Boolean isSubMerchantCustomerServiceNumberDefaultDisabled) {
+        this.isSubMerchantCustomerServiceNumberDefaultDisabled = isSubMerchantCustomerServiceNumberDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantDiscoverConveyMidDefaultDisabled() {
+        return isSubMerchantDiscoverConveyMidDefaultDisabled;
+    }
+    public void setIsSubMerchantDiscoverConveyMidDefaultDisabled(
+            Boolean isSubMerchantDiscoverConveyMidDefaultDisabled) {
+        this.isSubMerchantDiscoverConveyMidDefaultDisabled = isSubMerchantDiscoverConveyMidDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantHardCodeBillingDescriptorDefaultDisabled() {
+        return isSubMerchantHardCodeBillingDescriptorDefaultDisabled;
+    }
+    public void setIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(
+            Boolean isSubMerchantHardCodeBillingDescriptorDefaultDisabled) {
+        this.isSubMerchantHardCodeBillingDescriptorDefaultDisabled = isSubMerchantHardCodeBillingDescriptorDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantMaxTransactionAmountDefaultDisabled() {
+        return isSubMerchantMaxTransactionAmountDefaultDisabled;
+    }
+    public void setIsSubMerchantMaxTransactionAmountDefaultDisabled(
+            Boolean isSubMerchantMaxTransactionAmountDefaultDisabled) {
+        this.isSubMerchantMaxTransactionAmountDefaultDisabled = isSubMerchantMaxTransactionAmountDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantMerchantCategoryCodeDefaultDisabled() {
+        return isSubMerchantMerchantCategoryCodeDefaultDisabled;
+    }
+    public void setIsSubMerchantMerchantCategoryCodeDefaultDisabled(
+            Boolean isSubMerchantMerchantCategoryCodeDefaultDisabled) {
+        this.isSubMerchantMerchantCategoryCodeDefaultDisabled = isSubMerchantMerchantCategoryCodeDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantMerchantNameDefaultDisabled() {
+        return isSubMerchantMerchantNameDefaultDisabled;
+    }
+    public void setIsSubMerchantMerchantNameDefaultDisabled(
+            Boolean isSubMerchantMerchantNameDefaultDisabled) {
+        this.isSubMerchantMerchantNameDefaultDisabled = isSubMerchantMerchantNameDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantFirstNameDefaultDisabled() {
+        return isSubMerchantFirstNameDefaultDisabled;
+    }
+    public void setIsSubMerchantFirstNameDefaultDisabled(
+            Boolean isSubMerchantFirstNameDefaultDisabled) {
+        this.isSubMerchantFirstNameDefaultDisabled = isSubMerchantFirstNameDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantLastNameDefaultDisabled() {
+        return isSubMerchantLastNameDefaultDisabled;
+    }
+    public void setIsSubMerchantLastNameDefaultDisabled(
+            Boolean isSubMerchantLastNameDefaultDisabled) {
+        this.isSubMerchantLastNameDefaultDisabled = isSubMerchantLastNameDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantEmailAddressDefaultDisabled() {
+        return isSubMerchantEmailAddressDefaultDisabled;
+    }
+    public void setIsSubMerchantEmailAddressDefaultDisabled(
+            Boolean isSubMerchantEmailAddressDefaultDisabled) {
+        this.isSubMerchantEmailAddressDefaultDisabled = isSubMerchantEmailAddressDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantPhoneDefaultDisabled() {
+        return isSubMerchantPhoneDefaultDisabled;
+    }
+    public void setIsSubMerchantPhoneDefaultDisabled(
+            Boolean isSubMerchantPhoneDefaultDisabled) {
+        this.isSubMerchantPhoneDefaultDisabled = isSubMerchantPhoneDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantPspMerchantIdDefaultDisabled() {
+        return isSubMerchantPspMerchantIdDefaultDisabled;
+    }
+    public void setIsSubMerchantPspMerchantIdDefaultDisabled(
+            Boolean isSubMerchantPspMerchantIdDefaultDisabled) {
+        this.isSubMerchantPspMerchantIdDefaultDisabled = isSubMerchantPspMerchantIdDefaultDisabled;
+    }
+    public Boolean getIsSubMerchantUrlDefaultDisabled() {
+        return isSubMerchantUrlDefaultDisabled;
+    }
+    public void setIsSubMerchantUrlDefaultDisabled(
+            Boolean isSubMerchantUrlDefaultDisabled) {
+        this.isSubMerchantUrlDefaultDisabled = isSubMerchantUrlDefaultDisabled;
+    }
+    public Boolean getIsSubMerchanteCheckBillingDescriptorDefaultDisabled() {
+        return isSubMerchanteCheckBillingDescriptorDefaultDisabled;
+    }
+    public void setIsSubMerchanteCheckBillingDescriptorDefaultDisabled(
+            Boolean isSubMerchanteCheckBillingDescriptorDefaultDisabled) {
+        this.isSubMerchanteCheckBillingDescriptorDefaultDisabled = isSubMerchanteCheckBillingDescriptorDefaultDisabled;
+    }
+    public Boolean getIsSubMerchanteCheckCompanyNameDefaultDisabled() {
+        return isSubMerchanteCheckCompanyNameDefaultDisabled;
+    }
+    public void setIsSubMerchanteCheckCompanyNameDefaultDisabled(
+            Boolean isSubMerchanteCheckCompanyNameDefaultDisabled) {
+        this.isSubMerchanteCheckCompanyNameDefaultDisabled = isSubMerchanteCheckCompanyNameDefaultDisabled;
+    }
     
     public String getSubMerchantStreetAddress1Default() {
         return subMerchantStreetAddress1Default;

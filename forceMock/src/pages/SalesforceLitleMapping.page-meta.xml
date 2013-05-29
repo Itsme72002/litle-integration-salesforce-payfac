@@ -2,5 +2,5 @@
 <ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>27.0</apiVersion>
     <description>Mapping page for Salesforce and Litle fields</description>
-    <label>mapping</label>
+    <label>SalesforceLitleMapping</label>
 </ApexPage>

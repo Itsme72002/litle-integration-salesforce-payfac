@@ -1,5 +1,6 @@
 public class LegalEntityModel {
 
+	//Select options values
 	private String legalEntityName;
     private String legalEntityType;
     private String legalEntityStreetAddress1;
@@ -27,7 +28,7 @@ public class LegalEntityModel {
     private String legalEntityAnnualCreditCardSalesVolume;
     private String legalEntityHasAcceptedCreditCards;
     
-    // Default values
+    // Default textbox values
 	private String legalEntityNameDefault;
     private String legalEntityTypeDefault;
     private String legalEntityStreetAddress1Default;
@@ -54,6 +55,219 @@ public class LegalEntityModel {
     private String legalEntityReportOnComplianceDefault;
     private String legalEntityAnnualCreditCardSalesVolumeDefault;
     private String legalEntityHasAcceptedCreditCardsDefault;
+    
+    //Enabled-Disabled flags
+        
+    private Boolean isLegalEntityNameDefaultDisabled;
+    private Boolean isLegalEntityTypeDefaultDisabled;
+    private Boolean isLegalEntityStreetAddress1DefaultDisabled;
+    private Boolean isLegalEntityStreetAddress2DefaultDisabled;
+    private Boolean isLegalEntityCityDefaultDisabled;
+    private Boolean isLegalEntityStateProvinceDefaultDisabled;
+    private Boolean isLegalEntityPostalCodeDefaultDisabled;
+    private Boolean isLegalEntityCountryCodeDefaultDisabled;
+    private Boolean isLegalEntityFirstNameDefaultDisabled;
+    private Boolean isLegalEntityLastNameDefaultDisabled;
+    private Boolean isLegalEntityEmailAddressDefaultDisabled;
+    private Boolean isLegalEntityContactPhoneDefaultDisabled;
+    private Boolean isLegalEntityDateOfBirthDefaultDisabled;
+    private Boolean isLegalEntityDriversLicenseDefaultDisabled;
+    private Boolean isLegalEntityDriversLicenseStateDefaultDisabled;
+    private Boolean isLegalEntitySsnDefaultDisabled;
+    private Boolean isLegalEntityTaxIdDefaultDisabled;
+    private Boolean isLegalEntityIsExclusiveToPspDefaultDisabled;
+    private Boolean isLegalEntityIsPciComplianceValidatedDefaultDisabled;
+    private Boolean isLegalEntityPciLevelDefaultDisabled;
+    private Boolean isLegalEntityScanningVendorDefaultDisabled;
+    private Boolean isLegalEntityQualifiedSecurityAssessorDefaultDisabled;
+    private Boolean isLegalEntityMostRecentlyPassedScanDefaultDisabled;
+    private Boolean isLegalEntityReportOnComplianceDefaultDisabled;
+    private Boolean isLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled;
+    private Boolean isLegalEntityHasAcceptedCreditCardsDefaultDisabled;
+    
+    public Boolean getIsLegalEntityNameDefaultDisabled() {
+        return isLegalEntityNameDefaultDisabled;
+    }
+    public void setIsLegalEntityNameDefaultDisabled(
+            Boolean isLegalEntityNameDefaultDisabled) {
+        this.isLegalEntityNameDefaultDisabled = isLegalEntityNameDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityTypeDefaultDisabled() {
+        return isLegalEntityTypeDefaultDisabled;
+    }
+    public void setIsLegalEntityTypeDefaultDisabled(
+            Boolean isLegalEntityTypeDefaultDisabled) {
+        this.isLegalEntityTypeDefaultDisabled = isLegalEntityTypeDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityStreetAddress1DefaultDisabled() {
+        return isLegalEntityStreetAddress1DefaultDisabled;
+    }
+    public void setIsLegalEntityStreetAddress1DefaultDisabled(
+            Boolean isLegalEntityStreetAddress1DefaultDisabled) {
+        this.isLegalEntityStreetAddress1DefaultDisabled = isLegalEntityStreetAddress1DefaultDisabled;
+    }
+    public Boolean getIsLegalEntityStreetAddress2DefaultDisabled() {
+        return isLegalEntityStreetAddress2DefaultDisabled;
+    }
+    public void setIsLegalEntityStreetAddress2DefaultDisabled(
+            Boolean isLegalEntityStreetAddress2DefaultDisabled) {
+        this.isLegalEntityStreetAddress2DefaultDisabled = isLegalEntityStreetAddress2DefaultDisabled;
+    }
+    public Boolean getIsLegalEntityCityDefaultDisabled() {
+        return isLegalEntityCityDefaultDisabled;
+    }
+    public void setIsLegalEntityCityDefaultDisabled(
+            Boolean isLegalEntityCityDefaultDisabled) {
+        this.isLegalEntityCityDefaultDisabled = isLegalEntityCityDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityStateProvinceDefaultDisabled() {
+        return isLegalEntityStateProvinceDefaultDisabled;
+    }
+    public void setIsLegalEntityStateProvinceDefaultDisabled(
+            Boolean isLegalEntityStateProvinceDefaultDisabled) {
+        this.isLegalEntityStateProvinceDefaultDisabled = isLegalEntityStateProvinceDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityPostalCodeDefaultDisabled() {
+        return isLegalEntityPostalCodeDefaultDisabled;
+    }
+    public void setIsLegalEntityPostalCodeDefaultDisabled(
+            Boolean isLegalEntityPostalCodeDefaultDisabled) {
+        this.isLegalEntityPostalCodeDefaultDisabled = isLegalEntityPostalCodeDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityCountryCodeDefaultDisabled() {
+        return isLegalEntityCountryCodeDefaultDisabled;
+    }
+    public void setIsLegalEntityCountryCodeDefaultDisabled(
+            Boolean isLegalEntityCountryCodeDefaultDisabled) {
+        this.isLegalEntityCountryCodeDefaultDisabled = isLegalEntityCountryCodeDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityFirstNameDefaultDisabled() {
+        return isLegalEntityFirstNameDefaultDisabled;
+    }
+    public void setIsLegalEntityFirstNameDefaultDisabled(
+            Boolean isLegalEntityFirstNameDefaultDisabled) {
+        this.isLegalEntityFirstNameDefaultDisabled = isLegalEntityFirstNameDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityLastNameDefaultDisabled() {
+        return isLegalEntityLastNameDefaultDisabled;
+    }
+    public void setIsLegalEntityLastNameDefaultDisabled(
+            Boolean isLegalEntityLastNameDefaultDisabled) {
+        this.isLegalEntityLastNameDefaultDisabled = isLegalEntityLastNameDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityEmailAddressDefaultDisabled() {
+        return isLegalEntityEmailAddressDefaultDisabled;
+    }
+    public void setIsLegalEntityEmailAddressDefaultDisabled(
+            Boolean isLegalEntityEmailAddressDefaultDisabled) {
+        this.isLegalEntityEmailAddressDefaultDisabled = isLegalEntityEmailAddressDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityContactPhoneDefaultDisabled() {
+        return isLegalEntityContactPhoneDefaultDisabled;
+    }
+    public void setIsLegalEntityContactPhoneDefaultDisabled(
+            Boolean isLegalEntityContactPhoneDefaultDisabled) {
+        this.isLegalEntityContactPhoneDefaultDisabled = isLegalEntityContactPhoneDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityDateOfBirthDefaultDisabled() {
+        return isLegalEntityDateOfBirthDefaultDisabled;
+    }
+    public void setIsLegalEntityDateOfBirthDefaultDisabled(
+            Boolean isLegalEntityDateOfBirthDefaultDisabled) {
+        this.isLegalEntityDateOfBirthDefaultDisabled = isLegalEntityDateOfBirthDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityDriversLicenseDefaultDisabled() {
+        return isLegalEntityDriversLicenseDefaultDisabled;
+    }
+    public void setIsLegalEntityDriversLicenseDefaultDisabled(
+            Boolean isLegalEntityDriversLicenseDefaultDisabled) {
+        this.isLegalEntityDriversLicenseDefaultDisabled = isLegalEntityDriversLicenseDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityDriversLicenseStateDefaultDisabled() {
+        return isLegalEntityDriversLicenseStateDefaultDisabled;
+    }
+    public void setIsLegalEntityDriversLicenseStateDefaultDisabled(
+            Boolean isLegalEntityDriversLicenseStateDefaultDisabled) {
+        this.isLegalEntityDriversLicenseStateDefaultDisabled = isLegalEntityDriversLicenseStateDefaultDisabled;
+    }
+    public Boolean getIsLegalEntitySsnDefaultDisabled() {
+        return isLegalEntitySsnDefaultDisabled;
+    }
+    public void setIsLegalEntitySsnDefaultDisabled(
+            Boolean isLegalEntitySsnDefaultDisabled) {
+        this.isLegalEntitySsnDefaultDisabled = isLegalEntitySsnDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityTaxIdDefaultDisabled() {
+        return isLegalEntityTaxIdDefaultDisabled;
+    }
+    public void setIsLegalEntityTaxIdDefaultDisabled(
+            Boolean isLegalEntityTaxIdDefaultDisabled) {
+        this.isLegalEntityTaxIdDefaultDisabled = isLegalEntityTaxIdDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityIsExclusiveToPspDefaultDisabled() {
+        return isLegalEntityIsExclusiveToPspDefaultDisabled;
+    }
+    public void setIsLegalEntityIsExclusiveToPspDefaultDisabled(
+            Boolean isLegalEntityIsExclusiveToPspDefaultDisabled) {
+        this.isLegalEntityIsExclusiveToPspDefaultDisabled = isLegalEntityIsExclusiveToPspDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityIsPciComplianceValidatedDefaultDisabled() {
+        return isLegalEntityIsPciComplianceValidatedDefaultDisabled;
+    }
+    public void setIsLegalEntityIsPciComplianceValidatedDefaultDisabled(
+            Boolean isLegalEntityIsPciComplianceValidatedDefaultDisabled) {
+        this.isLegalEntityIsPciComplianceValidatedDefaultDisabled = isLegalEntityIsPciComplianceValidatedDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityPciLevelDefaultDisabled() {
+        return isLegalEntityPciLevelDefaultDisabled;
+    }
+    public void setIsLegalEntityPciLevelDefaultDisabled(
+            Boolean isLegalEntityPciLevelDefaultDisabled) {
+        this.isLegalEntityPciLevelDefaultDisabled = isLegalEntityPciLevelDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityScanningVendorDefaultDisabled() {
+        return isLegalEntityScanningVendorDefaultDisabled;
+    }
+    public void setIsLegalEntityScanningVendorDefaultDisabled(
+            Boolean isLegalEntityScanningVendorDefaultDisabled) {
+        this.isLegalEntityScanningVendorDefaultDisabled = isLegalEntityScanningVendorDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityQualifiedSecurityAssessorDefaultDisabled() {
+        return isLegalEntityQualifiedSecurityAssessorDefaultDisabled;
+    }
+    public void setIsLegalEntityQualifiedSecurityAssessorDefaultDisabled(
+            Boolean isLegalEntityQualifiedSecurityAssessorDefaultDisabled) {
+        this.isLegalEntityQualifiedSecurityAssessorDefaultDisabled = isLegalEntityQualifiedSecurityAssessorDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityMostRecentlyPassedScanDefaultDisabled() {
+        return isLegalEntityMostRecentlyPassedScanDefaultDisabled;
+    }
+    public void setIsLegalEntityMostRecentlyPassedScanDefaultDisabled(
+            Boolean isLegalEntityMostRecentlyPassedScanDefaultDisabled) {
+        this.isLegalEntityMostRecentlyPassedScanDefaultDisabled = isLegalEntityMostRecentlyPassedScanDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityReportOnComplianceDefaultDisabled() {
+        return isLegalEntityReportOnComplianceDefaultDisabled;
+    }
+    public void setIsLegalEntityReportOnComplianceDefaultDisabled(
+            Boolean isLegalEntityReportOnComplianceDefaultDisabled) {
+        this.isLegalEntityReportOnComplianceDefaultDisabled = isLegalEntityReportOnComplianceDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled() {
+        return isLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled;
+    }
+    public void setIsLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled(
+            Boolean isLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled) {
+        this.isLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled = isLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled;
+    }
+    public Boolean getIsLegalEntityHasAcceptedCreditCardsDefaultDisabled() {
+        return isLegalEntityHasAcceptedCreditCardsDefaultDisabled;
+    }
+    public void setIsLegalEntityHasAcceptedCreditCardsDefaultDisabled(
+            Boolean isLegalEntityHasAcceptedCreditCardsDefaultDisabled) {
+        this.isLegalEntityHasAcceptedCreditCardsDefaultDisabled = isLegalEntityHasAcceptedCreditCardsDefaultDisabled;
+    }
+    
     public String getLegalEntityNameDefault() {
         return legalEntityNameDefault;
     }
