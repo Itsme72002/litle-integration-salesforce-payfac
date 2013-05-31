@@ -1,5 +1,7 @@
 public class SubMerchantModel {
 	
+	// TODO Delete, class not used
+	
 	//Select options values
 	private String subMerchantStreetAddress1;
     private String subMerchantStreetAddress2;

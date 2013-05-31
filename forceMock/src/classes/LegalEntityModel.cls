@@ -1,4 +1,6 @@
 public class LegalEntityModel {
+	
+	// TODO Delete, class not used
 
 	//Select options values
 	private String legalEntityName;

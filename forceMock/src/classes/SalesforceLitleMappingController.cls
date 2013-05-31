@@ -1,28 +1,167 @@
 public class SalesforceLitleMappingController {
-	private LegalEntityModel legalEntityModel;
-    private SubMerchantModel subMerchantModel;
-    private List<Selectoption> salesforceFields;
+	private List<Selectoption> salesforceFields;
+    
     
     public SalesforceLitleMappingController(){
-    	legalEntityModel = new LegalEntityModel();
-    	subMerchantModel = new SubMerchantModel();
+    	List<SalesforceLitleMappingsObject__c> mappingRecords 
+    			= [select id, name, subMerchantStreetAddress1__c, 
+									subMerchantStreetAddress2__c, 
+									subMerchantCity__c, 
+									subMerchantStateProvince__c, 
+									subMerchantPostalCode__c, 
+									subMerchantCountryCode__c, 
+									subMerchantAmexMid__c, 
+									subMerchantBankAccountNumber__c, 
+									subMerchantBankRoutingNumber__c, 
+									subMerchantCreateCredentials__c, 
+									subMerchantCustomerServiceNumber__c, 
+									subMerchantDiscoverConveyMid__c, 
+									subMerchantHardCodeBillingDescriptor__c, 
+									subMerchantMaxTransactionAmount__c, 
+									subMerchantMerchantCategoryCode__c, 
+									subMerchantMerchantName__c, 
+									subMerchantFirstName__c, 
+									subMerchantLastName__c, 
+									subMerchantEmailAddress__c, 
+									subMerchantPhone__c, 
+									subMerchantPspMerchantId__c, 
+									subMerchantUrl__c, 
+									subMerchanteCheckBillingDescriptor__c, 
+									subMerchanteCheckCompanyName__c, 
+									subMerchantStreetAddress1D__c, 
+									subMerchantStreetAddress2D__c, 
+									subMerchantCityD__c, 
+									subMerchantStateProvinceD__c, 
+									subMerchantPostalCodeD__c, 
+									subMerchantCountryCodeD__c, 
+									subMerchantAmexMidD__c, 
+									subMerchantBankAccountNumberD__c, 
+									subMerchantBankRoutingNumberD__c, 
+									subMerchantCreateCredentialsD__c, 
+									subMerchantCustomerServiceNumberD__c, 
+									subMerchantDiscoverConveyMidD__c, 
+									subMerchantHardCodeBillingDescD__c, 
+									subMerchantMaxTransactionAmountD__c, 
+									subMerchantMerchantCategoryCodeD__c, 
+									subMerchantMerchantNameD__c, 
+									subMerchantFirstNameD__c, 
+									subMerchantLastNameD__c, 
+									subMerchantEmailAddressD__c, 
+									subMerchantPhoneD__c, 
+									subMerchantPspMerchantIdD__c, 
+									subMerchantUrlD__c, 
+									subMerchanteCheckBillingDescD__c, 
+									subMerchanteCheckCompanyNameD__c, 
+									subMerchantStreetAddress1X__c, 
+									subMerchantStreetAddress2X__c, 
+									subMerchantCityX__c, 
+									subMerchantStateProvinceX__c, 
+									subMerchantPostalCodeX__c, 
+									subMerchantCountryCodeX__c, 
+									subMerchantAmexMidX__c, 
+									subMerchantBankAccountNumberX__c, 
+									subMerchantBankRoutingNumberX__c, 
+									subMerchantCreateCredentialsX__c, 
+									subMerchantCustomerServiceNumberX__c, 
+									subMerchantDiscoverConveyMidX__c, 
+									subMerchantHardCodeBillingDescriptorX__c, 
+									subMerchantMaxTransactionAmountX__c, 
+									subMerchantMerchantCategoryCodeX__c, 
+									subMerchantMerchantNameX__c, 
+									subMerchantFirstNameX__c, 
+									subMerchantLastNameX__c, 
+									subMerchantEmailAddressX__c, 
+									subMerchantPhoneX__c, 
+									subMerchantPspMerchantIdX__c, 
+									subMerchantUrlX__c, 
+									subMerchanteCheckBillingDescriptorX__c, 
+									subMerchanteCheckCompanyNameX__c, 
+									legalEntityName__c, 
+									legalEntityType__c, 
+									legalEntityStreetAddress1__c, 
+									legalEntityStreetAddress2__c, 
+									legalEntityCity__c, 
+									legalEntityStateProvince__c, 
+									legalEntityPostalCode__c, 
+									legalEntityCountryCode__c, 
+									legalEntityFirstName__c, 
+									legalEntityLastName__c, 
+									legalEntityEmailAddress__c, 
+									legalEntityContactPhone__c, 
+									legalEntityDateOfBirth__c, 
+									legalEntityDriversLicense__c, 
+									legalEntityDriversLicenseState__c, 
+									legalEntitySsn__c, 
+									legalEntityTaxId__c, 
+									legalEntityIsExclusiveToPsp__c, 
+									legalEntityIsPciComplianceValidated__c, 
+									legalEntityPciLevel__c, 
+									legalEntityScanningVendor__c, 
+									legalEntityQualifiedSecurityAssessor__c, 
+									legalEntityMostRecentlyPassedScan__c, 
+									legalEntityReportOnCompliance__c, 
+									legalEntityAnnualCreditCardSalesVolume__c, 
+									legalEntityHasAcceptedCreditCards__c, 
+									legalEntityNameD__c, 
+									legalEntityTypeD__c, 
+									legalEntityStreetAddress1D__c, 
+									legalEntityStreetAddress2D__c, 
+									legalEntityCityD__c, 
+									legalEntityStateProvinceD__c, 
+									legalEntityPostalCodeD__c, 
+									legalEntityCountryCodeD__c, 
+									legalEntityFirstNameD__c, 
+									legalEntityLastNameD__c, 
+									legalEntityEmailAddressD__c, 
+									legalEntityContactPhoneD__c, 
+									legalEntityDateOfBirthD__c, 
+									legalEntityDriversLicenseD__c, 
+									legalEntityDriversLicenseStateD__c, 
+									legalEntitySsnD__c, 
+									legalEntityTaxIdD__c, 
+									legalEntityIsExclusiveToPspD__c, 
+									legalEntityIsPciComplianceValidatedD__c, 
+									legalEntityPciLevelD__c, 
+									legalEntityScanningVendorD__c, 
+									legalEntityQualifiedSecurityAssessorD__c, 
+									legalEntityMostRecentlyPassedScanD__c, 
+									legalEntityReportOnComplianceD__c, 
+									legalEntityAnnualCreditCardSalesVolumeD__c, 
+									legalEntityHasAcceptedCreditCardsD__c, 
+									legalEntityNameX__c, 
+									legalEntityTypeX__c, 
+									legalEntityStreetAddress1X__c, 
+									legalEntityStreetAddress2X__c, 
+									legalEntityCityX__c, 
+									legalEntityStateProvinceX__c, 
+									legalEntityPostalCodeX__c, 
+									legalEntityCountryCodeX__c, 
+									legalEntityFirstNameX__c, 
+									legalEntityLastNameX__c, 
+									legalEntityEmailAddressX__c, 
+									legalEntityContactPhoneX__c, 
+									legalEntityDateOfBirthX__c, 
+									legalEntityDriversLicenseX__c, 
+									legalEntityDriversLicenseStateX__c, 
+									legalEntitySsnX__c, 
+									legalEntityTaxIdX__c, 
+									legalEntityIsExclusiveToPspX__c, 
+									legalEntityIsPciComplianceValidatedX__c, 
+									legalEntityPciLevelX__c, 
+									legalEntityScanningVendorX__c, 
+									legalEntityQualifiedSecurityAssessorX__c, 
+									legalEntityMostRecentlyPassedScanX__c, 
+									legalEntityReportOnComplianceX__c, 
+									legalEntityAnnualCreditCardSalesVolumeX__c, 
+									legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
+    	if(mappingRecords.isEmpty()){
+    		this.currentMappings = new SalesforceLitleMappingsObject__c();
+    	}else{
+    		this.currentMappings =  mappingRecords.get(0);
+    	}
     }
     
-    public void setLegalEntityModel(LegalEntityModel legalEntityModel){
-    	this.legalEntityModel = legalEntityModel;
-    }
-    
-    public LegalEntityModel getLegalEntityModel(){
-    	return legalEntityModel;
-    }
-    
-    public void setSubMerchantModel(SubMerchantModel subMerchantModel){
-    	this.subMerchantModel = subMerchantModel;
-    }
-    
-    public SubMerchantModel getSubMerchantModel(){
-    	return subMerchantModel;
-    }
+    public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     
     public List<Selectoption> getSalesforceFields(){
     	if(salesforceFields == null || salesforceFields.size() == 0){
@@ -53,236 +192,236 @@ public class SalesforceLitleMappingController {
 	 
 	 //Legal Entity on change listeners	 
 	 public Pagereference onSelectChangeLegalEntityName(){
-	 	if(legalEntityModel.getLegalEntityName()== null){
-	 		legalEntityModel.setIsLegalEntityNameDefaultDisabled(false);
+	 	if(currentMappings.legalEntityName__c== null){
+	 		currentMappings.legalEntityNameX__c = false;
 	 	}else{
-	 		legalEntityModel.setIsLegalEntityNameDefaultDisabled(true);
+	 		currentMappings.legalEntityNameX__c = true;
 	 	}
 	 	return null;
 	 }
 	 
 	 public PageReference onSelectChangeLegalEntityType(){
-	 	if(legalEntityModel.getLegalEntityType()== null){
-	 		legalEntityModel.setIsLegalEntityTypeDefaultDisabled(false);
+	 	if(currentMappings.legalEntityType__c== null){
+	 		currentMappings.legalEntityTypeX__c = false;
 	 	}else{
-	 		legalEntityModel.setIsLegalEntityTypeDefaultDisabled(true);
+	 		currentMappings.legalEntityTypeX__c = true;
 	 	}
 		return null;
 	}
 	
 	
 	public PageReference onSelectChangeLegalEntityStreetAddress1(){
-		if(legalEntityModel.getLegalEntityStreetAddress1()== null){
-		 	legalEntityModel.setIsLegalEntityStreetAddress1DefaultDisabled(false);
+		if(currentMappings.legalEntityStreetAddress1__c== null){
+		 	currentMappings.legalEntityStreetAddress1X__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityStreetAddress1DefaultDisabled(true);
+		 	currentMappings.legalEntityStreetAddress1X__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityStreetAddress2(){
-		if(legalEntityModel.getLegalEntityStreetAddress2()== null){
-		 	legalEntityModel.setIsLegalEntityStreetAddress2DefaultDisabled(false);
+		if(currentMappings.legalEntityStreetAddress2__c== null){
+		 	currentMappings.legalEntityStreetAddress2X__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityStreetAddress2DefaultDisabled(true);
+		 	currentMappings.legalEntityStreetAddress2X__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityCity(){
-		if(legalEntityModel.getLegalEntityCity()== null){
-		 	legalEntityModel.setIsLegalEntityCityDefaultDisabled(false);
+		if(currentMappings.legalEntityCity__c== null){
+		 	currentMappings.legalEntityCityX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityCityDefaultDisabled(true);
+		 	currentMappings.legalEntityCityX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityStateProvince(){
-		if(legalEntityModel.getLegalEntityStateProvince()== null){
-		 	legalEntityModel.setIsLegalEntityStateProvinceDefaultDisabled(false);
+		if(currentMappings.legalEntityStateProvince__c== null){
+		 	currentMappings.legalEntityStateProvinceX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityStateProvinceDefaultDisabled(true);
+		 	currentMappings.legalEntityStateProvinceX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityPostalCode(){
-		if(legalEntityModel.getLegalEntityPostalCode()== null){
-		 	legalEntityModel.setIsLegalEntityPostalCodeDefaultDisabled(false);
+		if(currentMappings.legalEntityPostalCode__c== null){
+		 	currentMappings.legalEntityPostalCodeX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityPostalCodeDefaultDisabled(true);
+		 	currentMappings.legalEntityPostalCodeX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityCountryCode(){
-		if(legalEntityModel.getLegalEntityCountryCode()== null){
-		 	legalEntityModel.setIsLegalEntityCountryCodeDefaultDisabled(false);
+		if(currentMappings.legalEntityCountryCode__c== null){
+		 	currentMappings.legalEntityCountryCodeX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityCountryCodeDefaultDisabled(true);
+		 	currentMappings.legalEntityCountryCodeX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityFirstName(){
-		if(legalEntityModel.getLegalEntityFirstName()== null){
-		 	legalEntityModel.setIsLegalEntityFirstNameDefaultDisabled(false);
+		if(currentMappings.legalEntityFirstName__c== null){
+		 	currentMappings.legalEntityFirstNameX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityFirstNameDefaultDisabled(true);
+		 	currentMappings.legalEntityFirstNameX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityLastName(){
-		if(legalEntityModel.getLegalEntityLastName()== null){
-		 	legalEntityModel.setIsLegalEntityLastNameDefaultDisabled(false);
+		if(currentMappings.legalEntityLastName__c== null){
+		 	currentMappings.legalEntityLastNameX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityLastNameDefaultDisabled(true);
+		 	currentMappings.legalEntityLastNameX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityEmailAddress(){
-		if(legalEntityModel.getLegalEntityEmailAddress()== null){
-		 	legalEntityModel.setIsLegalEntityEmailAddressDefaultDisabled(false);
+		if(currentMappings.legalEntityEmailAddress__c== null){
+		 	currentMappings.legalEntityEmailAddressX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityEmailAddressDefaultDisabled(true);
+		 	currentMappings.legalEntityEmailAddressX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityContactPhone(){
-		if(legalEntityModel.getLegalEntityContactPhone()== null){
-		 	legalEntityModel.setIsLegalEntityContactPhoneDefaultDisabled(false);
+		if(currentMappings.legalEntityContactPhone__c== null){
+		 	currentMappings.legalEntityContactPhoneX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityContactPhoneDefaultDisabled(true);
+		 	currentMappings.legalEntityContactPhoneX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityDateOfBirth(){
-		if(legalEntityModel.getLegalEntityDateOfBirth()== null){
-		 	legalEntityModel.setIsLegalEntityDateOfBirthDefaultDisabled(false);
+		if(currentMappings.legalEntityDateOfBirth__c== null){
+		 	currentMappings.legalEntityDateOfBirthX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityDateOfBirthDefaultDisabled(true);
+		 	currentMappings.legalEntityDateOfBirthX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityDriversLicense(){
-		if(legalEntityModel.getLegalEntityDriversLicense()== null){
-		 	legalEntityModel.setIsLegalEntityDriversLicenseDefaultDisabled(false);
+		if(currentMappings.legalEntityDriversLicense__c== null){
+		 	currentMappings.legalEntityDriversLicenseX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityDriversLicenseDefaultDisabled(true);
+		 	currentMappings.legalEntityDriversLicenseX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityDriversLicenseState(){
-		if(legalEntityModel.getLegalEntityDriversLicenseState()== null){
-		 	legalEntityModel.setIsLegalEntityDriversLicenseStateDefaultDisabled(false);
+		if(currentMappings.legalEntityDriversLicenseState__c== null){
+		 	currentMappings.legalEntityDriversLicenseStateX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityDriversLicenseStateDefaultDisabled(true);
+		 	currentMappings.legalEntityDriversLicenseStateX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntitySsn(){
-		if(legalEntityModel.getLegalEntitySsn()== null){
-		 	legalEntityModel.setIsLegalEntitySsnDefaultDisabled(false);
+		if(currentMappings.legalEntitySsn__c== null){
+		 	currentMappings.legalEntitySsnX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntitySsnDefaultDisabled(true);
+		 	currentMappings.legalEntitySsnX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityTaxId(){
-		if(legalEntityModel.getLegalEntityTaxId()== null){
-		 	legalEntityModel.setIsLegalEntityTaxIdDefaultDisabled(false);
+		if(currentMappings.legalEntityTaxId__c== null){
+		 	currentMappings.legalEntityTaxIdX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityTaxIdDefaultDisabled(true);
+		 	currentMappings.legalEntityTaxIdX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityIsExclusiveToPsp(){
-		if(legalEntityModel.getLegalEntityIsExclusiveToPsp()== null){
-		 	legalEntityModel.setIsLegalEntityIsExclusiveToPspDefaultDisabled(false);
+		if(currentMappings.legalEntityIsExclusiveToPsp__c== null){
+		 	currentMappings.legalEntityIsExclusiveToPspX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityIsExclusiveToPspDefaultDisabled(true);
+		 	currentMappings.legalEntityIsExclusiveToPspX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityIsPciComplianceValidated(){
-		if(legalEntityModel.getLegalEntityIsPciComplianceValidated()== null){
-		 	legalEntityModel.setIsLegalEntityIsPciComplianceValidatedDefaultDisabled(false);
+		if(currentMappings.legalEntityIsPciComplianceValidated__c== null){
+		 	currentMappings.legalEntityIsPciComplianceValidatedX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityIsPciComplianceValidatedDefaultDisabled(true);
+		 	currentMappings.legalEntityIsPciComplianceValidatedX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityPciLevel(){
-		if(legalEntityModel.getLegalEntityPciLevel()== null){
-		 	legalEntityModel.setIsLegalEntityPciLevelDefaultDisabled(false);
+		if(currentMappings.legalEntityPciLevel__c== null){
+		 	currentMappings.legalEntityPciLevelX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityPciLevelDefaultDisabled(true);
+		 	currentMappings.legalEntityPciLevelX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityScanningVendor(){
-		if(legalEntityModel.getLegalEntityScanningVendor()== null){
-		 	legalEntityModel.setIsLegalEntityScanningVendorDefaultDisabled(false);
+		if(currentMappings.legalEntityScanningVendor__c== null){
+		 	currentMappings.legalEntityScanningVendorX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityScanningVendorDefaultDisabled(true);
+		 	currentMappings.legalEntityScanningVendorX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityQualifiedSecurityAssessor(){
-		if(legalEntityModel.getLegalEntityQualifiedSecurityAssessor()== null){
-		 	legalEntityModel.setIsLegalEntityQualifiedSecurityAssessorDefaultDisabled(false);
+		if(currentMappings.legalEntityQualifiedSecurityAssessor__c== null){
+		 	currentMappings.legalEntityQualifiedSecurityAssessorX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityQualifiedSecurityAssessorDefaultDisabled(true);
+		 	currentMappings.legalEntityQualifiedSecurityAssessorX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityMostRecentlyPassedScan(){
-		if(legalEntityModel.getLegalEntityMostRecentlyPassedScan()== null){
-		 	legalEntityModel.setIsLegalEntityMostRecentlyPassedScanDefaultDisabled(false);
+		if(currentMappings.legalEntityMostRecentlyPassedScan__c== null){
+		 	currentMappings.legalEntityMostRecentlyPassedScanX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityMostRecentlyPassedScanDefaultDisabled(true);
+		 	currentMappings.legalEntityMostRecentlyPassedScanX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityReportOnCompliance(){
-		if(legalEntityModel.getLegalEntityReportOnCompliance()== null){
-		 	legalEntityModel.setIsLegalEntityReportOnComplianceDefaultDisabled(false);
+		if(currentMappings.legalEntityReportOnCompliance__c== null){
+		 	currentMappings.legalEntityReportOnComplianceX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityReportOnComplianceDefaultDisabled(true);
+		 	currentMappings.legalEntityReportOnComplianceX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityAnnualCreditCardSalesVolume(){
-		if(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume()== null){
-		 	legalEntityModel.setIsLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled(false);
+		if(currentMappings.legalEntityAnnualCreditCardSalesVolume__c== null){
+		 	currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityAnnualCreditCardSalesVolumeDefaultDisabled(true);
+		 	currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = true;
 		 }
 		return null;
 	}
 	
 	public PageReference onSelectChangeLegalEntityHasAcceptedCreditCards(){
-		if(legalEntityModel.getLegalEntityHasAcceptedCreditCards()== null){
-		 	legalEntityModel.setIsLegalEntityHasAcceptedCreditCardsDefaultDisabled(false);
+		if(currentMappings.legalEntityHasAcceptedCreditCards__c== null){
+		 	currentMappings.legalEntityHasAcceptedCreditCardsX__c = false;
 		 }else{
-		 	legalEntityModel.setIsLegalEntityHasAcceptedCreditCardsDefaultDisabled(true);
+		 	currentMappings.legalEntityHasAcceptedCreditCardsX__c = true;
 		 }
 		return null;
 	}
@@ -290,223 +429,230 @@ public class SalesforceLitleMappingController {
 	
 	//Sub merchant on change listeners
 	public PageReference onSelectChangeSubMerchantStreetAddress1(){
-		if(subMerchantModel.getSubMerchantStreetAddress1() == null){
-			subMerchantModel.setIsSubMerchantStreetAddress1DefaultDisabled(false);
+		if(currentMappings.subMerchantStreetAddress1__c== null){
+			currentMappings.subMerchantStreetAddress1X__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantStreetAddress1DefaultDisabled(true);
+			currentMappings.subMerchantStreetAddress1X__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantStreetAddress2(){
-		if(subMerchantModel.getSubMerchantStreetAddress2() == null){
-			subMerchantModel.setIsSubMerchantStreetAddress2DefaultDisabled(false);
+		if(currentMappings.subMerchantStreetAddress2__c== null){
+			currentMappings.subMerchantStreetAddress2X__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantStreetAddress2DefaultDisabled(true);
+			currentMappings.subMerchantStreetAddress2X__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantCity(){
-		if(subMerchantModel.getSubMerchantCity() == null){
-			subMerchantModel.setIsSubMerchantCityDefaultDisabled(false);
+		if(currentMappings.subMerchantCity__c== null){
+			currentMappings.subMerchantCityX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantCityDefaultDisabled(true);
+			currentMappings.subMerchantCityX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantStateProvince(){
-		if(subMerchantModel.getSubMerchantStateProvince() == null){
-			subMerchantModel.setIsSubMerchantStateProvinceDefaultDisabled(false);
+		if(currentMappings.subMerchantStateProvince__c== null){
+			currentMappings.subMerchantStateProvinceX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantStateProvinceDefaultDisabled(true);
+			currentMappings.subMerchantStateProvinceX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantPostalCode(){
-		if(subMerchantModel.getSubMerchantPostalCode() == null){
-			subMerchantModel.setIsSubMerchantPostalCodeDefaultDisabled(false);
+		if(currentMappings.subMerchantPostalCode__c== null){
+			currentMappings.subMerchantPostalCodeX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantPostalCodeDefaultDisabled(true);
+			currentMappings.subMerchantPostalCodeX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantCountryCode(){
-		if(subMerchantModel.getSubMerchantCountryCode() == null){
-			subMerchantModel.setIsSubMerchantCountryCodeDefaultDisabled(false);
+		if(currentMappings.subMerchantCountryCode__c== null){
+			currentMappings.subMerchantCountryCodeX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantCountryCodeDefaultDisabled(true);
+			currentMappings.subMerchantCountryCodeX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantAmexMid(){
-		if(subMerchantModel.getSubMerchantAmexMid() == null){
-			subMerchantModel.setIsSubMerchantAmexMidDefaultDisabled(false);
+		if(currentMappings.subMerchantAmexMid__c== null){
+			currentMappings.subMerchantAmexMidX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantAmexMidDefaultDisabled(true);
+			currentMappings.subMerchantAmexMidX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantBankAccountNumber(){
-		if(subMerchantModel.getSubMerchantBankAccountNumber() == null){
-			subMerchantModel.setIsSubMerchantBankAccountNumberDefaultDisabled(false);
+		if(currentMappings.subMerchantBankAccountNumber__c== null){
+			currentMappings.subMerchantBankAccountNumberX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantBankAccountNumberDefaultDisabled(true);
+			currentMappings.subMerchantBankAccountNumberX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantBankRoutingNumber(){
-		if(subMerchantModel.getSubMerchantBankRoutingNumber() == null){
-			subMerchantModel.setIsSubMerchantBankRoutingNumberDefaultDisabled(false);
+		if(currentMappings.subMerchantBankRoutingNumber__c== null){
+			currentMappings.subMerchantBankRoutingNumberX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantBankRoutingNumberDefaultDisabled(true);
+			currentMappings.subMerchantBankRoutingNumberX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantCreateCredentials(){
-		if(subMerchantModel.getSubMerchantCreateCredentials() == null){
-			subMerchantModel.setIsSubMerchantCreateCredentialsDefaultDisabled(false);
+		if(currentMappings.subMerchantCreateCredentials__c== null){
+			currentMappings.subMerchantCreateCredentialsX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantCreateCredentialsDefaultDisabled(true);
+			currentMappings.subMerchantCreateCredentialsX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantCustomerServiceNumber(){
-		if(subMerchantModel.getSubMerchantCustomerServiceNumber() == null){
-			subMerchantModel.setIsSubMerchantCustomerServiceNumberDefaultDisabled(false);
+		if(currentMappings.subMerchantCustomerServiceNumber__c== null){
+			currentMappings.subMerchantCustomerServiceNumberX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantCustomerServiceNumberDefaultDisabled(true);
+			currentMappings.subMerchantCustomerServiceNumberX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantDiscoverConveyMid(){
-		if(subMerchantModel.getSubMerchantDiscoverConveyMid() == null){
-			subMerchantModel.setIsSubMerchantDiscoverConveyMidDefaultDisabled(false);
+		if(currentMappings.subMerchantDiscoverConveyMid__c== null){
+			currentMappings.subMerchantDiscoverConveyMidX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantDiscoverConveyMidDefaultDisabled(true);
+			currentMappings.subMerchantDiscoverConveyMidX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantHardCodeBillingDescriptor(){
-		if(subMerchantModel.getSubMerchantHardCodeBillingDescriptor() == null){
-			subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(false);
+		if(currentMappings.subMerchantHardCodeBillingDescriptor__c== null){
+			currentMappings.subMerchantHardCodeBillingDescriptorX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(true);
+			currentMappings.subMerchantHardCodeBillingDescriptorX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantMaxTransactionAmount(){
-		if(subMerchantModel.getSubMerchantMaxTransactionAmount() == null){
-			subMerchantModel.setIsSubMerchantMaxTransactionAmountDefaultDisabled(false);
+		if(currentMappings.subMerchantMaxTransactionAmount__c== null){
+			currentMappings.subMerchantMaxTransactionAmountX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantMaxTransactionAmountDefaultDisabled(true);
+			currentMappings.subMerchantMaxTransactionAmountX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantMerchantCategoryCode(){
-		if(subMerchantModel.getSubMerchantMerchantCategoryCode() == null){
-			subMerchantModel.setIsSubMerchantMerchantCategoryCodeDefaultDisabled(false);
+		if(currentMappings.subMerchantMerchantCategoryCode__c== null){
+			currentMappings.subMerchantMerchantCategoryCodeX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantMerchantCategoryCodeDefaultDisabled(true);
+			currentMappings.subMerchantMerchantCategoryCodeX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantMerchantName(){
-		if(subMerchantModel.getSubMerchantMerchantName() == null){
-			subMerchantModel.setIsSubMerchantMerchantNameDefaultDisabled(false);
+		if(currentMappings.subMerchantMerchantName__c== null){
+			currentMappings.subMerchantMerchantNameX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantMerchantNameDefaultDisabled(true);
+			currentMappings.subMerchantMerchantNameX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantFirstName(){
-		if(subMerchantModel.getSubMerchantFirstName() == null){
-			subMerchantModel.setIsSubMerchantFirstNameDefaultDisabled(false);
+		if(currentMappings.subMerchantFirstName__c== null){
+			currentMappings.subMerchantFirstNameX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantFirstNameDefaultDisabled(true);
+			currentMappings.subMerchantFirstNameX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantLastName(){
-		if(subMerchantModel.getSubMerchantLastName() == null){
-			subMerchantModel.setIsSubMerchantLastNameDefaultDisabled(false);
+		if(currentMappings.subMerchantLastName__c== null){
+			currentMappings.subMerchantLastNameX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantLastNameDefaultDisabled(true);
+			currentMappings.subMerchantLastNameX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantEmailAddress(){
-		if(subMerchantModel.getSubMerchantEmailAddress() == null){
-			subMerchantModel.setIsSubMerchantEmailAddressDefaultDisabled(false);
+		if(currentMappings.subMerchantEmailAddress__c== null){
+			currentMappings.subMerchantEmailAddressX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantEmailAddressDefaultDisabled(true);
+			currentMappings.subMerchantEmailAddressX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantPhone(){
-		if(subMerchantModel.getSubMerchantPhone() == null){
-			subMerchantModel.setIsSubMerchantPhoneDefaultDisabled(false);
+		if(currentMappings.subMerchantPhone__c== null){
+			currentMappings.subMerchantPhoneX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantPhoneDefaultDisabled(true);
+			currentMappings.subMerchantPhoneX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantPspMerchantId(){
-		if(subMerchantModel.getSubMerchantPspMerchantId() == null){
-			subMerchantModel.setIsSubMerchantPspMerchantIdDefaultDisabled(false);
+		if(currentMappings.subMerchantPspMerchantId__c== null){
+			currentMappings.subMerchantPspMerchantIdX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantPspMerchantIdDefaultDisabled(true);
+			currentMappings.subMerchantPspMerchantIdX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchantUrl(){
-		if(subMerchantModel.getSubMerchantUrl() == null){
-			subMerchantModel.setIsSubMerchantUrlDefaultDisabled(false);
+		if(currentMappings.subMerchantUrl__c== null){
+			currentMappings.subMerchantUrlX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchantUrlDefaultDisabled(true);
+			currentMappings.subMerchantUrlX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchanteCheckBillingDescriptor(){
-		if(subMerchantModel.getSubMerchanteCheckBillingDescriptor() == null){
-			subMerchantModel.setIsSubMerchanteCheckBillingDescriptorDefaultDisabled(false);
+		if(currentMappings.subMerchanteCheckBillingDescriptorX__c== null){
+			currentMappings.subMerchanteCheckBillingDescriptorX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchanteCheckBillingDescriptorDefaultDisabled(true);
+			currentMappings.subMerchanteCheckBillingDescriptorX__c = true;
 		}
 		return null;
 	}
 	
 	public PageReference onSelectChangeSubMerchanteCheckCompanyName(){
-		if(subMerchantModel.getSubMerchanteCheckCompanyName() == null){
-			subMerchantModel.setIsSubMerchanteCheckCompanyNameDefaultDisabled(false);
+		if(currentMappings.subMerchanteCheckCompanyName__c== null){
+			currentMappings.subMerchanteCheckCompanyNameX__c = false;
 		}else{
-			subMerchantModel.setIsSubMerchanteCheckCompanyNameDefaultDisabled(true);
+			currentMappings.subMerchanteCheckCompanyNameX__c = true;
 		}
 		return null;
 	}
 		
 	public void saveMappings(){
 		System.debug('In Save Method');
+		//SalesforceLitleMappingsObject__c s = new SalesforceLitleMappingsObject__c();
+		//s.legalEntityName__c = legalEntityModel.getLegalEntityName();
+		//List<SalesforceLitleMappingsObject__c> records = [select id from SalesforceLitleMappingsObject__c];
+		//delete records;
+		upsert currentMappings;
+		//List<SalesforceLitleMappingsObject__c> s1 = [select legalEntityName__c from SalesforceLitleMappingsObject__c];
+		//System.debug('||||||||||||||||||||||||'+s1.get(0).legalEntityName__c);
 	}
 		 
 	 
