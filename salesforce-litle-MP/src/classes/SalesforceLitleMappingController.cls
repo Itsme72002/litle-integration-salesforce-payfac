@@ -185,8 +185,24 @@ public class SalesforceLitleMappingController {
 	    {
 	        SObjectField fieldToken = fields.get(s);
 	        DescribeFieldResult selectedField = fieldToken.getDescribe();
-	        accountFields.add(new Selectoption(selectedField.getName(),selectedField.getName()));
+	        System.debug('name: '+selectedField.getName());
+	        System.debug('type: '+selectedField.getType());
+	        System.debug(Schema.DisplayType.Reference);
+	        if(!selectedField.getType().equals(Schema.DisplayType.Reference.name())){
+	        	accountFields.add(new Selectoption('Account.'+selectedField.getName(),'Account.'+selectedField.getName()));
+	        }
 	    }
+	    System.debug(accountFields.size());
+	    /*objToken = Schema.getGlobalDescribe().get('Opportunity');
+	     objDef = objToken.getDescribe();
+	    fields = objDef.fields.getMap(); 
+	    fieldSet = fields.keySet();
+	    for(String s:fieldSet)
+	    {
+	        SObjectField fieldToken = fields.get(s);
+	        DescribeFieldResult selectedField = fieldToken.getDescribe();
+	        accountFields.add(new Selectoption('Opportunity.'+selectedField.getName(),'Opportunity.'+selectedField.getName()));
+	    }*/
 	    return accountFields;
 	 }
 	 
