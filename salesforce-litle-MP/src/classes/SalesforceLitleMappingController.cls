@@ -1,5 +1,6 @@
 public class SalesforceLitleMappingController {
 	private List<Selectoption> salesforceFields;
+	private final String emptyString = '';
     
     
     public SalesforceLitleMappingController(){
@@ -161,6 +162,7 @@ public class SalesforceLitleMappingController {
     	}
     }
     
+    //Holds the current mappings from the page
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     
     public List<Selectoption> getSalesforceFields(){
@@ -188,9 +190,9 @@ public class SalesforceLitleMappingController {
 	        System.debug('name: '+selectedField.getName());
 	        System.debug('type: '+selectedField.getType());
 	        System.debug(Schema.DisplayType.Reference);
-	        if(!selectedField.getType().equals(Schema.DisplayType.Reference.name())){
+	        //if(!selectedField.getType().equals(Schema.DisplayType.Reference.name())){
 	        	accountFields.add(new Selectoption('Account.'+selectedField.getName(),'Account.'+selectedField.getName()));
-	        }
+	       // }
 	    }
 	    System.debug(accountFields.size());
 	    /*objToken = Schema.getGlobalDescribe().get('Opportunity');
@@ -659,16 +661,216 @@ public class SalesforceLitleMappingController {
 		}
 		return null;
 	}
+	
+	//Removing the default textbox values which have been disabled
+	public void removeDisabledText(){
+		if(currentMappings.subMerchantStreetAddress1X__c){
+			currentMappings.subMerchantStreetAddress1D__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantStreetAddress2X__c){
+			currentMappings.subMerchantStreetAddress2D__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantCityX__c){
+			currentMappings.subMerchantCityD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantStateProvinceX__c){
+			currentMappings.subMerchantStateProvinceD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantPostalCodeX__c){
+			currentMappings.subMerchantPostalCodeD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantCountryCodeX__c){
+			currentMappings.subMerchantCountryCodeD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantAmexMidX__c){
+			currentMappings.subMerchantAmexMidD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantBankAccountNumberX__c){
+			currentMappings.subMerchantBankAccountNumberD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantBankRoutingNumberX__c){
+			currentMappings.subMerchantBankRoutingNumberD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantCreateCredentialsX__c){
+			currentMappings.subMerchantCreateCredentialsD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantCustomerServiceNumberX__c){
+			currentMappings.subMerchantCustomerServiceNumberD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantDiscoverConveyMidX__c){
+			currentMappings.subMerchantDiscoverConveyMidD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantHardCodeBillingDescriptorX__c){
+			currentMappings.subMerchantHardCodeBillingDescD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantMaxTransactionAmountX__c){
+			currentMappings.subMerchantMaxTransactionAmountD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantMerchantCategoryCodeX__c){
+			currentMappings.subMerchantMerchantCategoryCodeD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantMerchantNameX__c){
+			currentMappings.subMerchantMerchantNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantFirstNameX__c){
+			currentMappings.subMerchantFirstNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantLastNameX__c){
+			currentMappings.subMerchantLastNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantEmailAddressX__c){
+			currentMappings.subMerchantEmailAddressD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantPhoneX__c){
+			currentMappings.subMerchantPhoneD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantPspMerchantIdX__c){
+			currentMappings.subMerchantPspMerchantIdD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchantUrlX__c){
+			currentMappings.subMerchantUrlD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchanteCheckBillingDescriptorX__c){
+			currentMappings.subMerchanteCheckBillingDescD__c = emptyString;
+		}
+		 
+		if(currentMappings.subMerchanteCheckCompanyNameX__c){
+			currentMappings.subMerchanteCheckCompanyNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityNameX__c){
+			currentMappings.legalEntityNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityTypeX__c){
+			currentMappings.legalEntityTypeD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityStreetAddress1X__c){
+			currentMappings.legalEntityStreetAddress1D__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityStreetAddress2X__c){
+			currentMappings.legalEntityStreetAddress2D__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityCityX__c){
+			currentMappings.legalEntityCityD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityStateProvinceX__c){
+			currentMappings.legalEntityStateProvinceD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityPostalCodeX__c){
+			currentMappings.legalEntityPostalCodeD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityCountryCodeX__c){
+			currentMappings.legalEntityCountryCodeD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityFirstNameX__c){
+			currentMappings.legalEntityFirstNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityLastNameX__c){
+			currentMappings.legalEntityLastNameD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityEmailAddressX__c){
+			currentMappings.legalEntityEmailAddressD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityContactPhoneX__c){
+			currentMappings.legalEntityContactPhoneD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityDateOfBirthX__c){
+			currentMappings.legalEntityDateOfBirthD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityDriversLicenseX__c){
+			currentMappings.legalEntityDriversLicenseD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityDriversLicenseStateX__c){
+			currentMappings.legalEntityDriversLicenseStateD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntitySsnX__c){
+			currentMappings.legalEntitySsnD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityTaxIdX__c){
+			currentMappings.legalEntityTaxIdD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityIsExclusiveToPspX__c){
+			currentMappings.legalEntityIsExclusiveToPspD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityIsPciComplianceValidatedX__c){
+			currentMappings.legalEntityIsPciComplianceValidatedD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityPciLevelX__c){
+			currentMappings.legalEntityPciLevelD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityScanningVendorX__c){
+			currentMappings.legalEntityScanningVendorD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityQualifiedSecurityAssessorX__c){
+			currentMappings.legalEntityQualifiedSecurityAssessorD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityMostRecentlyPassedScanX__c){
+			currentMappings.legalEntityMostRecentlyPassedScanD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityReportOnComplianceX__c){
+			currentMappings.legalEntityReportOnComplianceD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c){
+			currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c = emptyString;
+		}
+		 
+		if(currentMappings.legalEntityHasAcceptedCreditCardsX__c){
+			currentMappings.legalEntityHasAcceptedCreditCardsD__c = emptyString;
+		}
+		 
+	}
 		
 	public void saveMappings(){
+		removeDisabledText();
 		System.debug('In Save Method');
-		//SalesforceLitleMappingsObject__c s = new SalesforceLitleMappingsObject__c();
-		//s.legalEntityName__c = legalEntityModel.getLegalEntityName();
-		//List<SalesforceLitleMappingsObject__c> records = [select id from SalesforceLitleMappingsObject__c];
-		//delete records;
 		upsert currentMappings;
-		//List<SalesforceLitleMappingsObject__c> s1 = [select legalEntityName__c from SalesforceLitleMappingsObject__c];
-		//System.debug('||||||||||||||||||||||||'+s1.get(0).legalEntityName__c);
+		
 	}
 		 
 	 
