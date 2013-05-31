@@ -1,6 +1,7 @@
 public class SalesforceLitleMappingController {
 	private List<Selectoption> salesforceFields;
 	private final String emptyString = '';
+	public Boolean savingStatus {get; set;}
     
     
     public SalesforceLitleMappingController(){
@@ -866,14 +867,25 @@ public class SalesforceLitleMappingController {
 		 
 	}
 		
-	public void saveMappings(){
+	public Pagereference saveMappings(){
 		removeDisabledText();
 		System.debug('In Save Method');
-		upsert currentMappings;
+		try{
+			upsert currentMappings;
+			String aId = apexpages.currentpage().getParameters().get('id');
+		 	return new PageReference('/'+aId);
+		 	//savingStatus = true;
+		}catch(DmlException e){
+			savingStatus = true;
+		}
+		return null;
 		
 	}
 		 
-	 
+	 public Pagereference cancelMappings(){
+	 	String aId = apexpages.currentpage().getParameters().get('id'); 
+	 	return new PageReference('/'+aId);
+	 }
 	
 
 }

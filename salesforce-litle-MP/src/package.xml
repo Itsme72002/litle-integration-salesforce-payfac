@@ -4,5 +4,9 @@
         <members>SalesforceLitleMappingController</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>SalesforceLitleMapping</members>
+        <name>ApexPage</name>
+    </types>
     <version>27.0</version>
 </Package>

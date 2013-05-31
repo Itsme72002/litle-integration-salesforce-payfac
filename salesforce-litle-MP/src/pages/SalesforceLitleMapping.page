@@ -2,10 +2,13 @@
     <apex:form >
 
         <apex:pageBlock title="Litle Salesforce MP">
+            
+            <apex:pageMessage summary="Saving Failed. Retry again or contact support." severity="error" strength="3" rendered="{!savingStatus}"/>
+        <apex:pageMessages />
+            <br />
             <p>In the list below, select the field of salesforce.com corresponding to Litle's field. Once done, click
                 Save:
             </p>
-            <br />
             <apex:pageBlockSection title="Legal Entity" collapsible="true">
                 <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
                     <apex:outputText value="Litle Field" style="font-weight: bold" />
@@ -489,7 +492,7 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
         <apex:commandButton value="Save" action="{!saveMappings}"/>
-        <apex:commandButton value="Cancel" />
+        <apex:commandButton value="Cancel" action="{!cancelMappings}"/>
 
     </apex:form>
 </apex:page>
