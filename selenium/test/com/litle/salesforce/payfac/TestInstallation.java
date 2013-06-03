@@ -24,22 +24,27 @@ public class TestInstallation {
 	static EventFiringWebDriver driver;
 	static WebDriverWait wait;
 	static final long DEFAULT_TIMEOUT = 60;
-	//static String CONTEXT = "magento1702";
-
+	// Stores config details e.g.file paths 
+	static Properties configProperties;
+	// Stores MP package details e.g package name, publisher
+	static Properties packageProperties;
+	
 	@Before
 	public void before() {
 		
-		Properties prop = new Properties();
+		configProperties = new Properties();
+		packageProperties = new Properties();
 		try {
             //load a properties file
-    		prop.load(new FileInputStream("config.properties"));
+    		configProperties.load(new FileInputStream("config.properties"));
+    		packageProperties.load(new FileInputStream("package.properties"));
       	} catch (IOException ex) {
     		ex.printStackTrace();
-    		fail("Failed to load config.properties");
+    		fail("Failed to load property file(s)");
         }
     	//Setup firefox properties in config.properties
-		System.setProperty("webdriver.firefox.bin", prop.getProperty("firefox.location"));
-		FirefoxProfile profile = new FirefoxProfile(new File(prop.getProperty("firefox.profile.path"))); //TODO Make me different
+		System.setProperty("webdriver.firefox.bin", configProperties.getProperty("firefox.location"));
+		FirefoxProfile profile = new FirefoxProfile(new File(configProperties.getProperty("firefox.profile.path"))); //TODO Make me different
 		profile.setEnableNativeEvents(true);
 		driver = new EventFiringWebDriver(new FirefoxDriver(profile));
 		wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
@@ -65,44 +70,44 @@ public class TestInstallation {
 	}
 
 	private void login() {
-		driver.get("https://login.salesforce.com/");
-		Properties userProperties = new Properties();
+		driver.get(packageProperties.getProperty("login.url"));
+		/*Properties userProperties = new Properties();
 		try {
             //load user properties file
     		userProperties.load(new FileInputStream("/usr/local/litle-home/shande/user.properties"));
       	} catch (IOException ex) {
       		ex.printStackTrace();
       		fail("Unable to load the properties file");
-        }
+        }*/
 		//Login
 		WebElement field = driver.findElement(By.id("username"));
 		field.clear();
-		field.sendKeys(userProperties.getProperty("username")); //This is the dev test suite
+		field.sendKeys(packageProperties.getProperty("login.username")); //This is the dev test suite
 		field = driver.findElement(By.id("password"));
 		field.clear();
-		field.sendKeys(userProperties.getProperty("password")); //DO NOT PROMOTE ME YET
+		field.sendKeys(packageProperties.getProperty("login.password")); //DO NOT PROMOTE ME YET
 		driver.findElement(By.id("Login")).click();
 		waitFor(By.id("tabContainer"));
 	}
 	
 	private void checkPackageDetails() {
-		driver.findElement(By.linkText("forceMockPackage")).click();
+		driver.findElement(By.linkText(packageProperties.getProperty("package.name"))).click();
 		// Let the package details part load
 		waitFor(By.id("ep"));
 		//Validate the package details
 		List<WebElement> packageDetails = driver.findElement(By.className("detailList")).findElements(By.tagName("td"));
 		//Check package name
 		assertTrue(packageDetails.get(0).getText().equals("Package Name"));
-		assertTrue(packageDetails.get(1).getText().equals("forceMockPackage"));
+		assertTrue(packageDetails.get(1).getText().equals(packageProperties.getProperty("package.name")));
 		//Check package type
 		assertTrue(packageDetails.get(6).getText().equals("Package Type"));
-		assertTrue(packageDetails.get(7).getText().equals("Managed"));
+		assertTrue(packageDetails.get(7).getText().equals(packageProperties.getProperty("package.type")));
 		//Check namespace prefix
 		assertTrue(packageDetails.get(12).getText().equals("Namespace Prefix"));
-		assertTrue(packageDetails.get(13).getText().equals("forceMock"));
+		assertTrue(packageDetails.get(13).getText().equals(packageProperties.getProperty("package.namespacePrefix")));
 		//Check publisher
 		assertTrue(packageDetails.get(16).getText().equals("Publisher"));
-		assertTrue(packageDetails.get(17).getText().equals("Litle &amp;amp; Co"));
+		assertTrue(packageDetails.get(17).getText().equals(packageProperties.getProperty("package.publisher")));
 	}
 
 	private void checkInstalledPackage() {
@@ -111,7 +116,7 @@ public class TestInstallation {
 		// Check if the page is correct "Installed Packages"
 		assertTrue(driver.findElement(By.className("content")).findElement(By.tagName("h1")).getText().equals("Installed Packages"));
 		// Check if the package is installed 
-		assertTrue(driver.findElement(By.linkText("forceMockPackage")).getText().equals("forceMockPackage"));
+		assertTrue(driver.findElement(By.linkText(packageProperties.getProperty("package.name"))).getText().equals(packageProperties.getProperty("package.name")));
 	}
 	
 	private void checkPackageComponents(){
@@ -143,7 +148,7 @@ public class TestInstallation {
 		assertTrue(packageComponents.get(11).getText().equals("Apex Class"));
 		
 		// Check if a "forceMock" app is created of type "App"
-		assertTrue(packageComponents.get(12).getText().equals("forceMock"));
+		assertTrue(packageComponents.get(12).getText().equals(packageProperties.getProperty("app.name")));
 		assertTrue(packageComponents.get(14).getText().equals("App"));
 		
 		// Check if a "test" page is created of type "Visualforce Page"
