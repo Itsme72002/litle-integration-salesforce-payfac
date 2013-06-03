@@ -2,183 +2,36 @@ public class SalesforceLitleMappingController {
 	private List<Selectoption> salesforceFields;
 	private final String emptyString = '';
 	public Boolean savingStatus {get; set;}
-    
-    
+	public Boolean errorStatus {get; set;}
+   
     public SalesforceLitleMappingController(){
     	List<SalesforceLitleMappingsObject__c> mappingRecords 
-    			= [select id, name, subMerchantStreetAddress1__c, 
-									subMerchantStreetAddress2__c, 
-									subMerchantCity__c, 
-									subMerchantStateProvince__c, 
-									subMerchantPostalCode__c, 
-									subMerchantCountryCode__c, 
-									subMerchantAmexMid__c, 
-									subMerchantBankAccountNumber__c, 
-									subMerchantBankRoutingNumber__c, 
-									subMerchantCreateCredentials__c, 
-									subMerchantCustomerServiceNumber__c, 
-									subMerchantDiscoverConveyMid__c, 
-									subMerchantHardCodeBillingDescriptor__c, 
-									subMerchantMaxTransactionAmount__c, 
-									subMerchantMerchantCategoryCode__c, 
-									subMerchantMerchantName__c, 
-									subMerchantFirstName__c, 
-									subMerchantLastName__c, 
-									subMerchantEmailAddress__c, 
-									subMerchantPhone__c, 
-									subMerchantPspMerchantId__c, 
-									subMerchantUrl__c, 
-									subMerchanteCheckBillingDescriptor__c, 
-									subMerchanteCheckCompanyName__c, 
-									subMerchantStreetAddress1D__c, 
-									subMerchantStreetAddress2D__c, 
-									subMerchantCityD__c, 
-									subMerchantStateProvinceD__c, 
-									subMerchantPostalCodeD__c, 
-									subMerchantCountryCodeD__c, 
-									subMerchantAmexMidD__c, 
-									subMerchantBankAccountNumberD__c, 
-									subMerchantBankRoutingNumberD__c, 
-									subMerchantCreateCredentialsD__c, 
-									subMerchantCustomerServiceNumberD__c, 
-									subMerchantDiscoverConveyMidD__c, 
-									subMerchantHardCodeBillingDescD__c, 
-									subMerchantMaxTransactionAmountD__c, 
-									subMerchantMerchantCategoryCodeD__c, 
-									subMerchantMerchantNameD__c, 
-									subMerchantFirstNameD__c, 
-									subMerchantLastNameD__c, 
-									subMerchantEmailAddressD__c, 
-									subMerchantPhoneD__c, 
-									subMerchantPspMerchantIdD__c, 
-									subMerchantUrlD__c, 
-									subMerchanteCheckBillingDescD__c, 
-									subMerchanteCheckCompanyNameD__c, 
-									subMerchantStreetAddress1X__c, 
-									subMerchantStreetAddress2X__c, 
-									subMerchantCityX__c, 
-									subMerchantStateProvinceX__c, 
-									subMerchantPostalCodeX__c, 
-									subMerchantCountryCodeX__c, 
-									subMerchantAmexMidX__c, 
-									subMerchantBankAccountNumberX__c, 
-									subMerchantBankRoutingNumberX__c, 
-									subMerchantCreateCredentialsX__c, 
-									subMerchantCustomerServiceNumberX__c, 
-									subMerchantDiscoverConveyMidX__c, 
-									subMerchantHardCodeBillingDescriptorX__c, 
-									subMerchantMaxTransactionAmountX__c, 
-									subMerchantMerchantCategoryCodeX__c, 
-									subMerchantMerchantNameX__c, 
-									subMerchantFirstNameX__c, 
-									subMerchantLastNameX__c, 
-									subMerchantEmailAddressX__c, 
-									subMerchantPhoneX__c, 
-									subMerchantPspMerchantIdX__c, 
-									subMerchantUrlX__c, 
-									subMerchanteCheckBillingDescriptorX__c, 
-									subMerchanteCheckCompanyNameX__c, 
-									legalEntityName__c, 
-									legalEntityType__c, 
-									legalEntityStreetAddress1__c, 
-									legalEntityStreetAddress2__c, 
-									legalEntityCity__c, 
-									legalEntityStateProvince__c, 
-									legalEntityPostalCode__c, 
-									legalEntityCountryCode__c, 
-									legalEntityFirstName__c, 
-									legalEntityLastName__c, 
-									legalEntityEmailAddress__c, 
-									legalEntityContactPhone__c, 
-									legalEntityDateOfBirth__c, 
-									legalEntityDriversLicense__c, 
-									legalEntityDriversLicenseState__c, 
-									legalEntitySsn__c, 
-									legalEntityTaxId__c, 
-									legalEntityIsExclusiveToPsp__c, 
-									legalEntityIsPciComplianceValidated__c, 
-									legalEntityPciLevel__c, 
-									legalEntityScanningVendor__c, 
-									legalEntityQualifiedSecurityAssessor__c, 
-									legalEntityMostRecentlyPassedScan__c, 
-									legalEntityReportOnCompliance__c, 
-									legalEntityAnnualCreditCardSalesVolume__c, 
-									legalEntityHasAcceptedCreditCards__c, 
-									legalEntityNameD__c, 
-									legalEntityTypeD__c, 
-									legalEntityStreetAddress1D__c, 
-									legalEntityStreetAddress2D__c, 
-									legalEntityCityD__c, 
-									legalEntityStateProvinceD__c, 
-									legalEntityPostalCodeD__c, 
-									legalEntityCountryCodeD__c, 
-									legalEntityFirstNameD__c, 
-									legalEntityLastNameD__c, 
-									legalEntityEmailAddressD__c, 
-									legalEntityContactPhoneD__c, 
-									legalEntityDateOfBirthD__c, 
-									legalEntityDriversLicenseD__c, 
-									legalEntityDriversLicenseStateD__c, 
-									legalEntitySsnD__c, 
-									legalEntityTaxIdD__c, 
-									legalEntityIsExclusiveToPspD__c, 
-									legalEntityIsPciComplianceValidatedD__c, 
-									legalEntityPciLevelD__c, 
-									legalEntityScanningVendorD__c, 
-									legalEntityQualifiedSecurityAssessorD__c, 
-									legalEntityMostRecentlyPassedScanD__c, 
-									legalEntityReportOnComplianceD__c, 
-									legalEntityAnnualCreditCardSalesVolumeD__c, 
-									legalEntityHasAcceptedCreditCardsD__c, 
-									legalEntityNameX__c, 
-									legalEntityTypeX__c, 
-									legalEntityStreetAddress1X__c, 
-									legalEntityStreetAddress2X__c, 
-									legalEntityCityX__c, 
-									legalEntityStateProvinceX__c, 
-									legalEntityPostalCodeX__c, 
-									legalEntityCountryCodeX__c, 
-									legalEntityFirstNameX__c, 
-									legalEntityLastNameX__c, 
-									legalEntityEmailAddressX__c, 
-									legalEntityContactPhoneX__c, 
-									legalEntityDateOfBirthX__c, 
-									legalEntityDriversLicenseX__c, 
-									legalEntityDriversLicenseStateX__c, 
-									legalEntitySsnX__c, 
-									legalEntityTaxIdX__c, 
-									legalEntityIsExclusiveToPspX__c, 
-									legalEntityIsPciComplianceValidatedX__c, 
-									legalEntityPciLevelX__c, 
-									legalEntityScanningVendorX__c, 
-									legalEntityQualifiedSecurityAssessorX__c, 
-									legalEntityMostRecentlyPassedScanX__c, 
-									legalEntityReportOnComplianceX__c, 
-									legalEntityAnnualCreditCardSalesVolumeX__c, 
-									legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
+    			= [select id, name, subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
     	if(mappingRecords.isEmpty()){
     		this.currentMappings = new SalesforceLitleMappingsObject__c();
     	}else{
     		this.currentMappings =  mappingRecords.get(0);
     	}
+    	savingStatus = false;
+	 	errorStatus = false;
     }
     
-    //Holds the current mappings from the page
-    public SalesforceLitleMappingsObject__c currentMappings {get; set;}
+   //Holds the current mappings from the page
+   public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     
-    public List<Selectoption> getSalesforceFields(){
-    	if(salesforceFields == null || salesforceFields.size() == 0){
+   public List<Selectoption> getSalesforceFields(){
+   		if(salesforceFields == null || salesforceFields.size() == 0){
     		setSalesforceFields(fetchAllAccountFields());
     	}
     	return salesforceFields;
-    }
+   }
     
-    public void setSalesforceFields(List<Selectoption> salesforceFields){
+   public void setSalesforceFields(List<Selectoption> salesforceFields){
     	this.salesforceFields = salesforceFields;
-    }
+   }
 
-    public List<Selectoption> fetchAllAccountFields(){
-	    SObjectType objToken = Schema.getGlobalDescribe().get('Account');
+   public List<Selectoption> fetchAllAccountFields(){
+   		SObjectType objToken = Schema.getGlobalDescribe().get('Account');
 	    DescribeSObjectResult objDef = objToken.getDescribe();
 	    Map<String, SObjectField> fields = objDef.fields.getMap(); 
 	    List<Selectoption> accountFields = new List<Selectoption>();
@@ -188,38 +41,28 @@ public class SalesforceLitleMappingController {
 	    {
 	        SObjectField fieldToken = fields.get(s);
 	        DescribeFieldResult selectedField = fieldToken.getDescribe();
-	        System.debug('name: '+selectedField.getName());
-	        System.debug('type: '+selectedField.getType());
-	        System.debug(Schema.DisplayType.Reference);
-	        //if(!selectedField.getType().equals(Schema.DisplayType.Reference.name())){
-	        	accountFields.add(new Selectoption('Account.'+selectedField.getName(),'Account.'+selectedField.getName()));
-	       // }
+	        accountFields.add(new Selectoption('Account.'+selectedField.getName(),'Account.'+selectedField.getName()));
+	       
 	    }
-	    System.debug(accountFields.size());
-	    /*objToken = Schema.getGlobalDescribe().get('Opportunity');
-	     objDef = objToken.getDescribe();
-	    fields = objDef.fields.getMap(); 
-	    fieldSet = fields.keySet();
-	    for(String s:fieldSet)
-	    {
-	        SObjectField fieldToken = fields.get(s);
-	        DescribeFieldResult selectedField = fieldToken.getDescribe();
-	        accountFields.add(new Selectoption('Opportunity.'+selectedField.getName(),'Opportunity.'+selectedField.getName()));
-	    }*/
 	    return accountFields;
-	 }
+	}
 	 
-	 //Legal Entity on change listeners	 
-	 public Pagereference onSelectChangeLegalEntityName(){
+	public void resetStatus(){
+	 	savingStatus = false;
+	 	errorStatus = false;
+	}
+	 
+	//Legal Entity on change listeners	 
+	public Pagereference onSelectChangeLegalEntityName(){
 	 	if(currentMappings.legalEntityName__c== null){
 	 		currentMappings.legalEntityNameX__c = false;
 	 	}else{
 	 		currentMappings.legalEntityNameX__c = true;
 	 	}
 	 	return null;
-	 }
+	}
 	 
-	 public PageReference onSelectChangeLegalEntityType(){
+	public PageReference onSelectChangeLegalEntityType(){
 	 	if(currentMappings.legalEntityType__c== null){
 	 		currentMappings.legalEntityTypeX__c = false;
 	 	}else{
@@ -646,7 +489,7 @@ public class SalesforceLitleMappingController {
 	}
 	
 	public PageReference onSelectChangeSubMerchanteCheckBillingDescriptor(){
-		if(currentMappings.subMerchanteCheckBillingDescriptorX__c== null){
+		if(currentMappings.subMerchanteCheckBillingDescriptor__c== null){
 			currentMappings.subMerchanteCheckBillingDescriptorX__c = false;
 		}else{
 			currentMappings.subMerchanteCheckBillingDescriptorX__c = true;
@@ -873,19 +716,25 @@ public class SalesforceLitleMappingController {
 		try{
 			upsert currentMappings;
 			String aId = apexpages.currentpage().getParameters().get('id');
-		 	return new PageReference('/'+aId);
-		 	//savingStatus = true;
+			if(aId != null && !aid.equals('')){
+				return new PageReference('/'+aId);	
+			}
+		 	savingStatus = true;
 		}catch(DmlException e){
-			savingStatus = true;
+			errorStatus = true;
 		}
 		return null;
 		
 	}
 		 
-	 public Pagereference cancelMappings(){
+	public Pagereference cancelMappings(){
+	 	resetStatus();
 	 	String aId = apexpages.currentpage().getParameters().get('id'); 
-	 	return new PageReference('/'+aId);
-	 }
+	 	if(aId != null && !aid.equals('')){
+				return new PageReference('/'+aId);	
+			}
+	 	return null;
+	}
 	
 
 }

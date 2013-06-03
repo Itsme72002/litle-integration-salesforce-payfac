@@ -3,8 +3,9 @@
 
         <apex:pageBlock title="Litle Salesforce MP">
             
-            <apex:pageMessage summary="Saving Failed. Retry again or contact support." severity="error" strength="3" rendered="{!savingStatus}"/>
-        <apex:pageMessages />
+            <apex:pageMessage summary="Saving Failed. Retry again or contact support." severity="error" strength="1" rendered="{!errorStatus}"/>
+            <apex:pageMessage summary="Mappings Saved." severity="info" strength="1" rendered="{!savingStatus}"/>
+        
             <br />
             <p>In the list below, select the field of salesforce.com corresponding to Litle's field. Once done, click
                 Save:
