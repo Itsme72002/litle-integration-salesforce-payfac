@@ -25,7 +25,7 @@
                     
                     <apex:outputText value="Entity Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityName__c}" size="1">
+                    <apex:selectList id="legalEntityNameList" value="{!currentMappings.legalEntityName__c}" size="1">
 
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityName}" rerender="legalEntityNameDefaultTxtBox" /> 
@@ -35,7 +35,7 @@
                     
                     <apex:outputText value="EntityType: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityType__c}" size="1">
+                    <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityType__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityType}" rerender="legalEntityTypeDefaultTxtBox" />
                     </apex:selectList>
@@ -44,7 +44,7 @@
                     
                     <apex:outputText value="Street Address 1: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityStreetAddress1__c}" size="1">
+                    <apex:selectList id="legalEntityStreetAddress1List" value="{!currentMappings.legalEntityStreetAddress1__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress1}" rerender="legalEntityStreetAddress1DefaultTxtBox" />
                     </apex:selectList>
@@ -53,7 +53,7 @@
                     
                     <apex:outputText value="Street Address 2: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityStreetAddress2__c}" size="1">
+                    <apex:selectList id="legalEntityStreetAddress2List" value="{!currentMappings.legalEntityStreetAddress2__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress2}" rerender="legalEntityStreetAddress2DefaultTxtBox" />
                     </apex:selectList>
@@ -62,7 +62,7 @@
                     
                     <apex:outputText value="City: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityCity__c}" size="1">
+                    <apex:selectList id="legalEntityCityList" value="{!currentMappings.legalEntityCity__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCity}" rerender="legalEntityCityDefaultTxtBox" />
                     </apex:selectList>
@@ -71,7 +71,7 @@
                     
                     <apex:outputText value="State/Province: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityStateProvince__c}" size="1">
+                    <apex:selectList id="legalEntityStateProvinceList" value="{!currentMappings.legalEntityStateProvince__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStateProvince}" rerender="legalEntityStateProvinceDefaultTxtBox" />
                     </apex:selectList>
@@ -80,7 +80,7 @@
                     
                     <apex:outputText value="Postal Code: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityPostalCode__c}" size="1">
+                    <apex:selectList id="legalEntityPostalCodeList" value="{!currentMappings.legalEntityPostalCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPostalCode}" rerender="legalEntityPostalCodeDefaultTxtBox" />
                     </apex:selectList>
@@ -89,7 +89,7 @@
                     
                     <apex:outputText value="Country Code: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityCountryCode__c}" size="1">
+                    <apex:selectList id="legalEntityCountryCodeList" value="{!currentMappings.legalEntityCountryCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCountryCode}" rerender="legalEntityCountryCodeDefaultTxtBox" />
                     </apex:selectList>
@@ -98,7 +98,7 @@
                     
                     <apex:outputText value="First Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityFirstName__c}" size="1">
+                    <apex:selectList id="legalEntityFirstNameList" value="{!currentMappings.legalEntityFirstName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityFirstName}" rerender="legalEntityFirstNameDefaultTxtBox" />
                     </apex:selectList>
@@ -107,7 +107,7 @@
                     
                     <apex:outputText value="Last Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityLastName__c}" size="1">
+                    <apex:selectList id="legalEntityLastNameList" value="{!currentMappings.legalEntityLastName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityLastName}" rerender="legalEntityLastNameDefaultTxtBox" />
                     </apex:selectList>
@@ -116,7 +116,7 @@
                     
                     <apex:outputText value="Email Address: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityEmailAddress__c}" size="1">
+                    <apex:selectList id="legalEntityEmailAddressList" value="{!currentMappings.legalEntityEmailAddress__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityEmailAddress}" rerender="legalEntityEmailAddressDefaultTxtBox" />
                     </apex:selectList>
@@ -125,7 +125,7 @@
                     
                     <apex:outputText value="Contact Phone: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityContactPhone__c}" size="1">
+                    <apex:selectList id="legalEntityContactPhoneList" value="{!currentMappings.legalEntityContactPhone__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityContactPhone}" rerender="legalEntityContactPhoneDefaultTxtBox" />
                     </apex:selectList>
@@ -134,7 +134,7 @@
                     
                     <apex:outputText value="Date Of Birth: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityDateOfBirth__c}" size="1">
+                    <apex:selectList id="legalEntityDateOfBirthList" value="{!currentMappings.legalEntityDateOfBirth__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDateOfBirth}" rerender="legalEntityDateOfBirthDefaultTxtBox" />
                     </apex:selectList>
@@ -143,7 +143,7 @@
                     
                     <apex:outputText value="Drivers License: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityDriversLicense__c}" size="1">
+                    <apex:selectList id="legalEntityDriversLicenseList" value="{!currentMappings.legalEntityDriversLicense__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDriversLicense}" rerender="legalEntityDriversLicenseDefaultTxtBox" />
                     </apex:selectList>
@@ -152,7 +152,7 @@
                     
                     <apex:outputText value="Drivers License State: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityDriversLicenseState__c}" size="1">
+                    <apex:selectList id="legalEntityDriversLicenseStateList" value="{!currentMappings.legalEntityDriversLicenseState__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDriversLicenseState}" rerender="legalEntityDriversLicenseStateDefaultTxtBox" />
                     </apex:selectList>
@@ -161,7 +161,7 @@
                     
                     <apex:outputText value="SSN: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntitySsn__c}" size="1">
+                    <apex:selectList id="legalEntitySsnList" value="{!currentMappings.legalEntitySsn__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntitySsn}" rerender="legalEntitySsnDefaultTxtBox" />
                     </apex:selectList>
@@ -170,7 +170,7 @@
                     
                     <apex:outputText value="Tax ID: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityTaxId__c}" size="1">
+                    <apex:selectList id="legalEntityTaxIdList" value="{!currentMappings.legalEntityTaxId__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityTaxId}" rerender="legalEntityTaxIdDefaultTxtBox" />
                     </apex:selectList>
@@ -179,7 +179,7 @@
                     
                     <apex:outputText value="Is Exclusive To PSP : " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityIsExclusiveToPsp__c}" size="1">
+                    <apex:selectList id="legalEntityIsExclusiveToPspList" value="{!currentMappings.legalEntityIsExclusiveToPsp__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsExclusiveToPsp}" rerender="legalEntityIsExclusiveToPspDefaultTxtBox" />
                     </apex:selectList>
@@ -188,7 +188,7 @@
                     
                     <apex:outputText value="Is PCI Compliance Validated: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityIsPciComplianceValidated__c}" size="1">
+                    <apex:selectList id="legalEntityIsPciComplianceValidatedList" value="{!currentMappings.legalEntityIsPciComplianceValidated__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsPciComplianceValidated}" rerender="legalEntityIsPciComplianceValidatedDefaultTxtBox" />
                     </apex:selectList>
@@ -197,7 +197,7 @@
                     
                     <apex:outputText value="PCI Level: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityPciLevel__c}" size="1">
+                    <apex:selectList id="legalEntityPciLevelList" value="{!currentMappings.legalEntityPciLevel__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPciLevel}" rerender="legalEntityPciLevelDefaultTxtBox" />
                     </apex:selectList>
@@ -206,7 +206,7 @@
                     
                     <apex:outputText value="Scanning Vendor: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityScanningVendor__c}" size="1">
+                    <apex:selectList id="legalEntityScanningVendorList" value="{!currentMappings.legalEntityScanningVendor__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityScanningVendor}" rerender="legalEntityScanningVendorDefaultTxtBox" />
                     </apex:selectList>
@@ -215,7 +215,7 @@
                     
                     <apex:outputText value="Qualified Security Assessor: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityQualifiedSecurityAssessor__c}" size="1">
+                    <apex:selectList id="legalEntityQualifiedSecurityAssessorList" value="{!currentMappings.legalEntityQualifiedSecurityAssessor__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityQualifiedSecurityAssessor}" rerender="legalEntityQualifiedSecurityAssessorDefaultTxtBox" />
                     </apex:selectList>
@@ -224,7 +224,7 @@
                     
                     <apex:outputText value="Most Recently Passed Scan: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityMostRecentlyPassedScan__c}" size="1">
+                    <apex:selectList id="legalEntityMostRecentlyPassedScanList" value="{!currentMappings.legalEntityMostRecentlyPassedScan__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityMostRecentlyPassedScan}" rerender="legalEntityMostRecentlyPassedScanDefaultTxtBox" />
                     </apex:selectList>
@@ -233,7 +233,7 @@
                     
                     <apex:outputText value="Report On Compliance: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityReportOnCompliance__c}" size="1">
+                    <apex:selectList id="legalEntityReportOnComplianceList" value="{!currentMappings.legalEntityReportOnCompliance__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityReportOnCompliance}" rerender="legalEntityReportOnComplianceDefaultTxtBox" />
                     </apex:selectList>
@@ -242,7 +242,7 @@
                     
                     <apex:outputText value="Annual Credit Card Sales Volume: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1">
+                    <apex:selectList id="legalEntityAnnualCreditCardSalesVolumeList" value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityAnnualCreditCardSalesVolume}" rerender="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" />
                     </apex:selectList>
@@ -251,7 +251,7 @@
                     
                     <apex:outputText value="Has Accepted Credit Cards: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}" size="1">
+                    <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultTxtBox" />
                     </apex:selectList>
@@ -277,7 +277,7 @@
                     <apex:outputText value="Street Address 1: " />
                     <apex:outputtext value="" />
                     <apex:selectList value="{!currentMappings.subMerchantStreetAddress1__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                        <apex:selectOptions id="subMerchantStreetAddress1List" value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress1DefaultTxtBox" action="{!onSelectChangeSubMerchantStreetAddress1}" />
                     </apex:selectList>
                     <apex:outputtext value="" />
@@ -285,7 +285,7 @@
                     
                     <apex:outputText value="Street Address 2: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantStreetAddress2__c}" size="1">
+                    <apex:selectList id="subMerchantStreetAddress2List" value="{!currentMappings.subMerchantStreetAddress2__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress2DefaultTxtBox" action="{!onSelectChangeSubMerchantStreetAddress2}" />
                     </apex:selectList>
@@ -294,7 +294,7 @@
                     
                     <apex:outputText value="City: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantCity__c}" size="1">
+                    <apex:selectList id="subMerchantCityList" value="{!currentMappings.subMerchantCity__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantCityDefaultTxtBox" action="{!onSelectChangeSubMerchantCity}" />
                     </apex:selectList>
@@ -303,7 +303,7 @@
                     
                     <apex:outputText value="State/Province: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantStateProvince__c}" size="1">
+                    <apex:selectList id="subMerchantStateProvinceList" value="{!currentMappings.subMerchantStateProvince__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantStateProvinceDefaultTxtBox" action="{!onSelectChangeSubMerchantStateProvince}" />
                     </apex:selectList>
@@ -312,7 +312,7 @@
                     
                     <apex:outputText value="Postal Code: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantPostalCode__c}" size="1">
+                    <apex:selectList id="subMerchantPostalCodeList" value="{!currentMappings.subMerchantPostalCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantPostalCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantPostalCode}" />
                     </apex:selectList>
@@ -321,7 +321,7 @@
                     
                     <apex:outputText value="Country Code: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantCountryCode__c}" size="1">
+                    <apex:selectList id="subMerchantCountryCodeList" value="{!currentMappings.subMerchantCountryCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantCountryCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantCountryCode}" />
                     </apex:selectList>
@@ -330,7 +330,7 @@
                     
                     <apex:outputText value="Amex MID: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantAmexMid__c}" size="1">
+                    <apex:selectList id="subMerchantAmexMidList" value="{!currentMappings.subMerchantAmexMid__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantAmexMidDefaultTxtBox" action="{!onSelectChangeSubMerchantAmexMid}" />
                     </apex:selectList>
@@ -339,7 +339,7 @@
                     
                     <apex:outputText value="Bank Account Number: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantBankAccountNumber__c}" size="1">
+                    <apex:selectList id="subMerchantBankAccountNumberList" value="{!currentMappings.subMerchantBankAccountNumber__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantBankAccountNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantBankAccountNumber}" />
                     </apex:selectList>
@@ -348,7 +348,7 @@
                     
                     <apex:outputText value="Bank Routing Number: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantBankRoutingNumber__c}" size="1">
+                    <apex:selectList id="subMerchantBankRoutingNumberList" value="{!currentMappings.subMerchantBankRoutingNumber__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantBankRoutingNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantBankRoutingNumber}" />
                     </apex:selectList>
@@ -357,7 +357,7 @@
                     
                     <apex:outputText value="Create Credentials: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantCreateCredentials__c}" size="1">
+                    <apex:selectList id="subMerchantCreateCredentialsList" value="{!currentMappings.subMerchantCreateCredentials__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultTxtBox" action="{!onSelectChangeSubMerchantCreateCredentials}" />
                     </apex:selectList>
@@ -366,7 +366,7 @@
                     
                     <apex:outputText value="Customer Service Number: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantCustomerServiceNumber__c}" size="1">
+                    <apex:selectList id="subMerchantCustomerServiceNumberList" value="{!currentMappings.subMerchantCustomerServiceNumber__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantCustomerServiceNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantCustomerServiceNumber}" />
                     </apex:selectList>
@@ -375,7 +375,7 @@
                     
                     <apex:outputText value="Discover Convey MID: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantDiscoverConveyMid__c}" size="1">
+                    <apex:selectList id="subMerchantDiscoverConveyMidList" value="{!currentMappings.subMerchantDiscoverConveyMid__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantDiscoverConveyMidDefaultTxtBox" action="{!onSelectChangeSubMerchantDiscoverConveyMid}" />
                     </apex:selectList>
@@ -384,7 +384,7 @@
                     
                     <apex:outputText value="Hard Code Billing Descriptor: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantHardCodeBillingDescriptor__c}" size="1">
+                    <apex:selectList id="subMerchantHardCodeBillingDescriptorList" value="{!currentMappings.subMerchantHardCodeBillingDescriptor__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantHardCodeBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchantHardCodeBillingDescriptor}" />
                     </apex:selectList>
@@ -393,7 +393,7 @@
                     
                     <apex:outputText value="Max Transaction Amount: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantMaxTransactionAmount__c}" size="1">
+                    <apex:selectList id="subMerchantMaxTransactionAmountList" value="{!currentMappings.subMerchantMaxTransactionAmount__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantMaxTransactionAmountDefaultTxtBox" action="{!onSelectChangeSubMerchantMaxTransactionAmount}" />
                     </apex:selectList>
@@ -402,7 +402,7 @@
                     
                     <apex:outputText value="Merchant Category Code: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantMerchantCategoryCode__c}" size="1">
+                    <apex:selectList id="subMerchantMerchantCategoryCodeList" value="{!currentMappings.subMerchantMerchantCategoryCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantMerchantCategoryCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantMerchantCategoryCode}" />
                     </apex:selectList>
@@ -411,7 +411,7 @@
                     
                     <apex:outputText value="Merchant Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantMerchantName__c}" size="1">
+                    <apex:selectList id="subMerchantMerchantNameList" value="{!currentMappings.subMerchantMerchantName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantMerchantNameDefaultTxtBox" action="{!onSelectChangeSubMerchantMerchantName}" />
                     </apex:selectList>
@@ -420,7 +420,7 @@
 
                     <apex:outputText value="First Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantFirstName__c}" size="1">
+                    <apex:selectList id="subMerchantFirstNameList" value="{!currentMappings.subMerchantFirstName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantFirstNameDefaultTxtBox" action="{!onSelectChangeSubMerchantFirstName}" />
                     </apex:selectList>
@@ -429,7 +429,7 @@
                     
                     <apex:outputText value="Last Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantLastName__c}" size="1">
+                    <apex:selectList id="subMerchantLastNameList" value="{!currentMappings.subMerchantLastName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantLastNameDefaultTxtBox" action="{!onSelectChangeSubMerchantLastName}" />
                     </apex:selectList>
@@ -438,7 +438,7 @@
                     
                     <apex:outputText value="Email Address: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantEmailAddress__c}" size="1">
+                    <apex:selectList id="subMerchantEmailAddressList" value="{!currentMappings.subMerchantEmailAddress__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantEmailAddressDefaultTxtBox" action="{!onSelectChangeSubMerchantEmailAddress}" />
                     </apex:selectList>
@@ -447,7 +447,7 @@
                     
                     <apex:outputText value="Phone: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantPhone__c}" size="1">
+                    <apex:selectList id="subMerchantPhoneList" value="{!currentMappings.subMerchantPhone__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantPhoneDefaultTxtBox" action="{!onSelectChangeSubMerchantPhone}" />
                     </apex:selectList>
@@ -456,7 +456,7 @@
                     
                     <apex:outputText value="PSP Merchant ID: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantPspMerchantId__c}" size="1">
+                    <apex:selectList id="subMerchantPspMerchantIdList" value="{!currentMappings.subMerchantPspMerchantId__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantPspMerchantIdDefaultTxtBox" action="{!onSelectChangeSubMerchantPspMerchantId}" />
                     </apex:selectList>
@@ -465,7 +465,7 @@
                     
                     <apex:outputText value="URL: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantUrl__c}" size="1">
+                    <apex:selectList id="subMerchantUrlList" value="{!currentMappings.subMerchantUrl__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchantUrlDefaultTxtBox" action="{!onSelectChangeSubMerchantUrl}" />
                     </apex:selectList>
@@ -474,7 +474,7 @@
                     
                     <apex:outputText value="eCheck Billing Descriptor: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchanteCheckBillingDescriptor__c}" size="1">
+                    <apex:selectList id="subMerchanteCheckBillingDescriptorList" value="{!currentMappings.subMerchanteCheckBillingDescriptor__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchanteCheckBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckBillingDescriptor}" />
                     </apex:selectList>
@@ -483,7 +483,7 @@
                     
                     <apex:outputText value="eCheck Company Name: " />
                     <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchanteCheckCompanyName__c}" size="1">
+                    <apex:selectList id="subMerchanteCheckCompanyNameList" value="{!currentMappings.subMerchanteCheckCompanyName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" rerender="subMerchanteCheckCompanyNameDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckCompanyName}" />
                     </apex:selectList>
@@ -492,8 +492,8 @@
                 </apex:panelGrid>
             </apex:pageBlockSection>
         </apex:pageBlock>
-        <apex:commandButton value="Save" action="{!saveMappings}"/>
-        <apex:commandButton value="Cancel" action="{!cancelMappings}"/>
+        <apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}"/>
+        <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}"/>
 
     </apex:form>
 </apex:page>
