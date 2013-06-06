@@ -314,7 +314,7 @@ private class LegalEntityModelTest {
     
     
     
-    
+    /*
         static testMethod void testLegalEntityNameDefault(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the LegalEntityName is null initially
@@ -599,5 +599,5 @@ private class LegalEntityModelTest {
         System.assertNotEquals(legalEntityModel.getLegalEntityHasAcceptedCreditCardsDefault(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityHasAcceptedCreditCardsDefault(), testString);
-    }
+    }*/
 }

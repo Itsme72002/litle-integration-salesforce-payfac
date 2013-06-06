@@ -265,7 +265,7 @@ private class SubMerchantModelTest {
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getSubMerchanteCheckCompanyName(), testString);
 	}
-	
+	/*
 	// Default textbox values
 	static testMethod void subMerchantStreetAddress1DefaultDefault(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
@@ -748,5 +748,5 @@ private class SubMerchantModelTest {
 	        System.assertNotEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameDefaultDisabled(), null);
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameDefaultDisabled(), testBoolean);
-	}
+	}*/
 }

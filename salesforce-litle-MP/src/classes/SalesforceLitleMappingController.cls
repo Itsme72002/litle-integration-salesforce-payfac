@@ -736,5 +736,11 @@ public class SalesforceLitleMappingController {
 	 	return null;
 	}
 	
+	/*public Pagereference resetMappings(){
+	 	resetStatus();
+	 	currentMappings = new SalesforceLitleMappingsObject__c();
+	 	return null;
+	}*/
+	
 
 }

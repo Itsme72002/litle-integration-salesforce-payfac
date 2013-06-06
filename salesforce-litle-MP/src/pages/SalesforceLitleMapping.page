@@ -494,6 +494,7 @@
         </apex:pageBlock>
         <apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}"/>
         <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}"/>
+        <!-- <apex:commandButton id="resetBtn" value="Reset All Mappings" action="{!resetMappings}"/> -->
 
     </apex:form>
 </apex:page>
