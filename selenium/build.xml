@@ -3,6 +3,7 @@
 <project name="salesforce-selenium" basedir="." default="test">
 	
 	<property file="build.properties" />
+	<property file="custom_build.properties" />
 	
 	<!-- add the jars to the classpath -->
 	<path id="build.classpath">

@@ -3,6 +3,7 @@
 <project name="Sample usage of Salesforce Ant tasks" default="deployCodeCheckOnly" basedir="." xmlns:sf="antlib:com.salesforce">
 
     <property file="build.properties"/>
+	<property file="custom_build.properties"/>
     <property environment="env"/>
 
 	<!-- proxy settings -->
