@@ -42,6 +42,15 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityTypeDefaultTxtBox" value="{!currentMappings.legalEntityTypeD__c}" disabled="{!currentMappings.legalEntityTypeX__c}"/>
                     
+                    <apex:outputText value="Doing Business As: " />
+                    <apex:outputtext value="" />
+                    <apex:selectList id="legalEntityDoingBusinessAsList" value="{!currentMappings.legalEntityDoingBusinessAs__c}" size="1">
+                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
+                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDoingBusinessAs}" rerender="legalEntityDoingBusinessAsDefaultTxtBox" />
+                    </apex:selectList>
+                    <apex:outputtext value="" />
+                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!currentMappings.legalEntityDoingBusinessAsD__c}" disabled="{!currentMappings.legalEntityDoingBusinessAsX__c}"/>
+                    
                     <apex:outputText value="Street Address 1: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityStreetAddress1List" value="{!currentMappings.legalEntityStreetAddress1__c}" size="1">
