@@ -47,6 +47,17 @@ private class LegalEntityModelTest {
         System.assertEquals(legalEntityModel.getLegalEntityType(), testString);
     }
     
+    
+    static testMethod void testLegalEntityDoingBusinessAs(){
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+        // Check if the LegalEntityType is null initially
+        System.assertEquals(legalEntityModel.getLegalEntityDoingBusinessAs(), null);
+        legalEntityModel.setLegalEntityDoingBusinessAs(testString);
+        // First check if the value is set
+        System.assertNotEquals(legalEntityModel.getLegalEntityDoingBusinessAs(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(legalEntityModel.getLegalEntityDoingBusinessAs(), testString);
+    }
     static testMethod void testLegalEntityStreetAddress1(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the account is null initially

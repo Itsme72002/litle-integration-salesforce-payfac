@@ -6,15 +6,22 @@
     </types>
     <types>
         <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>ApexPage</name>
     </types>
     <types>
         <members>*</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Account.Get_Litle_MID</members>
+        <members>Account.Litle_Fields_Mapping</members>
+        <members>Opportunity.Get_Litle_MID</members>
+        <members>Opportunity.Litle_Fields_Mapping</members>
+        <name>WebLink</name>
     </types>
     <version>27.0</version>
 </Package>

@@ -89,6 +89,23 @@ private class SalesforceLitleMappingControllerTest {
 	 	
 	}
 	
+	static testMethod void testOnSelectChangeLegalEntityDoingBusiness(){
+	 	SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAs__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAs__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAs__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityDoingBusinessAs();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAsX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAs__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAs__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityDoingBusinessAs();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTypeX__c, false);
+	 	
+	}
 	
 	static testMethod void testOnSelectChangeLegalEntityStreetAddress1(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
@@ -953,6 +970,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityTypeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1X__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2X__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAsX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityCityX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityStateProvinceX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPostalCodeX__c = flag; 
@@ -1003,7 +1021,8 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.subMerchanteCheckBillingDescD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameD__c = stringToSet;
 		salesforceLitleMappingController.currentMappings.legalEntityNameD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityTypeD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityTypeD__c = stringToSet;
+		salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAsD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1D__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2D__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityCityD__c = stringToSet; 

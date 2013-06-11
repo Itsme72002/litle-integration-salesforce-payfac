@@ -8,8 +8,9 @@ public class LitleMidFormController {
 	public Account account{get; set;}
 	public Boolean isTaxDisplayed{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
-	public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
-	public static final String OTHER = 'OTHER';
+	public static List<Integer> pciLevels {get; set;}
+	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
+	//public static final String OTHER = 'OTHER';
 	
 	/*public LitleMidFormController(ApexPages.StandardController controller) {
         this.account = (Account)controller.getRecord();
@@ -27,17 +28,26 @@ public class LitleMidFormController {
 	}*/
 	
 	public LitleMidFormController(){
-		
 		this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
+        //Initialize the Pci levels
+        pciLevels = new List<Integer>();
+		pciLevels.add(1);
+		pciLevels.add(2);
+		pciLevels.add(3);
+		pciLevels.add(4);
+		
         legalEntityTypeList = new List<SelectOption>();
-        legalEntityTypeList.add(new SelectOption(INDIVIDUAL_SOLE_PROPRIETORSHIP, 'Individual Sole Proprietorship'));
-        legalEntityTypeList.add(new SelectOption(OTHER, 'Other'));
+        for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
+        	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
+        }
+        
+        //legalEntityTypeList.add(new SelectOption(OTHER, 'Other'));
         savedMappings = new SalesforceLitleMappingsObject__c();
 		legalEntityModel = new LegalEntityModel();
 		subMerchantModel = new SubMerchantModel();
 		List<SalesforceLitleMappingsObject__c> mappingRecords 
-    			= [select id, name, subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
+    			= [select subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsX__c, legalEntityDoingBusinessAsD__c  from SalesforceLitleMappingsObject__c limit 1];
     	String foo = 'website';
     	if(!mappingRecords.isEmpty()){
     		this.savedMappings =  mappingRecords.get(0);
@@ -45,9 +55,10 @@ public class LitleMidFormController {
     	}
 	}
 	
-	private void populateFields(){
+	public void populateFields(){
 		populateLEName();
-		populateLEType();
+		//populateLEType();
+		populateLEDoingBusinessAs();
 		populateLEAddress1();
 		populateLEAddress2();
 		populateLECity();
@@ -99,7 +110,7 @@ public class LitleMidFormController {
 	}
 		
 	
-	private void populateLEName(){
+	public void populateLEName(){
 		if(!savedMappings.legalEntityNameX__c){
 			legalEntityModel.setLegalEntityName(savedMappings.legalEntityNameD__c);
 		}else{
@@ -135,7 +146,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEType(){
+	/*public void populateLEType(){
 		if(!savedMappings.legalEntityTypeX__c){
 			legalEntityModel.setLegalEntityType(savedMappings.legalEntityTypeD__c);
 		}else{
@@ -169,9 +180,45 @@ public class LitleMidFormController {
 				}	 
 			}
 		}
+	}*/
+	
+	public void populateLEDoingBusinessAs(){
+		if(!savedMappings.legalEntityDoingBusinessAsX__c){
+			legalEntityModel.setLegalEntityDoingBusinessAs(savedMappings.legalEntityDoingBusinessAsD__c);
+		}else{
+			if (savedMappings.legalEntityDoingBusinessAs__c != null &&  savedMappings.legalEntityDoingBusinessAs__c != ''){
+				String typeField = savedMappings.legalEntityDoingBusinessAs__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.setLegalEntityDoingBusinessAs(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.setLegalEntityDoingBusinessAs(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
 	}
 	
-	private void populateLEAddress1(){
+	public void populateLEAddress1(){
 		if(!savedMappings.legalEntityStreetAddress1X__c){
 			legalEntityModel.setLegalEntityStreetAddress1(savedMappings.legalEntityStreetAddress1D__c);
 		}else{
@@ -207,7 +254,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEAddress2(){
+	public void populateLEAddress2(){
 		if(!savedMappings.legalEntityStreetAddress2X__c){
 			legalEntityModel.setLegalEntityStreetAddress2(savedMappings.legalEntityStreetAddress2D__c);
 		}else{
@@ -243,7 +290,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLECity(){
+	public void populateLECity(){
 		if(!savedMappings.legalEntityCityX__c){
 			legalEntityModel.setLegalEntityCity(savedMappings.legalEntityCityD__c);
 		}else{
@@ -279,7 +326,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEStateProvince(){
+	public void populateLEStateProvince(){
 		if(!savedMappings.legalEntityStateProvinceX__c){
 			legalEntityModel.setLegalEntityStateProvince(savedMappings.legalEntityStateProvinceD__c);
 		}else{
@@ -315,7 +362,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEPostalCode(){
+	public void populateLEPostalCode(){
 		if(!savedMappings.legalEntityPostalCodeX__c){
 			legalEntityModel.setLegalEntityPostalCode(savedMappings.legalEntityPostalCodeD__c);
 		}else{
@@ -351,7 +398,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLECountryCode(){
+	public void populateLECountryCode(){
 		if(!savedMappings.legalEntityCountryCodeX__c){
 			legalEntityModel.setLegalEntityCountryCode(savedMappings.legalEntityCountryCodeD__c);
 		}else{
@@ -387,7 +434,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEFirstName(){
+	public void populateLEFirstName(){
 		if(!savedMappings.legalEntityFirstNameX__c){
 			legalEntityModel.setLegalEntityFirstName(savedMappings.legalEntityFirstNameD__c);
 		}else{
@@ -423,7 +470,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLELastName(){
+	public void populateLELastName(){
 		if(!savedMappings.legalEntityLastNameX__c){
 			legalEntityModel.setLegalEntityLastName(savedMappings.legalEntityLastNameD__c);
 		}else{
@@ -459,7 +506,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEEmailAddress(){
+	public void populateLEEmailAddress(){
 		if(!savedMappings.legalEntityEmailAddressX__c){
 			legalEntityModel.setLegalEntityEmailAddress(savedMappings.legalEntityEmailAddressD__c);
 		}else{
@@ -495,7 +542,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEContactPhone(){
+	public void populateLEContactPhone(){
 		if(!savedMappings.legalEntityContactPhoneX__c){
 			legalEntityModel.setLegalEntityContactPhone(savedMappings.legalEntityContactPhoneD__c);
 		}else{
@@ -531,7 +578,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEDateOfBirth(){
+	public void populateLEDateOfBirth(){
 		if(!savedMappings.legalEntityDateOfBirthX__c){
 			legalEntityModel.setLegalEntityDateOfBirth(savedMappings.legalEntityDateOfBirthD__c);
 		}else{
@@ -567,7 +614,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEDriversLicense(){
+	public void populateLEDriversLicense(){
 		if(!savedMappings.legalEntityDriversLicenseX__c){
 			legalEntityModel.setLegalEntityDriversLicense(savedMappings.legalEntityDriversLicenseD__c);
 		}else{
@@ -603,7 +650,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEDriversLicenseState(){
+	public void populateLEDriversLicenseState(){
 		if(!savedMappings.legalEntityDriversLicenseStateX__c){
 			legalEntityModel.setLegalEntityDriversLicenseState(savedMappings.legalEntityDriversLicenseStateD__c);
 		}else{
@@ -639,7 +686,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLESsn(){
+	public void populateLESsn(){
 		if(!savedMappings.legalEntitySsnX__c){
 			legalEntityModel.setLegalEntitySsn(savedMappings.legalEntitySsnD__c);
 		}else{
@@ -675,7 +722,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLETaxId(){
+	public void populateLETaxId(){
 		if(!savedMappings.legalEntityTaxIdX__c){
 			legalEntityModel.setLegalEntityTaxId(savedMappings.legalEntityTaxIdD__c);
 		}else{
@@ -711,7 +758,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEIsExclusiveToPsp(){
+	public void populateLEIsExclusiveToPsp(){
 		if(!savedMappings.legalEntityIsExclusiveToPspX__c){
 			legalEntityModel.setLegalEntityIsExclusiveToPsp(savedMappings.legalEntityIsExclusiveToPspD__c);
 		}else{
@@ -747,7 +794,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEIsPciComplianceValidated(){
+	public void populateLEIsPciComplianceValidated(){
 		if(!savedMappings.legalEntityIsPciComplianceValidatedX__c){
 			legalEntityModel.setLegalEntityIsPciComplianceValidated(savedMappings.legalEntityIsPciComplianceValidatedD__c);
 		}else{
@@ -783,7 +830,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEPciLevel(){
+	public void populateLEPciLevel(){
 		if(!savedMappings.legalEntityPciLevelX__c){
 			legalEntityModel.setLegalEntityPciLevel(savedMappings.legalEntityPciLevelD__c);
 		}else{
@@ -819,7 +866,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEScanningVendor(){
+	public void populateLEScanningVendor(){
 		if(!savedMappings.legalEntityScanningVendorX__c){
 			legalEntityModel.setLegalEntityScanningVendor(savedMappings.legalEntityScanningVendorD__c);
 		}else{
@@ -855,7 +902,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEQualifiedSecurityAssessor(){
+	public void populateLEQualifiedSecurityAssessor(){
 		if(!savedMappings.legalEntityQualifiedSecurityAssessorX__c){
 			legalEntityModel.setLegalEntityQualifiedSecurityAssessor(savedMappings.legalEntityQualifiedSecurityAssessorD__c);
 		}else{
@@ -891,7 +938,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEMostRecentlyPassedScan(){
+	public void populateLEMostRecentlyPassedScan(){
 		if(!savedMappings.legalEntityMostRecentlyPassedScanX__c){
 			legalEntityModel.setLegalEntityMostRecentlyPassedScan(savedMappings.legalEntityMostRecentlyPassedScanD__c);
 		}else{
@@ -927,7 +974,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEReportOnCompliance(){
+	public void populateLEReportOnCompliance(){
 		if(!savedMappings.legalEntityReportOnComplianceX__c){
 			legalEntityModel.setLegalEntityReportOnCompliance(savedMappings.legalEntityReportOnComplianceD__c);
 		}else{
@@ -963,7 +1010,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEAnnualCreditCardSalesVolume(){
+	public void populateLEAnnualCreditCardSalesVolume(){
 		if(!savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c){
 			legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(savedMappings.legalEntityAnnualCreditCardSalesVolumeD__c);
 		}else{
@@ -999,7 +1046,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateLEHasAcceptedCreditCards(){
+	public void populateLEHasAcceptedCreditCards(){
 		if(!savedMappings.legalEntityHasAcceptedCreditCardsX__c){
 			legalEntityModel.setLegalEntityHasAcceptedCreditCards(savedMappings.legalEntityHasAcceptedCreditCardsD__c);
 		}else{
@@ -1035,7 +1082,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMStreetAddress1(){
+	public void populateSMStreetAddress1(){
 		if(!savedMappings.subMerchantStreetAddress1X__c){
 			subMerchantModel.setsubMerchantStreetAddress1(savedMappings.subMerchantStreetAddress1D__c);
 		}else{
@@ -1071,7 +1118,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMStreetAddress2(){
+	public void populateSMStreetAddress2(){
 		if(!savedMappings.subMerchantStreetAddress2X__c){
 			subMerchantModel.setsubMerchantStreetAddress2(savedMappings.subMerchantStreetAddress2D__c);
 		}else{
@@ -1080,7 +1127,7 @@ public class LitleMidFormController {
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(2);
+					String sObjectFieldName = customObjectFieldParts.get(1);
 					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
 						String sObjectId;
 						if(sObjectName.equalsIgnoreCase('Account')){
@@ -1107,7 +1154,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMCity(){
+	public void populateSMCity(){
 		if(!savedMappings.subMerchantCityX__c){
 			subMerchantModel.setsubMerchantCity(savedMappings.subMerchantCityD__c);
 		}else{
@@ -1143,7 +1190,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMStateProvince(){
+	public void populateSMStateProvince(){
 		if(!savedMappings.subMerchantStateProvinceX__c){
 			subMerchantModel.setsubMerchantStateProvince(savedMappings.subMerchantStateProvinceD__c);
 		}else{
@@ -1179,7 +1226,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMPostalCode(){
+	public void populateSMPostalCode(){
 		if(!savedMappings.subMerchantPostalCodeX__c){
 			subMerchantModel.setsubMerchantPostalCode(savedMappings.subMerchantPostalCodeD__c);
 		}else{
@@ -1215,7 +1262,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMCountryCode(){
+	public void populateSMCountryCode(){
 		if(!savedMappings.subMerchantCountryCodeX__c){
 			subMerchantModel.setsubMerchantCountryCode(savedMappings.subMerchantCountryCodeD__c);
 		}else{
@@ -1251,7 +1298,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMAmexMid(){
+	public void populateSMAmexMid(){
 		if(!savedMappings.subMerchantAmexMidX__c){
 			subMerchantModel.setsubMerchantAmexMid(savedMappings.subMerchantAmexMidD__c);
 		}else{
@@ -1287,7 +1334,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMBankAccountNumber(){
+	public void populateSMBankAccountNumber(){
 		if(!savedMappings.subMerchantBankAccountNumberX__c){
 			subMerchantModel.setsubMerchantBankAccountNumber(savedMappings.subMerchantBankAccountNumberD__c);
 		}else{
@@ -1323,7 +1370,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMBankRoutingNumber(){
+	public void populateSMBankRoutingNumber(){
 		if(!savedMappings.subMerchantBankRoutingNumberX__c){
 			subMerchantModel.setsubMerchantBankRoutingNumber(savedMappings.subMerchantBankRoutingNumberD__c);
 		}else{
@@ -1359,7 +1406,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMCreateCredentials(){
+	public void populateSMCreateCredentials(){
 		if(!savedMappings.subMerchantCreateCredentialsX__c){
 			subMerchantModel.setsubMerchantCreateCredentials(savedMappings.subMerchantCreateCredentialsD__c);
 		}else{
@@ -1395,7 +1442,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMCustomerServiceNumber(){
+	public void populateSMCustomerServiceNumber(){
 		if(!savedMappings.subMerchantCustomerServiceNumberX__c){
 			subMerchantModel.setsubMerchantCustomerServiceNumber(savedMappings.subMerchantCustomerServiceNumberD__c);
 		}else{
@@ -1431,7 +1478,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMDiscoverConveyMid(){
+	public void populateSMDiscoverConveyMid(){
 		if(!savedMappings.subMerchantDiscoverConveyMidX__c){
 			subMerchantModel.setsubMerchantDiscoverConveyMid(savedMappings.subMerchantDiscoverConveyMidD__c);
 		}else{
@@ -1467,7 +1514,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMHardCodeBillingDescriptor(){
+	public void populateSMHardCodeBillingDescriptor(){
 		if(!savedMappings.subMerchantHardCodeBillingDescriptorX__c){
 			subMerchantModel.setsubMerchantHardCodeBillingDescriptor(savedMappings.subMerchantHardCodeBillingDescD__c);
 		}else{
@@ -1503,7 +1550,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMMaxTransactionAmount(){
+	public void populateSMMaxTransactionAmount(){
 		if(!savedMappings.subMerchantMaxTransactionAmountX__c){
 			subMerchantModel.setsubMerchantMaxTransactionAmount(savedMappings.subMerchantMaxTransactionAmountD__c);
 		}else{
@@ -1539,7 +1586,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMMerchantCategoryCode(){
+	public void populateSMMerchantCategoryCode(){
 		if(!savedMappings.subMerchantMerchantCategoryCodeX__c){
 			subMerchantModel.setsubMerchantMerchantCategoryCode(savedMappings.subMerchantMerchantCategoryCodeD__c);
 		}else{
@@ -1575,7 +1622,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMMerchantName(){
+	public void populateSMMerchantName(){
 		if(!savedMappings.subMerchantMerchantNameX__c){
 			subMerchantModel.setsubMerchantMerchantName(savedMappings.subMerchantMerchantNameD__c);
 		}else{
@@ -1611,7 +1658,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMFirstName(){
+	public void populateSMFirstName(){
 		if(!savedMappings.subMerchantFirstNameX__c){
 			subMerchantModel.setsubMerchantFirstName(savedMappings.subMerchantFirstNameD__c);
 		}else{
@@ -1647,7 +1694,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMLastName(){
+	public void populateSMLastName(){
 		if(!savedMappings.subMerchantLastNameX__c){
 			subMerchantModel.setsubMerchantLastName(savedMappings.subMerchantLastNameD__c);
 		}else{
@@ -1683,7 +1730,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMEmailAddress(){
+	public void populateSMEmailAddress(){
 		if(!savedMappings.subMerchantEmailAddressX__c){
 			subMerchantModel.setsubMerchantEmailAddress(savedMappings.subMerchantEmailAddressD__c);
 		}else{
@@ -1719,7 +1766,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMPhone(){
+	public void populateSMPhone(){
 		if(!savedMappings.subMerchantPhoneX__c){
 			subMerchantModel.setsubMerchantPhone(savedMappings.subMerchantPhoneD__c);
 		}else{
@@ -1755,7 +1802,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMPspMerchantId(){
+	public void populateSMPspMerchantId(){
 		if(!savedMappings.subMerchantPspMerchantIdX__c){
 			subMerchantModel.setsubMerchantPspMerchantId(savedMappings.subMerchantPspMerchantIdD__c);
 		}else{
@@ -1791,7 +1838,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMUrl(){
+	public void populateSMUrl(){
 		if(!savedMappings.subMerchantUrlX__c){
 			subMerchantModel.setsubMerchantUrl(savedMappings.subMerchantUrlD__c);
 		}else{
@@ -1827,7 +1874,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMeCheckBillingDescriptor(){
+	public void populateSMeCheckBillingDescriptor(){
 		if(!savedMappings.subMerchanteCheckBillingDescriptorX__c){
 			subMerchantModel.setsubMerchanteCheckBillingDescriptor(savedMappings.subMerchanteCheckBillingDescD__c);
 		}else{
@@ -1863,7 +1910,7 @@ public class LitleMidFormController {
 		}
 	}
 	
-	private void populateSMeCheckCompanyName(){
+	public void populateSMeCheckCompanyName(){
 		if(!savedMappings.subMerchanteCheckCompanyNameX__c){
 			subMerchantModel.setsubMerchanteCheckCompanyName(savedMappings.subMerchanteCheckCompanyNameD__c);
 		}else{
@@ -1901,33 +1948,34 @@ public class LitleMidFormController {
 	
 	//on change event of legal entity type
 	public PageReference onChangeLegalEntityType(){
-		System.debug('!In on change');
-		if(legalEntityModel.getLegalEntityType().equals(INDIVIDUAL_SOLE_PROPRIETORSHIP)){
-			System.debug('!Individual');
-			isTaxDisplayed = false;
-		}else{
-			System.debug('!other');
-			isTaxDisplayed = true;
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityType())){
+			if(legalEntityModel.getLegalEntityType().equals(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
+				isTaxDisplayed = false;
+			}else{
+				isTaxDisplayed = true;
+			}
 		}
 		return null;
-		
 	}
 	
 	public Pagereference submit(){
-		/*removeDisabledText();
-		System.debug('In Save Method');
-		try{
-			upsert currentMappings;
-			String aId = apexpages.currentpage().getParameters().get('id');
-			if(aId != null && !aid.equals('')){
-				return new PageReference('/'+aId);	
+		if(areRequiredFieldsFilled()){
+			if(isInputDataValid()){
+				
 			}
-		 	savingStatus = true;
-		}catch(DmlException e){
-			errorStatus = true;
-		}*/
+			//Make API call
+			//return to previous page
+		}
+		/*else{
+			//Display error
+		}
 		System.debug('!!! In Submit');
-		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Required Field'));
+		if(ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Valid Date'));
+		}else{
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Date'));
+		}
+		//ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Required Field'));*/
 		return null;
 		
 	}
@@ -1940,5 +1988,387 @@ public class LitleMidFormController {
 			}*/
 	 	return null;
 	}
+	
+	public Boolean isInputDataValid(){
+		Boolean isInputValid = true;
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityName(), 60)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Entity Name cannot exceed 60 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress1(), 60)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 1 cannot exceed 60 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress2(), 60)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 2 cannot exceed 60 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCity(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'City cannot exceed 20 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStateProvince(), 2)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'State/Province cannot exceed 2 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPostalCode(), 5)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Postal Code cannot exceed 5 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCountryCode(), 3)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Country Code cannot exceed 3 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityFirstName(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'First Name cannot exceed 20 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityLastName(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Last Name cannot exceed 20 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityEmailAddress(), 100)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Email Address cannot exceed 100 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Contact Phone cannot exceed 10 characters'));
+		}
+		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Date of Birth is not in yyyy-mm-dd format'));
+		}
+		
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicense(), 25)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License cannot exceed 25 characters'));
+		}
+		
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicenseState(), 2)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License State cannot exceed 2 characters'));
+		}
+		if(legalEntityModel.getLegalEntityType().equalsIgnoreCase(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntitySsn(), 9)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SSN cannot exceed 9 characters'));
+			}
+		}else{
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityTaxId(), 9)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Tax ID cannot exceed 9 characters'));
+			}
+		}
+		
+		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP should be either true or false'));
+		}
+		
+		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsPcicomplianceValidated())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+		}
+		
+		
+		if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPciLevel(), pciLevels)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+		}
+		
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityScanningVendor(), 9)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Scanning Vendor cannot exceed 9 characters'));
+		}
+		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityQualifiedSecurityAssessor(), 50)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Qualified Security Assessor cannot exceed 50 characters'));
+		}
+		
+		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Most Recently Passed Scan is not in yyyy-mm-dd format'));
+		}
+		
+		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityReportOnCompliance())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Report On Compliance is not in yyyy-mm-dd format'));
+		}
+		
+		if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Annual Credit Card Sales Volume should be integer'));
+		}
+		
+		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Has Accepted Credit Cards should be either true or false'));
+		}
+		//subMerchant Validations
+		
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress1(), 60)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 1 cannot exceed 60 characters'));
+		}
+		
+		
 
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress2(), 60)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 2 cannot exceed 60 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCity(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant City cannot exceed 20 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStateProvince(), 2)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant State/Province cannot exceed 2 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPostalCode(), 5)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Postal Code cannot exceed 5 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCountryCode(), 3)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Country Code cannot exceed 3 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAmexMid(), 15)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Amex MID cannot exceed 15 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankAccountNumber(), 50)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number cannot exceed 50 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankRoutingNumber(), 50)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number cannot exceed 50 characters'));
+		}
+		
+		if(!ValidationUtil.validateBoolean(subMerchantModel.getSubMerchantCreateCredentials())){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Create Credentials should be either true or false'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number cannot exceed 13 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantDiscoverConveyMid(), 15)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Discover Convey Mid cannot exceed 15 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 25)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Hard Code Billing Descriptor cannot exceed 25 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 19)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount cannot exceed 19 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantCategoryCode(), 4)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code cannot exceed 4 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantName(), 50)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name cannot exceed 50 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantFirstName(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant First Name cannot exceed 20 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantLastName(), 20)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Last Name cannot exceed 20 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantEmailAddress(), 100)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Email Address cannot exceed 100 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPhone(), 13)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Phone cannot exceed 13 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPspMerchantId(), 32)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PSP Merchant ID cannot exceed 32 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantUrl(), 120)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'URL cannot exceed 120 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckBillingDescriptor(), 10)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Billing Descriptor cannot exceed 10 characters'));
+		}
+
+		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckCompanyName(), 16)){
+			isInputValid = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Company Name cannot exceed 16 characters'));
+		}
+
+		
+		return isInputValid;
+	}
+	
+	public Boolean areRequiredFieldsFilled(){
+		Boolean isAllRequiredFieldsPresent = true;
+		if(String.isEmpty(legalEntityModel.getLegalEntityName())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Entity Name is Required'));
+	
+		}
+		/*if(String.isEmpty(legalEntityModel.getLegalEntityType())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'is Required'));
+	
+		}*/
+		if(String.isEmpty(legalEntityModel.getLegalEntityStreetAddress1())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Street Address 1 is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityCountryCode())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Country Code is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityLastName())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Last Name is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityFirstName())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s First Name is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityType())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity Type is Required'));
+		}else{
+			if(legalEntityModel.getLegalEntityType().equalsIgnoreCase(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
+				if(String.isEmpty(legalEntityModel.getLegalEntityCity())){
+					isAllRequiredFieldsPresent = false;
+					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s City is Required'));
+		
+				}
+				if(String.isEmpty(legalEntityModel.getLegalEntityStateProvince())){
+					isAllRequiredFieldsPresent = false;
+					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s State/Province is Required'));
+		
+				}
+				if(String.isEmpty(legalEntityModel.getLegalEntityPostalCode())){
+					isAllRequiredFieldsPresent = false;
+					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Postal Code is Required'));
+		
+				}
+				if(String.isEmpty(legalEntityModel.getLegalEntitySsn())){
+					isAllRequiredFieldsPresent = false;
+					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SSN is Required'));
+		
+				}
+			}else{
+				if(String.isEmpty(legalEntityModel.getLegalEntityTaxId())){
+					isAllRequiredFieldsPresent = false;
+					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Tax ID is Required'));
+		
+				}
+			}
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityPciLevel())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Level is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Annual Credit Card Sales Volume is Required'));
+	
+		}
+		if(String.isEmpty(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Has Accepted Credit Cards is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantCountryCode())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SubMerchant\'s Country Code is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantBankAccountNumber())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantBankRoutingNumber())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantCustomerServiceNumber())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantHardCodeBillingDescriptor())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Hard Code Billing Descriptor is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantMaxTransactionAmount())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantMerchantCategoryCode())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantMerchantName())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name is Required'));
+	
+		}
+		if(String.isEmpty(subMerchantModel.getSubMerchantPspMerchantId())){
+			isAllRequiredFieldsPresent = false;
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PSP Merchant ID is Required'));
+	
+		}
+		return isAllRequiredFieldsPresent;		
+		
+	}
 }

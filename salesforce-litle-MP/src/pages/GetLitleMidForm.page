@@ -31,6 +31,10 @@
                         	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> 
                     </apex:selectList>
                     
+                    <apex:outputText value="Doing Business As: " />
+                    <apex:outputtext value="" />
+                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!legalEntityModel.legalEntityDoingBusinessAs}" />
+                    
                     <apex:outputText value="Street Address 1: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
@@ -72,7 +76,10 @@
                     
                     <apex:outputText value="First Name: " />
                     <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityFirstName}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText id="legalEntityFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityFirstName}" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Last Name: " />
                     <apex:outputtext value="" />
@@ -89,7 +96,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityContactPhone}" />
                     
-                    <apex:outputText value="Date Of Birth: " />
+                    <apex:outputText value="Date Of Birth: (YYYY-MM-DD)" />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityDateOfBirthDefaultTxtBox" value="{!legalEntityModel.legalEntityDateOfBirth}" />
                     
@@ -144,11 +151,11 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!legalEntityModel.legalEntityQualifiedSecurityAssessor}" />
                     
-                    <apex:outputText value="Most Recently Passed Scan: " />
+                    <apex:outputText value="Most Recently Passed Scan: (YYYY-MM-DD)" />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!legalEntityModel.legalEntityMostRecentlyPassedScan}" />
                     
-                    <apex:outputText value="Report On Compliance: " />
+                    <apex:outputText value="Report On Compliance: (YYYY-MM-DD)" />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!legalEntityModel.legalEntityReportOnCompliance}" />
                     
@@ -197,7 +204,10 @@
                     
                     <apex:outputText value="Country Code: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantCountryCode}" id="subMerchantCountryCodeDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantCountryCode}" id="subMerchantCountryCodeDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Amex MID: " />
                     <apex:outputtext value="" />
@@ -205,11 +215,17 @@
                     
                     <apex:outputText value="Bank Account Number: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Bank Routing Number: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Create Credentials: " />
                     <apex:outputtext value="" />
@@ -217,7 +233,10 @@
                     
                     <apex:outputText value="Customer Service Number: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantCustomerServiceNumber}" id="subMerchantCustomerServiceNumberDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantCustomerServiceNumber}" id="subMerchantCustomerServiceNumberDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Discover Convey MID: " />
                     <apex:outputtext value="" />
@@ -225,19 +244,31 @@
                     
                     <apex:outputText value="Hard Code Billing Descriptor: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}" id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}" id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Max Transaction Amount: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Merchant Category Code: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="Merchant Name: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" />
+                    </apex:outputPanel>
 
                     <apex:outputText value="First Name: " />
                     <apex:outputtext value="" />
@@ -257,7 +288,10 @@
                     
                     <apex:outputText value="PSP Merchant ID: " />
                     <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    	<apex:inputText value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" />
+                    </apex:outputPanel>
                     
                     <apex:outputText value="URL: " />
                     <apex:outputtext value="" />

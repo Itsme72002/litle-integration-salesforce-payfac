@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>Get_Litle_MID</fullName>
+        <availability>online</availability>
+        <description>Button opens page to create Litle MID</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Get Litle MID</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/forceMock__GetLitleMidForm?accid={!Account.Id}&amp;oppid={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Litle_Fields_Mapping</fullName>
+        <availability>online</availability>
+        <description>Button to save initial configuration</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Litle Fields Mapping</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/forceMock__SalesforceLitleMapping?id={!Account.Id}</url>
+    </webLinks>
+</CustomObject>
