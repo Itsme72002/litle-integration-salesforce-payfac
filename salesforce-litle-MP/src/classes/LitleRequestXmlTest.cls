@@ -24,9 +24,11 @@ private class LitleRequestXmlTest {
 	public static final String TEST_STRING = 'test';
 
     static testMethod void testCreateLegalEntityRequest() {
-        LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
         // Check if the account is null initially
-        System.assertEquals(litleRequestXml.getCreateLegalEntityRequest(), null);
+        System.assertEquals(litleRequestXml.getCreateLegalEntityRequest(), getCreateLegalEntityRequestXML('',''));
         litleRequestXml.setCreateLegalEntityRequest(TEST_STRING);
         // First check if the value is set
         System.assertNotEquals(litleRequestXml.getCreateLegalEntityRequest(), null);
@@ -35,9 +37,11 @@ private class LitleRequestXmlTest {
     }
     
     static testMethod void testCreateSubMerchantRequest() {
-        LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+        LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
         // Check if the account is null initially
-        System.assertEquals(litleRequestXml.getCreateSubMerchantRequest(), null);
+        System.assertEquals(litleRequestXml.getCreateSubMerchantRequest(), getCreateSubMerchantRequestXML(''));
         litleRequestXml.setCreateSubMerchantRequest(TEST_STRING);
         // First check if the value is set
         System.assertNotEquals(litleRequestXml.getCreateSubMerchantRequest(), null);
@@ -46,12 +50,14 @@ private class LitleRequestXmlTest {
     }
     
     static testMethod void testGenerateCreateLegalEntityRequest(){
-    	LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
     	// TODO check for null
     	System.assertEquals(null, litleRequestXml.generateCreateLegalEntityRequest(null));
     	
     	// Check for XML with no values, just tags
-    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	//LegalEntityModel legalEntityModel = new LegalEntityModel();
     	String actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
     	String expectedXml = getCreateLegalEntityRequestXML('','');
     	
@@ -99,12 +105,14 @@ private class LitleRequestXmlTest {
     
     
     static testMethod void testGenerateCreateSubMerchantRequest(){
-    	LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
     	// TODO check for null
     	System.assertEquals(null, litleRequestXml.generateCreateSubMerchantRequest(null));
     	
     	// Check for XML with no values, just tags
-    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+    	//SubMerchantModel subMerchantModel = new SubMerchantModel();
     	String actualXml = litleRequestXml.generateCreateSubMerchantRequest(subMerchantModel);
     	String expectedXml = getCreateSubMerchantRequestXML('');
     	

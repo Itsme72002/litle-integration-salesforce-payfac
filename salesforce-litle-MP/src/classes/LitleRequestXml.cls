@@ -3,8 +3,9 @@ public class LitleRequestXml {
 	private String createSubMerchantRequest;
 	public static final String XML_HEADER = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 	
-	public LitleRequestXml(){
-		
+	public LitleRequestXml(LegalEntityModel legalEntityModel, SubMerchantModel subMerchantModel){
+		createLegalEntityRequest = generateCreateLegalEntityRequest(legalEntityModel);
+		createSubMerchantRequest = generateCreateSubMerchantRequest(subMerchantModel);
 	}
 	
 	public void setCreateLegalEntityRequest(String createLegalEntityRequest){
@@ -91,10 +92,11 @@ public class LitleRequestXml {
 			createLegalEntityRequestXml.writeEndElement();	//end legal entity principles
 			createLegalEntityRequestXml.writeEndElement(); //end main request
 			createLegalEntityRequestXml.writeEndDocument();
-			this.createLegalEntityRequest = createLegalEntityRequestXml.getXmlString();
+			String request = createLegalEntityRequestXml.getXmlString();
 			createLegalEntityRequestXml.close();
+			return request;
 		}
-		return createLegalEntityRequest;
+		return null;
 	}
 	
 	//generate create sub merchant request from subMerchantModel
@@ -136,10 +138,11 @@ public class LitleRequestXml {
 			addTagToXml(createSubMerchantRequestXml, 'eCheckCompanyName', subMerchantModel.getSubMerchanteCheckCompanyName());
 			createSubMerchantRequestXml.writeEndElement(); //end main request
 			createSubMerchantRequestXml.writeEndDocument();
-			this.createSubMerchantRequest = createSubMerchantRequestXml.getXmlString();
+			String request = createSubMerchantRequestXml.getXmlString();
 			createSubMerchantRequestXml.close();
+			return request;
 		}
-		return createSubMerchantRequest;
+		return null;
 	}
 	/*
 	//creates start and end tag with the given name and the given value
