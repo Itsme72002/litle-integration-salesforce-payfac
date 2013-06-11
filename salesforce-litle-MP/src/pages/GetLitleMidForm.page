@@ -307,8 +307,8 @@
                 </apex:panelGrid>
             </apex:pageBlockSection>
         </apex:pageBlock>
-        <apex:commandButton value="Submit" action="{!submit}" />
-        <apex:commandButton value="Cancel" action="{!cancel}"/> 
+        <apex:commandButton id="submitBtn" value="Submit" action="{!submit}"/>
+        <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}"/> 
 
     </apex:form>
 </apex:page>
