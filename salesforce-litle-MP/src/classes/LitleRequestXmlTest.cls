@@ -45,4 +45,186 @@ private class LitleRequestXmlTest {
         System.assertEquals(litleRequestXml.getCreateSubMerchantRequest(), TEST_STRING);
     }
     
+    static testMethod void testGenerateCreateLegalEntityRequest(){
+    	LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+    	// TODO check for null
+    	System.assertEquals(null, litleRequestXml.generateCreateLegalEntityRequest(null));
+    	
+    	// Check for XML with no values, just tags
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+    	String actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
+    	String expectedXml = getCreateLegalEntityRequestXML('','');
+    	
+    	System.assertEquals(actualXml, expectedXml);
+    	
+    	//prepare a legal entity model for individual proprietorship
+		legalEntityModel.setLegalEntityName(TEST_STRING);
+    	legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());
+    	legalEntityModel.setLegalEntityDoingBusinessAs(TEST_STRING);
+    	legalEntityModel.setLegalEntityStreetAddress1(TEST_STRING);
+    	legalEntityModel.setLegalEntityStreetAddress2(TEST_STRING);
+    	legalEntityModel.setLegalEntityCity(TEST_STRING);
+    	legalEntityModel.setLegalEntityStateProvince(TEST_STRING);
+    	legalEntityModel.setLegalEntityPostalCode(TEST_STRING);
+    	legalEntityModel.setLegalEntityCountryCode(TEST_STRING);
+    	legalEntityModel.setLegalEntityFirstName(TEST_STRING);
+    	legalEntityModel.setLegalEntityLastName(TEST_STRING);
+    	legalEntityModel.setLegalEntityEmailAddress(TEST_STRING);
+    	legalEntityModel.setLegalEntityContactPhone(TEST_STRING);
+    	legalEntityModel.setLegalEntityDateOfBirth(TEST_STRING);
+    	legalEntityModel.setLegalEntityDriversLicense(TEST_STRING);
+    	legalEntityModel.setLegalEntityDriversLicenseState(TEST_STRING);
+    	legalEntityModel.setLegalEntitySsn(TEST_STRING);
+    	legalEntityModel.setLegalEntityTaxId(TEST_STRING);
+    	legalEntityModel.setLegalEntityIsExclusiveToPsp(TEST_STRING);
+    	legalEntityModel.setLegalEntityIsPciComplianceValidated(TEST_STRING);
+    	legalEntityModel.setLegalEntityPciLevel(TEST_STRING);
+    	legalEntityModel.setLegalEntityScanningVendor(TEST_STRING);
+    	legalEntityModel.setLegalEntityQualifiedSecurityAssessor(TEST_STRING);
+    	legalEntityModel.setLegalEntityMostRecentlyPassedScan(TEST_STRING);
+    	legalEntityModel.setLegalEntityReportOnCompliance(TEST_STRING);
+    	legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(TEST_STRING);
+    	legalEntityModel.setLegalEntityHasAcceptedCreditCards(TEST_STRING);
+    	// Create its XML
+    	 actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
+    	 expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());
+    	System.assertEquals(actualXml, expectedXml);
+    	
+    	// change the legal entity type and check
+    	legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
+    	actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
+    	expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
+    	System.assertEquals(actualXml, expectedXml);
+    }
+    
+    
+    static testMethod void testGenerateCreateSubMerchantRequest(){
+    	LitleRequestXml litleRequestXml = new LitleRequestXml() ;
+    	// TODO check for null
+    	System.assertEquals(null, litleRequestXml.generateCreateSubMerchantRequest(null));
+    	
+    	// Check for XML with no values, just tags
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+    	String actualXml = litleRequestXml.generateCreateSubMerchantRequest(subMerchantModel);
+    	String expectedXml = getCreateSubMerchantRequestXML('');
+    	
+    	System.assertEquals(actualXml, expectedXml);
+    	
+    	//prepare a legal entity model for individual proprietorship
+		subMerchantModel.setSubMerchantStreetAddress1(TEST_STRING);
+		subMerchantModel.setSubMerchantStreetAddress2(TEST_STRING);
+		subMerchantModel.setSubMerchantCity(TEST_STRING);
+		subMerchantModel.setSubMerchantStateProvince(TEST_STRING);
+		subMerchantModel.setSubMerchantPostalCode(TEST_STRING);
+		subMerchantModel.setSubMerchantCountryCode(TEST_STRING);
+		subMerchantModel.setSubMerchantAmexMid(TEST_STRING);
+		subMerchantModel.setSubMerchantBankAccountNumber(TEST_STRING);
+		subMerchantModel.setSubMerchantBankRoutingNumber(TEST_STRING);
+		subMerchantModel.setSubMerchantCreateCredentials(TEST_STRING);
+		subMerchantModel.setSubMerchantCustomerServiceNumber(TEST_STRING);
+		subMerchantModel.setSubMerchantDiscoverConveyMid(TEST_STRING);
+		subMerchantModel.setSubMerchantHardCodeBillingDescriptor(TEST_STRING);
+		subMerchantModel.setSubMerchantMaxTransactionAmount(TEST_STRING);
+		subMerchantModel.setSubMerchantMerchantCategoryCode(TEST_STRING);
+		subMerchantModel.setSubMerchantMerchantName(TEST_STRING);
+		subMerchantModel.setSubMerchantFirstName(TEST_STRING);
+		subMerchantModel.setSubMerchantLastName(TEST_STRING);
+		subMerchantModel.setSubMerchantEmailAddress(TEST_STRING);
+		subMerchantModel.setSubMerchantPhone(TEST_STRING);
+		subMerchantModel.setSubMerchantPspMerchantId(TEST_STRING);
+		subMerchantModel.setSubMerchantUrl(TEST_STRING);
+		subMerchantModel.setSubMerchanteCheckBillingDescriptor(TEST_STRING);
+		subMerchantModel.setSubMerchanteCheckCompanyName(TEST_STRING);
+    	// Create its XML
+    	 actualXml = litleRequestXml.generateCreateSubMerchantRequest(subMerchantModel);
+    	 expectedXml = getCreateSubMerchantRequestXML(TEST_STRING);
+    	System.assertEquals(actualXml, expectedXml);
+    	
+    	
+    }
+    
+    
+    static String getCreateSubMerchantRequestXML(String defaultValue){
+    	return '<?xml version="1.0" encoding="UTF-8"?>'
+				+ '<subMerchantCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">'
+				+ '<address>'
+				+ '<streetAddress1>'+ defaultValue +'</streetAddress1>'
+				+ '<streetAddress2>'+ defaultValue +'</streetAddress2>'
+				+ '<city>'+ defaultValue +'</city>'
+				+ '<stateProvince>'+ defaultValue +'</stateProvince>'
+				+ '<postalCode>'+ defaultValue +'</postalCode>'
+				+ '<countryCode>'+ defaultValue +'</countryCode>'
+				+ '</address>'
+				+ '<amexMid>'+ defaultValue +'</amexMid>'
+				+ '<bankAccountNumber>'+ defaultValue +'</bankAccountNumber>'
+				+ '<bankRoutingNumber>'+ defaultValue +'</bankRoutingNumber>'
+				+ '<createCredentials>'+ defaultValue +'</createCredentials>'
+				+ '<customerServiceNumber>'+ defaultValue +'</customerServiceNumber>'
+				+ '<discoverConveyedMid>'+ defaultValue +'</discoverConveyedMid>'
+				+ '<hardCodedBillingDescriptor>'+ defaultValue +'</hardCodedBillingDescriptor>'
+				+ '<maxTransactionAmount>'+ defaultValue +'</maxTransactionAmount>'
+				+ '<merchantCategoryCode>'+ defaultValue +'</merchantCategoryCode>'
+				+ '<merchantName>'+ defaultValue +'</merchantName>'
+				+ '<primaryContact>'
+				+ '<firstName>'+ defaultValue +'</firstName>'
+				+ '<lastName>'+ defaultValue +'</lastName>'
+				+ '<phone>'+ defaultValue +'</phone>'
+				+ '<emailAddress>'+ defaultValue +'</emailAddress>'
+				+ '</primaryContact>'
+				+ '<pspMerchantId>'+ defaultValue +'</pspMerchantId>'
+				+ '<url>'+ defaultValue +'</url>'
+				+ '<eCheckBillingDescriptor>'+ defaultValue +'</eCheckBillingDescriptor>'
+				+ '<eCheckCompanyName>'+ defaultValue +'</eCheckCompanyName>'
+				+ '</subMerchantCreateRequest>';
+				    	
+    }
+    static String getCreateLegalEntityRequestXML(String defaultValue, String legalEntityType){
+    	return '<?xml version="1.0" encoding="UTF-8"?>'+
+					'<legalEntityCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">'+
+						'<legalEntityName>'+ defaultValue +'</legalEntityName>'+
+						'<legalEntityType>'+ legalEntityType +'</legalEntityType>'+
+						'<doingBusinessAs>'+ defaultValue +'</doingBusinessAs>'+
+						'<taxId>'+ defaultValue +'</taxId>'+
+						'<contactPhone>'+ defaultValue +'</contactPhone>'+
+						'<annualCreditCardSalesVolume>'+ defaultValue +'</annualCreditCardSalesVolume>'+
+						'<hasAcceptedCreditCards>'+ defaultValue +'</hasAcceptedCreditCards>'+
+						'<address>'+
+							'<streetAddress1>'+ defaultValue +'</streetAddress1>'+
+							'<streetAddress2>'+ defaultValue +'</streetAddress2>'+
+							'<city>'+ defaultValue +'</city>'+
+							'<stateProvince>'+ defaultValue +'</stateProvince>'+
+							'<postalCode>'+ defaultValue +'</postalCode>'+
+							'<countryCode>'+ defaultValue +'</countryCode>'+
+						'</address>'+
+						'<PCI>'+
+							'<isExclusiveToPsp>'+ defaultValue +'</isExclusiveToPsp>'+
+							'<isPciComplianceValidated>'+ defaultValue +'</isPciComplianceValidated>'+
+							'<scanningVendor>'+ defaultValue +'</scanningVendor>'+
+							'<qualifiedSecurityAssessor>'+ defaultValue +'</qualifiedSecurityAssessor>'+
+							'<mostRecentlyPassedScan>'+ defaultValue +'</mostRecentlyPassedScan>'+
+							'<reportOnCompliance>'+ defaultValue +'</reportOnCompliance>'+
+							'<pciLevel>'+ defaultValue +'</pciLevel>'+
+						'</PCI>'+
+						'<principals>'+
+							'<principal>'+
+								'<firstName>'+ defaultValue +'</firstName>'+
+								'<lastName>'+ defaultValue +'</lastName>'+
+								'<emailAddress>'+ defaultValue +'</emailAddress>'+
+								'<ssn>'+ defaultValue +'</ssn>'+
+								'<contactPhone>'+ defaultValue +'</contactPhone>'+
+								'<dateOfBirth>'+ defaultValue +'</dateOfBirth>'+
+								'<driversLicense>'+ defaultValue +'</driversLicense>'+
+								'<driversLicenseState>'+ defaultValue +'</driversLicenseState>'+
+								'<address>'+
+									'<streetAddress1>'+ defaultValue +'</streetAddress1>'+
+									'<streetAddress2>'+ defaultValue +'</streetAddress2>'+
+									'<city>'+ defaultValue +'</city>'+
+									'<stateProvince>'+ defaultValue +'</stateProvince>'+
+									'<postalCode>'+ defaultValue +'</postalCode>'+
+									'<countryCode>'+ defaultValue +'</countryCode>'+
+								'</address>'+
+							'</principal>'+
+						'</principals>'+
+					'</legalEntityCreateRequest>';
+    }
 }
