@@ -28,7 +28,7 @@
     <!-- Shows deploying code, running all tests, and running tests (1 of which fails), and logging. -->
     <target name="deployAndTest" depends="proxy">
       <!-- Upload the contents of the "codepkg" package, running all tests -->
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" runAllTests="true" logType="Debugonly"/>
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" runAllTests="true"/>
     </target>
 
     <!-- Shows check only; never actually saves to the server -->
