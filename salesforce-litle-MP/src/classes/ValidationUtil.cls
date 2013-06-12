@@ -69,7 +69,7 @@ public class ValidationUtil {
 	 * and also if it is in the given list
 	 */
 	public static Boolean validateIntegerValue(String input, List<Integer> values){
-		if(String.isNotEmpty(input)){
+		if(String.isNotEmpty(input) && values!=null && !values.isEmpty()){
 			Integer myInt = 0;
 			try{
 				myInt = integer.valueOf(input);

@@ -30,6 +30,15 @@ public class LegalEntityModel {
     private String legalEntityReportOnCompliance;
     private String legalEntityAnnualCreditCardSalesVolume;
     private String legalEntityHasAcceptedCreditCards;
+    private String legalEntityId;
+    
+    public String getLegalEntityId() {
+        return legalEntityId;
+    }
+
+    public void setLegalEntityId(String legalEntityId) {
+        this.legalEntityId = legalEntityId;
+    }
     
     public String getLegalEntityName() {
         return legalEntityName;

@@ -8,7 +8,7 @@ public class LitleMidFormController {
 	public Account account{get; set;}
 	public Boolean isTaxDisplayed{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
-	public static List<Integer> pciLevels {get; set;}
+	public static final List<Integer> pciLevels = new List<Integer>{ 1, 2, 3, 4 };
 	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
 	//public static final String OTHER = 'OTHER';
 	
@@ -31,11 +31,11 @@ public class LitleMidFormController {
 		this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
         //Initialize the Pci levels
-        pciLevels = new List<Integer>();
-		pciLevels.add(1);
+        //pciLevels = new List<Integer>{ 1 , 2 , 3, 4 };
+		/*pciLevels.add(1);
 		pciLevels.add(2);
 		pciLevels.add(3);
-		pciLevels.add(4);
+		pciLevels.add(4);*/
 		
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
@@ -1961,15 +1961,23 @@ public class LitleMidFormController {
 	public Pagereference submit(){
 		if(areRequiredFieldsFilled()){
 			if(isInputDataValid()){
-				
+				//Make API call	
+				Http h = new Http();
+		        Httprequest createLegalEntityRequest = new Httprequest();
+		        createLegalEntityRequest.setEndpoint('https://psp-cert.litle.com/legalentity');
+		        createLegalEntityRequest.setMethod('POST');
+		        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
+		        createLegalEntityRequest.setBody(litleRequestXml.getCreateLegalEntityRequest());
+		        Httpresponse res = h.send(createLegalEntityRequest);
+		        
+		        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,res.getBody()));
 			}
-			//Make API call
 			//return to previous page
 		}
 		/*else{
 			//Display error
 		}
-		System.debug('!!! In Submit');
+		////System.debug('!!! In Submit');
 		if(ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Valid Date'));
 		}else{
@@ -1991,244 +1999,394 @@ public class LitleMidFormController {
 	
 	public Boolean isInputDataValid(){
 		Boolean isInputValid = true;
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityName(), 60)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Entity Name cannot exceed 60 characters'));
+		
+		//System.debug('!!!'+legalEntityModel.getLegalEntityName());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityName())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityName(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Entity Name cannot exceed 60 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress1(), 60)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 1 cannot exceed 60 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityDoingBusinessAs());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityDoingBusinessAs())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDoingBusinessAs(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Doing Business As cannot exceed 60 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress2(), 60)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 2 cannot exceed 60 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityStreetAddress1());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityStreetAddress1())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress1(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 1 cannot exceed 60 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCity(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'City cannot exceed 20 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityStreetAddress2());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityStreetAddress2())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress2(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 2 cannot exceed 60 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStateProvince(), 2)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'State/Province cannot exceed 2 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityCity());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityCity())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCity(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'City cannot exceed 20 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPostalCode(), 5)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Postal Code cannot exceed 5 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityStateProvince());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityStateProvince())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStateProvince(), 2)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'State/Province cannot exceed 2 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCountryCode(), 3)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Country Code cannot exceed 3 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPostalCode());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPostalCode())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPostalCode(), 5)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Postal Code cannot exceed 5 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityFirstName(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'First Name cannot exceed 20 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityCountryCode());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityCountryCode())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCountryCode(), 3)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Country Code cannot exceed 3 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityLastName(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Last Name cannot exceed 20 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityFirstName());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityFirstName())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityFirstName(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'First Name cannot exceed 20 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityEmailAddress(), 100)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Email Address cannot exceed 100 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityLastName());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityLastName())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityLastName(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Last Name cannot exceed 20 characters'));
+			}
 		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Contact Phone cannot exceed 10 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityEmailAddress());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityEmailAddress())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityEmailAddress(), 100)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Email Address cannot exceed 100 characters'));
+			}
 		}
-		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Date of Birth is not in yyyy-mm-dd format'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityContactPhone());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityContactPhone())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Contact Phone cannot exceed 10 characters'));
+			}
+		}
+		//System.debug('!!!'+legalEntityModel.getLegalEntityDateOfBirth());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityDateOfBirth())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Date of Birth is not in yyyy-mm-dd format'));
+			}
 		}
 		
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicense(), 25)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License cannot exceed 25 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityDriversLicense());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityDriversLicense())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicense(), 25)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License cannot exceed 25 characters'));
+			}
 		}
 		
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicenseState(), 2)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License State cannot exceed 2 characters'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityDriversLicenseState());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityDriversLicenseState())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicenseState(), 2)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License State cannot exceed 2 characters'));
+			}
 		}
-		if(legalEntityModel.getLegalEntityType().equalsIgnoreCase(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntitySsn());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntitySsn())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntitySsn(), 9)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SSN cannot exceed 9 characters'));
 			}
-		}else{
+		}
+		//System.debug('!!!'+legalEntityModel.getLegalEntityTaxId());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityTaxId())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityTaxId(), 9)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Tax ID cannot exceed 9 characters'));
 			}
 		}
 		
-		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP should be either true or false'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityIsExclusiveToPsp());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP should be either true or false'));
+			}
 		}
 		
-		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsPcicomplianceValidated())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityIsPciComplianceValidated());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
+			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+			}
 		}
 		
-		
-		if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPciLevel(), pciLevels)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+		//System.debug('!!!levels'+pciLevels.get(0));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPciLevel());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPciLevel())){
+			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPciLevel(), pciLevels)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Levels should be either 1,2,3 or 4'));
+			}
 		}
 		
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityScanningVendor(), 9)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Scanning Vendor cannot exceed 9 characters'));
-		}
-		if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityQualifiedSecurityAssessor(), 50)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Qualified Security Assessor cannot exceed 50 characters'));
-		}
-		
-		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Most Recently Passed Scan is not in yyyy-mm-dd format'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityScanningVendor());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityScanningVendor())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityScanningVendor(), 9)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Scanning Vendor cannot exceed 9 characters'));
+			}
 		}
 		
-		if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityReportOnCompliance())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Report On Compliance is not in yyyy-mm-dd format'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityQualifiedSecurityAssessor());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityQualifiedSecurityAssessor())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityQualifiedSecurityAssessor(), 50)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Qualified Security Assessor cannot exceed 50 characters'));
+			}
 		}
 		
-		if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Annual Credit Card Sales Volume should be integer'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityMostRecentlyPassedScan());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Most Recently Passed Scan is not in yyyy-mm-dd format'));
+			}
 		}
 		
-		if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Has Accepted Credit Cards should be either true or false'));
+		//System.debug('!!!'+legalEntityModel.getLegalEntityReportOnCompliance());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityReportOnCompliance())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityReportOnCompliance())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Report On Compliance is not in yyyy-mm-dd format'));
+			}
+		}
+		
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+			if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Annual Credit Card Sales Volume should be integer'));
+			}
+		}
+		
+		//System.debug('!!!'+legalEntityModel.getLegalEntityHasAcceptedCreditCards());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
+			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Has Accepted Credit Cards should be either true or false'));
+			}
 		}
 		//subMerchant Validations
 		
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress1(), 60)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 1 cannot exceed 60 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantStreetAddress1());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantStreetAddress1())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress1(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 1 cannot exceed 60 characters'));
+			}
 		}
 		
+		//System.debug('!!!'+subMerchantModel.getSubMerchantStreetAddress2());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantStreetAddress2())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress2(), 60)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 2 cannot exceed 60 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantCity());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantCity())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCity(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant City cannot exceed 20 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantStateProvince());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantStateProvince())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStateProvince(), 2)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant State/Province cannot exceed 2 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPostalCode());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPostalCode())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPostalCode(), 5)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Postal Code cannot exceed 5 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantCountryCode());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantCountryCode())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCountryCode(), 3)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Country Code cannot exceed 3 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAmexMid());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAmexMid())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAmexMid(), 15)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Amex MID cannot exceed 15 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantBankAccountNumber());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantBankAccountNumber())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankAccountNumber(), 50)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number cannot exceed 50 characters'));
+			}
+		}
+
+		//System.debug('!!!'+subMerchantModel.getSubMerchantBankRoutingNumber());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantBankRoutingNumber())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankRoutingNumber(), 50)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number cannot exceed 50 characters'));
+			}
+		}
 		
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress2(), 60)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 2 cannot exceed 60 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantCreateCredentials());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantCreateCredentials())){
+			if(!ValidationUtil.validateBoolean(subMerchantModel.getSubMerchantCreateCredentials())){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Create Credentials should be either true or false'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCity(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant City cannot exceed 20 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantCustomerServiceNumber());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantCustomerServiceNumber())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number cannot exceed 13 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStateProvince(), 2)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant State/Province cannot exceed 2 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantDiscoverConveyMid());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantDiscoverConveyMid())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantDiscoverConveyMid(), 15)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Discover Convey Mid cannot exceed 15 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPostalCode(), 5)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Postal Code cannot exceed 5 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantHardCodeBillingDescriptor())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 25)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Hard Code Billing Descriptor cannot exceed 25 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCountryCode(), 3)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Country Code cannot exceed 3 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantMaxTransactionAmount());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantMaxTransactionAmount())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 19)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount cannot exceed 19 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAmexMid(), 15)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Amex MID cannot exceed 15 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantMerchantCategoryCode());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantMerchantCategoryCode())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantCategoryCode(), 4)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code cannot exceed 4 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankAccountNumber(), 50)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number cannot exceed 50 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantMerchantName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantMerchantName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantName(), 50)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name cannot exceed 50 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankRoutingNumber(), 50)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number cannot exceed 50 characters'));
-		}
-		
-		if(!ValidationUtil.validateBoolean(subMerchantModel.getSubMerchantCreateCredentials())){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Create Credentials should be either true or false'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantFirstName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantFirstName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantFirstName(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant First Name cannot exceed 20 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number cannot exceed 13 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantLastName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantLastName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantLastName(), 20)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Last Name cannot exceed 20 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantDiscoverConveyMid(), 15)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Discover Convey Mid cannot exceed 15 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantEmailAddress());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantEmailAddress())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantEmailAddress(), 100)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Email Address cannot exceed 100 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 25)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Hard Code Billing Descriptor cannot exceed 25 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPhone());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPhone())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPhone(), 13)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Phone cannot exceed 13 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 19)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount cannot exceed 19 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPspMerchantId());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPspMerchantId())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPspMerchantId(), 32)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PSP Merchant ID cannot exceed 32 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantCategoryCode(), 4)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code cannot exceed 4 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchantUrl());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantUrl())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantUrl(), 120)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'URL cannot exceed 120 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantName(), 50)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name cannot exceed 50 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchanteCheckBillingDescriptor());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchanteCheckBillingDescriptor())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckBillingDescriptor(), 10)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Billing Descriptor cannot exceed 10 characters'));
+			}
 		}
 
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantFirstName(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant First Name cannot exceed 20 characters'));
+		//System.debug('!!!'+subMerchantModel.getSubMerchanteCheckCompanyName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchanteCheckCompanyName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckCompanyName(), 16)){
+				isInputValid = false;
+				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Company Name cannot exceed 16 characters'));
+			}
 		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantLastName(), 20)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Last Name cannot exceed 20 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantEmailAddress(), 100)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Email Address cannot exceed 100 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPhone(), 13)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Phone cannot exceed 13 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPspMerchantId(), 32)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PSP Merchant ID cannot exceed 32 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantUrl(), 120)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'URL cannot exceed 120 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckBillingDescriptor(), 10)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Billing Descriptor cannot exceed 10 characters'));
-		}
-
-		if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckCompanyName(), 16)){
-			isInputValid = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'eCheck Company Name cannot exceed 16 characters'));
-		}
-
 		
 		return isInputValid;
 	}
