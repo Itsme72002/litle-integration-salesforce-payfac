@@ -41,12 +41,21 @@
                     
                     <apex:outputText value="EntityType: " />
                     <apex:outputtext value="" />
+                    <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityTypeD__c}" size="1">
+                        <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
+                        <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" 
+                        	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> --> 
+                    </apex:selectList>
+                     <apex:outputtext value="" />
+                      <apex:outputtext value="" />
+                    <!--  <apex:outputText value="EntityType: " />
+                    <apex:outputtext value="" />
                     <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityType__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
                         <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityType}" rerender="legalEntityTypeDefaultTxtBox" />
                     </apex:selectList>
                     <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityTypeDefaultTxtBox" value="{!currentMappings.legalEntityTypeD__c}" disabled="{!currentMappings.legalEntityTypeX__c}"/>
+                    <apex:inputText id="legalEntityTypeDefaultTxtBox" value="{!currentMappings.legalEntityTypeD__c}" disabled="{!currentMappings.legalEntityTypeX__c}"/>-->
                     
                     <apex:outputText value="Doing Business As: " />
                     <apex:outputtext value="" />

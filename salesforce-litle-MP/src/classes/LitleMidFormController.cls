@@ -50,7 +50,7 @@ public class LitleMidFormController {
 	
 	public void populateFields(){
 		populateLEName();
-		//populateLEType();
+		populateLEType();
 		populateLEDoingBusinessAs();
 		populateLEAddress1();
 		populateLEAddress2();
@@ -146,10 +146,11 @@ public class LitleMidFormController {
 		}
 	}
 	
-	/*public void populateLEType(){
-		if(!savedMappings.legalEntityTypeX__c){
+	public void populateLEType(){
+		//if(!savedMappings.legalEntityTypeX__c){
 			legalEntityModel.setLegalEntityType(savedMappings.legalEntityTypeD__c);
-		}else{
+			System.debug(savedMappings.legalEntityTypeD__c);
+		/*}else{
 			if (savedMappings.legalEntityType__c != null &&  savedMappings.legalEntityType__c != ''){
 				String typeField = savedMappings.legalEntityType__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
@@ -179,8 +180,8 @@ public class LitleMidFormController {
 					}
 				}	 
 			}
-		}
-	}*/
+		}*/
+	}
 	
 	public void populateLEDoingBusinessAs(){
 		if(!savedMappings.legalEntityDoingBusinessAsX__c){
