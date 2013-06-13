@@ -27,8 +27,8 @@
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityTypeList" value="{!legalEntityModel.legalEntityType}" size="1">
                         <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" 
-                        	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> 
+                        <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" 
+                        	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> --> 
                     </apex:selectList>
                     
                     <apex:outputText value="Doing Business As: " />
@@ -112,14 +112,14 @@
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block"  id="ssnInput">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntitySsnDefaultTxtBox" value="{!legalEntityModel.legalEntitySsn}" disabled="{! isTaxDisplayed}"/>
+                    	<apex:inputText id="legalEntitySsnDefaultTxtBox" value="{!legalEntityModel.legalEntitySsn}" />
                     </apex:outputPanel>
                     
                     <apex:outputText value="Tax ID: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block"  id="taxInput">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" disabled="{! not isTaxDisplayed}"/>
+                    	<apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" />
                     </apex:outputPanel>
                     
                     <apex:outputText value="Is Exclusive To PSP : " />
