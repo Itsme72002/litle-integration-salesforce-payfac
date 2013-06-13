@@ -6,7 +6,7 @@ public class LitleMidFormController {
 	public String urlAccountId {get; set;}
 	public String urlOpportunityId {get; set;}
 	public Account account{get; set;}
-	public Boolean isTaxDisplayed{get; set;}
+//	public Boolean isTaxDisplayed{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
 	public static final List<Integer> pciLevels = new List<Integer>{ 1, 2, 3, 4 };
 	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
@@ -220,7 +220,7 @@ public class LitleMidFormController {
 	
 	public void populateLEAddress1(){
 		if(!savedMappings.legalEntityStreetAddress1X__c){
-			legalEntityModel.setLegalEntityStreetAddress1(savedMappings.legalEntityStreetAddress1D__c);
+			legalEntityModel.getLegalEntityAddress().setStreetAddress1(savedMappings.legalEntityStreetAddress1D__c);
 		}else{
 			if (savedMappings.legalEntityStreetAddress1__c != null &&  savedMappings.legalEntityStreetAddress1__c != ''){
 				String typeField = savedMappings.legalEntityStreetAddress1__c;
@@ -239,12 +239,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -256,7 +256,7 @@ public class LitleMidFormController {
 	
 	public void populateLEAddress2(){
 		if(!savedMappings.legalEntityStreetAddress2X__c){
-			legalEntityModel.setLegalEntityStreetAddress2(savedMappings.legalEntityStreetAddress2D__c);
+			legalEntityModel.getLegalEntityAddress().setStreetAddress2(savedMappings.legalEntityStreetAddress2D__c);
 		}else{
 			if (savedMappings.legalEntityStreetAddress2__c != null &&  savedMappings.legalEntityStreetAddress2__c != ''){
 				String typeField = savedMappings.legalEntityStreetAddress2__c;
@@ -275,12 +275,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -292,7 +292,7 @@ public class LitleMidFormController {
 	
 	public void populateLECity(){
 		if(!savedMappings.legalEntityCityX__c){
-			legalEntityModel.setLegalEntityCity(savedMappings.legalEntityCityD__c);
+			legalEntityModel.getLegalEntityAddress().setCity(savedMappings.legalEntityCityD__c);
 		}else{
 			if (savedMappings.legalEntityCity__c != null &&  savedMappings.legalEntityCity__c != ''){
 				String typeField = savedMappings.legalEntityCity__c;
@@ -311,12 +311,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -328,7 +328,7 @@ public class LitleMidFormController {
 	
 	public void populateLEStateProvince(){
 		if(!savedMappings.legalEntityStateProvinceX__c){
-			legalEntityModel.setLegalEntityStateProvince(savedMappings.legalEntityStateProvinceD__c);
+			legalEntityModel.getLegalEntityAddress().setStateProvince(savedMappings.legalEntityStateProvinceD__c);
 		}else{
 			if (savedMappings.legalEntityStateProvince__c != null &&  savedMappings.legalEntityStateProvince__c != ''){
 				String typeField = savedMappings.legalEntityStateProvince__c;
@@ -347,12 +347,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -364,7 +364,7 @@ public class LitleMidFormController {
 	
 	public void populateLEPostalCode(){
 		if(!savedMappings.legalEntityPostalCodeX__c){
-			legalEntityModel.setLegalEntityPostalCode(savedMappings.legalEntityPostalCodeD__c);
+			legalEntityModel.getLegalEntityAddress().setPostalCode(savedMappings.legalEntityPostalCodeD__c);
 		}else{
 			if (savedMappings.legalEntityPostalCode__c != null &&  savedMappings.legalEntityPostalCode__c != ''){
 				String typeField = savedMappings.legalEntityPostalCode__c;
@@ -383,12 +383,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -400,7 +400,7 @@ public class LitleMidFormController {
 	
 	public void populateLECountryCode(){
 		if(!savedMappings.legalEntityCountryCodeX__c){
-			legalEntityModel.setLegalEntityCountryCode(savedMappings.legalEntityCountryCodeD__c);
+			legalEntityModel.getLegalEntityAddress().setCountryCode(savedMappings.legalEntityCountryCodeD__c);
 		}else{
 			if (savedMappings.legalEntityCountryCode__c != null &&  savedMappings.legalEntityCountryCode__c != ''){
 				String typeField = savedMappings.legalEntityCountryCode__c;
@@ -419,12 +419,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -436,7 +436,7 @@ public class LitleMidFormController {
 	
 	public void populateLEFirstName(){
 		if(!savedMappings.legalEntityFirstNameX__c){
-			legalEntityModel.setLegalEntityFirstName(savedMappings.legalEntityFirstNameD__c);
+			legalEntityModel.getLegalEntityPrincipal().setFirstName(savedMappings.legalEntityFirstNameD__c);
 		}else{
 			if (savedMappings.legalEntityFirstName__c != null &&  savedMappings.legalEntityFirstName__c != ''){
 				String typeField = savedMappings.legalEntityFirstName__c;
@@ -455,12 +455,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -472,7 +472,7 @@ public class LitleMidFormController {
 	
 	public void populateLELastName(){
 		if(!savedMappings.legalEntityLastNameX__c){
-			legalEntityModel.setLegalEntityLastName(savedMappings.legalEntityLastNameD__c);
+			legalEntityModel.getLegalEntityPrincipal().setLastName(savedMappings.legalEntityLastNameD__c);
 		}else{
 			if (savedMappings.legalEntityLastName__c != null &&  savedMappings.legalEntityLastName__c != ''){
 				String typeField = savedMappings.legalEntityLastName__c;
@@ -491,12 +491,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -508,7 +508,7 @@ public class LitleMidFormController {
 	
 	public void populateLEEmailAddress(){
 		if(!savedMappings.legalEntityEmailAddressX__c){
-			legalEntityModel.setLegalEntityEmailAddress(savedMappings.legalEntityEmailAddressD__c);
+			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(savedMappings.legalEntityEmailAddressD__c);
 		}else{
 			if (savedMappings.legalEntityEmailAddress__c != null &&  savedMappings.legalEntityEmailAddress__c != ''){
 				String typeField = savedMappings.legalEntityEmailAddress__c;
@@ -527,12 +527,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -544,7 +544,7 @@ public class LitleMidFormController {
 	
 	public void populateLEContactPhone(){
 		if(!savedMappings.legalEntityContactPhoneX__c){
-			legalEntityModel.setLegalEntityContactPhone(savedMappings.legalEntityContactPhoneD__c);
+			legalEntityModel.getLegalEntityPrincipal().setContactPhone(savedMappings.legalEntityContactPhoneD__c);
 		}else{
 			if (savedMappings.legalEntityContactPhone__c != null &&  savedMappings.legalEntityContactPhone__c != ''){
 				String typeField = savedMappings.legalEntityContactPhone__c;
@@ -563,12 +563,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -580,7 +580,7 @@ public class LitleMidFormController {
 	
 	public void populateLEDateOfBirth(){
 		if(!savedMappings.legalEntityDateOfBirthX__c){
-			legalEntityModel.setLegalEntityDateOfBirth(savedMappings.legalEntityDateOfBirthD__c);
+			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(savedMappings.legalEntityDateOfBirthD__c);
 		}else{
 			if (savedMappings.legalEntityDateOfBirth__c != null &&  savedMappings.legalEntityDateOfBirth__c != ''){
 				String typeField = savedMappings.legalEntityDateOfBirth__c;
@@ -599,12 +599,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -616,7 +616,7 @@ public class LitleMidFormController {
 	
 	public void populateLEDriversLicense(){
 		if(!savedMappings.legalEntityDriversLicenseX__c){
-			legalEntityModel.setLegalEntityDriversLicense(savedMappings.legalEntityDriversLicenseD__c);
+			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(savedMappings.legalEntityDriversLicenseD__c);
 		}else{
 			if (savedMappings.legalEntityDriversLicense__c != null &&  savedMappings.legalEntityDriversLicense__c != ''){
 				String typeField = savedMappings.legalEntityDriversLicense__c;
@@ -635,12 +635,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -652,7 +652,7 @@ public class LitleMidFormController {
 	
 	public void populateLEDriversLicenseState(){
 		if(!savedMappings.legalEntityDriversLicenseStateX__c){
-			legalEntityModel.setLegalEntityDriversLicenseState(savedMappings.legalEntityDriversLicenseStateD__c);
+			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(savedMappings.legalEntityDriversLicenseStateD__c);
 		}else{
 			if (savedMappings.legalEntityDriversLicenseState__c != null &&  savedMappings.legalEntityDriversLicenseState__c != ''){
 				String typeField = savedMappings.legalEntityDriversLicenseState__c;
@@ -671,12 +671,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -688,7 +688,7 @@ public class LitleMidFormController {
 	
 	public void populateLESsn(){
 		if(!savedMappings.legalEntitySsnX__c){
-			legalEntityModel.setLegalEntitySsn(savedMappings.legalEntitySsnD__c);
+			legalEntityModel.getLegalEntityPrincipal().setSsn(savedMappings.legalEntitySsnD__c);
 		}else{
 			if (savedMappings.legalEntitySsn__c != null &&  savedMappings.legalEntitySsn__c != ''){
 				String typeField = savedMappings.legalEntitySsn__c;
@@ -707,12 +707,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntitySsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setSsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntitySsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPrincipal().setSsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -760,7 +760,7 @@ public class LitleMidFormController {
 	
 	public void populateLEIsExclusiveToPsp(){
 		if(!savedMappings.legalEntityIsExclusiveToPspX__c){
-			legalEntityModel.setLegalEntityIsExclusiveToPsp(savedMappings.legalEntityIsExclusiveToPspD__c);
+			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(savedMappings.legalEntityIsExclusiveToPspD__c);
 		}else{
 			if (savedMappings.legalEntityIsExclusiveToPsp__c != null &&  savedMappings.legalEntityIsExclusiveToPsp__c != ''){
 				String typeField = savedMappings.legalEntityIsExclusiveToPsp__c;
@@ -779,12 +779,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -796,7 +796,7 @@ public class LitleMidFormController {
 	
 	public void populateLEIsPciComplianceValidated(){
 		if(!savedMappings.legalEntityIsPciComplianceValidatedX__c){
-			legalEntityModel.setLegalEntityIsPciComplianceValidated(savedMappings.legalEntityIsPciComplianceValidatedD__c);
+			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(savedMappings.legalEntityIsPciComplianceValidatedD__c);
 		}else{
 			if (savedMappings.legalEntityIsPciComplianceValidated__c != null &&  savedMappings.legalEntityIsPciComplianceValidated__c != ''){
 				String typeField = savedMappings.legalEntityIsPciComplianceValidated__c;
@@ -815,12 +815,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -832,7 +832,7 @@ public class LitleMidFormController {
 	
 	public void populateLEPciLevel(){
 		if(!savedMappings.legalEntityPciLevelX__c){
-			legalEntityModel.setLegalEntityPciLevel(savedMappings.legalEntityPciLevelD__c);
+			legalEntityModel.getLegalEntityPci().setPciLevel(savedMappings.legalEntityPciLevelD__c);
 		}else{
 			if (savedMappings.legalEntityPciLevel__c != null &&  savedMappings.legalEntityPciLevel__c != ''){
 				String typeField = savedMappings.legalEntityPciLevel__c;
@@ -851,12 +851,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -868,7 +868,7 @@ public class LitleMidFormController {
 	
 	public void populateLEScanningVendor(){
 		if(!savedMappings.legalEntityScanningVendorX__c){
-			legalEntityModel.setLegalEntityScanningVendor(savedMappings.legalEntityScanningVendorD__c);
+			legalEntityModel.getLegalEntityPci().setScanningVendor(savedMappings.legalEntityScanningVendorD__c);
 		}else{
 			if (savedMappings.legalEntityScanningVendor__c != null &&  savedMappings.legalEntityScanningVendor__c != ''){
 				String typeField = savedMappings.legalEntityScanningVendor__c;
@@ -887,12 +887,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -904,7 +904,7 @@ public class LitleMidFormController {
 	
 	public void populateLEQualifiedSecurityAssessor(){
 		if(!savedMappings.legalEntityQualifiedSecurityAssessorX__c){
-			legalEntityModel.setLegalEntityQualifiedSecurityAssessor(savedMappings.legalEntityQualifiedSecurityAssessorD__c);
+			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(savedMappings.legalEntityQualifiedSecurityAssessorD__c);
 		}else{
 			if (savedMappings.legalEntityQualifiedSecurityAssessor__c != null &&  savedMappings.legalEntityQualifiedSecurityAssessor__c != ''){
 				String typeField = savedMappings.legalEntityQualifiedSecurityAssessor__c;
@@ -923,12 +923,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -940,7 +940,7 @@ public class LitleMidFormController {
 	
 	public void populateLEMostRecentlyPassedScan(){
 		if(!savedMappings.legalEntityMostRecentlyPassedScanX__c){
-			legalEntityModel.setLegalEntityMostRecentlyPassedScan(savedMappings.legalEntityMostRecentlyPassedScanD__c);
+			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(savedMappings.legalEntityMostRecentlyPassedScanD__c);
 		}else{
 			if (savedMappings.legalEntityMostRecentlyPassedScan__c != null &&  savedMappings.legalEntityMostRecentlyPassedScan__c != ''){
 				String typeField = savedMappings.legalEntityMostRecentlyPassedScan__c;
@@ -959,12 +959,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -976,7 +976,7 @@ public class LitleMidFormController {
 	
 	public void populateLEReportOnCompliance(){
 		if(!savedMappings.legalEntityReportOnComplianceX__c){
-			legalEntityModel.setLegalEntityReportOnCompliance(savedMappings.legalEntityReportOnComplianceD__c);
+			legalEntityModel.getLegalEntityPci().setReportOnCompliance(savedMappings.legalEntityReportOnComplianceD__c);
 		}else{
 			if (savedMappings.legalEntityReportOnCompliance__c != null &&  savedMappings.legalEntityReportOnCompliance__c != ''){
 				String typeField = savedMappings.legalEntityReportOnCompliance__c;
@@ -995,12 +995,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			legalEntityModel.getLegalEntityPci().setReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1947,7 +1947,7 @@ public class LitleMidFormController {
 	}
 	
 	//on change event of legal entity type
-	public PageReference onChangeLegalEntityType(){
+	/*public PageReference onChangeLegalEntityType(){
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityType())){
 			if(legalEntityModel.getLegalEntityType().equals(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
 				isTaxDisplayed = false;
@@ -1956,21 +1956,14 @@ public class LitleMidFormController {
 			}
 		}
 		return null;
-	}
+	}*/
 	
 	public Pagereference submit(){
 		if(areRequiredFieldsFilled()){
 			if(isInputDataValid()){
 				//Make API call	
-				Http h = new Http();
-		        Httprequest createLegalEntityRequest = new Httprequest();
-		        createLegalEntityRequest.setEndpoint('https://psp-cert.litle.com/legalentity');
-		        createLegalEntityRequest.setMethod('POST');
-		        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
-		        createLegalEntityRequest.setBody(litleRequestXml.getCreateLegalEntityRequest());
-		        Httpresponse res = h.send(createLegalEntityRequest);
-		        
-		        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,res.getBody()));
+				makeCreateLegalEntityRequest();
+		        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
 			}
 			//return to previous page
 		}
@@ -1986,6 +1979,33 @@ public class LitleMidFormController {
 		//ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Required Field'));*/
 		return null;
 		
+	}
+	
+	public void makeCreateLegalEntityRequest(){
+		Http h = new Http();
+        Httprequest createLegalEntityRequest = new Httprequest();
+        //endpoint
+        createLegalEntityRequest.setEndpoint('https://psp-cert.litle.com/legalentity');
+        // create header
+        Blob headerValue = Blob.valueOf('username:password'); //Enter username and password
+        String authorizationHeader = 'Basic' + Encodingutil.base64Encode(headerValue);
+        createLegalEntityRequest.setHeader('Authorization', authorizationHeader);
+        createLegalEntityRequest.setHeader('Content-Type', 'application/com.litle.psp-v5+xml');
+		createLegalEntityRequest.setHeader('Accept', 'application/com.litle.psp-v5+xml');
+        // Post request
+        createLegalEntityRequest.setMethod('POST');
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
+        //set body as the request xml
+        createLegalEntityRequest.setBody(litleRequestXml.getCreateLegalEntityRequest());
+        Httpresponse res = new Httpresponse();
+        try{ 
+        	res = h.send(createLegalEntityRequest);
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
+        }catch(System.CalloutException e){
+        	System.debug('Callout error: '+ e);
+        	System.debug(res.toString());
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
+        }
 	}
 		 
 	public Pagereference cancel(){
@@ -2015,101 +2035,101 @@ public class LitleMidFormController {
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityStreetAddress1());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityStreetAddress1())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress1(), 60)){
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress1())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStreetAddress1(), 60)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 1 cannot exceed 60 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityStreetAddress2());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityStreetAddress2())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStreetAddress2(), 60)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getStreetAddress2());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress2())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), 60)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Street Address 2 cannot exceed 60 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityCity());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityCity())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCity(), 20)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getCity());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getCity())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getCity(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'City cannot exceed 20 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityStateProvince());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityStateProvince())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityStateProvince(), 2)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getStateProvince());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStateProvince())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStateProvince(), 2)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'State/Province cannot exceed 2 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityPostalCode());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityPostalCode())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPostalCode(), 5)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getPostalCode());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getPostalCode())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getPostalCode(), 5)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Postal Code cannot exceed 5 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityCountryCode());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityCountryCode())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityCountryCode(), 3)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getCountryCode());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getCountryCode())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getCountryCode(), 3)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Country Code cannot exceed 3 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityFirstName());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityFirstName())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityFirstName(), 20)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getFirstName());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getFirstName())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getFirstName(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'First Name cannot exceed 20 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityLastName());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityLastName())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityLastName(), 20)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getLastName());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getLastName())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getLastName(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Last Name cannot exceed 20 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityEmailAddress());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityEmailAddress())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityEmailAddress(), 100)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getEmailAddress())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getEmailAddress(), 100)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Email Address cannot exceed 100 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityContactPhone());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityContactPhone())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getContactPhone());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getContactPhone())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getContactPhone(), 10)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Contact Phone cannot exceed 10 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntityDateOfBirth());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityDateOfBirth())){
-			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDateOfBirth())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPrincipal().getDateOfBirth())){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Date of Birth is not in yyyy-mm-dd format'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityDriversLicense());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityDriversLicense())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicense(), 25)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDriversLicense())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getDriversLicense(), 25)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License cannot exceed 25 characters'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityDriversLicenseState());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityDriversLicenseState())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDriversLicenseState(), 2)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState(), 2)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Drivers License State cannot exceed 2 characters'));
 			}
 		}
-		//System.debug('!!!'+legalEntityModel.getLegalEntitySsn());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntitySsn())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntitySsn(), 9)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getSsn());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getSsn())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getSsn(), 9)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SSN cannot exceed 9 characters'));
 			}
@@ -2122,58 +2142,58 @@ public class LitleMidFormController {
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityIsExclusiveToPsp());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
-			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
+			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP should be either true or false'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityIsPciComplianceValidated());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
-			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
+			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
 			}
 		}
 		
 		//System.debug('!!!levels'+pciLevels.get(0));
-		//System.debug('!!!'+legalEntityModel.getLegalEntityPciLevel());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityPciLevel())){
-			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPciLevel(), pciLevels)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getPciLevel());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
+			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPci().getPciLevel(), pciLevels)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Levels should be either 1,2,3 or 4'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityScanningVendor());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityScanningVendor())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityScanningVendor(), 9)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getScanningVendor());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getScanningVendor())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getScanningVendor(), 9)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Scanning Vendor cannot exceed 9 characters'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityQualifiedSecurityAssessor());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityQualifiedSecurityAssessor())){
-			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityQualifiedSecurityAssessor(), 50)){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor())){
+			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor(), 50)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Qualified Security Assessor cannot exceed 50 characters'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityMostRecentlyPassedScan());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
-			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityMostRecentlyPassedScan())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Most Recently Passed Scan is not in yyyy-mm-dd format'));
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityReportOnCompliance());
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityReportOnCompliance())){
-			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityReportOnCompliance())){
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getReportOnCompliance());
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
+			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Report On Compliance is not in yyyy-mm-dd format'));
 			}
@@ -2403,22 +2423,22 @@ public class LitleMidFormController {
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'is Required'));
 	
 		}*/
-		if(String.isEmpty(legalEntityModel.getLegalEntityStreetAddress1())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress1())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Street Address 1 is Required'));
 	
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityCountryCode())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getCountryCode())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Country Code is Required'));
 	
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityLastName())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getLastName())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Last Name is Required'));
 	
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityFirstName())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getFirstName())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s First Name is Required'));
 	
@@ -2428,22 +2448,22 @@ public class LitleMidFormController {
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity Type is Required'));
 		}else{
 			if(legalEntityModel.getLegalEntityType().equalsIgnoreCase(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
-				if(String.isEmpty(legalEntityModel.getLegalEntityCity())){
+				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getCity())){
 					isAllRequiredFieldsPresent = false;
 					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s City is Required'));
 		
 				}
-				if(String.isEmpty(legalEntityModel.getLegalEntityStateProvince())){
+				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getStateProvince())){
 					isAllRequiredFieldsPresent = false;
 					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s State/Province is Required'));
 		
 				}
-				if(String.isEmpty(legalEntityModel.getLegalEntityPostalCode())){
+				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getPostalCode())){
 					isAllRequiredFieldsPresent = false;
 					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Postal Code is Required'));
 		
 				}
-				if(String.isEmpty(legalEntityModel.getLegalEntitySsn())){
+				if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getSsn())){
 					isAllRequiredFieldsPresent = false;
 					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SSN is Required'));
 		
@@ -2456,17 +2476,17 @@ public class LitleMidFormController {
 				}
 			}
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityIsExclusiveToPsp())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP is Required'));
 	
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityIsPciComplianceValidated())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated is Required'));
 	
 		}
-		if(String.isEmpty(legalEntityModel.getLegalEntityPciLevel())){
+		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Level is Required'));
 	

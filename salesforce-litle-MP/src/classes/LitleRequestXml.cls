@@ -54,39 +54,39 @@ public class LitleRequestXml {
 			addTagToXml(createLegalEntityRequestXml, 'annualCreditCardSalesVolume', legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
 			addTagToXml(createLegalEntityRequestXml, 'hasAcceptedCreditCards', legalEntityModel.getLegalEntityHasAcceptedCreditCards());
 			createLegalEntityRequestXml.writeStartElement(null, 'address', null);
-				addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityStreetAddress1());
-				addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityStreetAddress2());
-				addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityCity());
-				addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityStateProvince());
-				addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityPostalCode());
-				addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityCountryCode());
+				addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityAddress().getStreetAddress1());
+				addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityAddress().getStreetAddress2());
+				addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityAddress().getCity());
+				addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityAddress().getStateProvince());
+				addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityAddress().getPostalCode());
+				addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityAddress().getCountryCode());
 			createLegalEntityRequestXml.writeEndElement();	//end legal entity address
 			createLegalEntityRequestXml.writeStartElement(null, 'PCI', null);
-				addTagToXml(createLegalEntityRequestXml, 'isExclusiveToPsp', legalEntityModel.getLegalEntityIsExclusiveToPsp());
-				addTagToXml(createLegalEntityRequestXml, 'isPciComplianceValidated', legalEntityModel.getLegalEntityIsPciComplianceValidated());
-				addTagToXml(createLegalEntityRequestXml, 'scanningVendor', legalEntityModel.getLegalEntityScanningVendor());
-				addTagToXml(createLegalEntityRequestXml, 'qualifiedSecurityAssessor', legalEntityModel.getLegalEntityQualifiedSecurityAssessor());
-				addTagToXml(createLegalEntityRequestXml, 'mostRecentlyPassedScan', legalEntityModel.getLegalEntityMostRecentlyPassedScan());
-				addTagToXml(createLegalEntityRequestXml, 'reportOnCompliance', legalEntityModel.getLegalEntityReportOnCompliance());
-				addTagToXml(createLegalEntityRequestXml, 'pciLevel', legalEntityModel.getLegalEntityPciLevel());
+				addTagToXml(createLegalEntityRequestXml, 'isExclusiveToPsp', legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
+				addTagToXml(createLegalEntityRequestXml, 'isPciComplianceValidated', legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
+				addTagToXml(createLegalEntityRequestXml, 'scanningVendor', legalEntityModel.getLegalEntityPci().getScanningVendor());
+				addTagToXml(createLegalEntityRequestXml, 'qualifiedSecurityAssessor', legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
+				addTagToXml(createLegalEntityRequestXml, 'mostRecentlyPassedScan', legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
+				addTagToXml(createLegalEntityRequestXml, 'reportOnCompliance', legalEntityModel.getLegalEntityPci().getReportOnCompliance());
+				addTagToXml(createLegalEntityRequestXml, 'pciLevel', legalEntityModel.getLegalEntityPci().getPciLevel());
 			createLegalEntityRequestXml.writeEndElement();	//end legal entity PCI
 			createLegalEntityRequestXml.writeStartElement(null, 'principals', null);
 				createLegalEntityRequestXml.writeStartElement(null, 'principal', null);
-					addTagToXml(createLegalEntityRequestXml, 'firstName', legalEntityModel.getLegalEntityFirstName());
-					addTagToXml(createLegalEntityRequestXml, 'lastName', legalEntityModel.getLegalEntityLastName());
-					addTagToXml(createLegalEntityRequestXml, 'emailAddress', legalEntityModel.getLegalEntityEmailAddress());
-					addTagToXml(createLegalEntityRequestXml, 'ssn', legalEntityModel.getLegalEntitySsn());
-					addTagToXml(createLegalEntityRequestXml, 'contactPhone', legalEntityModel.getLegalEntityContactPhone());
-					addTagToXml(createLegalEntityRequestXml, 'dateOfBirth', legalEntityModel.getLegalEntityDateOfBirth());
-					addTagToXml(createLegalEntityRequestXml, 'driversLicense', legalEntityModel.getLegalEntityDriversLicense());
-					addTagToXml(createLegalEntityRequestXml, 'driversLicenseState', legalEntityModel.getLegalEntityDriversLicenseState());
+					addTagToXml(createLegalEntityRequestXml, 'firstName', legalEntityModel.getLegalEntityPrincipal().getFirstName());
+					addTagToXml(createLegalEntityRequestXml, 'lastName', legalEntityModel.getLegalEntityPrincipal().getLastName());
+					addTagToXml(createLegalEntityRequestXml, 'emailAddress', legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
+					addTagToXml(createLegalEntityRequestXml, 'ssn', legalEntityModel.getLegalEntityPrincipal().getSsn());
+					addTagToXml(createLegalEntityRequestXml, 'contactPhone', legalEntityModel.getLegalEntityPrincipal().getContactPhone());
+					addTagToXml(createLegalEntityRequestXml, 'dateOfBirth', legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
+					addTagToXml(createLegalEntityRequestXml, 'driversLicense', legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+					addTagToXml(createLegalEntityRequestXml, 'driversLicenseState', legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
 					createLegalEntityRequestXml.writeStartElement(null, 'address', null);	//start legal entity principal address
-						addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityStreetAddress1());
-						addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityStreetAddress2());
-						addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityCity());
-						addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityStateProvince());
-						addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityPostalCode());
-						addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityCountryCode());
+						addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
+						addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
+						addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
+						addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
+						addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
+						addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
 					createLegalEntityRequestXml.writeEndElement();	//end legal entity principal address
 				createLegalEntityRequestXml.writeEndElement();	//end legal entity principle	
 			createLegalEntityRequestXml.writeEndElement();	//end legal entity principles

@@ -61,46 +61,82 @@ private class LitleRequestXmlTest {
     	String actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
     	String expectedXml = getCreateLegalEntityRequestXML('','');
     	
-    	System.assertEquals(actualXml, expectedXml);
+    	System.assertEquals(expectedXml, actualXml);
     	
     	//prepare a legal entity model for individual proprietorship
 		legalEntityModel.setLegalEntityName(TEST_STRING);
     	legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());
     	legalEntityModel.setLegalEntityDoingBusinessAs(TEST_STRING);
-    	legalEntityModel.setLegalEntityStreetAddress1(TEST_STRING);
+    	legalEntityModel.setLegalEntityContactPhone(TEST_STRING);
+    	
+    	Address address = new Address();
+    	address.setStreetaddress1(TEST_STRING);
+    	address.setStreetAddress2(TEST_STRING);
+    	address.setCity(TEST_STRING);
+    	address.setStateProvince(TEST_STRING);
+    	address.setPostalCode(TEST_STRING);
+    	address.setCountryCode(TEST_STRING);
+        legalEntityModel.setLegalEntityAddress(address);
+        
+        Principal principal = new Principal();
+        principal.setAddress(address);
+        principal.setFirstName(TEST_STRING);
+		principal.setLastName(TEST_STRING);
+		principal.setEmailAddress(TEST_STRING);
+		principal.setContactPhone(TEST_STRING);
+		principal.setDateOfBirth(TEST_STRING);
+		principal.setDriversLicense(TEST_STRING);
+		principal.setDriversLicenseState(TEST_STRING);
+		principal.setSsn(TEST_STRING);
+        legalEntityModel.setLegalEntityPrincipal(principal);
+        
+        PCI pci = new PCI();
+        pci.setIsExclusiveToPsp(TEST_STRING);
+        pci.setIsPciComplianceValidated(TEST_STRING);
+        pci.setPciLevel(TEST_STRING);
+        pci.setScanningVendor(TEST_STRING);
+        pci.setQualifiedSecurityAssessor(TEST_STRING);
+        pci.setMostRecentlyPassedScan(TEST_STRING);
+        pci.setReportOnCompliance(TEST_STRING);
+        legalEntityModel.setLegalEntityPci(pci);
+    	/*legalEntityModel.setLegalEntityStreetAddress1(TEST_STRING);
     	legalEntityModel.setLegalEntityStreetAddress2(TEST_STRING);
     	legalEntityModel.setLegalEntityCity(TEST_STRING);
     	legalEntityModel.setLegalEntityStateProvince(TEST_STRING);
     	legalEntityModel.setLegalEntityPostalCode(TEST_STRING);
-    	legalEntityModel.setLegalEntityCountryCode(TEST_STRING);
-    	legalEntityModel.setLegalEntityFirstName(TEST_STRING);
+    	legalEntityModel.setLegalEntityCountryCode(TEST_STRING);*/
+    	
+    	/*legalEntityModel.setLegalEntityFirstName(TEST_STRING);
     	legalEntityModel.setLegalEntityLastName(TEST_STRING);
     	legalEntityModel.setLegalEntityEmailAddress(TEST_STRING);
     	legalEntityModel.setLegalEntityContactPhone(TEST_STRING);
     	legalEntityModel.setLegalEntityDateOfBirth(TEST_STRING);
     	legalEntityModel.setLegalEntityDriversLicense(TEST_STRING);
     	legalEntityModel.setLegalEntityDriversLicenseState(TEST_STRING);
-    	legalEntityModel.setLegalEntitySsn(TEST_STRING);
+    	legalEntityModel.setLegalEntitySsn(TEST_STRING);*/
+    	
     	legalEntityModel.setLegalEntityTaxId(TEST_STRING);
-    	legalEntityModel.setLegalEntityIsExclusiveToPsp(TEST_STRING);
+    	
+    	/*legalEntityModel.setLegalEntityIsExclusiveToPsp(TEST_STRING);
     	legalEntityModel.setLegalEntityIsPciComplianceValidated(TEST_STRING);
     	legalEntityModel.setLegalEntityPciLevel(TEST_STRING);
     	legalEntityModel.setLegalEntityScanningVendor(TEST_STRING);
     	legalEntityModel.setLegalEntityQualifiedSecurityAssessor(TEST_STRING);
     	legalEntityModel.setLegalEntityMostRecentlyPassedScan(TEST_STRING);
-    	legalEntityModel.setLegalEntityReportOnCompliance(TEST_STRING);
+    	legalEntityModel.setLegalEntityReportOnCompliance(TEST_STRING);*/
+    	
     	legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(TEST_STRING);
     	legalEntityModel.setLegalEntityHasAcceptedCreditCards(TEST_STRING);
     	// Create its XML
     	 actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
     	 expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());
-    	System.assertEquals(actualXml, expectedXml);
+    	System.assertEquals(expectedXml, actualXml);
     	
     	// change the legal entity type and check
     	legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
     	actualXml = litleRequestXml.generateCreateLegalEntityRequest(legalEntityModel);
     	expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
-    	System.assertEquals(actualXml, expectedXml);
+    	System.assertEquals(expectedXml, actualXml);
     }
     
     
@@ -116,7 +152,7 @@ private class LitleRequestXmlTest {
     	String actualXml = litleRequestXml.generateCreateSubMerchantRequest(subMerchantModel);
     	String expectedXml = getCreateSubMerchantRequestXML('');
     	
-    	System.assertEquals(actualXml, expectedXml);
+    	System.assertEquals(expectedXml, actualXml);
     	
     	//prepare a legal entity model for individual proprietorship
 		subMerchantModel.setSubMerchantStreetAddress1(TEST_STRING);
@@ -146,7 +182,7 @@ private class LitleRequestXmlTest {
     	// Create its XML
     	 actualXml = litleRequestXml.generateCreateSubMerchantRequest(subMerchantModel);
     	 expectedXml = getCreateSubMerchantRequestXML(TEST_STRING);
-    	System.assertEquals(actualXml, expectedXml);
+    	System.assertEquals(expectedXml, actualXml);
     	
     	
     }

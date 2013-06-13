@@ -6,31 +6,41 @@ public class LegalEntityModel {
     private String legalEntityName;
     private String legalEntityType;
     private String legalEntityDoingBusinessAs;
-    private String legalEntityStreetAddress1;
+    /*private String legalEntityStreetAddress1;
     private String legalEntityStreetAddress2;
     private String legalEntityCity;
     private String legalEntityStateProvince;
     private String legalEntityPostalCode;
-    private String legalEntityCountryCode;
-    private String legalEntityFirstName;
+    private String legalEntityCountryCode;*/
+    private String legalEntityContactPhone;
+    private Address legalEntityAddress;
+    private Principal legalEntityPrincipal;
+    /*private String legalEntityFirstName;
     private String legalEntityLastName;
     private String legalEntityEmailAddress;
     private String legalEntityContactPhone;
     private String legalEntityDateOfBirth;
     private String legalEntityDriversLicense;
     private String legalEntityDriversLicenseState;
-    private String legalEntitySsn;
+    private String legalEntitySsn;*/
     private String legalEntityTaxId;
-    private String legalEntityIsExclusiveToPsp;
+    private PCI legalEntityPci;
+    /*private String legalEntityIsExclusiveToPsp;
     private String legalEntityIsPciComplianceValidated;
     private String legalEntityPciLevel;
     private String legalEntityScanningVendor;
     private String legalEntityQualifiedSecurityAssessor;
     private String legalEntityMostRecentlyPassedScan;
-    private String legalEntityReportOnCompliance;
+    private String legalEntityReportOnCompliance;*/
     private String legalEntityAnnualCreditCardSalesVolume;
     private String legalEntityHasAcceptedCreditCards;
     private String legalEntityId;
+    
+    public LegalEntityModel(){
+    	legalEntityAddress = new Address();
+    	legalEntityPrincipal = new Principal();
+    	legalEntityPci = new PCI();
+    }
     
     public String getLegalEntityId() {
         return legalEntityId;
@@ -64,54 +74,31 @@ public class LegalEntityModel {
         this.legalEntityDoingBusinessAs = legalEntityDoingBusinessAs;
     }
     
-    public String getLegalEntityStreetAddress1() {
-        return legalEntityStreetAddress1;
+    public Address getLegalEntityAddress() {
+        return legalEntityAddress;
     }
 
-    public void setLegalEntityStreetAddress1(String legalEntityStreetAddress1) {
-        this.legalEntityStreetAddress1 = legalEntityStreetAddress1;
+    public void setLegalEntityAddress(Address address) {
+        this.legalEntityAddress = address;
     }
 
-    public String getLegalEntityStreetAddress2() {
-        return legalEntityStreetAddress2;
+	public Principal getLegalEntityPrincipal() {
+        return legalEntityPrincipal;
     }
 
-    public void setLegalEntityStreetAddress2(String legalEntityStreetAddress2) {
-        this.legalEntityStreetAddress2 = legalEntityStreetAddress2;
+    public void setLegalEntityPrincipal(Principal principal) {
+        this.legalEntityPrincipal = principal;
+    }
+    
+    public String getLegalEntityContactPhone() {
+        return legalEntityContactPhone;
     }
 
-    public String getLegalEntityCity() {
-        return legalEntityCity;
+    public void setLegalEntityContactPhone(String legalEntityContactPhone) {
+        this.legalEntityContactPhone = legalEntityContactPhone;
     }
-
-    public void setLegalEntityCity(String legalEntityCity) {
-        this.legalEntityCity = legalEntityCity;
-    }
-
-    public String getLegalEntityStateProvince() {
-        return legalEntityStateProvince;
-    }
-
-    public void setLegalEntityStateProvince(String legalEntityStateProvince) {
-        this.legalEntityStateProvince = legalEntityStateProvince;
-    }
-
-    public String getLegalEntityPostalCode() {
-        return legalEntityPostalCode;
-    }
-
-    public void setLegalEntityPostalCode(String legalEntityPostalCode) {
-        this.legalEntityPostalCode = legalEntityPostalCode;
-    }
-
-    public String getLegalEntityCountryCode() {
-        return legalEntityCountryCode;
-    }
-
-    public void setLegalEntityCountryCode(String legalEntityCountryCode) {
-        this.legalEntityCountryCode = legalEntityCountryCode;
-    }
-
+    /*
+    
     public String getLegalEntityFirstName() {
         return legalEntityFirstName;
     }
@@ -175,7 +162,7 @@ public class LegalEntityModel {
 
     public void setLegalEntitySsn(String legalEntitySsn) {
         this.legalEntitySsn = legalEntitySsn;
-    }
+    }*/
 
     public String getLegalEntityTaxId() {
         return legalEntityTaxId;
@@ -184,8 +171,16 @@ public class LegalEntityModel {
     public void setLegalEntityTaxId(String legalEntityTaxId) {
         this.legalEntityTaxId = legalEntityTaxId;
     }
+    
+    public PCI getLegalEntityPci() {
+        return legalEntityPci;
+    }
 
-    public String getLegalEntityIsExclusiveToPsp() {
+    public void setLegalEntityPci(PCI legalEntityPci) {
+        this.legalEntityPci = legalEntityPci;
+    }
+
+    /*public String getLegalEntityIsExclusiveToPsp() {
         return legalEntityIsExclusiveToPsp;
     }
 
@@ -244,7 +239,7 @@ public class LegalEntityModel {
     public void setLegalEntityReportOnCompliance(
             String legalEntityReportOnCompliance) {
         this.legalEntityReportOnCompliance = legalEntityReportOnCompliance;
-    }
+    }*/
 
     public String getLegalEntityAnnualCreditCardSalesVolume() {
         return legalEntityAnnualCreditCardSalesVolume;

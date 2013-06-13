@@ -58,73 +58,82 @@ private class LegalEntityModelTest {
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityDoingBusinessAs(), testString);
     }
-    static testMethod void testLegalEntityStreetAddress1(){
+    
+    static testMethod void testLegalEntityAddress(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityStreetAddress1(), null);
-        legalEntityModel.setLegalEntityStreetAddress1(testString);
+    	Address address = new Address();
+    	address.setStreetaddress1(testString);
+    	address.setStreetAddress2(testString);
+    	address.setCity(testString);
+    	address.setStateProvince(testString);
+    	address.setPostalCode(testString);
+    	address.setCountryCode(testString);
+        // Check if the LegalEntityType is null initially
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress1(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCity(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStateProvince(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getPostalCode(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCountryCode(), null);
+        legalEntityModel.setLegalEntityAddress(address);
         // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityStreetAddress1(), null);
+        System.assertNotEquals(legalEntityModel.getLegalEntityAddress(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityStreetAddress1(), testString);
+        System.assertEquals(legalEntityModel.getLegalEntityAddress(), address);
+        /*System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress1(), address.getStreetaddress1());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), address.getStreetaddress2());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCity(), address.getCity());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getPostalCode(), address.getPostalCode());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCountryCode(), address.getCountryCode());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStateProvince(), address.getStateProvince());*/
     }
     
-    static testMethod void testLegalEntityStreetAddress2(){
+    static testMethod void testLegalEntityContactPhone(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityStreetAddress2(), null);
-        legalEntityModel.setLegalEntityStreetAddress2(testString);
-        // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityStreetAddress2(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityContactPhone(), null);
+        legalEntityModel.setLegalEntityContactPhone(testString);
+        // Last check if the value is set
+        System.assertNotEquals(legalEntityModel.getLegalEntityContactPhone(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityStreetAddress2(), testString);
+        System.assertEquals(legalEntityModel.getLegalEntityContactPhone(), testString);
     }
     
-    static testMethod void testLegalEntityCity(){
+    static testMethod void testLegalEntityPrincipal(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityCity(), null);
-        legalEntityModel.setLegalEntityCity(testString);
+    	Address address = new Address();
+    	address.setStreetaddress1(testString);
+    	address.setStreetAddress2(testString);
+    	address.setCity(testString);
+    	address.setStateProvince(testString);
+    	address.setPostalCode(testString);
+    	address.setCountryCode(testString);
+        // Check if the LegalEntityType is null initially
+        //System.assertEquals(legalEntityModel.getLegalEntityPrincipal(), null);
+        Principal principal = new Principal();
+        principal.setAddress(address);
+        principal.setFirstName(testString);
+		principal.setLastName(testString);
+		principal.setEmailAddress(testString);
+		principal.setContactPhone(testString);
+		principal.setDateOfBirth(testString);
+		principal.setDriversLicense(testString);
+		principal.setDriversLicenseState(testString);
+		principal.setSsn(testString);
+        legalEntityModel.setLegalEntityPrincipal(principal);
         // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityCity(), null);
+        System.assertNotEquals(legalEntityModel.getLegalEntityPrincipal(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityCity(), testString);
+        System.assertEquals(legalEntityModel.getLegalEntityPrincipal(), principal);
+        /*System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress1(), address.getStreetaddress1());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), address.getStreetaddress2());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCity(), address.getCity());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getPostalCode(), address.getPostalCode());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getCountryCode(), address.getCountryCode());
+        System.assertEquals(legalEntityModel.getLegalEntityAddress().getStateProvince(), address.getStateProvince());*/
     }
     
-    static testMethod void testLegalEntityStateProvince(){
-    	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityStateProvince(), null);
-        legalEntityModel.setLegalEntityStateProvince(testString);
-        // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityStateProvince(), null);
-        // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityStateProvince(), testString);
-    }
-    
-    static testMethod void testLegalEntityPostalCode(){
-    	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityPostalCode(), null);
-        legalEntityModel.setLegalEntityPostalCode(testString);
-        // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityPostalCode(), null);
-        // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityPostalCode(), testString);
-    }
-    
-    static testMethod void testLegalEntityCountryCode(){
-    	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        System.assertEquals(legalEntityModel.getLegalEntityCountryCode(), null);
-        legalEntityModel.setLegalEntityCountryCode(testString);
-        // First check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityCountryCode(), null);
-        // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityCountryCode(), testString);
-    }
-    
-    static testMethod void testLegalEntityFirstName(){
+    /*static testMethod void testLegalEntityFirstName(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the account is null initially
         System.assertEquals(legalEntityModel.getLegalEntityFirstName(), null);
@@ -210,7 +219,7 @@ private class LegalEntityModelTest {
         System.assertNotEquals(legalEntityModel.getLegalEntitySsn(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntitySsn(), testString);
-    }
+    }*/
     
     static testMethod void testLegalEntityTaxId(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
@@ -223,7 +232,34 @@ private class LegalEntityModelTest {
         System.assertEquals(legalEntityModel.getLegalEntityTaxId(), testString);
     }
     
-    static testMethod void testLegalEntityIsExclusiveToPsp(){
+     static testMethod void testLegalEntityPci(){
+     	LegalEntityModel legalEntityModel = new LegalEntityModel();
+        // Check if the account is null initially
+        //System.assertEquals(legalEntityModel.getLegalEntityPci(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getPciLevel(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getScanningVendor(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan(), null);
+        System.assertEquals(legalEntityModel.getLegalEntityPci().getReportOnCompliance(), null);
+        
+        PCI pci = new PCI();
+        pci.setIsExclusiveToPsp(testString);
+        pci.setIsPciComplianceValidated(testString);
+        pci.setPciLevel(testString);
+        pci.setScanningVendor(testString);
+        pci.setQualifiedSecurityAssessor(testString);
+        pci.setMostRecentlyPassedScan(testString);
+        pci.setReportOnCompliance(testString);
+        legalEntityModel.setLegalEntityPci(pci);
+        // Last check if the value is set
+        System.assertNotEquals(legalEntityModel.getLegalEntityPci(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(legalEntityModel.getLegalEntityPci(), pci);
+     }
+    
+    /*static testMethod void testLegalEntityIsExclusiveToPsp(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the account is null initially
         System.assertEquals(legalEntityModel.getLegalEntityIsExclusiveToPsp(), null);
@@ -298,7 +334,7 @@ private class LegalEntityModelTest {
         System.assertNotEquals(legalEntityModel.getLegalEntityReportOnCompliance(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityReportOnCompliance(), testString);
-    }
+    }*/
     
     static testMethod void testLegalEntityAnnualCreditCardSalesVolume(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
@@ -320,6 +356,17 @@ private class LegalEntityModelTest {
         System.assertNotEquals(legalEntityModel.getLegalEntityHasAcceptedCreditCards(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityHasAcceptedCreditCards(), testString);
+    }
+    
+    static testMethod void testLegalEntityId(){
+    	LegalEntityModel legalEntityModel = new LegalEntityModel();
+        // Check if the account is null initially
+        System.assertEquals(legalEntityModel.getLegalEntityId(), null);
+        legalEntityModel.setLegalEntityId(testString);
+        // Last check if the value is set
+        System.assertNotEquals(legalEntityModel.getLegalEntityId(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(legalEntityModel.getLegalEntityId(), testString);
     }
     
     
