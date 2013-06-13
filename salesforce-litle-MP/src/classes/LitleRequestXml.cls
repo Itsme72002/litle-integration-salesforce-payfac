@@ -109,12 +109,12 @@ public class LitleRequestXml {
 			createSubMerchantRequestXml.writeStartElement(null, 'subMerchantCreateRequest', null);
 			createSubMerchantRequestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
 			createSubMerchantRequestXml.writeStartElement(null, 'address', null);
-				addTagToXml(createSubMerchantRequestXml, 'streetAddress1', subMerchantModel.getSubMerchantStreetAddress1());
-				addTagToXml(createSubMerchantRequestXml, 'streetAddress2', subMerchantModel.getSubMerchantStreetAddress2());
-				addTagToXml(createSubMerchantRequestXml, 'city', subMerchantModel.getSubMerchantCity());
-				addTagToXml(createSubMerchantRequestXml, 'stateProvince', subMerchantModel.getSubMerchantStateProvince());
-				addTagToXml(createSubMerchantRequestXml, 'postalCode', subMerchantModel.getSubMerchantPostalCode());
-				addTagToXml(createSubMerchantRequestXml, 'countryCode', subMerchantModel.getSubMerchantCountryCode());
+				addTagToXml(createSubMerchantRequestXml, 'streetAddress1', subMerchantModel.getSubMerchantAddress().getStreetAddress1());
+				addTagToXml(createSubMerchantRequestXml, 'streetAddress2', subMerchantModel.getSubMerchantAddress().getStreetAddress2());
+				addTagToXml(createSubMerchantRequestXml, 'city', subMerchantModel.getSubMerchantAddress().getCity());
+				addTagToXml(createSubMerchantRequestXml, 'stateProvince', subMerchantModel.getSubMerchantAddress().getStateProvince());
+				addTagToXml(createSubMerchantRequestXml, 'postalCode', subMerchantModel.getSubMerchantAddress().getPostalCode());
+				addTagToXml(createSubMerchantRequestXml, 'countryCode', subMerchantModel.getSubMerchantAddress().getCountryCode());
 			createSubMerchantRequestXml.writeEndElement();	//end legal entity address
 			addTagToXml(createSubMerchantRequestXml, 'amexMid', subMerchantModel.getSubMerchantAmexMid());
 			addTagToXml(createSubMerchantRequestXml, 'bankAccountNumber', subMerchantModel.getSubMerchantBankAccountNumber());
@@ -127,10 +127,10 @@ public class LitleRequestXml {
 			addTagToXml(createSubMerchantRequestXml, 'merchantCategoryCode', subMerchantModel.getSubMerchantMerchantCategoryCode());
 			addTagToXml(createSubMerchantRequestXml, 'merchantName', subMerchantModel.getSubMerchantMerchantName());
 			createSubMerchantRequestXml.writeStartElement(null, 'primaryContact', null);	//primary contact
-				addTagToXml(createSubMerchantRequestXml, 'firstName', subMerchantModel.getSubMerchantFirstName());
-				addTagToXml(createSubMerchantRequestXml, 'lastName', subMerchantModel.getSubMerchantLastName());
-				addTagToXml(createSubMerchantRequestXml, 'phone', subMerchantModel.getSubMerchantPhone());
-				addTagToXml(createSubMerchantRequestXml, 'emailAddress', subMerchantModel.getSubMerchantEmailAddress());
+				addTagToXml(createSubMerchantRequestXml, 'firstName', subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
+				addTagToXml(createSubMerchantRequestXml, 'lastName', subMerchantModel.getSubMerchantPrimaryContact().getLastName());
+				addTagToXml(createSubMerchantRequestXml, 'phone', subMerchantModel.getSubMerchantPrimaryContact().getPhone());
+				addTagToXml(createSubMerchantRequestXml, 'emailAddress', subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
 			createSubMerchantRequestXml.writeEndElement();	//end primary contact
 			addTagToXml(createSubMerchantRequestXml, 'pspMerchantId', subMerchantModel.getSubMerchantPspMerchantId());
 			addTagToXml(createSubMerchantRequestXml, 'url', subMerchantModel.getSubMerchantUrl());

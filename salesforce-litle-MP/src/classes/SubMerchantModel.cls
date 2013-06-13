@@ -1,11 +1,12 @@
 public class SubMerchantModel {
 	//Select options values
-	private String subMerchantStreetAddress1;
+	/*private String subMerchantStreetAddress1;
     private String subMerchantStreetAddress2;
     private String subMerchantCity;
     private String subMerchantStateProvince;
     private String subMerchantPostalCode;
-    private String subMerchantCountryCode;
+    private String subMerchantCountryCode;*/
+    private Address subMerchantAddress;
     private String subMerchantAmexMid;
     private String subMerchantBankAccountNumber;
     private String subMerchantBankRoutingNumber;
@@ -16,16 +17,22 @@ public class SubMerchantModel {
     private String subMerchantMaxTransactionAmount;
     private String subMerchantMerchantCategoryCode;
     private String subMerchantMerchantName;
-    private String subMerchantFirstName;
+    /*private String subMerchantFirstName;
     private String subMerchantLastName;
     private String subMerchantEmailAddress;
-    private String subMerchantPhone;
+    private String subMerchantPhone;*/
+    private PrimaryContact subMerchantPrimaryContact;
     private String subMerchantPspMerchantId;
     private String subMerchantUrl;
     private String subMerchanteCheckBillingDescriptor;
     private String subMerchanteCheckCompanyName;
     
-    public String getSubMerchantStreetAddress1(){
+    public SubMerchantModel(){
+    	subMerchantAddress = new Address();
+    	subMerchantPrimaryContact = new PrimaryContact();
+    }
+    
+    /*public String getSubMerchantStreetAddress1(){
         return subMerchantStreetAddress1;
     }
     public void setSubMerchantStreetAddress1(String subMerchantStreetAddress1){
@@ -60,7 +67,16 @@ public class SubMerchantModel {
     }
     public void setSubMerchantCountryCode(String subMerchantCountryCode){
         this.subMerchantCountryCode = subMerchantCountryCode;
+    }*/
+    
+    public Address getSubMerchantAddress() {
+        return subMerchantAddress;
     }
+
+    public void setSubMerchantAddress(Address address) {
+        this.subMerchantAddress = address;
+    }
+    
     public String getSubMerchantAmexMid(){
         return subMerchantAmexMid;
     }
@@ -121,7 +137,15 @@ public class SubMerchantModel {
     public void setSubMerchantMerchantName(String subMerchantMerchantName){
         this.subMerchantMerchantName = subMerchantMerchantName;
     }
-    public String getSubMerchantFirstName(){
+    
+    public PrimaryContact getSubMerchantPrimaryContact() {
+        return subMerchantPrimaryContact;
+    }
+
+    public void setSubMerchantPrimaryContact(PrimaryContact primaryContact) {
+        this.subMerchantPrimaryContact = primaryContact;
+    }
+    /*public String getSubMerchantFirstName(){
         return subMerchantFirstName;
     }
     public void setSubMerchantFirstName(String subMerchantFirstName){
@@ -144,7 +168,7 @@ public class SubMerchantModel {
     }
     public void setSubMerchantPhone(String subMerchantPhone){
         this.subMerchantPhone = subMerchantPhone;
-    }
+    }*/
     public String getSubMerchantPspMerchantId(){
         return subMerchantPspMerchantId;
     }

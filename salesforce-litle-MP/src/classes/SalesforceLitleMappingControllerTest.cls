@@ -211,55 +211,159 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityCountryCodeX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityFirstName(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalFirstName(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstName__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstName__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityFirstName__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstName__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityFirstName();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstNameX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstName__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstName__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalFirstName();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityFirstName__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstName__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityFirstName();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstNameX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstName__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstName__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalFirstName();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityLastName(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalLastName(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastName__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastName__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityLastName__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastName__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityLastName();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastNameX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastName__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastName__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalLastName();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityLastName__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastName__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityLastName();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastNameX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastName__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastName__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalLastName();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityEmailAddress(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalEmailAddress(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddress__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddress__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityEmailAddress__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddress__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityEmailAddress();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddressX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddress__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddress__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalEmailAddress();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityEmailAddress__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddress__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityEmailAddress();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddressX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddress__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddress__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalEmailAddress();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressX__c, false);
+	 }
+	 
+	 static testMethod void testOnSelectChangeLegalEntityPrincipalStreetAddress1(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStreetAddress1();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1X__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStreetAddress1();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1X__c, false);
+		 
+	}
+	
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalStreetAddress2(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStreetAddress2();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2X__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStreetAddress2();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2X__c, false);
+	 }
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalCity(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCity__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalCity__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCity__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalCity();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCityX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCity__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCity__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalCity();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCityX__c, false);
+	 }
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalStateProvince(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvince__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvince__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvince__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStateProvince();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvinceX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvince__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvince__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalStateProvince();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvinceX__c, false);
+	 }
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalPostalCode(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCode__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCode__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCode__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalPostalCode();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCode__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCode__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalPostalCode();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeX__c, false);
+	 }
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalCountryCode(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCode__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCode__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCode__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalCountryCode();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCode__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCode__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalCountryCode();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeX__c, false);
 	 }
 	
 	static testMethod void testOnSelectChangeLegalEntityContactPhone(){
@@ -278,73 +382,90 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.onSelectChangeLegalEntityContactPhone();
 		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityContactPhoneX__c, false);
 	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityDateOfBirth(){
+	 
+ 	static testMethod void testOnSelectChangeLegalEntityPrincipalContactPhone(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirth__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhone__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityDateOfBirth__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirth__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityDateOfBirth();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirthX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhone__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhone__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalContactPhone();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityDateOfBirth__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirth__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityDateOfBirth();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirthX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhone__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhone__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalContactPhone();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityDriversLicense(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalDateOfBirth(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicense__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirth__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityDriversLicense__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicense__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityDriversLicense();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirth__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirth__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDateOfBirth();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicense__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicense__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityDriversLicense();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirth__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirth__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDateOfBirth();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityDriversLicenseState(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalDriversLicense(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseState__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicense__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseState__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseState__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityDriversLicenseState();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseStateX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicense__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicense__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDriversLicense();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseState__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseState__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityDriversLicenseState();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseStateX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicense__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicense__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDriversLicense();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseX__c, false);
 	 }
 	
-	static testMethod void testOnSelectChangeLegalEntitySsn(){
+	static testMethod void testOnSelectChangeLegalEntityPrincipalDriversLicenseState(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
 	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsn__c, null);
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseState__c, null);
 	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntitySsn__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsn__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntitySsn();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsnX__c, true);
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseState__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseState__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDriversLicenseState();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseStateX__c, true);
 		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntitySsn__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsn__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntitySsn();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsnX__c, false);
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseState__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseState__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalDriversLicenseState();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseStateX__c, false);
+	 }
+	
+	static testMethod void testOnSelectChangeLegalEntityPrincipalSsn(){
+		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
+	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
+	 	// check initial value
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsn__c, null);
+	 	// test if textbox is disabled when something is selected in the select options
+	 	salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsn__c = testString;
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsn__c, testString);
+	 	salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalSsn();
+	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsnX__c, true);
+		// test if textbox is enabled when nothing is selected in the select options
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsn__c = null;
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsn__c, null);
+		salesforceLitleMappingController.onSelectChangeLegalEntityPrincipalSsn();
+		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsnX__c, false);
 	 }
 	
 	static testMethod void testOnSelectChangeLegalEntityTaxId(){
@@ -905,7 +1026,7 @@ private class SalesforceLitleMappingControllerTest {
 	}
 	
 	// test for reset status
-	static testMethod void testResetStatus(){
+	/*static testMethod void testResetStatus(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 		// check initial values to be false
 		System.assertEquals(salesforceLitleMappingController.errorStatus, false);
@@ -921,7 +1042,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.resetStatus();
 		System.assertEquals(salesforceLitleMappingController.errorStatus, false);
 		System.assertEquals(salesforceLitleMappingController.savingStatus, false);
-	}
+	}*/
 	
 	static testMethod void testRemoveDisabledText(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
@@ -968,6 +1089,8 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityNameX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityTypeX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAsX__c = flag;
+		salesforceLitleMappingController.currentMappings.legalEntityContactPhoneX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1X__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2X__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityDoingBusinessAsX__c = flag; 
@@ -975,14 +1098,21 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityStateProvinceX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPostalCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityCountryCodeX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityFirstNameX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityLastNameX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityEmailAddressX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityContactPhoneX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityDateOfBirthX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseStateX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntitySsnX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameX__c = flag; 
+		//salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseStateX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsnX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1X__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2X__c = flag; 
+		 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCityX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvinceX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedX__c = flag; 
@@ -1029,14 +1159,20 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityStateProvinceD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPostalCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityCountryCodeD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityFirstNameD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityLastNameD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityEmailAddressD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityContactPhoneD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityDateOfBirthD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseStateD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntitySsnD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameD__c = stringToSet; 
+		//salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseStateD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsnD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1D__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2D__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCityD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvinceD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c = stringToSet; 
@@ -1051,56 +1187,62 @@ private class SalesforceLitleMappingControllerTest {
 	}
 	
 	static void assertAllValuesInCustomObjectDefaultTextbox(String stringToCheck, SalesforceLitleMappingController salesforceLitleMappingController){
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantStreetAddress1D__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantStreetAddress2D__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantCityD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantStateProvinceD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantPostalCodeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantCountryCodeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantAmexMidD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantBankAccountNumberD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantBankRoutingNumberD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantCreateCredentialsD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantCustomerServiceNumberD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantDiscoverConveyMidD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantHardCodeBillingDescD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantMaxTransactionAmountD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantMerchantCategoryCodeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantMerchantNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantFirstNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantLastNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantEmailAddressD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantPhoneD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantPspMerchantIdD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchantUrlD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchanteCheckBillingDescD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameD__c, stringToCheck);
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTypeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1D__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2D__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityCityD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityStateProvinceD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPostalCodeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityCountryCodeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityFirstNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityLastNameD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityEmailAddressD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityContactPhoneD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDateOfBirthD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityDriversLicenseStateD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntitySsnD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c, stringToCheck); 
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c, stringToCheck);  
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantStreetAddress1D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantStreetAddress2D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantCityD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantStateProvinceD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantPostalCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantCountryCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantAmexMidD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantBankAccountNumberD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantBankRoutingNumberD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantCreateCredentialsD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantCustomerServiceNumberD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantDiscoverConveyMidD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantHardCodeBillingDescD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantMaxTransactionAmountD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantMerchantCategoryCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantMerchantNameD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantFirstNameD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantLastNameD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantEmailAddressD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantPhoneD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantPspMerchantIdD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchantUrlD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchanteCheckBillingDescD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameD__c);
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityNameD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTypeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityCityD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityStateProvinceD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPostalCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityCountryCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameD__c); 
+		//System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseStateD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalSsnD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress1D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalStreetAddress2D__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalCityD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalStateProvinceD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c);
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c);  
 		
 	}
 	
@@ -1114,7 +1256,8 @@ private class SalesforceLitleMappingControllerTest {
 	 		//salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = 'hello';
 			salesforceLitleMappingController.saveMappings();
 	 	}catch(DMLException e){
-	 		System.assertEquals(true, salesforceLitleMappingController.errorStatus);
+	 		
+	 		System.assertEquals(1, Apexpages.getMessages().size());
 	 	}
 	}
 	

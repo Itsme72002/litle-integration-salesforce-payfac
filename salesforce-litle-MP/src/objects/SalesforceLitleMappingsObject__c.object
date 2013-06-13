@@ -255,33 +255,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>legalEntityEmailAddressD__c</fullName>
-        <description>Legal Entity EmailAddressD</description>
-        <externalId>false</externalId>
-        <label>legalEntityEmailAddressD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityEmailAddressX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityEmailAddressX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityEmailAddress__c</fullName>
-        <description>Legal Entity EmailAddress</description>
-        <externalId>false</externalId>
-        <label>legalEntityEmailAddress</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>legalEntityFirstNameD__c</fullName>
         <description>Legal Entity FirstNameD</description>
         <externalId>false</externalId>
@@ -519,6 +492,384 @@
         <description>Legal Entity PostalCode</description>
         <externalId>false</externalId>
         <label>legalEntityPostalCode</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCityD__c</fullName>
+        <description>Legal Entity CityD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCityD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCityX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCityX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCity__c</fullName>
+        <description>Legal Entity City</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCity</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalContactPhoneD__c</fullName>
+        <description>Legal Entity ContactPhoneD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalContactPhoneD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalContactPhoneX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalContactPhoneX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalContactPhone__c</fullName>
+        <description>Legal Entity ContactPhone</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalContactPhone</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCountryCodeD__c</fullName>
+        <description>Legal Entity CountryCodeD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCountryCodeD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCountryCodeX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCountryCodeX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalCountryCode__c</fullName>
+        <description>Legal Entity CountryCode</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalCountryCode</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDateOfBirthD__c</fullName>
+        <description>legal Entity Principal Date Of Birth Default</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDateOfBirthD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDateOfBirthX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDateOfBirthX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDateOfBirth__c</fullName>
+        <description>Legal Entity Principal DateOfBirth</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDateOfBirth</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicenseD__c</fullName>
+        <description>Legal Entity Principal DriversLicenseD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicenseD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicenseStateD__c</fullName>
+        <description>Legal Entity Principal DriversLicenseStateD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicenseStateD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicenseStateX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicenseStateX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicenseState__c</fullName>
+        <description>Legal Entity Principal DriversLicenseState</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicenseState</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicenseX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicenseX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalDriversLicense__c</fullName>
+        <description>Legal Entity Principal DriversLicense</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalDriversLicense</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalEmailAddressD__c</fullName>
+        <description>Legal Entity Principal EmailAddressD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalEmailAddressD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalEmailAddressX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalEmailAddressX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalEmailAddress__c</fullName>
+        <description>Legal Entity Principal EmailAddress</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalEmailAddress</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalFirstNameD__c</fullName>
+        <description>Legal Entity Principal FirstNameD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalFirstNameD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalFirstNameX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalFirstNameX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalFirstName__c</fullName>
+        <description>Legal Entity Principal FirstName</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalFirstName</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalLastNameD__c</fullName>
+        <description>Legal Entity Principal LastNameD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalLastNameD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalLastNameX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalLastNameX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalLastName__c</fullName>
+        <description>Legal Entity Principal LastName</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalLastName</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalPostalCodeD__c</fullName>
+        <description>Legal Entity PostalCodeD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalPostalCodeD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalPostalCodeX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalPostalCodeX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalPostalCode__c</fullName>
+        <description>Legal Entity PostalCode</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalPostalCode</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalSsnD__c</fullName>
+        <description>Legal Entity Principal SsnD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalSsnD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalSsnX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalSsnX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalSsn__c</fullName>
+        <description>Legal Entity Principal Ssn</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalSsn</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStateProvinceD__c</fullName>
+        <description>Legal Entity StateProvinceD</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStateProvinceD</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStateProvinceX__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStateProvinceX</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStateProvince__c</fullName>
+        <description>Legal Entity StateProvince</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStateProvince</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress1D__c</fullName>
+        <description>Legal Entity StreetAddress1D</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress1D</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress1X__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress1X</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress1__c</fullName>
+        <description>Legal Entity StreetAddress1</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress1</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress2D__c</fullName>
+        <description>Legal Entity StreetAddress2D</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress2D</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress2X__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress2X</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>legalEntityPrincipalStreetAddress2__c</fullName>
+        <description>Legal Entity StreetAddress2</description>
+        <externalId>false</externalId>
+        <label>legalEntityPrincipalStreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -766,6 +1117,28 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>merchantPassword__c</fullName>
+        <description>password used to connect to make litle request</description>
+        <externalId>false</externalId>
+        <label>merchantPassword</label>
+        <length>100</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>merchantUsername__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Merchant username for Litle requests</description>
+        <externalId>false</externalId>
+        <label>merchantUsername</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>subMerchantAmexMidD__c</fullName>

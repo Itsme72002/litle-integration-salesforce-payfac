@@ -25,7 +25,34 @@ private class SubMerchantModelTest {
 	private static final String testString = 'test';
 	private static final Boolean testBoolean = true;
 	
-    static testMethod void subMerchantStreetAddress1(){
+	static testMethod void testSubMerchantAddress(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+    	Address address = new Address();
+    	address.setStreetaddress1(testString);
+    	address.setStreetAddress2(testString);
+    	address.setCity(testString);
+    	address.setStateProvince(testString);
+    	address.setPostalCode(testString);
+    	address.setCountryCode(testString);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress1(), null);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress2(), null);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCity(), null);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStateProvince(), null);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getPostalCode(), null);
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCountryCode(), null);
+        subMerchantModel.setSubMerchantAddress(address);
+        // First check if the value is set
+        System.assertNotEquals(subMerchantModel.getSubMerchantAddress(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(subMerchantModel.getSubMerchantAddress(), address);
+        /*System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress1(), address.getStreetaddress1());
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress2(), address.getStreetaddress2());
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCity(), address.getCity());
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getPostalCode(), address.getPostalCode());
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCountryCode(), address.getCountryCode());
+        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStateProvince(), address.getStateProvince());*/
+    }
+    /*static testMethod void subMerchantStreetAddress1(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 		// Check if the subMerchantStreetAddress1 is null initially
         System.assertEquals(subMerchantModel.getSubMerchantStreetAddress1(), null);
@@ -84,7 +111,7 @@ private class SubMerchantModelTest {
 	        System.assertNotEquals(subMerchantModel.getSubMerchantCountryCode(), null);
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getSubMerchantCountryCode(), testString);
-	}
+	}*/
 	static testMethod void subMerchantAmexMid(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 	// Check if the subMerchantAmexMid is null initially
@@ -185,7 +212,20 @@ private class SubMerchantModelTest {
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getSubMerchantMerchantName(), testString);
 	}
-	static testMethod void subMerchantFirstName(){
+	static testMethod void testSubMerchantPrimaryContact(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+    	PrimaryContact primaryContact = new PrimaryContact();
+        primaryContact.setFirstName(testString);
+		primaryContact.setLastName(testString);
+		primaryContact.setEmailAddress(testString);
+		primaryContact.setPhone(testString);
+		subMerchantModel.setSubMerchantPrimaryContact(primaryContact);
+        // First check if the value is set
+        System.assertNotEquals(subMerchantModel.getSubMerchantPrimaryContact(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(subMerchantModel.getSubMerchantPrimaryContact(), primaryContact);
+    }
+	/*static testMethod void subMerchantFirstName(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 	// Check if the subMerchantFirstName is null initially
 	        System.assertEquals(subMerchantModel.getSubMerchantFirstName(), null);
@@ -224,7 +264,7 @@ private class SubMerchantModelTest {
 	        System.assertNotEquals(subMerchantModel.getSubMerchantPhone(), null);
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getSubMerchantPhone(), testString);
-	}
+	}*/
 	static testMethod void subMerchantPspMerchantId(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 	// Check if the subMerchantPspMerchantId is null initially

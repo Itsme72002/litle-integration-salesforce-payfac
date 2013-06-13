@@ -155,12 +155,12 @@ private class LitleRequestXmlTest {
     	System.assertEquals(expectedXml, actualXml);
     	
     	//prepare a legal entity model for individual proprietorship
-		subMerchantModel.setSubMerchantStreetAddress1(TEST_STRING);
-		subMerchantModel.setSubMerchantStreetAddress2(TEST_STRING);
-		subMerchantModel.setSubMerchantCity(TEST_STRING);
-		subMerchantModel.setSubMerchantStateProvince(TEST_STRING);
-		subMerchantModel.setSubMerchantPostalCode(TEST_STRING);
-		subMerchantModel.setSubMerchantCountryCode(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setStreetAddress1(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setStreetAddress2(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setCity(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setStateProvince(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setPostalCode(TEST_STRING);
+		subMerchantModel.getSubMerchantAddress().setCountryCode(TEST_STRING);
 		subMerchantModel.setSubMerchantAmexMid(TEST_STRING);
 		subMerchantModel.setSubMerchantBankAccountNumber(TEST_STRING);
 		subMerchantModel.setSubMerchantBankRoutingNumber(TEST_STRING);
@@ -171,10 +171,10 @@ private class LitleRequestXmlTest {
 		subMerchantModel.setSubMerchantMaxTransactionAmount(TEST_STRING);
 		subMerchantModel.setSubMerchantMerchantCategoryCode(TEST_STRING);
 		subMerchantModel.setSubMerchantMerchantName(TEST_STRING);
-		subMerchantModel.setSubMerchantFirstName(TEST_STRING);
-		subMerchantModel.setSubMerchantLastName(TEST_STRING);
-		subMerchantModel.setSubMerchantEmailAddress(TEST_STRING);
-		subMerchantModel.setSubMerchantPhone(TEST_STRING);
+		subMerchantModel.getSubMerchantPrimaryContact().setFirstName(TEST_STRING);
+		subMerchantModel.getSubMerchantPrimaryContact().setLastName(TEST_STRING);
+		subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(TEST_STRING);
+		subMerchantModel.getSubMerchantPrimaryContact().setPhone(TEST_STRING);
 		subMerchantModel.setSubMerchantPspMerchantId(TEST_STRING);
 		subMerchantModel.setSubMerchantUrl(TEST_STRING);
 		subMerchantModel.setSubMerchanteCheckBillingDescriptor(TEST_STRING);

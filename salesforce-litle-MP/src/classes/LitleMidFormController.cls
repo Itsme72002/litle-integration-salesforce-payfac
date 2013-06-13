@@ -20,7 +20,7 @@ public class LitleMidFormController {
 		legalEntityModel = new LegalEntityModel();
 		subMerchantModel = new SubMerchantModel();
 		List<SalesforceLitleMappingsObject__c> mappingRecords 
-    			= [select id, name, subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
+    			= [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
     	if(!mappingRecords.isEmpty()){
     		this.savedMappings =  mappingRecords.get(0);
     		legalEntityModel.setLegalEntityName([select website from account where id=:account.Id].website);
@@ -30,13 +30,6 @@ public class LitleMidFormController {
 	public LitleMidFormController(){
 		this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
-        //Initialize the Pci levels
-        //pciLevels = new List<Integer>{ 1 , 2 , 3, 4 };
-		/*pciLevels.add(1);
-		pciLevels.add(2);
-		pciLevels.add(3);
-		pciLevels.add(4);*/
-		
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
         	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
@@ -47,7 +40,7 @@ public class LitleMidFormController {
 		legalEntityModel = new LegalEntityModel();
 		subMerchantModel = new SubMerchantModel();
 		List<SalesforceLitleMappingsObject__c> mappingRecords 
-    			= [select subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsX__c, legalEntityDoingBusinessAsD__c  from SalesforceLitleMappingsObject__c limit 1];
+    			= [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
     	String foo = 'website';
     	if(!mappingRecords.isEmpty()){
     		this.savedMappings =  mappingRecords.get(0);
@@ -65,14 +58,21 @@ public class LitleMidFormController {
 		populateLEStateProvince();
 		populateLEPostalCode();
 		populateLECountryCode();
-		populateLEFirstName();
-		populateLELastName();
-		populateLEEmailAddress();
+		populateLEPrincipalAddress1();
+		populateLEPrincipalAddress2();
+		populateLEPrincipalCity();
+		populateLEPrincipalStateProvince();
+		populateLEPrincipalPostalCode();
+		populateLEPrincipalCountryCode();
+		populateLEPrincipalFirstName();
+		populateLEPrincipalLastName();
+		populateLEPrincipalEmailAddress();
 		populateLEContactPhone();
-		populateLEDateOfBirth();
-		populateLEDriversLicense();
-		populateLEDriversLicenseState();
-		populateLESsn();
+		populateLEPrincipalContactPhone();
+		populateLEPrincipalDateOfBirth();
+		populateLEPrincipalDriversLicense();
+		populateLEPrincipalDriversLicenseState();
+		populateLEPrincipalSsn();
 		populateLETaxId();
 		populateLEIsExclusiveToPsp();
 		populateLEIsPciComplianceValidated();
@@ -434,12 +434,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLEFirstName(){
-		if(!savedMappings.legalEntityFirstNameX__c){
-			legalEntityModel.getLegalEntityPrincipal().setFirstName(savedMappings.legalEntityFirstNameD__c);
+	public void populateLEPrincipalFirstName(){
+		if(!savedMappings.legalEntityPrincipalFirstNameX__c){
+			legalEntityModel.getLegalEntityPrincipal().setFirstName(savedMappings.legalEntityPrincipalFirstNameD__c);
 		}else{
-			if (savedMappings.legalEntityFirstName__c != null &&  savedMappings.legalEntityFirstName__c != ''){
-				String typeField = savedMappings.legalEntityFirstName__c;
+			if (savedMappings.legalEntityPrincipalFirstName__c != null &&  savedMappings.legalEntityPrincipalFirstName__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalFirstName__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -470,12 +470,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLELastName(){
-		if(!savedMappings.legalEntityLastNameX__c){
-			legalEntityModel.getLegalEntityPrincipal().setLastName(savedMappings.legalEntityLastNameD__c);
+	public void populateLEPrincipalLastName(){
+		if(!savedMappings.legalEntityPrincipalLastNameX__c){
+			legalEntityModel.getLegalEntityPrincipal().setLastName(savedMappings.legalEntityPrincipalLastNameD__c);
 		}else{
-			if (savedMappings.legalEntityLastName__c != null &&  savedMappings.legalEntityLastName__c != ''){
-				String typeField = savedMappings.legalEntityLastName__c;
+			if (savedMappings.legalEntityPrincipalLastName__c != null &&  savedMappings.legalEntityPrincipalLastName__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalLastName__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -506,12 +506,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLEEmailAddress(){
-		if(!savedMappings.legalEntityEmailAddressX__c){
-			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(savedMappings.legalEntityEmailAddressD__c);
+	public void populateLEPrincipalEmailAddress(){
+		if(!savedMappings.legalEntityPrincipalEmailAddressX__c){
+			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(savedMappings.legalEntityPrincipalEmailAddressD__c);
 		}else{
-			if (savedMappings.legalEntityEmailAddress__c != null &&  savedMappings.legalEntityEmailAddress__c != ''){
-				String typeField = savedMappings.legalEntityEmailAddress__c;
+			if (savedMappings.legalEntityPrincipalEmailAddress__c != null &&  savedMappings.legalEntityPrincipalEmailAddress__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalEmailAddress__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -544,7 +544,7 @@ public class LitleMidFormController {
 	
 	public void populateLEContactPhone(){
 		if(!savedMappings.legalEntityContactPhoneX__c){
-			legalEntityModel.getLegalEntityPrincipal().setContactPhone(savedMappings.legalEntityContactPhoneD__c);
+			legalEntityModel.setLegalEntityContactPhone(savedMappings.legalEntityContactPhoneD__c);
 		}else{
 			if (savedMappings.legalEntityContactPhone__c != null &&  savedMappings.legalEntityContactPhone__c != ''){
 				String typeField = savedMappings.legalEntityContactPhone__c;
@@ -563,6 +563,42 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalContactPhone(){
+		if(!savedMappings.legalEntityPrincipalContactPhoneX__c){
+			legalEntityModel.getLegalEntityPrincipal().setContactPhone(savedMappings.legalEntityPrincipalContactPhoneD__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalContactPhone__c != null &&  savedMappings.legalEntityPrincipalContactPhone__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalContactPhone__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
 				    			legalEntityModel.getLegalEntityPrincipal().setContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
@@ -578,12 +614,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLEDateOfBirth(){
-		if(!savedMappings.legalEntityDateOfBirthX__c){
-			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(savedMappings.legalEntityDateOfBirthD__c);
+	public void populateLEPrincipalDateOfBirth(){
+		if(!savedMappings.legalEntityPrincipalDateOfBirthX__c){
+			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(savedMappings.legalEntityPrincipalDateOfBirthD__c);
 		}else{
-			if (savedMappings.legalEntityDateOfBirth__c != null &&  savedMappings.legalEntityDateOfBirth__c != ''){
-				String typeField = savedMappings.legalEntityDateOfBirth__c;
+			if (savedMappings.legalEntityPrincipalDateOfBirth__c != null &&  savedMappings.legalEntityPrincipalDateOfBirth__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalDateOfBirth__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -614,12 +650,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLEDriversLicense(){
-		if(!savedMappings.legalEntityDriversLicenseX__c){
-			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(savedMappings.legalEntityDriversLicenseD__c);
+	public void populateLEPrincipalDriversLicense(){
+		if(!savedMappings.legalEntityPrincipalDriversLicenseX__c){
+			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(savedMappings.legalEntityPrincipalDriversLicenseD__c);
 		}else{
-			if (savedMappings.legalEntityDriversLicense__c != null &&  savedMappings.legalEntityDriversLicense__c != ''){
-				String typeField = savedMappings.legalEntityDriversLicense__c;
+			if (savedMappings.legalEntityPrincipalDriversLicense__c != null &&  savedMappings.legalEntityPrincipalDriversLicense__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalDriversLicense__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -650,12 +686,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLEDriversLicenseState(){
-		if(!savedMappings.legalEntityDriversLicenseStateX__c){
-			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(savedMappings.legalEntityDriversLicenseStateD__c);
+	public void populateLEPrincipalDriversLicenseState(){
+		if(!savedMappings.legalEntityPrincipalDriversLicenseStateX__c){
+			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(savedMappings.legalEntityPrincipalDriversLicenseStateD__c);
 		}else{
-			if (savedMappings.legalEntityDriversLicenseState__c != null &&  savedMappings.legalEntityDriversLicenseState__c != ''){
-				String typeField = savedMappings.legalEntityDriversLicenseState__c;
+			if (savedMappings.legalEntityPrincipalDriversLicenseState__c != null &&  savedMappings.legalEntityPrincipalDriversLicenseState__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalDriversLicenseState__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -686,12 +722,12 @@ public class LitleMidFormController {
 		}
 	}
 	
-	public void populateLESsn(){
-		if(!savedMappings.legalEntitySsnX__c){
-			legalEntityModel.getLegalEntityPrincipal().setSsn(savedMappings.legalEntitySsnD__c);
+	public void populateLEPrincipalSsn(){
+		if(!savedMappings.legalEntityPrincipalSsnX__c){
+			legalEntityModel.getLegalEntityPrincipal().setSsn(savedMappings.legalEntityPrincipalSsnD__c);
 		}else{
-			if (savedMappings.legalEntitySsn__c != null &&  savedMappings.legalEntitySsn__c != ''){
-				String typeField = savedMappings.legalEntitySsn__c;
+			if (savedMappings.legalEntityPrincipalSsn__c != null &&  savedMappings.legalEntityPrincipalSsn__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalSsn__c;
 				List<String> customObjectFieldParts = typeField.split('\\.', 2);
 				if(customObjectFieldParts.size() == 2){
 					String sObjectName = customObjectFieldParts.get(0);
@@ -1082,9 +1118,225 @@ public class LitleMidFormController {
 		}
 	}
 	
+	public void populateLEPrincipalAddress1(){
+		if(!savedMappings.legalEntityPrincipalStreetAddress1X__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(savedMappings.legalEntityPrincipalStreetAddress1D__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalStreetAddress1__c != null &&  savedMappings.legalEntityPrincipalStreetAddress1__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalStreetAddress1__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalAddress2(){
+		if(!savedMappings.legalEntityPrincipalStreetAddress2X__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(savedMappings.legalEntityPrincipalStreetAddress2D__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalStreetAddress2__c != null &&  savedMappings.legalEntityPrincipalStreetAddress2__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalStreetAddress2__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalCity(){
+		if(!savedMappings.legalEntityPrincipalCityX__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(savedMappings.legalEntityPrincipalCityD__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalCity__c != null &&  savedMappings.legalEntityPrincipalCity__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalCity__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalStateProvince(){
+		if(!savedMappings.legalEntityPrincipalStateProvinceX__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(savedMappings.legalEntityPrincipalStateProvinceD__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalStateProvince__c != null &&  savedMappings.legalEntityPrincipalStateProvince__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalStateProvince__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalPostalCode(){
+		if(!savedMappings.legalEntityPrincipalPostalCodeX__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(savedMappings.legalEntityPrincipalPostalCodeD__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalPostalCode__c != null &&  savedMappings.legalEntityPrincipalPostalCode__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalPostalCode__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
+	public void populateLEPrincipalCountryCode(){
+		if(!savedMappings.legalEntityPrincipalCountryCodeX__c){
+			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(savedMappings.legalEntityPrincipalCountryCodeD__c);
+		}else{
+			if (savedMappings.legalEntityPrincipalCountryCode__c != null &&  savedMappings.legalEntityPrincipalCountryCode__c != ''){
+				String typeField = savedMappings.legalEntityPrincipalCountryCode__c;
+				List<String> customObjectFieldParts = typeField.split('\\.', 2);
+				if(customObjectFieldParts.size() == 2){
+					String sObjectName = customObjectFieldParts.get(0);
+					String sObjectFieldName = customObjectFieldParts.get(1);
+					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+						String sObjectId;
+						if(sObjectName.equalsIgnoreCase('Account')){
+							sObjectId = urlAccountId;
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							sObjectId = urlOpportunityId;
+						}
+						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
+						if(sObjectName.equalsIgnoreCase('Account')){
+							List<Account> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+							List<Opportunity> sObjectValue = Database.query(query);
+				    		if(!sObjectValue.isEmpty()){
+				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    		}
+						}
+						
+					}
+				}	 
+			}
+		}
+	}
+	
 	public void populateSMStreetAddress1(){
 		if(!savedMappings.subMerchantStreetAddress1X__c){
-			subMerchantModel.setsubMerchantStreetAddress1(savedMappings.subMerchantStreetAddress1D__c);
+			subMerchantModel.getSubMerchantAddress().setStreetAddress1(savedMappings.subMerchantStreetAddress1D__c);
 		}else{
 			if (savedMappings.subMerchantStreetAddress1__c != null &&  savedMappings.subMerchantStreetAddress1__c != ''){
 				String typeField = savedMappings.subMerchantStreetAddress1__c;
@@ -1103,12 +1355,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1120,7 +1372,7 @@ public class LitleMidFormController {
 	
 	public void populateSMStreetAddress2(){
 		if(!savedMappings.subMerchantStreetAddress2X__c){
-			subMerchantModel.setsubMerchantStreetAddress2(savedMappings.subMerchantStreetAddress2D__c);
+			subMerchantModel.getSubMerchantAddress().setStreetAddress2(savedMappings.subMerchantStreetAddress2D__c);
 		}else{
 			if (savedMappings.subMerchantStreetAddress2__c != null &&  savedMappings.subMerchantStreetAddress2__c != ''){
 				String typeField = savedMappings.subMerchantStreetAddress2__c;
@@ -1139,12 +1391,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1156,7 +1408,7 @@ public class LitleMidFormController {
 	
 	public void populateSMCity(){
 		if(!savedMappings.subMerchantCityX__c){
-			subMerchantModel.setsubMerchantCity(savedMappings.subMerchantCityD__c);
+			subMerchantModel.getSubMerchantAddress().setCity(savedMappings.subMerchantCityD__c);
 		}else{
 			if (savedMappings.subMerchantCity__c != null &&  savedMappings.subMerchantCity__c != ''){
 				String typeField = savedMappings.subMerchantCity__c;
@@ -1175,12 +1427,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1192,7 +1444,7 @@ public class LitleMidFormController {
 	
 	public void populateSMStateProvince(){
 		if(!savedMappings.subMerchantStateProvinceX__c){
-			subMerchantModel.setsubMerchantStateProvince(savedMappings.subMerchantStateProvinceD__c);
+			subMerchantModel.getSubMerchantAddress().setStateProvince(savedMappings.subMerchantStateProvinceD__c);
 		}else{
 			if (savedMappings.subMerchantStateProvince__c != null &&  savedMappings.subMerchantStateProvince__c != ''){
 				String typeField = savedMappings.subMerchantStateProvince__c;
@@ -1211,12 +1463,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1228,7 +1480,7 @@ public class LitleMidFormController {
 	
 	public void populateSMPostalCode(){
 		if(!savedMappings.subMerchantPostalCodeX__c){
-			subMerchantModel.setsubMerchantPostalCode(savedMappings.subMerchantPostalCodeD__c);
+			subMerchantModel.getSubMerchantAddress().setPostalCode(savedMappings.subMerchantPostalCodeD__c);
 		}else{
 			if (savedMappings.subMerchantPostalCode__c != null &&  savedMappings.subMerchantPostalCode__c != ''){
 				String typeField = savedMappings.subMerchantPostalCode__c;
@@ -1247,12 +1499,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1264,7 +1516,7 @@ public class LitleMidFormController {
 	
 	public void populateSMCountryCode(){
 		if(!savedMappings.subMerchantCountryCodeX__c){
-			subMerchantModel.setsubMerchantCountryCode(savedMappings.subMerchantCountryCodeD__c);
+			subMerchantModel.getSubMerchantAddress().setCountryCode(savedMappings.subMerchantCountryCodeD__c);
 		}else{
 			if (savedMappings.subMerchantCountryCode__c != null &&  savedMappings.subMerchantCountryCode__c != ''){
 				String typeField = savedMappings.subMerchantCountryCode__c;
@@ -1283,12 +1535,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1660,7 +1912,7 @@ public class LitleMidFormController {
 	
 	public void populateSMFirstName(){
 		if(!savedMappings.subMerchantFirstNameX__c){
-			subMerchantModel.setsubMerchantFirstName(savedMappings.subMerchantFirstNameD__c);
+			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(savedMappings.subMerchantFirstNameD__c);
 		}else{
 			if (savedMappings.subMerchantFirstName__c != null &&  savedMappings.subMerchantFirstName__c != ''){
 				String typeField = savedMappings.subMerchantFirstName__c;
@@ -1679,12 +1931,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1696,7 +1948,7 @@ public class LitleMidFormController {
 	
 	public void populateSMLastName(){
 		if(!savedMappings.subMerchantLastNameX__c){
-			subMerchantModel.setsubMerchantLastName(savedMappings.subMerchantLastNameD__c);
+			subMerchantModel.getSubMerchantPrimaryContact().setLastName(savedMappings.subMerchantLastNameD__c);
 		}else{
 			if (savedMappings.subMerchantLastName__c != null &&  savedMappings.subMerchantLastName__c != ''){
 				String typeField = savedMappings.subMerchantLastName__c;
@@ -1715,12 +1967,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1732,7 +1984,7 @@ public class LitleMidFormController {
 	
 	public void populateSMEmailAddress(){
 		if(!savedMappings.subMerchantEmailAddressX__c){
-			subMerchantModel.setsubMerchantEmailAddress(savedMappings.subMerchantEmailAddressD__c);
+			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(savedMappings.subMerchantEmailAddressD__c);
 		}else{
 			if (savedMappings.subMerchantEmailAddress__c != null &&  savedMappings.subMerchantEmailAddress__c != ''){
 				String typeField = savedMappings.subMerchantEmailAddress__c;
@@ -1751,12 +2003,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -1768,7 +2020,7 @@ public class LitleMidFormController {
 	
 	public void populateSMPhone(){
 		if(!savedMappings.subMerchantPhoneX__c){
-			subMerchantModel.setsubMerchantPhone(savedMappings.subMerchantPhoneD__c);
+			subMerchantModel.getSubMerchantPrimaryContact().setPhone(savedMappings.subMerchantPhoneD__c);
 		}else{
 			if (savedMappings.subMerchantPhone__c != null &&  savedMappings.subMerchantPhone__c != ''){
 				String typeField = savedMappings.subMerchantPhone__c;
@@ -1787,12 +2039,12 @@ public class LitleMidFormController {
 						if(sObjectName.equalsIgnoreCase('Account')){
 							List<Account> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
 							List<Opportunity> sObjectValue = Database.query(query);
 				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
+				    			subMerchantModel.getSubMerchantPrimaryContact().setPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
 				    		}
 						}
 						
@@ -2217,48 +2469,48 @@ public class LitleMidFormController {
 		//subMerchant Validations
 		
 		//System.debug('!!!'+subMerchantModel.getSubMerchantStreetAddress1());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantStreetAddress1())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress1(), 60)){
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStreetAddress1())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStreetAddress1(), 60)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 1 cannot exceed 60 characters'));
 			}
 		}
 		
-		//System.debug('!!!'+subMerchantModel.getSubMerchantStreetAddress2());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantStreetAddress2())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStreetAddress2(), 60)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAddress().getStreetAddress2());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStreetAddress2())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStreetAddress2(), 60)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Street Address 2 cannot exceed 60 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantCity());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantCity())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCity(), 20)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAddress().getCity());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getCity())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getCity(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant City cannot exceed 20 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantStateProvince());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantStateProvince())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantStateProvince(), 2)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAddress().getStateProvince());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStateProvince())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStateProvince(), 2)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant State/Province cannot exceed 2 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantPostalCode());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantPostalCode())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPostalCode(), 5)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAddress().getPostalCode());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getPostalCode())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getPostalCode(), 5)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Postal Code cannot exceed 5 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantCountryCode());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantCountryCode())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCountryCode(), 3)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantAddress().getCountryCode());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getCountryCode())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getCountryCode(), 3)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Country Code cannot exceed 3 characters'));
 			}
@@ -2344,33 +2596,33 @@ public class LitleMidFormController {
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantFirstName());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantFirstName())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantFirstName(), 20)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getFirstName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getFirstName(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant First Name cannot exceed 20 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantLastName());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantLastName())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantLastName(), 20)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPrimaryContact().getLastName());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getLastName())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getLastName(), 20)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Last Name cannot exceed 20 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantEmailAddress());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantEmailAddress())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantEmailAddress(), 100)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress(), 100)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Email Address cannot exceed 100 characters'));
 			}
 		}
 
-		//System.debug('!!!'+subMerchantModel.getSubMerchantPhone());
-		if(String.isNotEmpty(subMerchantModel.getSubMerchantPhone())){
-			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPhone(), 13)){
+		//System.debug('!!!'+subMerchantModel.getSubMerchantPrimaryContact().getPhone());
+		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getPhone())){
+			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getPhone(), 13)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Sub Merchant Phone cannot exceed 13 characters'));
 			}
@@ -2501,7 +2753,7 @@ public class LitleMidFormController {
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Has Accepted Credit Cards is Required'));
 	
 		}
-		if(String.isEmpty(subMerchantModel.getSubMerchantCountryCode())){
+		if(String.isEmpty(subMerchantModel.getSubMerchantAddress().getCountryCode())){
 			isAllRequiredFieldsPresent = false;
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'SubMerchant\'s Country Code is Required'));
 	

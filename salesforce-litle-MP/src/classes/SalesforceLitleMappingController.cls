@@ -1,22 +1,21 @@
 public class SalesforceLitleMappingController {
     private List < Selectoption > salesforceFields;
     private final String emptyString = '';
-    public Boolean savingStatus {get; set;}
-    public Boolean errorStatus {get; set;}
+    //public Boolean savingStatus {get; set;}
+    //public Boolean errorStatus {get; set;}
     //Holds the current mappings from the page
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
 
     public SalesforceLitleMappingController() {
-        List < SalesforceLitleMappingsObject__c > mappingRecords = [select id, name, subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsX__c, legalEntityDoingBusinessAsD__c from SalesforceLitleMappingsObject__c limit 1];
+        List < SalesforceLitleMappingsObject__c > mappingRecords = [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
         if (mappingRecords.isEmpty()) {
             this.currentMappings = new SalesforceLitleMappingsObject__c();
         } else {
             this.currentMappings = mappingRecords.get(0);
         }
-        savingStatus = false;
-        errorStatus = false;
+        /*savingStatus = false;
+        errorStatus = false;*/
     }
-
 
 
     public List < Selectoption > getSalesforceFields() {
@@ -46,10 +45,10 @@ public class SalesforceLitleMappingController {
         return accountFields;
     }
 
-    public void resetStatus() {
+    /*public void resetStatus() {
         savingStatus = false;
         errorStatus = false;
-    }
+    }*/
 
     //Legal Entity on change listeners	 
     public Pagereference onSelectChangeLegalEntityName() {
@@ -133,30 +132,84 @@ public class SalesforceLitleMappingController {
         }
         return null;
     }
-
-    public PageReference onSelectChangeLegalEntityFirstName() {
-        if (currentMappings.legalEntityFirstName__c == null) {
-            currentMappings.legalEntityFirstNameX__c = false;
+    
+    public PageReference onSelectChangeLegalEntityPrincipalStreetAddress1() {
+        if (currentMappings.LegalEntityPrincipalStreetAddress1__c == null) {
+            currentMappings.LegalEntityPrincipalStreetAddress1X__c = false;
         } else {
-            currentMappings.legalEntityFirstNameX__c = true;
+            currentMappings.LegalEntityPrincipalStreetAddress1X__c = true;
         }
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntityLastName() {
-        if (currentMappings.legalEntityLastName__c == null) {
-            currentMappings.legalEntityLastNameX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalStreetAddress2() {
+        if (currentMappings.LegalEntityPrincipalStreetAddress2__c == null) {
+            currentMappings.LegalEntityPrincipalStreetAddress2X__c = false;
         } else {
-            currentMappings.legalEntityLastNameX__c = true;
+            currentMappings.LegalEntityPrincipalStreetAddress2X__c = true;
         }
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntityEmailAddress() {
-        if (currentMappings.legalEntityEmailAddress__c == null) {
-            currentMappings.legalEntityEmailAddressX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalCity() {
+        if (currentMappings.LegalEntityPrincipalCity__c == null) {
+            currentMappings.LegalEntityPrincipalCityX__c = false;
         } else {
-            currentMappings.legalEntityEmailAddressX__c = true;
+            currentMappings.LegalEntityPrincipalCityX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalStateProvince() {
+        if (currentMappings.LegalEntityPrincipalStateProvince__c == null) {
+            currentMappings.LegalEntityPrincipalStateProvinceX__c = false;
+        } else {
+            currentMappings.LegalEntityPrincipalStateProvinceX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalPostalCode() {
+        if (currentMappings.LegalEntityPrincipalPostalCode__c == null) {
+            currentMappings.LegalEntityPrincipalPostalCodeX__c = false;
+        } else {
+            currentMappings.LegalEntityPrincipalPostalCodeX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalCountryCode() {
+        if (currentMappings.LegalEntityPrincipalCountryCode__c == null) {
+            currentMappings.LegalEntityPrincipalCountryCodeX__c = false;
+        } else {
+            currentMappings.LegalEntityPrincipalCountryCodeX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalFirstName() {
+        if (currentMappings.legalEntityPrincipalFirstName__c == null) {
+            currentMappings.legalEntityPrincipalFirstNameX__c = false;
+        } else {
+            currentMappings.legalEntityPrincipalFirstNameX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalLastName() {
+        if (currentMappings.LegalEntityPrincipalLastName__c == null) {
+            currentMappings.LegalEntityPrincipalLastNameX__c = false;
+        } else {
+            currentMappings.LegalEntityPrincipalLastNameX__c = true;
+        }
+        return null;
+    }
+
+    public PageReference onSelectChangeLegalEntityPrincipalEmailAddress() {
+        if (currentMappings.legalEntityPrincipalEmailAddress__c == null) {
+            currentMappings.legalEntityPrincipalEmailAddressX__c = false;
+        } else {
+            currentMappings.legalEntityPrincipalEmailAddressX__c = true;
         }
         return null;
     }
@@ -170,38 +223,47 @@ public class SalesforceLitleMappingController {
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntityDateOfBirth() {
-        if (currentMappings.legalEntityDateOfBirth__c == null) {
-            currentMappings.legalEntityDateOfBirthX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalDateOfBirth() {
+        if (currentMappings.legalEntityPrincipalDateOfBirth__c == null) {
+            currentMappings.legalEntityPrincipalDateOfBirthX__c = false;
         } else {
-            currentMappings.legalEntityDateOfBirthX__c = true;
+            currentMappings.legalEntityPrincipalDateOfBirthX__c = true;
         }
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntityDriversLicense() {
-        if (currentMappings.legalEntityDriversLicense__c == null) {
-            currentMappings.legalEntityDriversLicenseX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalDriversLicense() {
+        if (currentMappings.legalEntityPrincipalDriversLicense__c == null) {
+            currentMappings.legalEntityPrincipalDriversLicenseX__c = false;
         } else {
-            currentMappings.legalEntityDriversLicenseX__c = true;
+            currentMappings.legalEntityPrincipalDriversLicenseX__c = true;
         }
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntityDriversLicenseState() {
-        if (currentMappings.legalEntityDriversLicenseState__c == null) {
-            currentMappings.legalEntityDriversLicenseStateX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalDriversLicenseState() {
+        if (currentMappings.legalEntityPrincipalDriversLicenseState__c == null) {
+            currentMappings.legalEntityPrincipalDriversLicenseStateX__c = false;
         } else {
-            currentMappings.legalEntityDriversLicenseStateX__c = true;
+            currentMappings.legalEntityPrincipalDriversLicenseStateX__c = true;
         }
         return null;
     }
 
-    public PageReference onSelectChangeLegalEntitySsn() {
-        if (currentMappings.legalEntitySsn__c == null) {
-            currentMappings.legalEntitySsnX__c = false;
+    public PageReference onSelectChangeLegalEntityPrincipalSsn() {
+        if (currentMappings.legalEntityPrincipalSsn__c == null) {
+            currentMappings.legalEntityPrincipalSsnX__c = false;
         } else {
-            currentMappings.legalEntitySsnX__c = true;
+            currentMappings.legalEntityPrincipalSsnX__c = true;
+        }
+        return null;
+    }
+    
+    public PageReference onSelectChangeLegalEntityPrincipalContactPhone() {
+        if (currentMappings.legalEntityPrincipalContactPhone__c == null) {
+            currentMappings.legalEntityPrincipalContactPhoneX__c = false;
+        } else {
+            currentMappings.legalEntityPrincipalContactPhoneX__c = true;
         }
         return null;
     }
@@ -648,38 +710,66 @@ public class SalesforceLitleMappingController {
             currentMappings.legalEntityCountryCodeD__c = emptyString;
         }
 
-        if (currentMappings.legalEntityFirstNameX__c) {
-            currentMappings.legalEntityFirstNameD__c = emptyString;
+        if (currentMappings.legalEntityPrincipalFirstNameX__c) {
+            currentMappings.legalEntityPrincipalFirstNameD__c = emptyString;
         }
 
-        if (currentMappings.legalEntityLastNameX__c) {
-            currentMappings.legalEntityLastNameD__c = emptyString;
+        if (currentMappings.LegalEntityPrincipalLastNameX__c) {
+            currentMappings.LegalEntityPrincipalLastNameD__c = emptyString;
         }
 
-        if (currentMappings.legalEntityEmailAddressX__c) {
-            currentMappings.legalEntityEmailAddressD__c = emptyString;
+        if (currentMappings.legalEntityPrincipalEmailAddressX__c) {
+            currentMappings.legalEntityPrincipalEmailAddressD__c = emptyString;
         }
 
         if (currentMappings.legalEntityContactPhoneX__c) {
             currentMappings.legalEntityContactPhoneD__c = emptyString;
         }
-
-        if (currentMappings.legalEntityDateOfBirthX__c) {
-            currentMappings.legalEntityDateOfBirthD__c = emptyString;
+        
+        if (currentMappings.legalEntityPrincipalContactPhoneX__c) {
+            currentMappings.legalEntityPrincipalContactPhoneD__c = emptyString;
         }
 
-        if (currentMappings.legalEntityDriversLicenseX__c) {
-            currentMappings.legalEntityDriversLicenseD__c = emptyString;
+        if (currentMappings.legalEntityPrincipalDateOfBirthX__c) {
+            currentMappings.legalEntityPrincipalDateOfBirthD__c = emptyString;
         }
 
-        if (currentMappings.legalEntityDriversLicenseStateX__c) {
-            currentMappings.legalEntityDriversLicenseStateD__c = emptyString;
+        if (currentMappings.legalEntityPrincipalDriversLicenseX__c) {
+            currentMappings.legalEntityPrincipalDriversLicenseD__c = emptyString;
         }
 
-        if (currentMappings.legalEntitySsnX__c) {
-            currentMappings.legalEntitySsnD__c = emptyString;
+        if (currentMappings.legalEntityPrincipalDriversLicenseStateX__c) {
+            currentMappings.legalEntityPrincipalDriversLicenseStateD__c = emptyString;
         }
 
+        if (currentMappings.legalEntityPrincipalSsnX__c) {
+            currentMappings.legalEntityPrincipalSsnD__c = emptyString;
+        }
+
+		if (currentMappings.legalEntityPrincipalStreetAddress1X__c) {
+            currentMappings.legalEntityPrincipalStreetAddress1D__c = emptyString;
+        }
+
+        if (currentMappings.legalEntityPrincipalStreetAddress2X__c) {
+            currentMappings.legalEntityPrincipalStreetAddress2D__c = emptyString;
+        }
+
+        if (currentMappings.legalEntityPrincipalCityX__c) {
+            currentMappings.legalEntityPrincipalCityD__c = emptyString;
+        }
+
+        if (currentMappings.legalEntityPrincipalStateProvinceX__c) {
+            currentMappings.legalEntityPrincipalStateProvinceD__c = emptyString;
+        }
+
+        if (currentMappings.legalEntityPrincipalPostalCodeX__c) {
+            currentMappings.legalEntityPrincipalPostalCodeD__c = emptyString;
+        }
+
+        if (currentMappings.legalEntityPrincipalCountryCodeX__c) {
+            currentMappings.legalEntityPrincipalCountryCodeD__c = emptyString;
+        }
+        
         if (currentMappings.legalEntityTaxIdX__c) {
             currentMappings.legalEntityTaxIdD__c = emptyString;
         }
@@ -731,16 +821,18 @@ public class SalesforceLitleMappingController {
             if (aId != null && !aid.equals('')) {
                 return new PageReference('/' + aId);
             }
-            savingStatus = true;
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,'Mappings Saved.'));
+            //savingStatus = true;
         } catch (DmlException e) {
-            errorStatus = true;
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in Saving Mappings.'));
+            //errorStatus = true;
         }
         return null;
 
     }
 
     public Pagereference cancelMappings() {
-        resetStatus();
+        //resetStatus();
         String aId = apexpages.currentpage().getParameters().get('id');
         if (aId != null && !aid.equals('')) {
             return new PageReference('/' + aId);
