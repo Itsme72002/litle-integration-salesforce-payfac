@@ -2215,7 +2215,11 @@ public class LitleMidFormController {
 		if(areRequiredFieldsFilled()){
 			if(isInputDataValid()){
 				//Make API call	
-				makeCreateLegalEntityRequest();
+				if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
+		        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Username or Password are not set in the Mappings page. Request Failed.'));
+		        } else {
+					makeCreateLegalEntityRequest();
+				}
 		        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
 			}
 			//return to previous page
@@ -2240,7 +2244,7 @@ public class LitleMidFormController {
         //endpoint
         createLegalEntityRequest.setEndpoint('https://psp-cert.litle.com/legalentity');
         // create header
-        Blob headerValue = Blob.valueOf('username:password'); //Enter username and password
+        Blob headerValue = Blob.valueOf(savedMappings.merchantUsername__c+':'+savedMappings.merchantPassword__c); //Enter username and password
         String authorizationHeader = 'Basic' + Encodingutil.base64Encode(headerValue);
         createLegalEntityRequest.setHeader('Authorization', authorizationHeader);
         createLegalEntityRequest.setHeader('Content-Type', 'application/com.litle.psp-v5+xml');
