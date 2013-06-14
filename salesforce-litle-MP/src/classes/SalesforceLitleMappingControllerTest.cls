@@ -1100,7 +1100,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityCountryCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameX__c = flag; 
-		//salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseX__c = flag; 
@@ -1161,7 +1161,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityCountryCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameD__c = stringToSet; 
-		//salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseD__c = stringToSet; 
@@ -1212,7 +1212,7 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchanteCheckBillingDescD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameD__c);
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityNameD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTypeD__c); 
+		//System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTypeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityStreetAddress1D__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityStreetAddress2D__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityCityD__c); 
@@ -1221,7 +1221,7 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityCountryCodeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalFirstNameD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalLastNameD__c); 
-		//System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalEmailAddressD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalContactPhoneD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalDateOfBirthD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalDriversLicenseD__c); 
@@ -1263,8 +1263,22 @@ private class SalesforceLitleMappingControllerTest {
 	
 	static testMethod void testCancelMappings(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-		salesforceLitleMappingController.cancelMappings();
+		//No id present in the url
+		System.assertEquals(null, salesforceLitleMappingController.cancelMappings());
+		//some account id, return to the account page
+		Apexpages.currentPage().getParameters().put('id' , testString);
+		
+		System.assertEquals( '/' + testString, salesforceLitleMappingController.cancelMappings().getUrl());
 		//Apexpages.currentPage().
+	}
+	
+	static testMethod void testConstructor(){
+		SalesforceLitleMappingsObject__c customObject = new SalesforceLitleMappingsObject__c();
+		customObject.legalEntityName__c = testString;
+		insert customObject;
+		SalesforceLitleMappingController controller = new SalesforceLitleMappingController();
+		System.assertEquals(testString, controller.currentMappings.legalEntityName__c);
+		delete customObject;
 	}
 	
 	static testMethod void testCancelMappingsPageRedirect(){

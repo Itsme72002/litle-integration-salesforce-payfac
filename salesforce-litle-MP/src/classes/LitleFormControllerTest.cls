@@ -2147,4 +2147,9 @@ private class LitleFormControllerTest {
     	delete mappingObject;
     }
     
+    static testMethod void testCancel(){
+    	LitleMidFormController controller = new LitleMidFormController();
+    	System.assertEquals(null, controller.cancel());
+    }
+    
 }
