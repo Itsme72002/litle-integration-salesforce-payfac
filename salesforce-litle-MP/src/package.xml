@@ -9,6 +9,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>LitleSalesforceMP</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
         <members>*</members>
         <name>CustomObject</name>
     </types>
@@ -18,7 +22,8 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>*</members>
+        <members>Account-LitleAccountsPage</members>
+        <members>Opportunity-LitleOpportunityPage</members>
         <name>Layout</name>
     </types>
     <types>

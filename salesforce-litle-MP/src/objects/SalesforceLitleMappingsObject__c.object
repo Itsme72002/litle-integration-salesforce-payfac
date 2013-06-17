@@ -1789,11 +1789,6 @@
         <unique>false</unique>
     </fields>
     <label>SalesforceLitleMappingsObject</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <displayFormat>{0}</displayFormat>
         <label>Mapping Number</label>
