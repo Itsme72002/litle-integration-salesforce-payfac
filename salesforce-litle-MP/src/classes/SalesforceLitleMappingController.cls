@@ -842,11 +842,14 @@ public class SalesforceLitleMappingController {
 
     public Pagereference cancelMappings() {
         //resetStatus();
-        String aId = apexpages.currentpage().getParameters().get('id');
+        /*String aId = apexpages.currentpage().getParameters().get('id');
         if (aId != null && !aid.equals('')) {
             return new PageReference('/' + aId);
         }
-        return null;
+        return null;*/
+        PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+	    pageRef.setRedirect(true);
+	    return pageRef;
     }
 
     /*public Pagereference resetMappings(){

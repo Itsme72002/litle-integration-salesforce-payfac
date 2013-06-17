@@ -11,7 +11,7 @@
         <masterLabel>Get Litle MID</masterLabel>
         <openType>sidebar</openType>
         <protected>false</protected>
-        <url>/apex/forceMock__GetLitleMidForm?accid={!Account.Id}&amp;oppid={!Opportunity.Id}</url>
+        <url>/apex/forceMock__GetLitleMidForm?accid={!Account.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Litle_Fields_Mapping</fullName>

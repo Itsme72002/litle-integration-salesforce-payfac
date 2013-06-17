@@ -20,10 +20,20 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-public class MockHttpResponseGenerator implements HttpCalloutMock{
+public class MockCreateLegalEntityResponseGenerator implements HttpCalloutMock{
 
-    public HttpResponse respond(HttpRequest req){
+	public static final String DEFAULT_STRING = 'Default String';
+	
+    public HttpResponse respond(HttpRequest request){
+    	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
+    	System.assertEquals('POST', request.getMethod());
+    	System.assertEquals(LitleMidFormController.CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleMidFormController.ACCEPT, request.getHeader('Accept'));
+        
     	HttpResponse res = new HttpResponse();
+    	res.setBody(DEFAULT_STRING);
+    	res.setStatusCode(201);
+    	res.setStatus(DEFAULT_STRING);
     	return res;
     }
 }

@@ -9,6 +9,10 @@ public class LitleMidFormController {
 //	public Boolean isTaxDisplayed{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
 	public static final List<Integer> pciLevels = new List<Integer>{ 1, 2, 3, 4 };
+	public static final String LEGAL_ENTITY_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
+	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
+	public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
+	public static final String URL_SEPARATOR = '/';
 	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
 	//public static final String OTHER = 'OTHER';
 	
@@ -2214,55 +2218,157 @@ public class LitleMidFormController {
 	public Pagereference submit(){
 		if(areRequiredFieldsFilled()){
 			if(isInputDataValid()){
-				//Make API call	
+				// Check if username and password are available
 				if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
 		        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Username or Password are not set in the Mappings page. Request Failed.'));
 		        } else {
-					makeCreateLegalEntityRequest();
+		        	//Make API call	
+		        	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+		        	LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
+		        	// Legal entity request 
+					makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
+					//check if legal entity id is populated
+					//TEST: set legal entity id
+					//legalEntityModel.setLegalEntityId('123');
+					LoggingUtil.logSObjectDetails(urlAccountId, urlOpportunityId, litleRequestResponseLog);
+					/*Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
+					thisAccount.Litle_MID__c = 'Litle MID status';
+					upsert thisAccount;*/
+					if(String.isNotEmpty(legalEntityModel.getLegalEntityId())){
+						// Sub Merchant request
+						makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
+					}
+					try{
+		        		insert litleRequestResponseLog;
+		        	}catch(DmlException e){
+		        		System.debug('Error Saving Request Response Object ' + e);
+		        	}
 				}
 		        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
 			}
 			//return to previous page
 		}
-		/*else{
-			//Display error
-		}
-		////System.debug('!!! In Submit');
-		if(ValidationUtil.validateDate(legalEntityModel.getLegalEntityDateOfBirth())){
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Valid Date'));
-		}else{
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Date'));
-		}
-		//ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Required Field'));*/
 		return null;
 		
 	}
 	
-	public void makeCreateLegalEntityRequest(){
+	public void makeCreateLegalEntityRequest(LitleRequestResponseLog__c litleRequestResponseLog, LitleRequestXml litleRequestXml){
 		Http h = new Http();
         Httprequest createLegalEntityRequest = new Httprequest();
-        //endpoint
-        createLegalEntityRequest.setEndpoint('https://psp-cert.litle.com/legalentity');
-        // create header
-        Blob headerValue = Blob.valueOf(savedMappings.merchantUsername__c+':'+savedMappings.merchantPassword__c); //Enter username and password
-        String authorizationHeader = 'Basic' + Encodingutil.base64Encode(headerValue);
-        createLegalEntityRequest.setHeader('Authorization', authorizationHeader);
-        createLegalEntityRequest.setHeader('Content-Type', 'application/com.litle.psp-v5+xml');
-		createLegalEntityRequest.setHeader('Accept', 'application/com.litle.psp-v5+xml');
-        // Post request
-        createLegalEntityRequest.setMethod('POST');
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
-        //set body as the request xml
-        createLegalEntityRequest.setBody(litleRequestXml.getCreateLegalEntityRequest());
+        setRequestParams(createLegalEntityRequest, LEGAL_ENTITY_ENDPOINT, 'POST', litleRequestXml.getCreateLegalEntityRequest());
+        //Log request
+        LoggingUtil.logCreateLegalEntityRequest(createLegalEntityRequest, litleRequestResponseLog);
+       // litleRequestResponseLog.createLegalEntityRequestDate__c = Datetime.now();
+    	//litleRequestResponseLog.createLegalEntityRequestXml__c = String.valueOf(createLegalEntityRequest.getBody());
         Httpresponse res = new Httpresponse();
-        try{ 
-        	res = h.send(createLegalEntityRequest);
+        try{
+        	res = h.send(createLegalEntityRequest); 
+        	//Log response
+        	LoggingUtil.logCreateLegalEntityResponse(res, litleRequestResponseLog);
+        	/*litleRequestResponseLog.createLegalEntityResponseDate__c = Datetime.now();
+        	litleRequestResponseLog.createLegalEntityResponseXml__c = String.valueOf(res.getBody());
+        	litleRequestResponseLog.createLegalEntityResponseStatusCode__c = String.valueOf(res.getStatusCode());
+        	litleRequestResponseLog.createLegalEntityResponseStatusMessage__c = res.getStatus();*/
+        	
+        	//TODO Handle legal entity response
+        	if(res.getStatusCode() == 201){
+        		// extract legal entity id
+        		// return legal entity id
+        	}else{
+        		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+extractXmlTagText(res,'error')));	
+        	}
+        }catch(System.CalloutException e){
+        	System.debug('Callout error: '+ e);
+        	System.debug(res.toString());
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
+        }
+	}
+	
+	// extract error from response
+	public String extractXmlTagText(HttpResponse response, String tagName){
+		if(response != null && String.isNotEmpty(tagName)){
+			Xmlstreamreader xmlReader = response.getXmlStreamReader();
+			while(xmlReader.hasNext()){
+				if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
+					if(xmlReader.getLocalName().equals(tagName)){
+						xmlReader.next();
+						if(xmlReader.getEventType() == Xmltag.CHARACTERS){
+							return xmlReader.getText();
+						}
+					}
+				}
+				xmlReader.next();
+			}
+		}
+		return null;
+	}
+	
+	public void extractResponse(Httpresponse response){
+		if(response != null){
+			//check response code 10
+			String responseCode = extractXmlTagText(response, 'responseCode');
+			if(String.isNotEmpty(responseCode)){
+				if(responseCode.trim().equals('10')){
+					//Approved
+					//Extract legal entity id
+				}else{
+					//Not approved
+					//set legal entity id to null
+					legalEntityModel.setLegalEntityId(null);
+					//Extract response description
+					String responseDescription = extractXmlTagText(response, 'responseDescription');
+					//store in custom object
+				}
+				//set legal entity id
+				//else
+				//set error message in custom field
+			}else{
+				// for null response code
+				legalEntityModel.setLegalEntityId(null);
+			}
+		}
+	}
+	
+	public void makeCreateSubMerchantRequest(LitleRequestResponseLog__c litleRequestResponseLog, LitleRequestXml litleRequestXml){
+		Http h = new Http();
+        Httprequest createSubMerchantRequest = new Httprequest();
+        //sub merchant endpoint /legalentity/legalentityid/submerchant
+        String subMerchantEndpoint = LEGAL_ENTITY_ENDPOINT + URL_SEPARATOR +legalEntityModel.getLegalEntityId() + URL_SEPARATOR + 'submerchant';
+        setRequestParams(createSubMerchantRequest, subMerchantEndpoint, 'POST', litleRequestXml.getCreateSubMerchantRequest());
+        //Log request
+		
+        //litleRequestResponseLog.createSubMerchantRequestDate__c = Datetime.now();
+    	litleRequestResponseLog.createSubMerchantRequestXml__c = String.valueOf(createSubMerchantRequest.getBody());
+        Httpresponse res = new Httpresponse();
+        try{
+        	res = h.send(createSubMerchantRequest); 
+        	//Log response
+        	LoggingUtil.logCreateSubMerchantResponse(res, litleRequestResponseLog);
+        	/*litleRequestResponseLog.createSubMerchantResponseDate__c = Datetime.now();
+        	litleRequestResponseLog.createSubMerchantResponseXml__c = String.valueOf(res.getBody());
+        	litleRequestResponseLog.createSubMerchantResponseStatusCode__c = String.valueOf(res.getStatusCode());
+        	litleRequestResponseLog.createSubMerchantResponseStatusMessage__c = res.getStatus();*/
+        	//TODO Handle sub merchant response
+        	//Set litle mid
         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
         }catch(System.CalloutException e){
         	System.debug('Callout error: '+ e);
         	System.debug(res.toString());
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
         }
+	}
+	
+	// Set the request parameters of the given http request
+	public void setRequestParams(HttpRequest request, String endPoint, String method, String body){
+		request.setEndpoint(endPoint);
+        // create header
+        Blob headerValue = Blob.valueOf(savedMappings.merchantUsername__c+':'+savedMappings.merchantPassword__c); //Enter username and password
+        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
+        request.setHeader('Authorization', authorizationHeader);
+        request.setHeader('Content-Type', CONTENT_TYPE);
+		request.setHeader('Accept', ACCEPT);
+		request.setMethod(method);
+        request.setBody(body);
 	}
 		 
 	public Pagereference cancel(){
