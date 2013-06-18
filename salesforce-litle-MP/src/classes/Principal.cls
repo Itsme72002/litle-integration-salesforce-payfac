@@ -1,4 +1,5 @@
 public class  Principal{
+	private String principalId {get; set;}
 	private Address address;
     private String firstName;
     private String lastName;
