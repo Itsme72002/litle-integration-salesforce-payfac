@@ -136,88 +136,85 @@
                     	<apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.PciLevel}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="First Name: " />
+                    <apex:outputText value="Principal's First Name: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.FirstName}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Last Name: " />
+                    <apex:outputText value="Principal's Last Name: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.LastName}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Email Address: " />
+                    <apex:outputText value="Principal's Email Address: " />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.EmailAddress}" />
                     
-                    <apex:outputText value="SSN: " />
+                    <apex:outputText value="Principal's SSN: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block"  id="ssnInput">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.Ssn}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Contact Phone: " />
+                    <apex:outputText value="Principal's Contact Phone: " />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.ContactPhone}" />
                     
-                    <apex:outputText value="Date Of Birth: (YYYY-MM-DD)" />
+                    <apex:outputText value="Principal's Date Of Birth: (YYYY-MM-DD)" />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DateOfBirth}" />
                     
-                    <apex:outputText value="Drivers License: " />
+                    <apex:outputText value="Principal's Drivers License: " />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicense}" />
                     
-                    <apex:outputText value="Drivers License State: " />
+                    <apex:outputText value="Principal's Drivers License State: " />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicenseState}" />
                     
-                    <apex:outputText value="Street Address 1: " />
+                    <apex:outputText value="Principal's Street Address 1: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" maxlength="2"/>
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Street Address 2: " />
+                    <apex:outputText value="Principal's Street Address 2: " />
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress2}" />
                     
-                    <apex:outputText value="City: " />
+                    <apex:outputText value="Principal's City: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.City}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="State/Province: " />
+                    <apex:outputText value="Principal's State/Province: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StateProvince}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Postal Code: " />
+                    <apex:outputText value="Principal's Postal Code: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.PostalCode}" />
                     </apex:outputPanel>
                     
-                    <apex:outputText value="Country Code: " />
+                    <apex:outputText value="Principal's Country Code: " />
                     <apex:outputtext value="" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
 	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
                     	<apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.CountryCode}" />
                     </apex:outputPanel>
-                    
-                    
-                    
                 </apex:panelGrid>
 
 
@@ -316,19 +313,19 @@
                     	<apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" />
                     </apex:outputPanel>
 
-                    <apex:outputText value="First Name: " />
+                    <apex:outputText value="Primary Contact's First Name: " />
                     <apex:outputtext value="" />
                     <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" />
                     
-                    <apex:outputText value="Last Name: " />
+                    <apex:outputText value="Primary Contact's Last Name: " />
                     <apex:outputtext value="" />
                     <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" />
                     
-                    <apex:outputText value="Email Address: " />
+                    <apex:outputText value="Primary Contact's Email Address: " />
                     <apex:outputtext value="" />
                     <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}" id="subMerchantEmailAddressDefaultTxtBox" />
                     
-                    <apex:outputText value="Phone: " />
+                    <apex:outputText value="Primary Contact's Phone: " />
                     <apex:outputtext value="" />
                     <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" />
                     

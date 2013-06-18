@@ -226,7 +226,7 @@
                     <!-- End PCI -->
                     
                     <!-- Start Principal -->
-                    <apex:outputText value="Principal First Name: " />
+                    <apex:outputText value="Principal's First Name: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalFirstNameList" value="{!currentMappings.legalEntityPrincipalFirstName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -235,7 +235,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalFirstNameD__c}" disabled="{!currentMappings.legalEntityPrincipalFirstNameX__c}"/>
                     
-                    <apex:outputText value="Principal Last Name: " />
+                    <apex:outputText value="Principal's Last Name: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalLastNameList" value="{!currentMappings.legalEntityPrincipalLastName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -244,7 +244,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalLastNameD__c}" disabled="{!currentMappings.legalEntityPrincipalLastNameX__c}"/>
                     
-                     <apex:outputText value="Principal Email Address: " />
+                     <apex:outputText value="Principal's Email Address: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalEmailAddressList" value="{!currentMappings.legalEntityPrincipalEmailAddress__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -253,7 +253,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalEmailAddressD__c}" disabled="{!currentMappings.legalEntityPrincipalEmailAddressX__c}"/>
                      
-                    <apex:outputText value="Principal SSN: " />
+                    <apex:outputText value="Principal's SSN: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalSsnList" value="{!currentMappings.legalEntityPrincipalSsn__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -262,7 +262,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalSsnD__c}" disabled="{!currentMappings.legalEntityPrincipalSsnX__c}"/>
                     
-                    <apex:outputText value="Principal Contact Phone: " />
+                    <apex:outputText value="Principal's Contact Phone: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalContactPhoneList" value="{!currentMappings.legalEntityPrincipalContactPhone__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -271,7 +271,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalContactPhoneD__c}" disabled="{!currentMappings.legalEntityPrincipalContactPhoneX__c}"/>
                     
-                    <apex:outputText value="Principal Date Of Birth: " />
+                    <apex:outputText value="Principal's Date Of Birth: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalDateOfBirthList" value="{!currentMappings.legalEntityPrincipalDateOfBirth__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -280,7 +280,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDateOfBirthD__c}" disabled="{!currentMappings.legalEntityPrincipalDateOfBirthX__c}"/>
                     
-                    <apex:outputText value="Principal Drivers License: " />
+                    <apex:outputText value="Principal's Drivers License: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalDriversLicenseList" value="{!currentMappings.legalEntityPrincipalDriversLicense__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -289,7 +289,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDriversLicenseD__c}" disabled="{!currentMappings.legalEntityPrincipalDriversLicenseX__c}"/>
                     
-                    <apex:outputText value="Principal Drivers License State: " />
+                    <apex:outputText value="Principal's Drivers License State: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalDriversLicenseStateList" value="{!currentMappings.legalEntityPrincipalDriversLicenseState__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -300,7 +300,7 @@
                     
                     <!-- Start Principal's Address -->
                     
-                    <apex:outputText value="Principal Street Address 1: " />
+                    <apex:outputText value="Principal's Street Address 1: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalStreetAddress1List" value="{!currentMappings.legalEntityPrincipalStreetAddress1__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -309,7 +309,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress1D__c}" disabled="{!currentMappings.legalEntityPrincipalStreetAddress1X__c}"/>
                     
-                    <apex:outputText value="Principal Street Address 2: " />
+                    <apex:outputText value="Principal's Street Address 2: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalStreetAddress2List" value="{!currentMappings.legalEntityPrincipalStreetAddress2__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -318,7 +318,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress2D__c}" disabled="{!currentMappings.legalEntityPrincipalStreetAddress2X__c}"/>
                     
-                    <apex:outputText value="Principal City: " />
+                    <apex:outputText value="Principal's City: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalCityList" value="{!currentMappings.legalEntityPrincipalCity__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -327,7 +327,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalCityD__c}" disabled="{!currentMappings.legalEntityPrincipalCityX__c}"/>
                     
-                    <apex:outputText value="Principal State/Province: " />
+                    <apex:outputText value="Principal's State/Province: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalStateProvinceList" value="{!currentMappings.legalEntityPrincipalStateProvince__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -336,7 +336,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStateProvinceD__c}" disabled="{!currentMappings.legalEntityPrincipalStateProvinceX__c}"/>
                     
-                    <apex:outputText value="Principal Postal Code: " />
+                    <apex:outputText value="Principal's Postal Code: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalPostalCodeList" value="{!currentMappings.legalEntityPrincipalPostalCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -345,7 +345,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalPostalCodeD__c}" disabled="{!currentMappings.legalEntityPrincipalPostalCodeX__c}"/>
                     
-                    <apex:outputText value="Principal Country Code: " />
+                    <apex:outputText value="Principal's Country Code: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="legalEntityPrincipalCountryCodeList" value="{!currentMappings.legalEntityPrincipalCountryCode__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -519,7 +519,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText value="{!currentMappings.subMerchantMerchantNameD__c}" id="subMerchantMerchantNameDefaultTxtBox" disabled="{!currentMappings.subMerchantMerchantNameX__c}"/>
 
-                    <apex:outputText value="First Name: " />
+                    <apex:outputText value="Primary Contact's First Name: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="subMerchantFirstNameList" value="{!currentMappings.subMerchantFirstName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -528,7 +528,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText value="{!currentMappings.subMerchantFirstNameD__c}" id="subMerchantFirstNameDefaultTxtBox" disabled="{!currentMappings.subMerchantFirstNameX__c}"/>
                     
-                    <apex:outputText value="Last Name: " />
+                    <apex:outputText value="Primary Contact's Last Name: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="subMerchantLastNameList" value="{!currentMappings.subMerchantLastName__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -537,7 +537,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText value="{!currentMappings.subMerchantLastNameD__c}" id="subMerchantLastNameDefaultTxtBox" disabled="{!currentMappings.subMerchantLastNameX__c}"/>
                     
-                    <apex:outputText value="Email Address: " />
+                    <apex:outputText value="Primary Contact's Email Address: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="subMerchantEmailAddressList" value="{!currentMappings.subMerchantEmailAddress__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
@@ -546,7 +546,7 @@
                     <apex:outputtext value="" />
                     <apex:inputText value="{!currentMappings.subMerchantEmailAddressD__c}" id="subMerchantEmailAddressDefaultTxtBox" disabled="{!currentMappings.subMerchantEmailAddressX__c}"/>
                     
-                    <apex:outputText value="Phone: " />
+                    <apex:outputText value="Primary Contact's Phone: " />
                     <apex:outputtext value="" />
                     <apex:selectList id="subMerchantPhoneList" value="{!currentMappings.subMerchantPhone__c}" size="1">
                         <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
