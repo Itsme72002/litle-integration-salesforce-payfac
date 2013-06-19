@@ -184,12 +184,6 @@
     <label>LitleRequestResponseLog</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>sObjectType__c</columns>
-        <columns>sObjectName__c</columns>
-        <columns>sObjectId__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -197,8 +191,8 @@
         <fullName>LitleLogView</fullName>
         <columns>NAME</columns>
         <columns>sObjectType__c</columns>
-        <columns>sObjectId__c</columns>
         <columns>sObjectName__c</columns>
+        <columns>sObjectId__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>

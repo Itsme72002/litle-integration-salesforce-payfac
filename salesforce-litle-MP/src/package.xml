@@ -13,12 +13,29 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>LitleRequestResponseLog__c.createLegalEntityRequestDate__c</members>
+        <members>LitleRequestResponseLog__c.createLegalEntityRequestXml__c</members>
+        <members>LitleRequestResponseLog__c.createLegalEntityResponseDate__c</members>
+        <members>LitleRequestResponseLog__c.createLegalEntityResponseStatusCode__c</members>
+        <members>LitleRequestResponseLog__c.createLegalEntityResponseStatusMessage__c</members>
+        <members>LitleRequestResponseLog__c.createLegalEntityResponseXml__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantRequestDate__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantRequestXml__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantResponseDate__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantResponseStatusCode__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantResponseStatusMessage__c</members>
+        <members>LitleRequestResponseLog__c.createSubMerchantResponseXml__c</members>
+        <members>LitleRequestResponseLog__c.sObjectId__c</members>
+        <members>LitleRequestResponseLog__c.sObjectName__c</members>
+        <members>LitleRequestResponseLog__c.sObjectType__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
         <members>*</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>LitleRequestResponseLog__c</members>
-        <members>Litle_Mapping</members>
+        <members>*</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -27,11 +44,8 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>Account.Get_Litle_MID</members>
-        <members>Account.Litle_Fields_Mapping</members>
-        <members>Opportunity.Get_Litle_MID</members>
-        <members>Opportunity.Litle_Fields_Mapping</members>
-        <name>WebLink</name>
+        <members>LitleRequestResponseLog__c.LitleLogView</members>
+        <name>ListView</name>
     </types>
     <version>27.0</version>
 </Package>
