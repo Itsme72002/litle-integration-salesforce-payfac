@@ -13,6 +13,10 @@ public class LitleMidFormController {
 	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
 	public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
 	public static final String URL_SEPARATOR = '/';
+	public LegalEntityResponse legalEntityResponse {get; set;}
+	public SubMerchantResponse subMerchantResponse {get; set;}
+	// stores litle mid / error information
+	public String litleMid;
 	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
 	//public static final String OTHER = 'OTHER';
 	
@@ -43,6 +47,7 @@ public class LitleMidFormController {
         savedMappings = new SalesforceLitleMappingsObject__c();
 		legalEntityModel = new LegalEntityModel();
 		subMerchantModel = new SubMerchantModel();
+		legalEntityResponse = new LegalEntityResponse();
 		List<SalesforceLitleMappingsObject__c> mappingRecords 
     			= [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
     	String foo = 'website';
@@ -2228,23 +2233,28 @@ public class LitleMidFormController {
 		        	// Legal entity request 
 					makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
 					//check if legal entity id is populated
-					//TEST: set legal entity id
-					//legalEntityModel.setLegalEntityId('123');
+					//system.debug('!response: '+ legalEntityResponse.getResponseCode());
+					//system.debug('!response enum: '+ ResponseCode.ResponseCodeEnum.APPROVED.name());
+					if(String.isNotEmpty(legalEntityResponse.getResponseCode())
+						&& legalEntityResponse.getResponseCode().equals(ResponseCode.ResponseCodeEnum.APPROVED.name())
+						&& String.isNotEmpty(legalEntityResponse.getLegalEntityId())){
+							// make sub merchant request
+							makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
+						}
 					LoggingUtil.logSObjectDetails(urlAccountId, urlOpportunityId, litleRequestResponseLog);
-					/*Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
-					thisAccount.Litle_MID__c = 'Litle MID status';
-					upsert thisAccount;*/
-					if(String.isNotEmpty(legalEntityModel.getLegalEntityId())){
-						// Sub Merchant request
-						makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
-					}
+					// update litle mid field on account page
+					//TODO for opportunity page
+					Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
+					thisAccount.Litle_MID__c = litleMid;
+					upsert thisAccount;
+					
+					//insert log details in custom object
 					try{
 		        		insert litleRequestResponseLog;
 		        	}catch(DmlException e){
 		        		System.debug('Error Saving Request Response Object ' + e);
 		        	}
 				}
-		        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
 			}
 			//return to previous page
 		}
@@ -2260,44 +2270,61 @@ public class LitleMidFormController {
         LoggingUtil.logCreateLegalEntityRequest(createLegalEntityRequest, litleRequestResponseLog);
        // litleRequestResponseLog.createLegalEntityRequestDate__c = Datetime.now();
     	//litleRequestResponseLog.createLegalEntityRequestXml__c = String.valueOf(createLegalEntityRequest.getBody());
-        Httpresponse res = new Httpresponse();
+        Httpresponse lEResponse = new Httpresponse();
         try{
-        	res = h.send(createLegalEntityRequest); 
+        	lEResponse = h.send(createLegalEntityRequest); 
         	//Log response
-        	LoggingUtil.logCreateLegalEntityResponse(res, litleRequestResponseLog);
-        	/*litleRequestResponseLog.createLegalEntityResponseDate__c = Datetime.now();
-        	litleRequestResponseLog.createLegalEntityResponseXml__c = String.valueOf(res.getBody());
-        	litleRequestResponseLog.createLegalEntityResponseStatusCode__c = String.valueOf(res.getStatusCode());
-        	litleRequestResponseLog.createLegalEntityResponseStatusMessage__c = res.getStatus();*/
-        	
+        	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
         	//TODO Handle legal entity response
-        	if(res.getStatusCode() == 201){
-        		// extract legal entity id
-        		// return legal entity id
+        	if(lEResponse.getStatusCode() == 201){
+        		//get response code, transaction id and response description
+        		legalEntityResponse.setTransactionId(extractXmlTagText(lEResponse, 'transactionId'));
+        		legalEntityResponse.setResponseCode(extractXmlTagText(lEResponse, 'responseCode'));
+        		legalEntityResponse.setResponseDespcription(extractXmlTagText(lEResponse, 'responseDescription'));
+        		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
+        		//check response code
+        		if(String.isNotEmpty(legalEntityResponse.getResponseCode())){
+        			//decide based on response codes
+        			//For approved response
+        			if(legalEntityResponse.getResponseCode().equals(ResponseCode.ResponseCodeEnum.APPROVED.name())){
+        				//approved, get legal entity id
+        				legalEntityResponse.setLegalEntityId(extractXmlTagText(lEResponse, 'legalEntityId'));
+        			}
+        			//TODO for other response codes
+        		}
         	}else{
-        		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+extractXmlTagText(res,'error')));	
+        		legalEntityResponse.setResponseCode(String.valueOf(lEResponse.getStatusCode()));
+        		legalEntityResponse.setResponseDespcription(extractXmlTagText(lEResponse,'error'));
+        		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
+        		ApexPages.addmessage(new ApexPages.message
+        			(ApexPages.severity.ERROR,String.valueOf(legalEntityResponse.getResponseCode()+
+        												': '+legalEntityResponse.getResponseDespcription())));	
         	}
         }catch(System.CalloutException e){
-        	System.debug('Callout error: '+ e);
-        	System.debug(res.toString());
+        	System.debug('Legal Entity Request Callout error: '+ e);
+        	System.debug(lEResponse.toString());
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
         }
 	}
 	
-	// extract error from response
+	// extract tag's text from response
 	public String extractXmlTagText(HttpResponse response, String tagName){
 		if(response != null && String.isNotEmpty(tagName)){
-			Xmlstreamreader xmlReader = response.getXmlStreamReader();
-			while(xmlReader.hasNext()){
-				if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
-					if(xmlReader.getLocalName().equals(tagName)){
-						xmlReader.next();
-						if(xmlReader.getEventType() == Xmltag.CHARACTERS){
-							return xmlReader.getText();
+			try{
+				Xmlstreamreader xmlReader = response.getXmlStreamReader();
+				while(xmlReader.hasNext()){
+					if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
+						if(xmlReader.getLocalName().equals(tagName)){
+							xmlReader.next();
+							if(xmlReader.getEventType() == Xmltag.CHARACTERS){
+								return xmlReader.getText();
+							}
 						}
 					}
+					xmlReader.next();
 				}
-				xmlReader.next();
+			}catch(XMLException e){
+				System.debug('Error in Xml text extraction: '+ e);
 			}
 		}
 		return null;
@@ -2339,21 +2366,26 @@ public class LitleMidFormController {
 		
         //litleRequestResponseLog.createSubMerchantRequestDate__c = Datetime.now();
     	litleRequestResponseLog.createSubMerchantRequestXml__c = String.valueOf(createSubMerchantRequest.getBody());
-        Httpresponse res = new Httpresponse();
+        Httpresponse sMResponse = new Httpresponse();
         try{
-        	res = h.send(createSubMerchantRequest); 
+        	sMResponse = h.send(createSubMerchantRequest); 
         	//Log response
-        	LoggingUtil.logCreateSubMerchantResponse(res, litleRequestResponseLog);
-        	/*litleRequestResponseLog.createSubMerchantResponseDate__c = Datetime.now();
-        	litleRequestResponseLog.createSubMerchantResponseXml__c = String.valueOf(res.getBody());
-        	litleRequestResponseLog.createSubMerchantResponseStatusCode__c = String.valueOf(res.getStatusCode());
-        	litleRequestResponseLog.createSubMerchantResponseStatusMessage__c = res.getStatus();*/
+        	LoggingUtil.logCreateSubMerchantResponse(sMResponse, litleRequestResponseLog);
         	//TODO Handle sub merchant response
-        	//Set litle mid
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(res.getStatusCode())+': '+res.getBody()));
+        	if(sMResponse.getStatusCode() == 200){
+        		//get litle mid
+        		litleMid = extractXmlTagText(sMResponse, 'subMerchantId');
+        	}else{
+        		//set litle mid with the error description
+        		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + extractXmlTagText(sMResponse,'error');
+        		ApexPages.addmessage(new ApexPages.message
+        			(ApexPages.severity.ERROR,String.valueOf(String.valueOf(sMResponse.getStatusCode())+
+        												': '+extractXmlTagText(sMResponse,'error'))));	
+        	}
+        	//ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,String.valueOf(subMerchantResponse.getStatusCode())+': '+subMerchantResponse.getBody()));
         }catch(System.CalloutException e){
-        	System.debug('Callout error: '+ e);
-        	System.debug(res.toString());
+        	System.debug('Sub Merchant Request Callout error: '+ e);
+        	System.debug(sMResponse.toString());
 			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
         }
 	}

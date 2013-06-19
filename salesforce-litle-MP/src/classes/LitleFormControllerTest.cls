@@ -2283,6 +2283,10 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
+		
+		Account account = new Account(name=ACCOUNT_NAME);
+    	insert account;
+    	litleMidFormController.urlAccountId = account.Id;
     	System.assertEquals(null, litleMidFormController.submit());
 		
     }

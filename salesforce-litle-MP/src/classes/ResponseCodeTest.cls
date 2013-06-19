@@ -24,6 +24,7 @@ private class ResponseCodeTest {
 
     static testMethod void testCodeValue() {
         // TO DO: implement unit test
+        
         System.assertEquals('10', ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()));
         System.assertEquals('20', ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.MANUAL_REVIEW.name()));
         System.assertEquals('30', ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.RETRY.name()));
