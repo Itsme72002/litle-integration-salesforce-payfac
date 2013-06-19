@@ -1,5 +1,5 @@
 public class  Principal{
-	private String principalId {get; set;}
+	private String principalId;
 	private Address address;
     private String firstName;
     private String lastName;
@@ -12,6 +12,14 @@ public class  Principal{
     
     public Principal(){
     	address = new Address();
+    }
+    
+    public String getPrincipalId() {
+        return principalId;
+    }
+
+    public void setPrincipalId(String principalId) {
+        this.principalId = principalId;
     }
     
     public Address getAddress() {

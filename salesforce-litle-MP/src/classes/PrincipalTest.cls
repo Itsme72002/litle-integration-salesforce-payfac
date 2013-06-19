@@ -47,6 +47,17 @@ private class PrincipalTest {
         System.assertEquals(principal.getAddress(), address);
     }
 
+	static testMethod void testPrincipalId(){
+    	Principal principal = new Principal();
+        // Check if the account is null initially
+        System.assertEquals(principal.getPrincipalId(), null);
+        principal.setPrincipalId(testString);
+        // First check if the value is set
+        System.assertNotEquals(principal.getPrincipalId(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(principal.getPrincipalId(), testString);
+    }
+    
     static testMethod void testFirstName(){
     	Principal principal = new Principal();
         // Check if the account is null initially
