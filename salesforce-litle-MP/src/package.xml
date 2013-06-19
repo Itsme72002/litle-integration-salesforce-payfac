@@ -13,6 +13,7 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Litle_MID__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestDate__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestXml__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityResponseDate__c</members>
@@ -46,6 +47,13 @@
     <types>
         <members>LitleRequestResponseLog__c.LitleLogView</members>
         <name>ListView</name>
+    </types>
+    <types>
+        <members>Account.Get_Litle_MID</members>
+        <members>Account.Litle_Fields_Mapping</members>
+        <members>Opportunity.Get_Litle_MID</members>
+        <members>Opportunity.Litle_Fields_Mapping</members>
+        <name>WebLink</name>
     </types>
     <version>27.0</version>
 </Package>
