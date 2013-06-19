@@ -17,7 +17,7 @@
                     
                     <apex:outputText value="Merchant Password: " />
                     <apex:outputtext value="" />
-                    <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}" />
+                    <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}" redisplay="true"/>
                     <apex:outputtext value="" />
                     <apex:outputtext value="" />
                     </apex:panelGrid>

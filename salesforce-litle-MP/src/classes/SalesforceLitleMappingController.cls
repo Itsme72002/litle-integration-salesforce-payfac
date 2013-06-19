@@ -6,7 +6,7 @@ public class SalesforceLitleMappingController {
     //Holds the current mappings from the page
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     public List<SelectOption> legalEntityTypeList{get; set;}
-
+    
     public SalesforceLitleMappingController() {
     	legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
@@ -22,7 +22,7 @@ public class SalesforceLitleMappingController {
         errorStatus = false;*/
     }
 
-
+    
     public List < Selectoption > getSalesforceFields() {
         if (salesforceFields == null || salesforceFields.size() == 0) {
             setSalesforceFields(fetchAllAccountFields());
@@ -820,9 +820,9 @@ public class SalesforceLitleMappingController {
     public Pagereference saveMappings() {
         removeDisabledText();
         System.debug('In Save Method');
-        try {
-        	 System.debug(currentMappings.legalEntityTypeD__c);
-            upsert currentMappings;
+        try{
+        	System.debug(currentMappings.legalEntityTypeD__c);
+        	upsert currentMappings;
             /*String aId = apexpages.currentpage().getParameters().get('id');
             if (aId != null && !aid.equals('')) {
                 return new PageReference('/' + aId);
