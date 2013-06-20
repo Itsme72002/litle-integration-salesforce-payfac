@@ -20,9 +20,14 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-public class MockCreateLEManualReviewResponse {
+public class MockCreateLEManualReviewResponse implements HttpCalloutMock{
 
-    public static final String DEFAULT_STRING = 'Default String';
+    public static final String STATUS_MESSAGE = 'Success';
+    public static final Integer STATUS_CODE = 201;
+    public static final String RESPONSE_CODE = '20';
+    public static final String RESPONSE_DESCRIPTION = 'Manual Review';
+    public static final String TRANSACTION_ID = '82821536819527712';
+    public static final String LEGAL_ENTITY_ID = '82821536565085998';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
@@ -33,8 +38,8 @@ public class MockCreateLEManualReviewResponse {
  	    HttpResponse res = new HttpResponse();
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
 						 + '<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard">'
-						 + '<transactionId>82821536819527712</transactionId>'
-						 + '<legalEntityId>82821536565085998</legalEntityId>'
+						 + '<transactionId>'+TRANSACTION_ID+'</transactionId>'
+						 + '<legalEntityId>'+LEGAL_ENTITY_ID+'</legalEntityId>'
 						 + '<principals>'
 						 + '<principal>'
 						 + '<principalId>1</principalId>'
@@ -42,8 +47,8 @@ public class MockCreateLEManualReviewResponse {
 						 + '<lastName>p last</lastName>'
 						 + '</principal>'
 						 + '</principals>'
-						 + '<responseCode>20</responseCode>'
-						 + '<responseDescription>Manual Review</responseDescription>'
+						 + '<responseCode>'+RESPONSE_CODE+'</responseCode>'
+						 + '<responseDescription>'+RESPONSE_DESCRIPTION+'</responseDescription>'
 						 + '<backgroundCheckResults>'
 						 + '<business>'
 						 + '<verificationResult>'
@@ -100,8 +105,8 @@ public class MockCreateLEManualReviewResponse {
 						 + '</backgroundCheckResults>'
 						 + '</legalEntityCreateResponse>';
     	res.setBody(response);
-    	res.setStatusCode(201);
-    	res.setStatus('Success');
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
 }

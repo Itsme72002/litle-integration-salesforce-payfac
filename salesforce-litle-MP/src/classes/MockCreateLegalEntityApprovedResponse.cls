@@ -22,7 +22,12 @@
 @isTest
 public class MockCreateLegalEntityApprovedResponse implements HttpCalloutMock{
 
-    public static final String DEFAULT_STRING = 'Default String';
+    public static final String STATUS_MESSAGE = 'Approved';
+    public static final Integer STATUS_CODE = 201;
+    public static final String RESPONSE_CODE = '10';
+    public static final String RESPONSE_DESCRIPTION = 'Approved';
+    public static final String TRANSACTION_ID = '82821536564756680';
+    public static final String LEGAL_ENTITY_ID = '82821536565084223';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
@@ -33,8 +38,8 @@ public class MockCreateLegalEntityApprovedResponse implements HttpCalloutMock{
     	HttpResponse res = new HttpResponse();
     	String approvedResponse = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
 								 + '<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard">'
-								 + '<transactionId>82821536564756680</transactionId>'
-								 + '<legalEntityId>82821536565084223</legalEntityId>'
+								 + '<transactionId>'+TRANSACTION_ID+'</transactionId>'
+								 + '<legalEntityId>'+LEGAL_ENTITY_ID+'</legalEntityId>'
 								 + '<principals>'
 								 + '<principal>'
 								 + '<principalId>1</principalId>'
@@ -42,8 +47,8 @@ public class MockCreateLegalEntityApprovedResponse implements HttpCalloutMock{
 								 + '<lastName>p last</lastName>'
 								 + '</principal>'
 								 + '</principals>'
-								 + '<responseCode>10</responseCode>'
-								 + '<responseDescription>Approved</responseDescription>'
+								 + '<responseCode>'+RESPONSE_CODE+'</responseCode>'
+								 + '<responseDescription>'+RESPONSE_DESCRIPTION+'</responseDescription>'
 								 + '<backgroundCheckResults>'
 								 + '<business>'
 								 + '<verificationResult>'
@@ -100,8 +105,8 @@ public class MockCreateLegalEntityApprovedResponse implements HttpCalloutMock{
 								 + '</backgroundCheckResults>'
 								 + '</legalEntityCreateResponse>';
     	res.setBody(approvedResponse);
-    	res.setStatusCode(201);
-    	res.setStatus('Approved');
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
 }

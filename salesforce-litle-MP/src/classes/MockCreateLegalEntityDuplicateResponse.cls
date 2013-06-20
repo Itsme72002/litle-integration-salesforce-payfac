@@ -21,7 +21,11 @@
  */
 @isTest
 public class MockCreateLegalEntityDuplicateResponse implements HttpCalloutMock {
-	public static final String DEFAULT_STRING = 'Default String';
+	public static final String STATUS_MESSAGE = 'Success';
+    public static final Integer STATUS_CODE = 201;
+    public static final String RESPONSE_CODE = '36';
+    public static final String RESPONSE_DESCRIPTION = 'Duplicate';
+    public static final String TRANSACTION_ID = '82821203948749101';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
@@ -31,17 +35,16 @@ public class MockCreateLegalEntityDuplicateResponse implements HttpCalloutMock {
  	    
  	    HttpResponse res = new HttpResponse();
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-						 + '<legalEntityCreateResponse'
-						 + 'xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
-						 + '<transactionId>82821203948749101</transactionId>'
+						 + '<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
+						 + '<transactionId>'+TRANSACTION_ID+'</transactionId>'
 						 + '<principals>'
 						 + '<principal>'
 						 + '<firstName>John</firstName>'
 						 + '<lastName>Doe</lastName>'
 						 + '</principal>'
 						 + '</principals>'
-						 + '<responseCode>36</responseCode>'
-						 + '<responseDescription>Duplicate</responseDescription>'
+						 + '<responseCode>'+RESPONSE_CODE+'</responseCode>'
+						 + '<responseDescription>'+RESPONSE_DESCRIPTION+'</responseDescription>'
 						 + '<originalLegalEntity>'
 						 + '<legalEntityName>Entity One</legalEntityName>'
 						 + '<legalEntityType>CORPORATION</legalEntityType>'
@@ -177,8 +180,8 @@ public class MockCreateLegalEntityDuplicateResponse implements HttpCalloutMock {
 						 + '</originalLegalEntity>'
 						 + '</legalEntityCreateResponse>';
 		res.setBody(response);
-    	res.setStatusCode(201);
-    	res.setStatus('Success');
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
 

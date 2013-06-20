@@ -20,9 +20,11 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-public class MockCreateLEErrorResponse {
+public class MockCreateLEErrorResponse implements HttpCalloutMock{
 
-    public static final String DEFAULT_STRING = 'Default String';
+ 	public static final String STATUS_MESSAGE = 'Unauthorized';
+    public static final Integer STATUS_CODE = 401;
+	public static final String ERROR_MESSAGE = 'You are not authorized to access this resource. Please check your credentials.';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
@@ -34,13 +36,12 @@ public class MockCreateLEErrorResponse {
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
 						 + '<errorResponse>'
 						 + '<errors>'
-						 + '<error>You are not authorized to access this resource. Please check your'
-						 + 'credentials.</error>'
+						 + '<error>'+ERROR_MESSAGE+'</error>'
 						 + '</errors>'
 						 + '</errorResponse>';
     	res.setBody(response);
-    	res.setStatusCode(401);
-    	res.setStatus('Unauthorized');
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
 }

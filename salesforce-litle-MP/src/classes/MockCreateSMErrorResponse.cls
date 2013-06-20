@@ -20,9 +20,11 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-public class MockCreateSMErrorResponse {
+public class MockCreateSMErrorResponse implements HttpCalloutMock{
 
-    public static final String DEFAULT_STRING = 'Default String';
+    public static final String STATUS_MESSAGE = 'Unauthorized';
+    public static final Integer STATUS_CODE = 400;
+	public static final String ERROR_MESSAGE = 'Error in request:Could not find requested object.';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals('POST', request.getMethod());
@@ -33,12 +35,12 @@ public class MockCreateSMErrorResponse {
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
 						 + '<errorResponse>'
 						 + '<errors>'
-						 + '<error>Error in request:Could not find requested object.</error>'
+						 + '<error>'+ERROR_MESSAGE+'</error>'
 						 + '</errors>'
 						 + '</errorResponse>';
     	res.setBody(response);
-    	res.setStatusCode(400);
-    	res.setStatus(DEFAULT_STRING);
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
 }

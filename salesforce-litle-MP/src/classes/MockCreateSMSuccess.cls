@@ -20,9 +20,11 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-public class MockCreateSMSuccess {
+public class MockCreateSMSuccess implements HttpCalloutMock{
 	
-	public static final String DEFAULT_STRING = 'Default String';
+	public static final String STATUS_MESSAGE = 'Success';
+    public static final Integer STATUS_CODE = 200;
+	public static final String SUB_MERCHANT_ID = '1100003';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals('POST', request.getMethod());
@@ -31,15 +33,14 @@ public class MockCreateSMSuccess {
         
     	HttpResponse res = new HttpResponse();
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-						 + '<subMerchantCreateResponse'
-						 + 'xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
+						 + '<subMerchantCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
 						 + '<transactionId>82821240469914003</transactionId>'
-						 + '<subMerchantId>1100003</subMerchantId>'
+						 + '<subMerchantId>'+SUB_MERCHANT_ID+'</subMerchantId>'
 						 + '<merchantIdentString>01100003</merchantIdentString>'
 						 + '</subMerchantCreateResponse>';
     	res.setBody(response);
     	res.setStatusCode(200);
-    	res.setStatus(DEFAULT_STRING);
+    	res.setStatus(STATUS_MESSAGE);
     	return res;
     }
     

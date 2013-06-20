@@ -158,7 +158,7 @@ public class LitleMidFormController {
 	public void populateLEType(){
 		//if(!savedMappings.legalEntityTypeX__c){
 			legalEntityModel.setLegalEntityType(savedMappings.legalEntityTypeD__c);
-			System.debug(savedMappings.legalEntityTypeD__c);
+			//System.debug(savedMappings.legalEntityTypeD__c);
 		/*}else{
 			if (savedMappings.legalEntityType__c != null &&  savedMappings.legalEntityType__c != ''){
 				String typeField = savedMappings.legalEntityType__c;
@@ -2231,23 +2231,27 @@ public class LitleMidFormController {
 		        	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
 		        	LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
 		        	// Legal entity request 
+		        	system.debug('!Inside submit');
 					makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
+					system.debug('!Inside '+legalEntityResponse.getResponseCode());
 					//check if legal entity id is populated
-					//system.debug('!response: '+ legalEntityResponse.getResponseCode());
-					//system.debug('!response enum: '+ ResponseCode.ResponseCodeEnum.APPROVED.name());
 					if(String.isNotEmpty(legalEntityResponse.getResponseCode())
-						&& legalEntityResponse.getResponseCode().equals(ResponseCode.ResponseCodeEnum.APPROVED.name())
+						&& legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))
 						&& String.isNotEmpty(legalEntityResponse.getLegalEntityId())){
 							// make sub merchant request
 							makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
 						}
 					LoggingUtil.logSObjectDetails(urlAccountId, urlOpportunityId, litleRequestResponseLog);
-					// update litle mid field on account page
-					//TODO for opportunity page
-					Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
-					thisAccount.Litle_MID__c = litleMid;
-					upsert thisAccount;
-					
+					//insert litle mid
+					if(String.isNotEmpty(urlAccountId)){
+						try{
+							Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
+							thisAccount.Litle_MID__c = litleMid;
+							upsert thisAccount;
+						}catch (Queryexception e){
+							System.debug('Error inserting litle mid value'+ e);
+						}
+					}//TODO for opportunity
 					//insert log details in custom object
 					try{
 		        		insert litleRequestResponseLog;
@@ -2262,6 +2266,7 @@ public class LitleMidFormController {
 		
 	}
 	
+	
 	public void makeCreateLegalEntityRequest(LitleRequestResponseLog__c litleRequestResponseLog, LitleRequestXml litleRequestXml){
 		Http h = new Http();
         Httprequest createLegalEntityRequest = new Httprequest();
@@ -2274,6 +2279,7 @@ public class LitleMidFormController {
         try{
         	lEResponse = h.send(createLegalEntityRequest); 
         	//Log response
+        	system.debug('!BODY: '+lEResponse.getBody());
         	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
         	//TODO Handle legal entity response
         	if(lEResponse.getStatusCode() == 201){
@@ -2286,11 +2292,13 @@ public class LitleMidFormController {
         		if(String.isNotEmpty(legalEntityResponse.getResponseCode())){
         			//decide based on response codes
         			//For approved response
-        			if(legalEntityResponse.getResponseCode().equals(ResponseCode.ResponseCodeEnum.APPROVED.name())){
+        			if(legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))){
         				//approved, get legal entity id
         				legalEntityResponse.setLegalEntityId(extractXmlTagText(lEResponse, 'legalEntityId'));
+        			}else{
+	        			//TODO for other response codes
+	        			legalEntityResponse.setLegalEntityId(null);
         			}
-        			//TODO for other response codes
         		}
         	}else{
         		legalEntityResponse.setResponseCode(String.valueOf(lEResponse.getStatusCode()));
