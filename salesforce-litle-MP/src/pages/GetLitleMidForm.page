@@ -1,16 +1,16 @@
 <apex:page controller="LitleMidFormController">
     <apex:form >
-        <apex:pageBlock title="Litle MID" mode="maindetail">
+        <apex:pageBlock title="Get Litle MID" mode="maindetail">
             <apex:pageBlockSection columns="1">
-                Fill the form below to apply for Litle MID. When done, click Submit.
+                Fill the form below to apply for Litle MID. Once done, click Submit.
                 <apex:pageBlockSectionItem >
-                    <apex:outputText value="" />
+                    <apex:pageMessages />
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
         </apex:pageBlock>
-        <apex:pageMessages />
+        
         <apex:pageBlock title="Add A Sub Merchant" mode="edit">
-        <!-- Payment Processing Configuration start -->
+        	<!-- Payment Processing Configuration start -->
             <apex:pageBlockSection columns="1" title="Payment Processing Configuration">
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="PayFac Sub-Merchant ID" />

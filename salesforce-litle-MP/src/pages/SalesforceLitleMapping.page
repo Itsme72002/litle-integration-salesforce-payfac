@@ -1,600 +1,1048 @@
 <apex:page controller="SalesforceLitleMappingController">
     <apex:form >
-
+    
         <apex:pageBlock title="Litle Salesforce MP" mode="edit">
-            
-            <apex:pageMessages />
-        
-            <br />
-            
-            <apex:pageBlockSection title="Litle Credentials">
-                <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
-                	<apex:outputText value="Merchant Username: " />
-                    <apex:outputtext value="" />
+        <apex:pageBlockSection columns="1">
+         <apex:pageMessages />
+        	Map Litle's fields with the appropriate value from Salesforce.com fields or enter any default value against it. Once done, click Save.
+        	</apex:pageBlockSection>
+            <apex:pageBlockSection title="Litle Credentials" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Merchant Username: " />
                     <apex:inputText id="merchantUsernameTxtBox" value="{!currentMappings.merchantUsername__c}" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
                     <apex:outputText value="Merchant Password: " />
-                    <apex:outputtext value="" />
-                    <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}" redisplay="true"/>
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    </apex:panelGrid>
-	        </apex:pageBlockSection>
-            <apex:pageBlockSection title="Legal Entity Details" >
-                <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
-                	<apex:outputText value="Litle Field" style="font-weight: bold" />
-                    <apex:outputText value="" />
-                    <apex:outputText value="Salesforce Field" style="font-weight: bold" />
-                    <apex:outputText value="" />
-                    <apex:outputText value="Default" style="font-weight: bold" />
-                    
-                    <apex:outputText value="Entity Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityNameList" value="{!currentMappings.legalEntityName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityName}" rerender="legalEntityNameDefaultTxtBox" /> 
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityNameDefaultTxtBox" value="{!currentMappings.legalEntityNameD__c}" disabled="{!currentMappings.legalEntityNameX__c}"/>
-                    
-                    <apex:outputText value="EntityType: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityTypeD__c}" size="1">
-                        <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
-                        <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" 
-                        	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> --> 
-                    </apex:selectList>
-                     <apex:outputtext value="" />
-                      <apex:outputtext value="" />
-                    <!--  <apex:outputText value="EntityType: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityType__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityType}" rerender="legalEntityTypeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityTypeDefaultTxtBox" value="{!currentMappings.legalEntityTypeD__c}" disabled="{!currentMappings.legalEntityTypeX__c}"/>-->
-                    
-                    <apex:outputText value="Doing Business As: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityDoingBusinessAsList" value="{!currentMappings.legalEntityDoingBusinessAs__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDoingBusinessAs}" rerender="legalEntityDoingBusinessAsDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!currentMappings.legalEntityDoingBusinessAsD__c}" disabled="{!currentMappings.legalEntityDoingBusinessAsX__c}"/>
-                    
-                    <apex:outputText value="Tax ID: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityTaxIdList" value="{!currentMappings.legalEntityTaxId__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityTaxId}" rerender="legalEntityTaxIdDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!currentMappings.legalEntityTaxIdD__c}" disabled="{!currentMappings.legalEntityTaxIdX__c}"/>
-                    
-                    <apex:outputText value="Contact Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityContactPhoneList" value="{!currentMappings.legalEntityContactPhone__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityContactPhone}" rerender="legalEntityContactPhoneDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!currentMappings.legalEntityContactPhoneD__c}" disabled="{!currentMappings.legalEntityContactPhoneX__c}"/>
-                    
-                    <apex:outputText value="Annual Credit Card Sales Volume: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityAnnualCreditCardSalesVolumeList" value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityAnnualCreditCardSalesVolume}" rerender="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" value="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c}" disabled="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c}"/>
-                    
-                    <apex:outputText value="Has Accepted Credit Cards: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!currentMappings.legalEntityHasAcceptedCreditCardsD__c}" disabled="{!currentMappings.legalEntityHasAcceptedCreditCardsX__c}"/>
-                    
-                       
-					<!-- Start Legal Entity's Address -->
-					<apex:outputText value="Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityStreetAddress1List" value="{!currentMappings.legalEntityStreetAddress1__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress1}" rerender="legalEntityStreetAddress1DefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!currentMappings.legalEntityStreetAddress1D__c}" disabled="{!currentMappings.legalEntityStreetAddress1X__c}"/>
-                    
-                    <apex:outputText value="Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityStreetAddress2List" value="{!currentMappings.legalEntityStreetAddress2__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress2}" rerender="legalEntityStreetAddress2DefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityStreetAddress2DefaultTxtBox" value="{!currentMappings.legalEntityStreetAddress2D__c}" disabled="{!currentMappings.legalEntityStreetAddress2X__c}"/>
-                    
-                    <apex:outputText value="City: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityCityList" value="{!currentMappings.legalEntityCity__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCity}" rerender="legalEntityCityDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityCityDefaultTxtBox" value="{!currentMappings.legalEntityCityD__c}" disabled="{!currentMappings.legalEntityCityX__c}"/>
-                    
-                    <apex:outputText value="State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityStateProvinceList" value="{!currentMappings.legalEntityStateProvince__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStateProvince}" rerender="legalEntityStateProvinceDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityStateProvinceDefaultTxtBox" value="{!currentMappings.legalEntityStateProvinceD__c}" disabled="{!currentMappings.legalEntityStateProvinceX__c}"/>
-                    
-                    <apex:outputText value="Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPostalCodeList" value="{!currentMappings.legalEntityPostalCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPostalCode}" rerender="legalEntityPostalCodeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPostalCodeDefaultTxtBox" value="{!currentMappings.legalEntityPostalCodeD__c}" disabled="{!currentMappings.legalEntityPostalCodeX__c}"/>
-                    
-                    <apex:outputText value="Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityCountryCodeList" value="{!currentMappings.legalEntityCountryCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCountryCode}" rerender="legalEntityCountryCodeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityCountryCodeDefaultTxtBox" value="{!currentMappings.legalEntityCountryCodeD__c}" disabled="{!currentMappings.legalEntityCountryCodeX__c}"/>
-                    
-                    <!-- End Legal Entity's Address -->
-                    
-                    <!-- Start PCI -->
-                    <apex:outputText value="Is Exclusive To PSP : " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityIsExclusiveToPspList" value="{!currentMappings.legalEntityIsExclusiveToPsp__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsExclusiveToPsp}" rerender="legalEntityIsExclusiveToPspDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityIsExclusiveToPspDefaultTxtBox" value="{!currentMappings.legalEntityIsExclusiveToPspD__c}" disabled="{!currentMappings.legalEntityIsExclusiveToPspX__c}"/>
-                    
-                    <apex:outputText value="Is PCI Compliance Validated: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityIsPciComplianceValidatedList" value="{!currentMappings.legalEntityIsPciComplianceValidated__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsPciComplianceValidated}" rerender="legalEntityIsPciComplianceValidatedDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityIsPciComplianceValidatedDefaultTxtBox" value="{!currentMappings.legalEntityIsPciComplianceValidatedD__c}" disabled="{!currentMappings.legalEntityIsPciComplianceValidatedX__c}"/>
-                    
-                    <apex:outputText value="Scanning Vendor: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityScanningVendorList" value="{!currentMappings.legalEntityScanningVendor__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityScanningVendor}" rerender="legalEntityScanningVendorDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityScanningVendorDefaultTxtBox" value="{!currentMappings.legalEntityScanningVendorD__c}" disabled="{!currentMappings.legalEntityScanningVendorX__c}"/>
-                    
-                    <apex:outputText value="Qualified Security Assessor: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityQualifiedSecurityAssessorList" value="{!currentMappings.legalEntityQualifiedSecurityAssessor__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityQualifiedSecurityAssessor}" rerender="legalEntityQualifiedSecurityAssessorDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!currentMappings.legalEntityQualifiedSecurityAssessorD__c}" disabled="{!currentMappings.legalEntityQualifiedSecurityAssessorX__c}"/>
-                    
-                    <apex:outputText value="Most Recently Passed Scan: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityMostRecentlyPassedScanList" value="{!currentMappings.legalEntityMostRecentlyPassedScan__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityMostRecentlyPassedScan}" rerender="legalEntityMostRecentlyPassedScanDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!currentMappings.legalEntityMostRecentlyPassedScanD__c}" disabled="{!currentMappings.legalEntityMostRecentlyPassedScanX__c}"/>
-                    
-                    <apex:outputText value="Report On Compliance: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityReportOnComplianceList" value="{!currentMappings.legalEntityReportOnCompliance__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityReportOnCompliance}" rerender="legalEntityReportOnComplianceDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!currentMappings.legalEntityReportOnComplianceD__c}" disabled="{!currentMappings.legalEntityReportOnComplianceX__c}"/>
-                    
-                    <apex:outputText value="PCI Level: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPciLevelList" value="{!currentMappings.legalEntityPciLevel__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPciLevel}" rerender="legalEntityPciLevelDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!currentMappings.legalEntityPciLevelD__c}" disabled="{!currentMappings.legalEntityPciLevelX__c}"/>
-                    <!-- End PCI -->
-                    
-                    <!-- Start Principal -->
-                    <apex:outputText value="Principal's First Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalFirstNameList" value="{!currentMappings.legalEntityPrincipalFirstName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalFirstName}" rerender="legalEntityPrincipalFirstNameDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalFirstNameD__c}" disabled="{!currentMappings.legalEntityPrincipalFirstNameX__c}"/>
-                    
-                    <apex:outputText value="Principal's Last Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalLastNameList" value="{!currentMappings.legalEntityPrincipalLastName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalLastName}" rerender="legalEntityPrincipalLastNameDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalLastNameD__c}" disabled="{!currentMappings.legalEntityPrincipalLastNameX__c}"/>
-                    
-                     <apex:outputText value="Principal's Email Address: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalEmailAddressList" value="{!currentMappings.legalEntityPrincipalEmailAddress__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalEmailAddress}" rerender="legalEntityPrincipalEmailAddressDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalEmailAddressD__c}" disabled="{!currentMappings.legalEntityPrincipalEmailAddressX__c}"/>
-                     
-                    <apex:outputText value="Principal's SSN: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalSsnList" value="{!currentMappings.legalEntityPrincipalSsn__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalSsn}" rerender="legalEntityPrincipalSsnDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalSsnD__c}" disabled="{!currentMappings.legalEntityPrincipalSsnX__c}"/>
-                    
-                    <apex:outputText value="Principal's Contact Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalContactPhoneList" value="{!currentMappings.legalEntityPrincipalContactPhone__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalContactPhone}" rerender="legalEntityPrincipalContactPhoneDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalContactPhoneD__c}" disabled="{!currentMappings.legalEntityPrincipalContactPhoneX__c}"/>
-                    
-                    <apex:outputText value="Principal's Date Of Birth: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalDateOfBirthList" value="{!currentMappings.legalEntityPrincipalDateOfBirth__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalDateOfBirth}" rerender="legalEntityPrincipalDateOfBirthDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDateOfBirthD__c}" disabled="{!currentMappings.legalEntityPrincipalDateOfBirthX__c}"/>
-                    
-                    <apex:outputText value="Principal's Drivers License: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalDriversLicenseList" value="{!currentMappings.legalEntityPrincipalDriversLicense__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalDriversLicense}" rerender="legalEntityPrincipalDriversLicenseDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDriversLicenseD__c}" disabled="{!currentMappings.legalEntityPrincipalDriversLicenseX__c}"/>
-                    
-                    <apex:outputText value="Principal's Drivers License State: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalDriversLicenseStateList" value="{!currentMappings.legalEntityPrincipalDriversLicenseState__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalDriversLicenseState}" rerender="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDriversLicenseStateD__c}" disabled="{!currentMappings.legalEntityPrincipalDriversLicenseStateX__c}"/>
-                    
-                    <!-- Start Principal's Address -->
-                    
-                    <apex:outputText value="Principal's Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalStreetAddress1List" value="{!currentMappings.legalEntityPrincipalStreetAddress1__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalStreetAddress1}" rerender="legalEntityPrincipalStreetAddress1DefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress1D__c}" disabled="{!currentMappings.legalEntityPrincipalStreetAddress1X__c}"/>
-                    
-                    <apex:outputText value="Principal's Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalStreetAddress2List" value="{!currentMappings.legalEntityPrincipalStreetAddress2__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalStreetAddress2}" rerender="legalEntityPrincipalStreetAddress2DefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress2D__c}" disabled="{!currentMappings.legalEntityPrincipalStreetAddress2X__c}"/>
-                    
-                    <apex:outputText value="Principal's City: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalCityList" value="{!currentMappings.legalEntityPrincipalCity__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalCity}" rerender="legalEntityPrincipalCityDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalCityD__c}" disabled="{!currentMappings.legalEntityPrincipalCityX__c}"/>
-                    
-                    <apex:outputText value="Principal's State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalStateProvinceList" value="{!currentMappings.legalEntityPrincipalStateProvince__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalStateProvince}" rerender="legalEntityPrincipalStateProvinceDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStateProvinceD__c}" disabled="{!currentMappings.legalEntityPrincipalStateProvinceX__c}"/>
-                    
-                    <apex:outputText value="Principal's Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalPostalCodeList" value="{!currentMappings.legalEntityPrincipalPostalCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalPostalCode}" rerender="legalEntityPrincipalPostalCodeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalPostalCodeD__c}" disabled="{!currentMappings.legalEntityPrincipalPostalCodeX__c}"/>
-                    
-                    <apex:outputText value="Principal's Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityPrincipalCountryCodeList" value="{!currentMappings.legalEntityPrincipalCountryCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalCountryCode}" rerender="legalEntityPrincipalCountryCodeDefaultTxtBox" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalCountryCodeD__c}" disabled="{!currentMappings.legalEntityPrincipalCountryCodeX__c}"/>
-                    
-                    <!-- End Principal's Address -->
-                    
-                    <!-- End Principal -->
+                    <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}"
+                        redisplay="true" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Payment Processing Configuration start -->
+            <apex:pageBlockSection columns="1" title="Payment Processing Configuration">
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="PayFac Sub-Merchant ID" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantPspMerchantIdList" value="{!currentMappings.subMerchantPspMerchantId__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantPspMerchantIdDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantPspMerchantId}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantPspMerchantIdD__c}" id="subMerchantPspMerchantIdDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantPspMerchantIdX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Merchant Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantMerchantNameList" value="{!currentMappings.subMerchantMerchantName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantMerchantNameDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantMerchantName}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantMerchantNameD__c}" id="subMerchantMerchantNameDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantMerchantNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Merchant Category Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantMerchantCategoryCodeList" value="{!currentMappings.subMerchantMerchantCategoryCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantMerchantCategoryCodeDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantMerchantCategoryCode}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantMerchantCategoryCodeD__c}"
+                            id="subMerchantMerchantCategoryCodeDefaultTxtBox" disabled="{!currentMappings.subMerchantMerchantCategoryCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Default Billing Descriptor" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantHardCodeBillingDescriptorList" value="{!currentMappings.subMerchantHardCodeBillingDescriptor__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                rerender="subMerchantHardCodeBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchantHardCodeBillingDescriptor}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantHardCodeBillingDescD__c}" id="subMerchantHardCodeBillingDescriptorDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantHardCodeBillingDescriptorX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Customer Service Number" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantCustomerServiceNumberList" value="{!currentMappings.subMerchantCustomerServiceNumber__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantCustomerServiceNumberDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantCustomerServiceNumber}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantCustomerServiceNumberD__c}"
+                            id="subMerchantCustomerServiceNumberDefaultTxtBox" disabled="{!currentMappings.subMerchantCustomerServiceNumberX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="URL" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantUrlList" value="{!currentMappings.subMerchantUrl__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantUrlDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantUrl}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantUrlD__c}" id="subMerchantUrlDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantUrlX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Amex Merchant ID" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantAmexMidList" value="{!currentMappings.subMerchantAmexMid__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantAmexMidDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantAmexMid}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantAmexMidD__c}" id="subMerchantAmexMidDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantAmexMidX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Discover Merchant ID" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantDiscoverConveyMidList" value="{!currentMappings.subMerchantDiscoverConveyMid__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantDiscoverConveyMidDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantDiscoverConveyMid}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantDiscoverConveyMidD__c}" id="subMerchantDiscoverConveyMidDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantDiscoverConveyMidX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="eCheck Billing Descriptor" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchanteCheckBillingDescriptorList" value="{!currentMappings.subMerchanteCheckBillingDescriptor__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                rerender="subMerchanteCheckBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckBillingDescriptor}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchanteCheckBillingDescD__c}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchanteCheckBillingDescriptorX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="eCheck Company Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchanteCheckCompanyNameList" value="{!currentMappings.subMerchanteCheckCompanyName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchanteCheckCompanyNameDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchanteCheckCompanyName}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchanteCheckCompanyNameD__c}" id="subMerchanteCheckCompanyNameDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchanteCheckCompanyNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Max Transaction Amount" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantMaxTransactionAmountList" value="{!currentMappings.subMerchantMaxTransactionAmount__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantMaxTransactionAmountDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantMaxTransactionAmount}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantMaxTransactionAmountD__c}"
+                            id="subMerchantMaxTransactionAmountDefaultTxtBox" disabled="{!currentMappings.subMerchantMaxTransactionAmountX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 1" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList value="{!currentMappings.subMerchantStreetAddress1__c}" size="1">
+                            <apex:selectOptions id="subMerchantStreetAddress1List" value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress1DefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantStreetAddress1}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantStreetAddress1D__c}" id="subMerchantStreetAddress1DefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantStreetAddress1X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 2" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantStreetAddress2List" value="{!currentMappings.subMerchantStreetAddress2__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress2DefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantStreetAddress2}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantStreetAddress2D__c}" id="subMerchantStreetAddress2DefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantStreetAddress2X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="City" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantCityList" value="{!currentMappings.subMerchantCity__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantCityDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantCity}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantCityD__c}" id="subMerchantCityDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantCityX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="State/Province" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantStateProvinceList" value="{!currentMappings.subMerchantStateProvince__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantStateProvinceDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantStateProvince}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantStateProvinceD__c}" id="subMerchantStateProvinceDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantStateProvinceX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Postal Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantPostalCodeList" value="{!currentMappings.subMerchantPostalCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantPostalCodeDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantPostalCode}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantPostalCodeD__c}" id="subMerchantPostalCodeDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantPostalCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Country Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantCountryCodeList" value="{!currentMappings.subMerchantCountryCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantCountryCodeDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantCountryCode}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantCountryCodeD__c}" id="subMerchantCountryCodeDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantCountryCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Create Connectivity Credentials" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantCreateCredentialsList" value="{!currentMappings.subMerchantCreateCredentials__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantCreateCredentials}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantCreateCredentialsD__c}" id="subMerchantCreateCredentialsDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantCreateCredentialsX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Payment Processing Configuration end -->
+
+            <!-- Bank Account Details start -->
+            <apex:pageBlockSection columns="1" title="Bank Account Details">
+            	<apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
                 
-                </apex:panelGrid>
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Routing Number" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantBankRoutingNumberList" value="{!currentMappings.subMerchantBankRoutingNumber__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantBankRoutingNumberDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantBankRoutingNumber}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantBankRoutingNumberD__c}" id="subMerchantBankRoutingNumberDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantBankRoutingNumberX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
 
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Account Number" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantBankAccountNumberList" value="{!currentMappings.subMerchantBankAccountNumber__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantBankAccountNumberDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantBankAccountNumber}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantBankAccountNumberD__c}" id="subMerchantBankAccountNumberDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantBankAccountNumberX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Bank Account Details end -->
+
+
+            <!-- Legal entity information start -->
+            <apex:pageBlockSection columns="1" title="Legal Entity (Applicable for background checks)">
+				<apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="EIN/Tax ID" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel styleClass="requiredInput" layout="block" id="taxInput">
+                        <apex:selectList id="legalEntityTaxIdList" value="{!currentMappings.legalEntityTaxId__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityTaxId}"
+                                rerender="legalEntityTaxIdDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!currentMappings.legalEntityTaxIdD__c}"
+                            disabled="{!currentMappings.legalEntityTaxIdX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityNameList" value="{!currentMappings.legalEntityName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityName}"
+                                rerender="legalEntityNameDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityNameDefaultTxtBox" value="{!currentMappings.legalEntityNameD__c}"
+                            disabled="{!currentMappings.legalEntityNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Type" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityTypeD__c}"
+                            size="1">
+                            <apex:selectOptions value="{!legalEntityTypeList}" />
+                            <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" rerender="legalEntityTaxIdDefaultTxtBox, 
+                                legalEntitySsnDefaultTxtBox" /> -->
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Doing Business As" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityDoingBusinessAsList" value="{!currentMappings.legalEntityDoingBusinessAs__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDoingBusinessAs}"
+                                rerender="legalEntityDoingBusinessAsDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!currentMappings.legalEntityDoingBusinessAsD__c}"
+                            disabled="{!currentMappings.legalEntityDoingBusinessAsX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Contact Phone" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityContactPhoneList" value="{!currentMappings.legalEntityContactPhone__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityContactPhone}"
+                                rerender="legalEntityContactPhoneDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!currentMappings.legalEntityContactPhoneD__c}"
+                            disabled="{!currentMappings.legalEntityContactPhoneX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 1" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityStreetAddress1List" value="{!currentMappings.legalEntityStreetAddress1__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress1}"
+                                rerender="legalEntityStreetAddress1DefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!currentMappings.legalEntityStreetAddress1D__c}"
+                            disabled="{!currentMappings.legalEntityStreetAddress1X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 2" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityStreetAddress2List" value="{!currentMappings.legalEntityStreetAddress2__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress2}"
+                                rerender="legalEntityStreetAddress2DefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityStreetAddress2DefaultTxtBox" value="{!currentMappings.legalEntityStreetAddress2D__c}"
+                            disabled="{!currentMappings.legalEntityStreetAddress2X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="City" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityCityList" value="{!currentMappings.legalEntityCity__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCity}"
+                                rerender="legalEntityCityDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityCityDefaultTxtBox" value="{!currentMappings.legalEntityCityD__c}"
+                            disabled="{!currentMappings.legalEntityCityX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="State/Province" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityStateProvinceList" value="{!currentMappings.legalEntityStateProvince__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStateProvince}"
+                                rerender="legalEntityStateProvinceDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityStateProvinceDefaultTxtBox" value="{!currentMappings.legalEntityStateProvinceD__c}"
+                            disabled="{!currentMappings.legalEntityStateProvinceX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Postal Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPostalCodeList" value="{!currentMappings.legalEntityPostalCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPostalCode}"
+                                rerender="legalEntityPostalCodeDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPostalCodeDefaultTxtBox" value="{!currentMappings.legalEntityPostalCodeD__c}"
+                            disabled="{!currentMappings.legalEntityPostalCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Country Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityCountryCodeList" value="{!currentMappings.legalEntityCountryCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCountryCode}"
+                                rerender="legalEntityCountryCodeDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityCountryCodeDefaultTxtBox" value="{!currentMappings.legalEntityCountryCodeD__c}"
+                            disabled="{!currentMappings.legalEntityCountryCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Annual Credit Card Sales Volume" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityAnnualCreditCardSalesVolumeList"
+                            value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityAnnualCreditCardSalesVolume}" rerender="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox"
+                            value="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c}" disabled="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Accepted Credit Cards in the Past" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!currentMappings.legalEntityHasAcceptedCreditCardsD__c}"
+                            disabled="{!currentMappings.legalEntityHasAcceptedCreditCardsX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Legal entity information end -->
+
+            <!-- Company Representative start -->
+            <apex:pageBlockSection columns="1" title="Company Representative">
+            	<apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="First Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalFirstNameList" value="{!currentMappings.legalEntityPrincipalFirstName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalFirstName}" rerender="legalEntityPrincipalFirstNameDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalFirstNameD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalFirstNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Last Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalLastNameList" value="{!currentMappings.legalEntityPrincipalLastName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalLastName}"
+                                rerender="legalEntityPrincipalLastNameDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalLastNameD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalLastNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="SSN" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel styleClass="requiredInput" layout="block" id="ssnInput">
+                        <apex:selectList id="legalEntityPrincipalSsnList" value="{!currentMappings.legalEntityPrincipalSsn__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalSsn}"
+                                rerender="legalEntityPrincipalSsnDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalSsnD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalSsnX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Date Of Birth" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalDateOfBirthList" value="{!currentMappings.legalEntityPrincipalDateOfBirth__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalDateOfBirth}" rerender="legalEntityPrincipalDateOfBirthDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDateOfBirthD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalDateOfBirthX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Email Address" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalEmailAddressList" value="{!currentMappings.legalEntityPrincipalEmailAddress__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalEmailAddress}" rerender="legalEntityPrincipalEmailAddressDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalEmailAddressD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalEmailAddressX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Contact Phone" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalContactPhoneList" value="{!currentMappings.legalEntityPrincipalContactPhone__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalContactPhone}" rerender="legalEntityPrincipalContactPhoneDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalContactPhoneD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalContactPhoneX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Drivers License" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalDriversLicenseList" value="{!currentMappings.legalEntityPrincipalDriversLicense__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalDriversLicense}" rerender="legalEntityPrincipalDriversLicenseDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalDriversLicenseD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalDriversLicenseX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Drivers License State" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalDriversLicenseStateList"
+                            value="{!currentMappings.legalEntityPrincipalDriversLicenseState__c}" size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalDriversLicenseState}" rerender="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox"
+                            value="{!currentMappings.legalEntityPrincipalDriversLicenseStateD__c}" disabled="{!currentMappings.legalEntityPrincipalDriversLicenseStateX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 1" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalStreetAddress1List" value="{!currentMappings.legalEntityPrincipalStreetAddress1__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalStreetAddress1}" rerender="legalEntityPrincipalStreetAddress1DefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress1D__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalStreetAddress1X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Street Address 2" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalStreetAddress2List" value="{!currentMappings.legalEntityPrincipalStreetAddress2__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalStreetAddress2}" rerender="legalEntityPrincipalStreetAddress2DefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStreetAddress2D__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalStreetAddress2X__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="City" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalCityList" value="{!currentMappings.legalEntityPrincipalCity__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalCity}"
+                                rerender="legalEntityPrincipalCityDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalCityD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalCityX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="State/Province" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalStateProvinceList" value="{!currentMappings.legalEntityPrincipalStateProvince__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalStateProvince}" rerender="legalEntityPrincipalStateProvinceDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalStateProvinceD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalStateProvinceX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Postal Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalPostalCodeList" value="{!currentMappings.legalEntityPrincipalPostalCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalPostalCode}" rerender="legalEntityPrincipalPostalCodeDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalPostalCodeD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalPostalCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Country Code" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPrincipalCountryCodeList" value="{!currentMappings.legalEntityPrincipalCountryCode__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityPrincipalCountryCode}" rerender="legalEntityPrincipalCountryCodeDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!currentMappings.legalEntityPrincipalCountryCodeD__c}"
+                            disabled="{!currentMappings.legalEntityPrincipalCountryCodeX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Company Representative end -->
+
+
+            <!-- PCI Details start -->
+            <apex:pageBlockSection columns="1" title="PCI Details">
+            	<apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Is Exclusive To PSP " />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityIsExclusiveToPspList" value="{!currentMappings.legalEntityIsExclusiveToPsp__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsExclusiveToPsp}"
+                                rerender="legalEntityIsExclusiveToPspDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityIsExclusiveToPspDefaultTxtBox" value="{!currentMappings.legalEntityIsExclusiveToPspD__c}"
+                            disabled="{!currentMappings.legalEntityIsExclusiveToPspX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Is PCI Compliance Validated" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityIsPciComplianceValidatedList" value="{!currentMappings.legalEntityIsPciComplianceValidated__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityIsPciComplianceValidated}" rerender="legalEntityIsPciComplianceValidatedDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityIsPciComplianceValidatedDefaultTxtBox" value="{!currentMappings.legalEntityIsPciComplianceValidatedD__c}"
+                            disabled="{!currentMappings.legalEntityIsPciComplianceValidatedX__c}" />
+
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Scanning Vendor" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityScanningVendorList" value="{!currentMappings.legalEntityScanningVendor__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityScanningVendor}"
+                                rerender="legalEntityScanningVendorDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityScanningVendorDefaultTxtBox" value="{!currentMappings.legalEntityScanningVendorD__c}"
+                            disabled="{!currentMappings.legalEntityScanningVendorX__c}" />
+
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Qualified Security Assessor" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityQualifiedSecurityAssessorList" value="{!currentMappings.legalEntityQualifiedSecurityAssessor__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityQualifiedSecurityAssessor}" rerender="legalEntityQualifiedSecurityAssessorDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!currentMappings.legalEntityQualifiedSecurityAssessorD__c}"
+                            disabled="{!currentMappings.legalEntityQualifiedSecurityAssessorX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Most Recently Passed Scan" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityMostRecentlyPassedScanList" value="{!currentMappings.legalEntityMostRecentlyPassedScan__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityMostRecentlyPassedScan}" rerender="legalEntityMostRecentlyPassedScanDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!currentMappings.legalEntityMostRecentlyPassedScanD__c}"
+                            disabled="{!currentMappings.legalEntityMostRecentlyPassedScanX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Report On Compliance" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityReportOnComplianceList" value="{!currentMappings.legalEntityReportOnCompliance__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange"
+                                action="{!onSelectChangeLegalEntityReportOnCompliance}" rerender="legalEntityReportOnComplianceDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!currentMappings.legalEntityReportOnComplianceD__c}"
+                            disabled="{!currentMappings.legalEntityReportOnComplianceX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="PCI Level" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="legalEntityPciLevelList" value="{!currentMappings.legalEntityPciLevel__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPciLevel}"
+                                rerender="legalEntityPciLevelDefaultTxtBox" />
+                        </apex:selectList>
+                        <apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!currentMappings.legalEntityPciLevelD__c}"
+                            disabled="{!currentMappings.legalEntityPciLevelX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- PCI Details end -->
+
+
+            <!-- Primary Contact start -->
+            <apex:pageBlockSection columns="1" title="Primary Contact">
+            	<apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Litle Field" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="First Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantFirstNameList" value="{!currentMappings.subMerchantFirstName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantFirstNameDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantFirstName}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantFirstNameD__c}" id="subMerchantFirstNameDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantFirstNameX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Last Name" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantLastNameList" value="{!currentMappings.subMerchantLastName__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantLastNameDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantLastName}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantLastNameD__c}" id="subMerchantLastNameDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantLastNameX__c}" />
+
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Email Address" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantEmailAddressList" value="{!currentMappings.subMerchantEmailAddress__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantEmailAddressDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantEmailAddress}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantEmailAddressD__c}" id="subMerchantEmailAddressDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantEmailAddressX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Phone" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputPanel >
+                        <apex:selectList id="subMerchantPhoneList" value="{!currentMappings.subMerchantPhone__c}"
+                            size="1">
+                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantPhoneDefaultTxtBox"
+                                action="{!onSelectChangeSubMerchantPhone}" />
+                        </apex:selectList>
+                        <apex:inputText value="{!currentMappings.subMerchantPhoneD__c}" id="subMerchantPhoneDefaultTxtBox"
+                            disabled="{!currentMappings.subMerchantPhoneX__c}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <!-- Primary Contact end -->
 
             </apex:pageBlockSection>
-            <apex:pageBlockSection title="Sub Merchant Details">
-                <apex:panelGrid columns="5" cellpadding="1" cellspacing="1">
-                    <apex:outputText value="Litle Field" style="font-weight: bold" />
-                    <apex:outputtext value="" />
-                    <apex:outputText value="Salesforce Field" style="font-weight: bold" />
-                    <apex:outputtext value="" />
-                    <apex:outputText value="Default" style="font-weight: bold" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
+			<apex:pageBlockButtons >
+				<apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}" />
+		        <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}" />
+	        </apex:pageBlockButtons>
 
-                    <apex:outputText value="Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList value="{!currentMappings.subMerchantStreetAddress1__c}" size="1">
-                        <apex:selectOptions id="subMerchantStreetAddress1List" value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress1DefaultTxtBox" action="{!onSelectChangeSubMerchantStreetAddress1}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantStreetAddress1D__c}" id="subMerchantStreetAddress1DefaultTxtBox" disabled="{!currentMappings.subMerchantStreetAddress1X__c}"/>
-                    
-                    <apex:outputText value="Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantStreetAddress2List" value="{!currentMappings.subMerchantStreetAddress2__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress2DefaultTxtBox" action="{!onSelectChangeSubMerchantStreetAddress2}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantStreetAddress2D__c}" id="subMerchantStreetAddress2DefaultTxtBox" disabled="{!currentMappings.subMerchantStreetAddress2X__c}"/>
-                    
-                    <apex:outputText value="City: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantCityList" value="{!currentMappings.subMerchantCity__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantCityDefaultTxtBox" action="{!onSelectChangeSubMerchantCity}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantCityD__c}" id="subMerchantCityDefaultTxtBox" disabled="{!currentMappings.subMerchantCityX__c}"/>
-                    
-                    <apex:outputText value="State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantStateProvinceList" value="{!currentMappings.subMerchantStateProvince__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantStateProvinceDefaultTxtBox" action="{!onSelectChangeSubMerchantStateProvince}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantStateProvinceD__c}" id="subMerchantStateProvinceDefaultTxtBox" disabled="{!currentMappings.subMerchantStateProvinceX__c}"/>
-                    
-                    <apex:outputText value="Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantPostalCodeList" value="{!currentMappings.subMerchantPostalCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantPostalCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantPostalCode}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantPostalCodeD__c}" id="subMerchantPostalCodeDefaultTxtBox" disabled="{!currentMappings.subMerchantPostalCodeX__c}"/>
-                    
-                    <apex:outputText value="Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantCountryCodeList" value="{!currentMappings.subMerchantCountryCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantCountryCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantCountryCode}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantCountryCodeD__c}" id="subMerchantCountryCodeDefaultTxtBox" disabled="{!currentMappings.subMerchantCountryCodeX__c}"/>
-                    
-                    <apex:outputText value="Amex MID: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantAmexMidList" value="{!currentMappings.subMerchantAmexMid__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantAmexMidDefaultTxtBox" action="{!onSelectChangeSubMerchantAmexMid}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantAmexMidD__c}" id="subMerchantAmexMidDefaultTxtBox" disabled="{!currentMappings.subMerchantAmexMidX__c}"/>
-                    
-                    <apex:outputText value="Bank Account Number: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantBankAccountNumberList" value="{!currentMappings.subMerchantBankAccountNumber__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantBankAccountNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantBankAccountNumber}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantBankAccountNumberD__c}" id="subMerchantBankAccountNumberDefaultTxtBox" disabled="{!currentMappings.subMerchantBankAccountNumberX__c}"/>
-                    
-                    <apex:outputText value="Bank Routing Number: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantBankRoutingNumberList" value="{!currentMappings.subMerchantBankRoutingNumber__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantBankRoutingNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantBankRoutingNumber}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantBankRoutingNumberD__c}" id="subMerchantBankRoutingNumberDefaultTxtBox" disabled="{!currentMappings.subMerchantBankRoutingNumberX__c}"/>
-                    
-                    <apex:outputText value="Create Credentials: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantCreateCredentialsList" value="{!currentMappings.subMerchantCreateCredentials__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultTxtBox" action="{!onSelectChangeSubMerchantCreateCredentials}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantCreateCredentialsD__c}" id="subMerchantCreateCredentialsDefaultTxtBox" disabled="{!currentMappings.subMerchantCreateCredentialsX__c}"/>
-                    
-                    <apex:outputText value="Customer Service Number: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantCustomerServiceNumberList" value="{!currentMappings.subMerchantCustomerServiceNumber__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantCustomerServiceNumberDefaultTxtBox" action="{!onSelectChangeSubMerchantCustomerServiceNumber}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantCustomerServiceNumberD__c}" id="subMerchantCustomerServiceNumberDefaultTxtBox" disabled="{!currentMappings.subMerchantCustomerServiceNumberX__c}"/>
-                    
-                    <apex:outputText value="Discover Convey MID: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantDiscoverConveyMidList" value="{!currentMappings.subMerchantDiscoverConveyMid__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantDiscoverConveyMidDefaultTxtBox" action="{!onSelectChangeSubMerchantDiscoverConveyMid}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantDiscoverConveyMidD__c}" id="subMerchantDiscoverConveyMidDefaultTxtBox" disabled="{!currentMappings.subMerchantDiscoverConveyMidX__c}"/>
-                    
-                    <apex:outputText value="Hard Code Billing Descriptor: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantHardCodeBillingDescriptorList" value="{!currentMappings.subMerchantHardCodeBillingDescriptor__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantHardCodeBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchantHardCodeBillingDescriptor}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantHardCodeBillingDescD__c}" id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" disabled="{!currentMappings.subMerchantHardCodeBillingDescriptorX__c}"/>
-                    
-                    <apex:outputText value="Max Transaction Amount: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantMaxTransactionAmountList" value="{!currentMappings.subMerchantMaxTransactionAmount__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantMaxTransactionAmountDefaultTxtBox" action="{!onSelectChangeSubMerchantMaxTransactionAmount}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantMaxTransactionAmountD__c}" id="subMerchantMaxTransactionAmountDefaultTxtBox" disabled="{!currentMappings.subMerchantMaxTransactionAmountX__c}"/>
-                    
-                    <apex:outputText value="Merchant Category Code: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantMerchantCategoryCodeList" value="{!currentMappings.subMerchantMerchantCategoryCode__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantMerchantCategoryCodeDefaultTxtBox" action="{!onSelectChangeSubMerchantMerchantCategoryCode}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantMerchantCategoryCodeD__c}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" disabled="{!currentMappings.subMerchantMerchantCategoryCodeX__c}"/>
-                    
-                    <apex:outputText value="Merchant Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantMerchantNameList" value="{!currentMappings.subMerchantMerchantName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantMerchantNameDefaultTxtBox" action="{!onSelectChangeSubMerchantMerchantName}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantMerchantNameD__c}" id="subMerchantMerchantNameDefaultTxtBox" disabled="{!currentMappings.subMerchantMerchantNameX__c}"/>
-
-                    <apex:outputText value="Primary Contact's First Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantFirstNameList" value="{!currentMappings.subMerchantFirstName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantFirstNameDefaultTxtBox" action="{!onSelectChangeSubMerchantFirstName}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantFirstNameD__c}" id="subMerchantFirstNameDefaultTxtBox" disabled="{!currentMappings.subMerchantFirstNameX__c}"/>
-                    
-                    <apex:outputText value="Primary Contact's Last Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantLastNameList" value="{!currentMappings.subMerchantLastName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantLastNameDefaultTxtBox" action="{!onSelectChangeSubMerchantLastName}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantLastNameD__c}" id="subMerchantLastNameDefaultTxtBox" disabled="{!currentMappings.subMerchantLastNameX__c}"/>
-                    
-                    <apex:outputText value="Primary Contact's Email Address: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantEmailAddressList" value="{!currentMappings.subMerchantEmailAddress__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantEmailAddressDefaultTxtBox" action="{!onSelectChangeSubMerchantEmailAddress}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantEmailAddressD__c}" id="subMerchantEmailAddressDefaultTxtBox" disabled="{!currentMappings.subMerchantEmailAddressX__c}"/>
-                    
-                    <apex:outputText value="Primary Contact's Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantPhoneList" value="{!currentMappings.subMerchantPhone__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantPhoneDefaultTxtBox" action="{!onSelectChangeSubMerchantPhone}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantPhoneD__c}" id="subMerchantPhoneDefaultTxtBox" disabled="{!currentMappings.subMerchantPhoneX__c}"/>
-                    
-                    <apex:outputText value="PSP Merchant ID: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantPspMerchantIdList" value="{!currentMappings.subMerchantPspMerchantId__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantPspMerchantIdDefaultTxtBox" action="{!onSelectChangeSubMerchantPspMerchantId}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantPspMerchantIdD__c}" id="subMerchantPspMerchantIdDefaultTxtBox" disabled="{!currentMappings.subMerchantPspMerchantIdX__c}"/>
-                    
-                    <apex:outputText value="URL: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchantUrlList" value="{!currentMappings.subMerchantUrl__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchantUrlDefaultTxtBox" action="{!onSelectChangeSubMerchantUrl}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchantUrlD__c}" id="subMerchantUrlDefaultTxtBox" disabled="{!currentMappings.subMerchantUrlX__c}"/>
-                    
-                    <apex:outputText value="eCheck Billing Descriptor: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchanteCheckBillingDescriptorList" value="{!currentMappings.subMerchanteCheckBillingDescriptor__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchanteCheckBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckBillingDescriptor}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchanteCheckBillingDescD__c}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox" disabled="{!currentMappings.subMerchanteCheckBillingDescriptorX__c}"/>
-                    
-                    <apex:outputText value="eCheck Company Name: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="subMerchanteCheckCompanyNameList" value="{!currentMappings.subMerchanteCheckCompanyName__c}" size="1">
-                        <apex:selectOptions value="{!salesforceFields}"></apex:selectOptions>
-                        <apex:actionSupport event="onchange" rerender="subMerchanteCheckCompanyNameDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckCompanyName}" />
-                    </apex:selectList>
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!currentMappings.subMerchanteCheckCompanyNameD__c}" id="subMerchanteCheckCompanyNameDefaultTxtBox" disabled="{!currentMappings.subMerchanteCheckCompanyNameX__c}"/>
-                </apex:panelGrid>
-            </apex:pageBlockSection>
         </apex:pageBlock>
-        <apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}"/>
-        <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}"/>
         <!-- <apex:commandButton id="resetBtn" value="Reset All Mappings" action="{!resetMappings}"/> -->
 
     </apex:form>
