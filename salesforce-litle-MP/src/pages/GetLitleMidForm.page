@@ -1,358 +1,449 @@
 <apex:page controller="LitleMidFormController">
     <apex:form >
-
-        <apex:pageBlock title="Litle MID Form" mode="edit">
-            <apex:pageMessages />
-          <!--   <apex:pageMessage summary="Saving Failed. Retry again or contact support." severity="error" strength="1" rendered="{!errorStatus}"/>
-            <apex:pageMessage summary="Mappings Saved." severity="info" strength="1" rendered="{!savingStatus}"/>   -->
-        
-            
-            <p>Fill the form below to apply for Litle MID: </p>
-            <br />
-            <apex:pageBlockSection title="Legal Entity">
-                <apex:panelGrid columns="3" cellpadding="1" cellspacing="1">
-                    <apex:outputtext value=""></apex:outputtext>
-                    <apex:outputtext value=""></apex:outputtext>
-                    <apex:outputtext value=""></apex:outputtext>
-                    
-                    <apex:outputText value="Entity Name: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-	                    <apex:inputText id="legalEntityNameDefaultTxtBox" value="{!legalEntityModel.legalEntityName}" />
-                    </apex:outputPanel>
-                    
-                    
-                    <apex:outputText value="EntityType: " />
-                    <apex:outputtext value="" />
-                    <apex:selectList id="legalEntityTypeList" value="{!legalEntityModel.legalEntityType}" size="1">
-                        <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
-                        <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" 
-                        	rerender="legalEntityTaxIdDefaultTxtBox, legalEntitySsnDefaultTxtBox" /> --> 
-                    </apex:selectList>
-                    
-                    <apex:outputText value="Doing Business As: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!legalEntityModel.legalEntityDoingBusinessAs}" />
-                    
-                    <apex:outputText value="Tax ID: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block"  id="taxInput">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Contact Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityContactPhone}" />
-                    
-                    <apex:outputText value="Annual Credit Card Sales Volume: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" value="{!legalEntityModel.legalEntityAnnualCreditCardSalesVolume}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Has Accepted Credit Cards: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!legalEntityModel.legalEntityHasAcceptedCreditCards}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress1}" maxlength="2"/>
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress2}" />
-                    
-                    <apex:outputText value="City: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityCityDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.City}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StateProvince}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.PostalCode}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.CountryCode}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Is Exclusive To PSP : " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityIsExclusiveToPspDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.IsExclusiveToPsp}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Is PCI Compliance Validated: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityIsPciComplianceValidatedDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.IsPciComplianceValidated}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Scanning Vendor: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityScanningVendorDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.ScanningVendor}" />
-                    
-                    <apex:outputText value="Qualified Security Assessor: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.QualifiedSecurityAssessor}" />
-                    
-                    <apex:outputText value="Most Recently Passed Scan: (YYYY-MM-DD)" />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.MostRecentlyPassedScan}" />
-                    
-                    <apex:outputText value="Report On Compliance: (YYYY-MM-DD)" />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.ReportOnCompliance}" />
-                    
-                    <apex:outputText value="PCI Level: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.PciLevel}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's First Name: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.FirstName}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Last Name: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.LastName}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Email Address: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.EmailAddress}" />
-                    
-                    <apex:outputText value="Principal's SSN: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block"  id="ssnInput">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.Ssn}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Contact Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.ContactPhone}" />
-                    
-                    <apex:outputText value="Principal's Date Of Birth: (YYYY-MM-DD)" />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DateOfBirth}" />
-                    
-                    <apex:outputText value="Principal's Drivers License: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicense}" />
-                    
-                    <apex:outputText value="Principal's Drivers License State: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicenseState}" />
-                    
-                    <apex:outputText value="Principal's Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" maxlength="2"/>
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress2}" />
-                    
-                    <apex:outputText value="Principal's City: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.City}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StateProvince}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.PostalCode}" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Principal's Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.CountryCode}" />
-                    </apex:outputPanel>
-                </apex:panelGrid>
-
-
-            </apex:pageBlockSection>
-            <apex:pageBlockSection title="Sub-Merchant">
-                <apex:panelGrid columns="3" cellpadding="1" cellspacing="1">
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    <apex:outputtext value="" />
-                    
-                    <apex:outputText value="Street Address 1: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" />
-                    
-                    <apex:outputText value="Street Address 2: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress2}" id="subMerchantStreetAddress2DefaultTxtBox" />
-                    
-                    <apex:outputText value="City: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" />
-                    
-                    <apex:outputText value="State/Province: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" />
-                    
-                    <apex:outputText value="Postal Code: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" />
-                    
-                    <apex:outputText value="Country Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantAddress.CountryCode}" id="subMerchantCountryCodeDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Amex MID: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAmexMid}" id="subMerchantAmexMidDefaultTxtBox" />
-                    
-                    <apex:outputText value="Bank Account Number: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Bank Routing Number: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Create Credentials: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantCreateCredentials}" id="subMerchantCreateCredentialsDefaultTxtBox" />
-                    
-                    <apex:outputText value="Customer Service Number: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantCustomerServiceNumber}" id="subMerchantCustomerServiceNumberDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Discover Convey MID: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantDiscoverConveyMid}" id="subMerchantDiscoverConveyMidDefaultTxtBox" />
-                    
-                    <apex:outputText value="Hard Code Billing Descriptor: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}" id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Max Transaction Amount: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Merchant Category Code: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="Merchant Name: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" />
-                    </apex:outputPanel>
-
-                    <apex:outputText value="Primary Contact's First Name: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" />
-                    
-                    <apex:outputText value="Primary Contact's Last Name: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" />
-                    
-                    <apex:outputText value="Primary Contact's Email Address: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}" id="subMerchantEmailAddressDefaultTxtBox" />
-                    
-                    <apex:outputText value="Primary Contact's Phone: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" />
-                    
-                    <apex:outputText value="PSP Merchant ID: " />
-                    <apex:outputtext value="" />
-                    <apex:outputPanel styleClass="requiredInput" layout="block">
-	                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
-                    	<apex:inputText value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" />
-                    </apex:outputPanel>
-                    
-                    <apex:outputText value="URL: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantUrl}" id="subMerchantUrlDefaultTxtBox" />
-                    
-                    <apex:outputText value="eCheck Billing Descriptor: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckBillingDescriptor}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox" />
-                    
-                    <apex:outputText value="eCheck Company Name: " />
-                    <apex:outputtext value="" />
-                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckCompanyName}" id="subMerchanteCheckCompanyNameDefaultTxtBox" />
-                </apex:panelGrid>
+        <apex:pageBlock title="Litle MID" mode="maindetail">
+            <apex:pageBlockSection columns="1">
+                Fill the form below to apply for Litle MID. When done, click Submit.
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="" />
+                </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
         </apex:pageBlock>
-         <apex:outputPanel style="text-align:center" layout="block">
-       		<apex:commandButton id="submitBtn" value="Submit" action="{!submit}"/>
-           	<apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}"/> 
-    	</apex:outputPanel>
+        <apex:pageMessages />
+        <apex:pageBlock title="Legal Entity" mode="edit">
+        	<!-- Legal entity information start -->
+            <apex:pageBlockSection columns="1" title="Legal Entity (Applicable for background checks)">
+            
+            	<apex:pageBlockSectionItem >
+                    <apex:outputText value="Tax ID" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block" id="taxInput">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Entity Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:inputText id="legalEntityNameDefaultTxtBox" value="{!legalEntityModel.legalEntityName}" />
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="EntityType" />
+                    <apex:selectList id="legalEntityTypeList" value="{!legalEntityModel.legalEntityType}"
+                        size="1">
+                        <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
+                        <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" rerender="legalEntityTaxIdDefaultTxtBox, 
+                            legalEntitySsnDefaultTxtBox" /> -->
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Doing Business As" />
+                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!legalEntityModel.legalEntityDoingBusinessAs}" />
+                </apex:pageBlockSectionItem>
+
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Contact Phone" />
+                    <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityContactPhone}" />
+                </apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 1" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress1}"
+                            maxlength="2" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 2" />
+                    <apex:inputText id="legalEntityStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress2}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="City" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityCityDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.City}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="State/Province" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StateProvince}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Postal Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.PostalCode}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Country Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.CountryCode}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Annual Credit Card Sales Volume" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" value="{!legalEntityModel.legalEntityAnnualCreditCardSalesVolume}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Has Accepted Credit Cards" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!legalEntityModel.legalEntityHasAcceptedCreditCards}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Legal entity information end -->
+            
+            <!-- Address information start 
+            <apex:pageBlockSection title="Address" columns="1">
+                
+            </apex:pageBlockSection>
+			Address information end -->
+			
+			<!-- PCI Configuration start -->
+            <apex:pageBlockSection columns="1" title="PCI Configuration">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Is Exclusive To PSP " />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityIsExclusiveToPspDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.IsExclusiveToPsp}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Is PCI Compliance Validated" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityIsPciComplianceValidatedDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.IsPciComplianceValidated}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Scanning Vendor" />
+                    <apex:inputText id="legalEntityScanningVendorDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.ScanningVendor}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Qualified Security Assessor" />
+                    <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.QualifiedSecurityAssessor}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Most Recently Passed Scan" />
+                    <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.MostRecentlyPassedScan}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Report On Compliance" />
+                    <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.ReportOnCompliance}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="PCI Level" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!legalEntityModel.legalEntityPci.PciLevel}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+			<!-- PCI Configuration start -->
+			
+			<!-- Principal Information start -->
+            <apex:pageBlockSection columns="1" title="Principal Information">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="First Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.FirstName}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Last Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.LastName}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+                    <apex:outputText value="SSN" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block" id="ssnInput">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.Ssn}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+                    <apex:outputText value="Date Of Birth" />
+                    <apex:inputText id="legalEntityPrincipalDateOfBirthDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DateOfBirth}" />
+                </apex:pageBlockSectionItem>
+				
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Email Address" />
+                    <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.EmailAddress}" />
+                </apex:pageBlockSectionItem>
+
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Contact Phone" />
+                    <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.ContactPhone}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Drivers License" />
+                    <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicense}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Drivers License State" />
+                    <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicenseState}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 1" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox"
+                            value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" maxlength="2" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 2" />
+                    <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress2}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="City" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.City}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="State/Province" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox"
+                            value="{!legalEntityModel.legalEntityPrincipal.address.StateProvince}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Postal Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.PostalCode}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Country Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.CountryCode}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+			<!-- Principal Information end -->
+        </apex:pageBlock>
+        <apex:pageBlock title="Sub-Merchant" mode="edit">
+        
+        	<!-- Payment Processing Configuration start -->
+            <apex:pageBlockSection columns="1" title="Payment Processing Configuration">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="PSP Merchant ID" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Merchant Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Merchant Category Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Hard Code Billing Descriptor" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}"
+                            id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Customer Service Number" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantCustomerServiceNumber}" id="subMerchantCustomerServiceNumberDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="URL" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantUrl}" id="subMerchantUrlDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Amex Merchant ID" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAmexMid}" id="subMerchantAmexMidDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Discover Merchant ID" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantDiscoverConveyMid}" id="subMerchantDiscoverConveyMidDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+				
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="eCheck Billing Descriptor" />
+                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckBillingDescriptor}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="eCheck Company Name" />
+                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckCompanyName}" id="subMerchanteCheckCompanyNameDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Max Transaction Amount" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 1" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Street Address 2" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress2}" id="subMerchantStreetAddress2DefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="City" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="State/Province" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Postal Code" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Country Code" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.CountryCode}" id="subMerchantCountryCodeDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Create Credentials" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantCreateCredentials}" id="subMerchantCreateCredentialsDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+			<!-- Payment Processing Configuration start -->
+			
+			<!-- Bank Account Details start -->
+            <apex:pageBlockSection columns="1" title="Bank Account Details">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Bank Account Number" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Bank Routing Number" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputText value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+			<!-- Bank Account Details start -->
+			
+			<!-- Unknown Details start -->
+            <apex:pageBlockSection columns="1" title="Unknown Details">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Primary Contact's First Name" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Primary Contact's Last Name" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Primary Contact's Email Address" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}"
+                        id="subMerchantEmailAddressDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Primary Contact's Phone" />
+                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" />
+                </apex:pageBlockSectionItem>
+
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="" />
+                    <apex:outputPanel >
+                        <apex:commandButton id="submitBtn" value="Submit" action="{!submit}" />
+                        <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Unknown Details end -->
+        </apex:pageBlock>
     </apex:form>
 </apex:page>
