@@ -35,19 +35,50 @@ public class SalesforceLitleMappingController {
     }
 
     public List < Selectoption > fetchAllAccountFields() {
+        List < Selectoption > allFields = new List < Selectoption > ();
+        allFields.add(new Selectoption('', '-- Select Option --'));
+        // Add account fields
         SObjectType objToken = Schema.getGlobalDescribe().get('Account');
         DescribeSObjectResult objDef = objToken.getDescribe();
         Map < String, SObjectField > fields = objDef.fields.getMap();
-        List < Selectoption > accountFields = new List < Selectoption > ();
         Set < String > fieldSet = fields.keySet();
-        accountFields.add(new Selectoption('', '-- Select Option --'));
         for (String s: fieldSet) {
             SObjectField fieldToken = fields.get(s);
             DescribeFieldResult selectedField = fieldToken.getDescribe();
-            accountFields.add(new Selectoption('Account.' + selectedField.getName(), 'Account.' + selectedField.getName()));
+            allFields.add(new Selectoption('Account.' + selectedField.getName(), 'Account.' + selectedField.getLabel()));
 
         }
-        return accountFields;
+        //Add Opportunity fields
+        objToken = Schema.getGlobalDescribe().get('Opportunity');
+        objDef = objToken.getDescribe();
+        fields = objDef.fields.getMap();
+        fieldSet = fields.keySet();
+        
+        // Get all opportunity names
+        try{
+        	List<Opportunity> opportunities = [select name, id from Opportunity];
+        	if(opportunities != null && !opportunities.isEmpty()){
+        		system.debug('!size: '+ opportunities.size());
+        		system.debug('!dropdown: '+ allFields.size());
+        		Iterator<Opportunity> oppIterator = opportunities.iterator();
+        		while(oppIterator.hasNext()){
+        			Opportunity thisOpportunity = oppIterator.next();
+        			system.debug('!List: '+ thisOpportunity.Name);
+        			for (String s: fieldSet) {
+			            SObjectField fieldToken = fields.get(s);
+			            DescribeFieldResult selectedField = fieldToken.getDescribe();
+			            allFields.add(new Selectoption('Opportunity.' +thisOpportunity.Id + '.' + selectedField.getName(),
+			            								 'Opportunity-'+thisOpportunity.Name + '.' + selectedField.getLabel()));
+			
+			        }
+        			
+        		}
+        	}
+        }catch(Queryexception e){
+        	System.debug('Error fetching opportunity names for select list'+ e);
+        }
+        
+        return allFields;
     }
 
     /*public void resetStatus() {
