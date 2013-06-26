@@ -22,7 +22,8 @@
 @isTest
 private class AddressTest {
 	public static final String testString = 'test';
-
+	
+	
     static testMethod void testStreetAddress1(){
     	Address address = new Address();
         // Check if the account is null initially
@@ -87,5 +88,71 @@ private class AddressTest {
         System.assertNotEquals(address.getCountryCode(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(address.getCountryCode(), testString);
+    }
+    
+    static testMethod void testStreetAddress1FromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsStreetAddress1FromOpportunity(), false);
+        address.setIsStreetAddress1FromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsStreetAddress1FromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsStreetAddress1FromOpportunity(), true);
+    }
+    
+    static testMethod void testStreetAddress2FromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsStreetAddress2FromOpportunity(), false);
+        address.setIsStreetAddress2FromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsStreetAddress2FromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsStreetAddress2FromOpportunity(), true);
+    }
+    
+    static testMethod void testCityFromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsCityFromOpportunity(), false);
+        address.setIsCityFromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsCityFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsCityFromOpportunity(), true);
+    }
+    
+    static testMethod void testStateProvinceFromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsStateProvinceFromOpportunity(), false);
+        address.setIsStateProvinceFromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsStateProvinceFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsStateProvinceFromOpportunity(), true);
+    }
+    
+    static testMethod void testPostalCodeFromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsPostalCodeFromOpportunity(), false);
+        address.setIsPostalCodeFromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsPostalCodeFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsPostalCodeFromOpportunity(), true);
+    }
+    
+    static testMethod void testCountryCodeFromOpportunity(){
+    	Address address = new Address();
+        // Check if the account is null initially
+        System.assertEquals(address.getIsCountryCodeFromOpportunity(), false);
+        address.setIsCountryCodeFromOpportunity(true);
+        // First check if the value is set
+        System.assertNotEquals(address.getIsCountryCodeFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(address.getIsCountryCodeFromOpportunity(), true);
     }
 }

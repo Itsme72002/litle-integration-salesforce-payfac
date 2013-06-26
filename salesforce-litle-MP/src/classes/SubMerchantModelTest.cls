@@ -45,73 +45,7 @@ private class SubMerchantModelTest {
         System.assertNotEquals(subMerchantModel.getSubMerchantAddress(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(subMerchantModel.getSubMerchantAddress(), address);
-        /*System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress1(), address.getStreetaddress1());
-        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStreetAddress2(), address.getStreetaddress2());
-        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCity(), address.getCity());
-        System.assertEquals(subMerchantModel.getSubMerchantAddress().getPostalCode(), address.getPostalCode());
-        System.assertEquals(subMerchantModel.getSubMerchantAddress().getCountryCode(), address.getCountryCode());
-        System.assertEquals(subMerchantModel.getSubMerchantAddress().getStateProvince(), address.getStateProvince());*/
     }
-    /*static testMethod void subMerchantStreetAddress1(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-		// Check if the subMerchantStreetAddress1 is null initially
-        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress1(), null);
-        subMerchantModel.setSubMerchantStreetAddress1(testString);
-        // First check if the value is set
-        System.assertNotEquals(subMerchantModel.getSubMerchantStreetAddress1(), null);
-        // and then confirm if the value is set correctly
-        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress1(), testString);
-	}
-	static testMethod void subMerchantStreetAddress2(){
-			SubMerchantModel subMerchantModel = new SubMerchantModel();
-			// Check if the subMerchantStreetAddress2 is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress2(), null);
-	        subMerchantModel.setSubMerchantStreetAddress2(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantStreetAddress2(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress2(), testString);
-	}
-	static testMethod void subMerchantCity(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCity is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCity(), null);
-	        subMerchantModel.setSubMerchantCity(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCity(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCity(), testString);
-	}
-	static testMethod void subMerchantStateProvince(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStateProvince is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantStateProvince(), null);
-	        subMerchantModel.setSubMerchantStateProvince(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantStateProvince(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantStateProvince(), testString);
-	}
-	static testMethod void subMerchantPostalCode(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPostalCode is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantPostalCode(), null);
-	        subMerchantModel.setSubMerchantPostalCode(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantPostalCode(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantPostalCode(), testString);
-	}
-	static testMethod void subMerchantCountryCode(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCountryCode is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCountryCode(), null);
-	        subMerchantModel.setSubMerchantCountryCode(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCountryCode(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCountryCode(), testString);
-	}*/
 	static testMethod void subMerchantAmexMid(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 	// Check if the subMerchantAmexMid is null initially
@@ -225,46 +159,6 @@ private class SubMerchantModelTest {
         // and then confirm if the value is set correctly
         System.assertEquals(subMerchantModel.getSubMerchantPrimaryContact(), primaryContact);
     }
-	/*static testMethod void subMerchantFirstName(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantFirstName is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantFirstName(), null);
-	        subMerchantModel.setSubMerchantFirstName(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantFirstName(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantFirstName(), testString);
-	}
-	static testMethod void subMerchantLastName(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantLastName is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantLastName(), null);
-	        subMerchantModel.setSubMerchantLastName(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantLastName(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantLastName(), testString);
-	}
-	static testMethod void subMerchantEmailAddress(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantEmailAddress is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantEmailAddress(), null);
-	        subMerchantModel.setSubMerchantEmailAddress(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantEmailAddress(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantEmailAddress(), testString);
-	}
-	static testMethod void subMerchantPhone(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPhone is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantPhone(), null);
-	        subMerchantModel.setSubMerchantPhone(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantPhone(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantPhone(), testString);
-	}*/
 	static testMethod void subMerchantPspMerchantId(){
 		SubMerchantModel subMerchantModel = new SubMerchantModel();
 	// Check if the subMerchantPspMerchantId is null initially
@@ -305,488 +199,146 @@ private class SubMerchantModelTest {
 	        // and then confirm if the value is set correctly
 	        System.assertEquals(subMerchantModel.getSubMerchanteCheckCompanyName(), testString);
 	}
-	/*
-	// Default textbox values
-	static testMethod void subMerchantStreetAddress1DefaultDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStreetAddress1Default is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress1Default(), null);
-	        subMerchantModel.setSubMerchantStreetAddress1Default(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantStreetAddress1Default(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress1Default(), testString);
-	}
-	static testMethod void subMerchantStreetAddress2Default(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStreetAddress2Default is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress2Default(), null);
-	        subMerchantModel.setSubMerchantStreetAddress2Default(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantStreetAddress2Default(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantStreetAddress2Default(), testString);
-	}
-	static testMethod void subMerchantCityDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCityDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCityDefault(), null);
-	        subMerchantModel.setSubMerchantCityDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCityDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCityDefault(), testString);
-	}
-	static testMethod void subMerchantStateProvinceDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStateProvinceDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantStateProvinceDefault(), null);
-	        subMerchantModel.setSubMerchantStateProvinceDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantStateProvinceDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantStateProvinceDefault(), testString);
-	}
-	static testMethod void subMerchantPostalCodeDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPostalCodeDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantPostalCodeDefault(), null);
-	        subMerchantModel.setSubMerchantPostalCodeDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantPostalCodeDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantPostalCodeDefault(), testString);
-	}
-	static testMethod void subMerchantCountryCodeDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCountryCodeDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCountryCodeDefault(), null);
-	        subMerchantModel.setSubMerchantCountryCodeDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCountryCodeDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCountryCodeDefault(), testString);
-	}
-	static testMethod void subMerchantAmexMidDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantAmexMidDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantAmexMidDefault(), null);
-	        subMerchantModel.setSubMerchantAmexMidDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantAmexMidDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantAmexMidDefault(), testString);
-	}
-	static testMethod void subMerchantBankAccountNumberDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantBankAccountNumberDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantBankAccountNumberDefault(), null);
-	        subMerchantModel.setSubMerchantBankAccountNumberDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantBankAccountNumberDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantBankAccountNumberDefault(), testString);
-	}
-	static testMethod void subMerchantBankRoutingNumberDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantBankRoutingNumberDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantBankRoutingNumberDefault(), null);
-	        subMerchantModel.setSubMerchantBankRoutingNumberDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantBankRoutingNumberDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantBankRoutingNumberDefault(), testString);
-	}
-	static testMethod void subMerchantCreateCredentialsDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCreateCredentialsDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCreateCredentialsDefault(), null);
-	        subMerchantModel.setSubMerchantCreateCredentialsDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCreateCredentialsDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCreateCredentialsDefault(), testString);
-	}
-	static testMethod void subMerchantCustomerServiceNumberDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCustomerServiceNumberDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantCustomerServiceNumberDefault(), null);
-	        subMerchantModel.setSubMerchantCustomerServiceNumberDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantCustomerServiceNumberDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantCustomerServiceNumberDefault(), testString);
-	}
-	static testMethod void subMerchantDiscoverConveyMidDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantDiscoverConveyMidDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantDiscoverConveyMidDefault(), null);
-	        subMerchantModel.setSubMerchantDiscoverConveyMidDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantDiscoverConveyMidDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantDiscoverConveyMidDefault(), testString);
-	}
-	static testMethod void subMerchantHardCodeBillingDescriptorDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantHardCodeBillingDescriptorDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantHardCodeBillingDescriptorDefault(), null);
-	        subMerchantModel.setSubMerchantHardCodeBillingDescriptorDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantHardCodeBillingDescriptorDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantHardCodeBillingDescriptorDefault(), testString);
-	}
-	static testMethod void subMerchantMaxTransactionAmountDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMaxTransactionAmountDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantMaxTransactionAmountDefault(), null);
-	        subMerchantModel.setSubMerchantMaxTransactionAmountDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantMaxTransactionAmountDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantMaxTransactionAmountDefault(), testString);
-	}
-	static testMethod void subMerchantMerchantCategoryCodeDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMerchantCategoryCodeDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantMerchantCategoryCodeDefault(), null);
-	        subMerchantModel.setSubMerchantMerchantCategoryCodeDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantMerchantCategoryCodeDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantMerchantCategoryCodeDefault(), testString);
-	}
-	static testMethod void subMerchantMerchantNameDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMerchantNameDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantMerchantNameDefault(), null);
-	        subMerchantModel.setSubMerchantMerchantNameDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantMerchantNameDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantMerchantNameDefault(), testString);
-	}
-	static testMethod void subMerchantFirstNameDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantFirstNameDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantFirstNameDefault(), null);
-	        subMerchantModel.setSubMerchantFirstNameDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantFirstNameDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantFirstNameDefault(), testString);
-	}
-	static testMethod void subMerchantLastNameDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantLastNameDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantLastNameDefault(), null);
-	        subMerchantModel.setSubMerchantLastNameDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantLastNameDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantLastNameDefault(), testString);
-	}
-	static testMethod void subMerchantEmailAddressDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantEmailAddressDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantEmailAddressDefault(), null);
-	        subMerchantModel.setSubMerchantEmailAddressDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantEmailAddressDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantEmailAddressDefault(), testString);
-	}
-	static testMethod void subMerchantPhoneDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPhoneDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantPhoneDefault(), null);
-	        subMerchantModel.setSubMerchantPhoneDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantPhoneDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantPhoneDefault(), testString);
-	}
-	static testMethod void subMerchantPspMerchantIdDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPspMerchantIdDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantPspMerchantIdDefault(), null);
-	        subMerchantModel.setSubMerchantPspMerchantIdDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantPspMerchantIdDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantPspMerchantIdDefault(), testString);
-	}
-	static testMethod void subMerchantUrlDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantUrlDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchantUrlDefault(), null);
-	        subMerchantModel.setSubMerchantUrlDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchantUrlDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchantUrlDefault(), testString);
-	}
-	static testMethod void subMerchanteCheckBillingDescriptorDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchanteCheckBillingDescriptorDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchanteCheckBillingDescriptorDefault(), null);
-	        subMerchantModel.setSubMerchanteCheckBillingDescriptorDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchanteCheckBillingDescriptorDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchanteCheckBillingDescriptorDefault(), testString);
-	}
-	static testMethod void subMerchanteCheckCompanyNameDefault(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchanteCheckCompanyNameDefault is null initially
-	        System.assertEquals(subMerchantModel.getSubMerchanteCheckCompanyNameDefault(), null);
-	        subMerchantModel.setSubMerchanteCheckCompanyNameDefault(testString);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getSubMerchanteCheckCompanyNameDefault(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getSubMerchanteCheckCompanyNameDefault(), testString);
-	}
 	
-	//Enabled-Disabled flags
-	static testMethod void isSubMerchantStreetAddress1DefaultDisabledDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStreetAddress1DefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStreetAddress1DefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantStreetAddress1DefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantStreetAddress1DefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStreetAddress1DefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantStreetAddress2DefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStreetAddress2DefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStreetAddress2DefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantStreetAddress2DefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantStreetAddress2DefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStreetAddress2DefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantCityDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCityDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCityDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantCityDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantCityDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCityDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantStateProvinceDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantStateProvinceDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStateProvinceDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantStateProvinceDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantStateProvinceDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantStateProvinceDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantPostalCodeDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPostalCodeDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPostalCodeDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantPostalCodeDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantPostalCodeDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPostalCodeDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantCountryCodeDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCountryCodeDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCountryCodeDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantCountryCodeDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantCountryCodeDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCountryCodeDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantAmexMidDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantAmexMidDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantAmexMidDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantAmexMidDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantAmexMidDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantAmexMidDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantBankAccountNumberDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantBankAccountNumberDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantBankAccountNumberDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantBankAccountNumberDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantBankAccountNumberDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantBankAccountNumberDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantBankRoutingNumberDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantBankRoutingNumberDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantBankRoutingNumberDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantCreateCredentialsDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCreateCredentialsDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCreateCredentialsDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantCreateCredentialsDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantCreateCredentialsDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCreateCredentialsDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantCustomerServiceNumberDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantCustomerServiceNumberDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantCustomerServiceNumberDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantDiscoverConveyMidDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantDiscoverConveyMidDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantDiscoverConveyMidDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantHardCodeBillingDescriptorDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantHardCodeBillingDescriptorDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantMaxTransactionAmountDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMaxTransactionAmountDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantMaxTransactionAmountDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantMerchantCategoryCodeDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMerchantCategoryCodeDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantMerchantCategoryCodeDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantMerchantNameDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantMerchantNameDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantNameDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantMerchantNameDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantMerchantNameDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantNameDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantFirstNameDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantFirstNameDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantFirstNameDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantFirstNameDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantFirstNameDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantFirstNameDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantLastNameDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantLastNameDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantLastNameDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantLastNameDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantLastNameDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantLastNameDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantEmailAddressDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantEmailAddressDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantEmailAddressDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantEmailAddressDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantEmailAddressDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantEmailAddressDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantPhoneDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPhoneDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPhoneDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantPhoneDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantPhoneDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPhoneDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantPspMerchantIdDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantPspMerchantIdDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPspMerchantIdDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantPspMerchantIdDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantPspMerchantIdDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantPspMerchantIdDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchantUrlDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchantUrlDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchantUrlDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchantUrlDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchantUrlDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchantUrlDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchanteCheckBillingDescriptorDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchanteCheckBillingDescriptorDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchanteCheckBillingDescriptorDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorDefaultDisabled(), testBoolean);
-	}
-	static testMethod void isSubMerchanteCheckCompanyNameDefaultDisabled(){
-		SubMerchantModel subMerchantModel = new SubMerchantModel();
-	// Check if the subMerchanteCheckCompanyNameDefaultDisabled is null initially
-	        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameDefaultDisabled(), null);
-	        subMerchantModel.setIsSubMerchanteCheckCompanyNameDefaultDisabled(testBoolean);
-	        // First check if the value is set
-	        System.assertNotEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameDefaultDisabled(), null);
-	        // and then confirm if the value is set correctly
-	        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameDefaultDisabled(), testBoolean);
-	}*/
+	
+	static testMethod void testIsSubMerchantAmexMidFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantAmexMidFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantAmexMidFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantAmexMidFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantAmexMidFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantBankAccountNumberFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantBankAccountNumberFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantBankAccountNumberFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantBankAccountNumberFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantBankAccountNumberFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantBankRoutingNumberFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantBankRoutingNumberFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantBankRoutingNumberFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantCreateCredentialsFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantCreateCredentialsFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantCreateCredentialsFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantCreateCredentialsFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantCreateCredentialsFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantCustomerServiceNumberFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantCustomerServiceNumberFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantCustomerServiceNumberFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantDiscoverConveyMidFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantDiscoverConveyMidFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantDiscoverConveyMidFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantHardCodeBillingDescriptorFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantMaxTransactionAmountFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantMaxTransactionAmountFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantMaxTransactionAmountFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantMerchantCategoryCodeFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantMerchantCategoryCodeFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantCategoryCodeFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantMerchantNameFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantMerchantNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantPspMerchantIdFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantPspMerchantIdFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantPspMerchantIdFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantPspMerchantIdFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantPspMerchantIdFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchantUrlFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchantUrlFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchantUrlFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchantUrlFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchantUrlFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchanteCheckBillingDescriptorFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchanteCheckBillingDescriptorFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorFromOpportunity(), true);
+    }
+    static testMethod void testIsSubMerchanteCheckCompanyNameFromOpportunity(){
+    	SubMerchantModel subMerchantModel = new SubMerchantModel();
+        // Check if the account Is null initially
+        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameFromOpportunity(), false);
+        subMerchantModel.setIsSubMerchanteCheckCompanyNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(subMerchantModel.getIsSubMerchanteCheckCompanyNameFromOpportunity(), true);
+    }
 }

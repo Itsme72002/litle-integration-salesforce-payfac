@@ -5,16 +5,16 @@ public class LoggingUtil {
 			if(String.isNotEmpty(accid)){
 				//get account details
 				try{
-					Account thisAccount = [select id, name from Account where id=:accid];
-					fillSObjectLogObject('Account', thisAccount.Name, thisAccount.Id, litleRequestResponseLog);
+					Account thisAccount = [select name from Account where id=:accid];
+					fillSObjectLogObject('Account', thisAccount.Name, accid, litleRequestResponseLog);
 				}catch (Queryexception e){
 					System.debug('Error fetching account details for logging'+ e);
 				}
 			}else if(String.isNotEmpty(oppid)){
 				//get opportunity details
 				try{
-					Opportunity thisOpportunity = [select id, name from Opportunity where id=:oppid];
-					fillSObjectLogObject('Opportunity', thisOpportunity.Name, thisOpportunity.Id, litleRequestResponseLog);
+					Opportunity thisOpportunity = [select name from Opportunity where id=:oppid];
+					fillSObjectLogObject('Opportunity', thisOpportunity.Name, oppid, litleRequestResponseLog);
 				}catch (Queryexception e){
 					System.debug('Error fetching opportunity details for logging'+ e);
 				}

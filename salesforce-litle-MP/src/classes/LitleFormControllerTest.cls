@@ -228,6 +228,14 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityName());
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEName();
+    	System.assert(litleMidFormController.legalEntityModel.getIsNameFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityName());
     	delete mappingObject;
     }
     
@@ -263,6 +271,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityDoingBusinessAs());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEDoingBusinessAs();
+    	System.assert(litleMidFormController.legalEntityModel.getIsDoingBusinessAsFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityDoingBusinessAs());
     	delete mappingObject;
     }
     
@@ -296,6 +313,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityStreetAddress1__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress1());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEAddress1();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsStreetAddress1FromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress1());
     	delete mappingObject;
 	}
@@ -331,6 +357,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress2());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEAddress2();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsStreetAddress2FromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress2());
     	delete mappingObject;
 	}
     
@@ -364,6 +399,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityCity__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCity());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLECity();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsCityFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCity());
     	delete mappingObject;
 	}
@@ -399,6 +443,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStateProvince());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEStateProvince();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsStateProvinceFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStateProvince());
     	delete mappingObject;
 	}
     
@@ -432,6 +485,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPostalCode__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getPostalCode());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPostalCode();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsPostalCodeFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getPostalCode());
     	delete mappingObject;
 	}
@@ -467,6 +529,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCountryCode());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLECountryCode();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityAddress().getIsCountryCodeFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCountryCode());
     	delete mappingObject;
 	}
     
@@ -500,6 +571,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityContactPhone__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityContactPhone());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEContactPhone();
+    	System.assert(litleMidFormController.legalEntityModel.getIsContactPhoneFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityContactPhone());
     	delete mappingObject;
 	}
@@ -535,6 +615,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getFirstName());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalFirstName();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsFirstNameFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getFirstName());
     	delete mappingObject;
 	}
     
@@ -568,6 +657,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalLastName__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getLastName());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalLastName();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsLastNameFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getLastName());
     	delete mappingObject;
 	}
@@ -603,6 +701,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalEmailAddress();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsEmailAddressFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
     	delete mappingObject;
 	}
 	static testMethod void testPopulateLEPrincipalStreetAddress1(){
@@ -636,7 +743,17 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalAddress1();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStreetAddress1FromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
     	delete mappingObject;
+    	
 	}
     
     static testMethod void testPopulateLEPrincipalStreetAddress2(){
@@ -669,6 +786,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalStreetAddress2__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalAddress2();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStreetAddress2FromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
     	delete mappingObject;
 	}
@@ -704,6 +830,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalCity();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsCityFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
     	delete mappingObject;
 	}
     
@@ -737,6 +872,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalStateProvince__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalStateProvince();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStateProvinceFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
     	delete mappingObject;
 	}
@@ -772,6 +916,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalPostalCode();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsPostalCodeFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
     	delete mappingObject;
 	}
     
@@ -805,6 +958,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalCountryCode__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalCountryCode();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getIsCountryCodeFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
     	delete mappingObject;
 	}
@@ -840,6 +1002,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getContactPhone());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalContactPhone();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsContactPhoneFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getContactPhone());
     	delete mappingObject;
 	}
     
@@ -873,6 +1044,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalDateOfBirth__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalDateOfBirth();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsDateOfBirthFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
     	delete mappingObject;
 	}
@@ -908,6 +1088,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalDriversLicense();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsDriversLicenseFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
     	delete mappingObject;
 	}
     
@@ -941,6 +1130,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityPrincipalDriversLicenseState__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalDriversLicenseState();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsDriversLicenseStateFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
     	delete mappingObject;
 	}
@@ -976,6 +1174,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getSsn());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPrincipalSsn();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getIsSsnFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getSsn());
     	delete mappingObject;
 	}
     
@@ -1009,6 +1216,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityTaxId__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityTaxId());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLETaxId();
+    	System.assert(litleMidFormController.legalEntityModel.getIsTaxIdFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityTaxId());
     	delete mappingObject;
 	}
@@ -1044,6 +1260,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEIsExclusiveToPsp();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsIsExclusiveToPspFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
     	delete mappingObject;
 	}
     
@@ -1077,6 +1302,15 @@ private class LitleFormControllerTest {
     	mappingObject.legalEntityIsPciComplianceValidated__c = 'Opportunity.Name';
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEIsPciComplianceValidated();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsIsPciComplianceValidatedFromOpportunity());
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
     	delete mappingObject;
 	}
@@ -1112,6 +1346,15 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getPciLevel());
+    	
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEPciLevel();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciLevelFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getPciLevel());
     	delete mappingObject;
 	}
     
@@ -1146,1315 +1389,22 @@ private class LitleFormControllerTest {
     	insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getScanningVendor());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEQualifiedSecurityAssessor(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = true;
-    	mappingObject.legalEntityQualifiedSecurityAssessor__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = false;
-    	mappingObject.legalEntityQualifiedSecurityAssessorD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = true;
-    	mappingObject.legalEntityQualifiedSecurityAssessor__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEMostRecentlyPassedScan(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = true;
-    	mappingObject.legalEntityMostRecentlyPassedScan__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = false;
-    	mappingObject.legalEntityMostRecentlyPassedScanD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = true;
-    	mappingObject.legalEntityMostRecentlyPassedScan__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEReportOnCompliance(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityReportOnComplianceX__c = true;
-    	mappingObject.legalEntityReportOnCompliance__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityReportOnComplianceX__c = false;
-    	mappingObject.legalEntityReportOnComplianceD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityReportOnComplianceX__c = true;
-    	mappingObject.legalEntityReportOnCompliance__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEAnnualCreditCardSalesVolume(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityAnnualCreditCardSalesVolumeX__c = true;
-    	mappingObject.legalEntityAnnualCreditCardSalesVolume__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityAnnualCreditCardSalesVolumeX__c = false;
-    	mappingObject.legalEntityAnnualCreditCardSalesVolumeD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityAnnualCreditCardSalesVolumeX__c = true;
-    	mappingObject.legalEntityAnnualCreditCardSalesVolume__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEHasAcceptedCreditCards(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityHasAcceptedCreditCardsX__c = true;
-    	mappingObject.legalEntityHasAcceptedCreditCards__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityHasAcceptedCreditCards());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityHasAcceptedCreditCardsX__c = false;
-    	mappingObject.legalEntityHasAcceptedCreditCardsD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityHasAcceptedCreditCards());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityHasAcceptedCreditCardsX__c = true;
-    	mappingObject.legalEntityHasAcceptedCreditCards__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityHasAcceptedCreditCards());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMStreetAddress1(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStreetAddress1X__c = true;
-    	mappingObject.subMerchantStreetAddress1__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress1());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantStreetAddress1X__c = false;
-    	mappingObject.subMerchantStreetAddress1D__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress1());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStreetAddress1X__c = true;
-    	mappingObject.subMerchantStreetAddress1__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress1());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMStreetAddress2(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStreetAddress2X__c = true;
-    	mappingObject.subMerchantStreetAddress2__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress2());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantStreetAddress2X__c = false;
-    	mappingObject.subMerchantStreetAddress2D__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress2());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStreetAddress2X__c = true;
-    	mappingObject.subMerchantStreetAddress2__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStreetAddress2());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMCity(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCityX__c = true;
-    	mappingObject.subMerchantCity__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCity());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantCityX__c = false;
-    	mappingObject.subMerchantCityD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCity());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCityX__c = true;
-    	mappingObject.subMerchantCity__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCity());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMStateProvince(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStateProvinceX__c = true;
-    	mappingObject.subMerchantStateProvince__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStateProvince());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantStateProvinceX__c = false;
-    	mappingObject.subMerchantStateProvinceD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStateProvince());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantStateProvinceX__c = true;
-    	mappingObject.subMerchantStateProvince__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getStateProvince());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMPostalCode(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPostalCodeX__c = true;
-    	mappingObject.subMerchantPostalCode__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getPostalCode());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantPostalCodeX__c = false;
-    	mappingObject.subMerchantPostalCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getPostalCode());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPostalCodeX__c = true;
-    	mappingObject.subMerchantPostalCode__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getPostalCode());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMCountryCode(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCountryCodeX__c = true;
-    	mappingObject.subMerchantCountryCode__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCountryCode());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantCountryCodeX__c = false;
-    	mappingObject.subMerchantCountryCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCountryCode());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCountryCodeX__c = true;
-    	mappingObject.subMerchantCountryCode__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAddress().getCountryCode());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateSMAmexMid(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantAmexMidX__c = true;
-    	mappingObject.subMerchantAmexMid__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantAmexMid());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantAmexMidX__c = false;
-    	mappingObject.subMerchantAmexMidD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantAmexMid());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantAmexMidX__c = true;
-    	mappingObject.subMerchantAmexMid__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantAmexMid());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMBankAccountNumber(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantBankAccountNumberX__c = true;
-    	mappingObject.subMerchantBankAccountNumber__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantBankAccountNumber());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantBankAccountNumberX__c = false;
-    	mappingObject.subMerchantBankAccountNumberD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantBankAccountNumber());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantBankAccountNumberX__c = true;
-    	mappingObject.subMerchantBankAccountNumber__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantBankAccountNumber());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMBankRoutingNumber(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantBankRoutingNumberX__c = true;
-    	mappingObject.subMerchantBankRoutingNumber__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantBankRoutingNumber());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantBankRoutingNumberX__c = false;
-    	mappingObject.subMerchantBankRoutingNumberD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantBankRoutingNumber());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantBankRoutingNumberX__c = true;
-    	mappingObject.subMerchantBankRoutingNumber__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantBankRoutingNumber());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMCreateCredentials(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCreateCredentialsX__c = true;
-    	mappingObject.subMerchantCreateCredentials__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantCreateCredentials());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantCreateCredentialsX__c = false;
-    	mappingObject.subMerchantCreateCredentialsD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantCreateCredentials());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCreateCredentialsX__c = true;
-    	mappingObject.subMerchantCreateCredentials__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantCreateCredentials());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMCustomerServiceNumber(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCustomerServiceNumberX__c = true;
-    	mappingObject.subMerchantCustomerServiceNumber__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantCustomerServiceNumber());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantCustomerServiceNumberX__c = false;
-    	mappingObject.subMerchantCustomerServiceNumberD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantCustomerServiceNumber());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantCustomerServiceNumberX__c = true;
-    	mappingObject.subMerchantCustomerServiceNumber__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantCustomerServiceNumber());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMDiscoverConveyMid(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantDiscoverConveyMidX__c = true;
-    	mappingObject.subMerchantDiscoverConveyMid__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantDiscoverConveyMid());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantDiscoverConveyMidX__c = false;
-    	mappingObject.subMerchantDiscoverConveyMidD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantDiscoverConveyMid());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantDiscoverConveyMidX__c = true;
-    	mappingObject.subMerchantDiscoverConveyMid__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantDiscoverConveyMid());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMHardCodeBillingDescriptor(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantHardCodeBillingDescriptorX__c = true;
-    	mappingObject.subMerchantHardCodeBillingDescriptor__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantHardCodeBillingDescriptorX__c = false;
-    	mappingObject.subMerchantHardCodeBillingDescD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantHardCodeBillingDescriptorX__c = true;
-    	mappingObject.subMerchantHardCodeBillingDescriptor__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMMaxTransactionAmount(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMaxTransactionAmountX__c = true;
-    	mappingObject.subMerchantMaxTransactionAmount__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantMaxTransactionAmount());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantMaxTransactionAmountX__c = false;
-    	mappingObject.subMerchantMaxTransactionAmountD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantMaxTransactionAmount());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMaxTransactionAmountX__c = true;
-    	mappingObject.subMerchantMaxTransactionAmount__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantMaxTransactionAmount());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMMerchantCategoryCode(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = true;
-    	mappingObject.subMerchantMerchantCategoryCode__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = false;
-    	mappingObject.subMerchantMerchantCategoryCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = true;
-    	mappingObject.subMerchantMerchantCategoryCode__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMMerchantName(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantNameX__c = true;
-    	mappingObject.subMerchantMerchantName__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantMerchantName());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantMerchantNameX__c = false;
-    	mappingObject.subMerchantMerchantNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantMerchantName());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantNameX__c = true;
-    	mappingObject.subMerchantMerchantName__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantMerchantName());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMFirstName(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantFirstNameX__c = true;
-    	mappingObject.subMerchantFirstName__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantFirstNameX__c = false;
-    	mappingObject.subMerchantFirstNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantFirstNameX__c = true;
-    	mappingObject.subMerchantFirstName__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMLastName(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantLastNameX__c = true;
-    	mappingObject.subMerchantLastName__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getLastName());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantLastNameX__c = false;
-    	mappingObject.subMerchantLastNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getLastName());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantLastNameX__c = true;
-    	mappingObject.subMerchantLastName__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getLastName());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMEmailAddress(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantEmailAddressX__c = true;
-    	mappingObject.subMerchantEmailAddress__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantEmailAddressX__c = false;
-    	mappingObject.subMerchantEmailAddressD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantEmailAddressX__c = true;
-    	mappingObject.subMerchantEmailAddress__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMPhone(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPhoneX__c = true;
-    	mappingObject.subMerchantPhone__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getPhone());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantPhoneX__c = false;
-    	mappingObject.subMerchantPhoneD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getPhone());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPhoneX__c = true;
-    	mappingObject.subMerchantPhone__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().getPhone());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMPspMerchantId(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPspMerchantIdX__c = true;
-    	mappingObject.subMerchantPspMerchantId__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantPspMerchantId());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantPspMerchantIdX__c = false;
-    	mappingObject.subMerchantPspMerchantIdD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantPspMerchantId());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantPspMerchantIdX__c = true;
-    	mappingObject.subMerchantPspMerchantId__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantPspMerchantId());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMUrl(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantUrlX__c = true;
-    	mappingObject.subMerchantUrl__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchantUrl());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantUrlX__c = false;
-    	mappingObject.subMerchantUrlD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchantUrl());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantUrlX__c = true;
-    	mappingObject.subMerchantUrl__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchantUrl());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMeCheckBillingDescriptor(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchanteCheckBillingDescriptorX__c = true;
-    	mappingObject.subMerchanteCheckBillingDescriptor__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchanteCheckBillingDescriptor());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchanteCheckBillingDescriptorX__c = false;
-    	mappingObject.subMerchanteCheckBillingDescD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchanteCheckBillingDescriptor());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchanteCheckBillingDescriptorX__c = true;
-    	mappingObject.subMerchanteCheckBillingDescriptor__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchanteCheckBillingDescriptor());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testPopulateSMeCheckCompanyName(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchanteCheckCompanyNameX__c = true;
-    	mappingObject.subMerchanteCheckCompanyName__c = 'Account.Name';
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.subMerchantModel.getSubMerchanteCheckCompanyName());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchanteCheckCompanyNameX__c = false;
-    	mappingObject.subMerchanteCheckCompanyNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.subMerchantModel.getSubMerchanteCheckCompanyName());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchanteCheckCompanyNameX__c = true;
-    	mappingObject.subMerchanteCheckCompanyName__c = 'Opportunity.Name';
-    	insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.subMerchantModel.getSubMerchanteCheckCompanyName());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testSetRequestParams(){
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.merchantUsername__c = DEFAULT_STRING;
-    	mappingObject.merchantPassword__c = DEFAULT_STRING;
-    	insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpRequest request = new Httprequest();
-    	String method = 'POST';
-    	litleMidFormController.setRequestParams(request, DEFAULT_STRING, method, DEFAULT_STRING);
-    	System.assertEquals(DEFAULT_STRING, request.getEndpoint());
-    	Blob headerValue = Blob.valueOf(DEFAULT_STRING+':'+DEFAULT_STRING); 
- 	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals('POST', request.getMethod());
- 		System.assertEquals(DEFAULT_STRING, request.getBody());
-    	delete mappingObject;
-    }
-    
-    static testMethod void testSubmit(){
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
-		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
-		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
-		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
-		// check submit on invalid entries
-		System.assertEquals(null, litleMidFormController.submit());
-		// check legal entity id should be null
-		System.assertEquals(null, litleMidFormController.legalEntityResponse.getLegalEntityId());
-		
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// insert username and password
-    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
-    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
-    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
-		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
-		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
-		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
-		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
-		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
-		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
-		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
-		
-		
-    	System.assertEquals(null, litleMidFormController.submit());
-    	/*Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
-		litleMidFormController.submit();
-		//check response code
-		System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, litleMidFormController.legalEntityResponse.getResponseCode());
-		System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()), litleMidFormController.legalEntityResponse.getResponseCode());
-		//check the legal entity id
-		System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, litleMidFormController.legalEntityResponse.getLegalEntityId());*/
-    }
-    
-    static testMethod void testMakeCreateLegalEntityRequest(){
-    	LitleMidFormController controller = new LitleMidFormController();
-    	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
-    	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
-    	LitleRequestXml litleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
-    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	
-    	/* Test approved response */
-    	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
-    	//Enter username and password
-    	Blob headerValue = Blob.valueOf(controller.savedMappings.merchantUsername__c+':'+controller.savedMappings.merchantPassword__c); 
-        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
-        String requestXml = 'Authorization: '+ authorizationHeader + '\n'
-						+ 'Content-Type: '+ LitleMidFormController.CONTENT_TYPE + '\n'
-						+ 'Accept: '+ LitleMidFormController.ACCEPT + '\n' + litleRequestXml.getCreateLegalEntityRequest();
-		// check request xml in log
-    	System.assertEquals(requestXml, litleRequestResponseLog.createLegalEntityRequestXml__c ); 
-    	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLegalEntityApprovedResponse.STATUS_CODE)
-    							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
-    	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
-    	// check if response code is approved
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()), controller.legalEntityResponse.getResponseCode());
-    	// check legal entity id
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	
-    	/* Test duplicate response */
-    	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityDuplicateResponse());
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
-    	//Enter username and password
-    	/*Blob headerValue = Blob.valueOf(controller.savedMappings.merchantUsername__c+':'+controller.savedMappings.merchantPassword__c); 
-        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
-        String requestXml = 'Authorization: '+ authorizationHeader + '\n'
-						+ 'Content-Type: '+ LitleMidFormController.CONTENT_TYPE + '\n'
-						+ 'Accept: '+ LitleMidFormController.ACCEPT + '\n' + litleRequestXml.getCreateLegalEntityRequest();*/
-		// check request xml in log
-    	System.assertEquals(requestXml, litleRequestResponseLog.createLegalEntityRequestXml__c ); 
-    	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLegalEntityDuplicateResponse.STATUS_CODE)
-    							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
-    	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
-    	// check if response code is duplicate
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.DUPLICATE.name()), controller.legalEntityResponse.getResponseCode());
-    	// check legal entity id to be null
-    	System.assertEquals(null, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	/* Test manual review response */
-    	Test.setMock(HttpCalloutMock.class, new MockCreateLEManualReviewResponse());
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
-    	//Enter username and password
-    	/*Blob headerValue = Blob.valueOf(controller.savedMappings.merchantUsername__c+':'+controller.savedMappings.merchantPassword__c); 
-        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
-        String requestXml = 'Authorization: '+ authorizationHeader + '\n'
-						+ 'Content-Type: '+ LitleMidFormController.CONTENT_TYPE + '\n'
-						+ 'Accept: '+ LitleMidFormController.ACCEPT + '\n' + litleRequestXml.getCreateLegalEntityRequest();*/
-		// check request xml in log
-    	System.assertEquals(requestXml, litleRequestResponseLog.createLegalEntityRequestXml__c ); 
-    	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLEManualReviewResponse.STATUS_CODE)
-    							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLEManualReviewResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
-    	//check legal entity response fields;
-    	System.assertEquals(MockCreateLEManualReviewResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE+' : '+MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
-    	// check if response code is manual review
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.MANUAL_REVIEW.name()), controller.legalEntityResponse.getResponseCode());
-    	// check legal entity id to be null
-    	System.assertEquals(null, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	/* Test error response */
-    	Test.setMock(HttpCalloutMock.class, new MockCreateLEErrorResponse());
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, litleRequestXml);
-    	//Enter username and password
-    	/*Blob headerValue = Blob.valueOf(controller.savedMappings.merchantUsername__c+':'+controller.savedMappings.merchantPassword__c); 
-        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
-        String requestXml = 'Authorization: '+ authorizationHeader + '\n'
-						+ 'Content-Type: '+ LitleMidFormController.CONTENT_TYPE + '\n'
-						+ 'Accept: '+ LitleMidFormController.ACCEPT + '\n' + litleRequestXml.getCreateLegalEntityRequest();*/
-		// check request xml in log
-    	System.assertEquals(requestXml, litleRequestResponseLog.createLegalEntityRequestXml__c ); 
-    	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)
-    							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLEErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
-    	//check legal entity response fields;
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE), controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLEErrorResponse.ERROR_MESSAGE, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)+' : '+MockCreateLEErrorResponse.ERROR_MESSAGE
-    							, controller.litleMid);
-    	
-    }
+    	// check as if initiated from account page
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	ApexPages.currentPage().getParameters().put('oppid','');
+    	litleMidFormController = new LitleMidFormController();
+    	litleMidFormController.selectedOpportunityId = opportunity.Id;
+    	litleMidFormController.populateLEScanningVendor();
+    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsScanningVendorFromOpportunity());
+    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getScanningVendor());
+    	delete mappingObject;
+	}
     
-    static testMethod void testMakeCreateSubMerchantRequest(){
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	LitleRequestXml litleRequestXml = new LitleRequestXml(litleMidFormController.legalEntityModel, litleMidFormController.subMerchantModel);
-    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	/* Success condition*/
-    	Test.setMock(HttpCalloutMock.class, new MockCreateSMSuccess());
-    	litleMidFormController.makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
-    	// check request xml
-    	System.assertEquals(litleRequestXml.getCreateSubMerchantRequest(), litleRequestResponseLog.createSubMerchantRequestXml__c ); 
-    	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
-    	//check log response status code and status message
-    	System.assertEquals(String.valueOf(MockCreateSMSuccess.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
-    	System.assertEquals(MockCreateSMSuccess.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
-    	System.assertEquals(MockCreateSMSuccess.SUB_MERCHANT_ID, litleMidFormController.litleMid);
-    	
-    	/* Error condition*/
-    	Test.setMock(HttpCalloutMock.class, new MockCreateSMErrorResponse());
-    	litleMidFormController.makeCreateSubMerchantRequest(litleRequestResponseLog, litleRequestXml);
-    	// check request xml
-    	System.assertEquals(litleRequestXml.getCreateSubMerchantRequest(), litleRequestResponseLog.createSubMerchantRequestXml__c ); 
-    	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
-    	//check log response status code and status message
-    	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
-    	System.assertEquals(MockCreateSMErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
-    	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE) + ' : '+
-    	MockCreateSMErrorResponse.ERROR_MESSAGE, litleMidFormController.litleMid);
-    	
-    }
     
-    static testMethod void testCancel(){
-    	LitleMidFormController controller = new LitleMidFormController();
-    	System.assertEquals(null, controller.cancel());
-    }
     
-    static testMethod void testExtractXmlTagText(){
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpResponse response = new HttpResponse();
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '</CD> ');
-    	
-    	XmlStreamReader xmlReader = response.getXmlStreamReader();
-    	System.assertEquals('USA', litleMidFormController.extractXmlTagText(response, 'COUNTRY'));
-    	System.assertEquals(null, litleMidFormController.extractXmlTagText(response, 'COUN'));
-    	// test for blank tag name
-    	System.assertEquals(null, litleMidFormController.extractXmlTagText(response, ''));
-    	// test for null response
-    	response = null;
-    	System.assertEquals(null, litleMidFormController.extractXmlTagText(response, 'COUNTRY'));
-    }
     
-    static testMethod void testExtractResponse(){
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpResponse response = new HttpResponse();
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '<responseCode>20</responseCode>' + 
-	    					'<responseDescription>test Description</responseDescription> </CD> ');
-    	litleMidFormController.extractResponse(response);
-    	System.assertEquals(null, litleMidFormController.legalEntityModel.getLegalEntityId());
-    	System.assertEquals('20',  litleMidFormController.extractXmlTagText(response, 'responseCode'));
-    	System.assertEquals('test Description',  litleMidFormController.extractXmlTagText(response, 'responseDescription'));
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '</CD> ');
-		litleMidFormController.extractResponse(response);
-    	System.assertEquals(null, litleMidFormController.legalEntityModel.getLegalEntityId());
-    }
+    
+    
     
 }

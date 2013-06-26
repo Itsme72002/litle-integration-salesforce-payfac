@@ -1,11 +1,5 @@
 public class SubMerchantModel {
-	//Select options values
-	/*private String subMerchantStreetAddress1;
-    private String subMerchantStreetAddress2;
-    private String subMerchantCity;
-    private String subMerchantStateProvince;
-    private String subMerchantPostalCode;
-    private String subMerchantCountryCode;*/
+	
     private Address subMerchantAddress;
     private String subMerchantAmexMid;
     private String subMerchantBankAccountNumber;
@@ -17,180 +11,244 @@ public class SubMerchantModel {
     private String subMerchantMaxTransactionAmount;
     private String subMerchantMerchantCategoryCode;
     private String subMerchantMerchantName;
-    /*private String subMerchantFirstName;
-    private String subMerchantLastName;
-    private String subMerchantEmailAddress;
-    private String subMerchantPhone;*/
     private PrimaryContact subMerchantPrimaryContact;
     private String subMerchantPspMerchantId;
     private String subMerchantUrl;
     private String subMerchanteCheckBillingDescriptor;
     private String subMerchanteCheckCompanyName;
+    private Boolean isSubMerchantAmexMidFromOpportunity;
+    private Boolean isSubMerchantBankAccountNumberFromOpportunity;
+    private Boolean isSubMerchantBankRoutingNumberFromOpportunity;
+    private Boolean isSubMerchantCreateCredentialsFromOpportunity;
+    private Boolean isSubMerchantCustomerServiceNumberFromOpportunity;
+    private Boolean isSubMerchantDiscoverConveyMidFromOpportunity;
+    private Boolean isSubMerchantHardCodeBillingDescriptorFromOpportunity;
+    private Boolean isSubMerchantMaxTransactionAmountFromOpportunity;
+    private Boolean isSubMerchantMerchantCategoryCodeFromOpportunity;
+    private Boolean isSubMerchantMerchantNameFromOpportunity;
+    private Boolean isSubMerchantPspMerchantIdFromOpportunity;
+    private Boolean isSubMerchantUrlFromOpportunity;
+    private Boolean isSubMerchanteCheckBillingDescriptorFromOpportunity;
+    private Boolean isSubMerchanteCheckCompanyNameFromOpportunity;
     
     public SubMerchantModel(){
     	subMerchantAddress = new Address();
     	subMerchantPrimaryContact = new PrimaryContact();
+	    isSubMerchantAmexMidFromOpportunity = false;
+	    isSubMerchantBankAccountNumberFromOpportunity = false;
+	    isSubMerchantBankRoutingNumberFromOpportunity = false;
+	    isSubMerchantCreateCredentialsFromOpportunity = false;
+	    isSubMerchantCustomerServiceNumberFromOpportunity = false;
+	    isSubMerchantDiscoverConveyMidFromOpportunity = false;
+	    isSubMerchantHardCodeBillingDescriptorFromOpportunity = false;
+	    isSubMerchantMaxTransactionAmountFromOpportunity = false;
+	    isSubMerchantMerchantCategoryCodeFromOpportunity = false;
+	    isSubMerchantMerchantNameFromOpportunity = false;
+	    isSubMerchantPspMerchantIdFromOpportunity = false;
+	    isSubMerchantUrlFromOpportunity = false;
+	    isSubMerchanteCheckBillingDescriptorFromOpportunity = false;
+	    isSubMerchanteCheckCompanyNameFromOpportunity = false;
     }
     
-    /*public String getSubMerchantStreetAddress1(){
-        return subMerchantStreetAddress1;
-    }
-    public void setSubMerchantStreetAddress1(String subMerchantStreetAddress1){
-        this.subMerchantStreetAddress1 = subMerchantStreetAddress1;
-    }
-    public String getSubMerchantStreetAddress2(){
-        return subMerchantStreetAddress2;
-    }
-    public void setSubMerchantStreetAddress2(String subMerchantStreetAddress2){
-        this.subMerchantStreetAddress2 = subMerchantStreetAddress2;
-    }
-    public String getSubMerchantCity(){
-        return subMerchantCity;
-    }
-    public void setSubMerchantCity(String subMerchantCity){
-        this.subMerchantCity = subMerchantCity;
-    }
-    public String getSubMerchantStateProvince(){
-        return subMerchantStateProvince;
-    }
-    public void setSubMerchantStateProvince(String subMerchantStateProvince){
-        this.subMerchantStateProvince = subMerchantStateProvince;
-    }
-    public String getSubMerchantPostalCode(){
-        return subMerchantPostalCode;
-    }
-    public void setSubMerchantPostalCode(String subMerchantPostalCode){
-        this.subMerchantPostalCode = subMerchantPostalCode;
-    }
-    public String getSubMerchantCountryCode(){
-        return subMerchantCountryCode;
-    }
-    public void setSubMerchantCountryCode(String subMerchantCountryCode){
-        this.subMerchantCountryCode = subMerchantCountryCode;
-    }*/
     
     public Address getSubMerchantAddress() {
         return subMerchantAddress;
     }
-
-    public void setSubMerchantAddress(Address address) {
-        this.subMerchantAddress = address;
+    public void setSubMerchantAddress(Address subMerchantAddress) {
+        this.subMerchantAddress = subMerchantAddress;
     }
-    
-    public String getSubMerchantAmexMid(){
+    public String getSubMerchantAmexMid() {
         return subMerchantAmexMid;
     }
-    public void setSubMerchantAmexMid(String subMerchantAmexMid){
+    public void setSubMerchantAmexMid(String subMerchantAmexMid) {
         this.subMerchantAmexMid = subMerchantAmexMid;
     }
-    public String getSubMerchantBankAccountNumber(){
+    public String getSubMerchantBankAccountNumber() {
         return subMerchantBankAccountNumber;
     }
-    public void setSubMerchantBankAccountNumber(String subMerchantBankAccountNumber){
+    public void setSubMerchantBankAccountNumber(String subMerchantBankAccountNumber) {
         this.subMerchantBankAccountNumber = subMerchantBankAccountNumber;
     }
-    public String getSubMerchantBankRoutingNumber(){
+    public String getSubMerchantBankRoutingNumber() {
         return subMerchantBankRoutingNumber;
     }
-    public void setSubMerchantBankRoutingNumber(String subMerchantBankRoutingNumber){
+    public void setSubMerchantBankRoutingNumber(String subMerchantBankRoutingNumber) {
         this.subMerchantBankRoutingNumber = subMerchantBankRoutingNumber;
     }
-    public String getSubMerchantCreateCredentials(){
+    public String getSubMerchantCreateCredentials() {
         return subMerchantCreateCredentials;
     }
-    public void setSubMerchantCreateCredentials(String subMerchantCreateCredentials){
+    public void setSubMerchantCreateCredentials(String subMerchantCreateCredentials) {
         this.subMerchantCreateCredentials = subMerchantCreateCredentials;
     }
-    public String getSubMerchantCustomerServiceNumber(){
+    public String getSubMerchantCustomerServiceNumber() {
         return subMerchantCustomerServiceNumber;
     }
-    public void setSubMerchantCustomerServiceNumber(String subMerchantCustomerServiceNumber){
+    public void setSubMerchantCustomerServiceNumber(
+            String subMerchantCustomerServiceNumber) {
         this.subMerchantCustomerServiceNumber = subMerchantCustomerServiceNumber;
     }
-    public String getSubMerchantDiscoverConveyMid(){
+    public String getSubMerchantDiscoverConveyMid() {
         return subMerchantDiscoverConveyMid;
     }
-    public void setSubMerchantDiscoverConveyMid(String subMerchantDiscoverConveyMid){
+    public void setSubMerchantDiscoverConveyMid(String subMerchantDiscoverConveyMid) {
         this.subMerchantDiscoverConveyMid = subMerchantDiscoverConveyMid;
     }
-    public String getSubMerchantHardCodeBillingDescriptor(){
+    public String getSubMerchantHardCodeBillingDescriptor() {
         return subMerchantHardCodeBillingDescriptor;
     }
-    public void setSubMerchantHardCodeBillingDescriptor(String subMerchantHardCodeBillingDescriptor){
+    public void setSubMerchantHardCodeBillingDescriptor(
+            String subMerchantHardCodeBillingDescriptor) {
         this.subMerchantHardCodeBillingDescriptor = subMerchantHardCodeBillingDescriptor;
     }
-    public String getSubMerchantMaxTransactionAmount(){
+    public String getSubMerchantMaxTransactionAmount() {
         return subMerchantMaxTransactionAmount;
     }
-    public void setSubMerchantMaxTransactionAmount(String subMerchantMaxTransactionAmount){
+    public void setSubMerchantMaxTransactionAmount(
+            String subMerchantMaxTransactionAmount) {
         this.subMerchantMaxTransactionAmount = subMerchantMaxTransactionAmount;
     }
-    public String getSubMerchantMerchantCategoryCode(){
+    public String getSubMerchantMerchantCategoryCode() {
         return subMerchantMerchantCategoryCode;
     }
-    public void setSubMerchantMerchantCategoryCode(String subMerchantMerchantCategoryCode){
+    public void setSubMerchantMerchantCategoryCode(
+            String subMerchantMerchantCategoryCode) {
         this.subMerchantMerchantCategoryCode = subMerchantMerchantCategoryCode;
     }
-    public String getSubMerchantMerchantName(){
+    public String getSubMerchantMerchantName() {
         return subMerchantMerchantName;
     }
-    public void setSubMerchantMerchantName(String subMerchantMerchantName){
+    public void setSubMerchantMerchantName(String subMerchantMerchantName) {
         this.subMerchantMerchantName = subMerchantMerchantName;
     }
-    
     public PrimaryContact getSubMerchantPrimaryContact() {
         return subMerchantPrimaryContact;
     }
-
-    public void setSubMerchantPrimaryContact(PrimaryContact primaryContact) {
-        this.subMerchantPrimaryContact = primaryContact;
+    public void setSubMerchantPrimaryContact(
+            PrimaryContact subMerchantPrimaryContact) {
+        this.subMerchantPrimaryContact = subMerchantPrimaryContact;
     }
-    /*public String getSubMerchantFirstName(){
-        return subMerchantFirstName;
-    }
-    public void setSubMerchantFirstName(String subMerchantFirstName){
-        this.subMerchantFirstName = subMerchantFirstName;
-    }
-    public String getSubMerchantLastName(){
-        return subMerchantLastName;
-    }
-    public void setSubMerchantLastName(String subMerchantLastName){
-        this.subMerchantLastName = subMerchantLastName;
-    }
-    public String getSubMerchantEmailAddress(){
-        return subMerchantEmailAddress;
-    }
-    public void setSubMerchantEmailAddress(String subMerchantEmailAddress){
-        this.subMerchantEmailAddress = subMerchantEmailAddress;
-    }
-    public String getSubMerchantPhone(){
-        return subMerchantPhone;
-    }
-    public void setSubMerchantPhone(String subMerchantPhone){
-        this.subMerchantPhone = subMerchantPhone;
-    }*/
-    public String getSubMerchantPspMerchantId(){
+    public String getSubMerchantPspMerchantId() {
         return subMerchantPspMerchantId;
     }
-    public void setSubMerchantPspMerchantId(String subMerchantPspMerchantId){
+    public void setSubMerchantPspMerchantId(String subMerchantPspMerchantId) {
         this.subMerchantPspMerchantId = subMerchantPspMerchantId;
     }
-    public String getSubMerchantUrl(){
+    public String getSubMerchantUrl() {
         return subMerchantUrl;
     }
-    public void setSubMerchantUrl(String subMerchantUrl){
+    public void setSubMerchantUrl(String subMerchantUrl) {
         this.subMerchantUrl = subMerchantUrl;
     }
-    public String getSubMerchanteCheckBillingDescriptor(){
+    public String getSubMerchanteCheckBillingDescriptor() {
         return subMerchanteCheckBillingDescriptor;
     }
-    public void setSubMerchanteCheckBillingDescriptor(String subMerchanteCheckBillingDescriptor){
+    public void setSubMerchanteCheckBillingDescriptor(
+            String subMerchanteCheckBillingDescriptor) {
         this.subMerchanteCheckBillingDescriptor = subMerchanteCheckBillingDescriptor;
     }
-    public String getSubMerchanteCheckCompanyName(){
+    public String getSubMerchanteCheckCompanyName() {
         return subMerchanteCheckCompanyName;
     }
-    public void setSubMerchanteCheckCompanyName(String subMerchanteCheckCompanyName){
+    public void setSubMerchanteCheckCompanyName(String subMerchanteCheckCompanyName) {
         this.subMerchanteCheckCompanyName = subMerchanteCheckCompanyName;
-    }    
+    }
+    public Boolean getIsSubMerchantAmexMidFromOpportunity() {
+        return isSubMerchantAmexMidFromOpportunity;
+    }
+    public void setIsSubMerchantAmexMidFromOpportunity(
+            Boolean isSubMerchantAmexMidFromOpportunity) {
+        this.isSubMerchantAmexMidFromOpportunity = isSubMerchantAmexMidFromOpportunity;
+    }
+    public Boolean getIsSubMerchantBankAccountNumberFromOpportunity() {
+        return isSubMerchantBankAccountNumberFromOpportunity;
+    }
+    public void setIsSubMerchantBankAccountNumberFromOpportunity(
+            Boolean isSubMerchantBankAccountNumberFromOpportunity) {
+        this.isSubMerchantBankAccountNumberFromOpportunity = isSubMerchantBankAccountNumberFromOpportunity;
+    }
+    public Boolean getIsSubMerchantBankRoutingNumberFromOpportunity() {
+        return isSubMerchantBankRoutingNumberFromOpportunity;
+    }
+    public void setIsSubMerchantBankRoutingNumberFromOpportunity(
+            Boolean isSubMerchantBankRoutingNumberFromOpportunity) {
+        this.isSubMerchantBankRoutingNumberFromOpportunity = isSubMerchantBankRoutingNumberFromOpportunity;
+    }
+    public Boolean getIsSubMerchantCreateCredentialsFromOpportunity() {
+        return isSubMerchantCreateCredentialsFromOpportunity;
+    }
+    public void setIsSubMerchantCreateCredentialsFromOpportunity(
+            Boolean isSubMerchantCreateCredentialsFromOpportunity) {
+        this.isSubMerchantCreateCredentialsFromOpportunity = isSubMerchantCreateCredentialsFromOpportunity;
+    }
+    public Boolean getIsSubMerchantCustomerServiceNumberFromOpportunity() {
+        return isSubMerchantCustomerServiceNumberFromOpportunity;
+    }
+    public void setIsSubMerchantCustomerServiceNumberFromOpportunity(
+            Boolean isSubMerchantCustomerServiceNumberFromOpportunity) {
+        this.isSubMerchantCustomerServiceNumberFromOpportunity = isSubMerchantCustomerServiceNumberFromOpportunity;
+    }
+    public Boolean getIsSubMerchantDiscoverConveyMidFromOpportunity() {
+        return isSubMerchantDiscoverConveyMidFromOpportunity;
+    }
+    public void setIsSubMerchantDiscoverConveyMidFromOpportunity(
+            Boolean isSubMerchantDiscoverConveyMidFromOpportunity) {
+        this.isSubMerchantDiscoverConveyMidFromOpportunity = isSubMerchantDiscoverConveyMidFromOpportunity;
+    }
+    public Boolean getIsSubMerchantHardCodeBillingDescriptorFromOpportunity() {
+        return isSubMerchantHardCodeBillingDescriptorFromOpportunity;
+    }
+    public void setIsSubMerchantHardCodeBillingDescriptorFromOpportunity(
+            Boolean isSubMerchantHardCodeBillingDescriptorFromOpportunity) {
+        this.isSubMerchantHardCodeBillingDescriptorFromOpportunity = isSubMerchantHardCodeBillingDescriptorFromOpportunity;
+    }
+    public Boolean getIsSubMerchantMaxTransactionAmountFromOpportunity() {
+        return isSubMerchantMaxTransactionAmountFromOpportunity;
+    }
+    public void setIsSubMerchantMaxTransactionAmountFromOpportunity(
+            Boolean isSubMerchantMaxTransactionAmountFromOpportunity) {
+        this.isSubMerchantMaxTransactionAmountFromOpportunity = isSubMerchantMaxTransactionAmountFromOpportunity;
+    }
+    public Boolean getIsSubMerchantMerchantCategoryCodeFromOpportunity() {
+        return isSubMerchantMerchantCategoryCodeFromOpportunity;
+    }
+    public void setIsSubMerchantMerchantCategoryCodeFromOpportunity(
+            Boolean isSubMerchantMerchantCategoryCodeFromOpportunity) {
+        this.isSubMerchantMerchantCategoryCodeFromOpportunity = isSubMerchantMerchantCategoryCodeFromOpportunity;
+    }
+    public Boolean getIsSubMerchantMerchantNameFromOpportunity() {
+        return isSubMerchantMerchantNameFromOpportunity;
+    }
+    public void setIsSubMerchantMerchantNameFromOpportunity(
+            Boolean isSubMerchantMerchantNameFromOpportunity) {
+        this.isSubMerchantMerchantNameFromOpportunity = isSubMerchantMerchantNameFromOpportunity;
+    }
+    public Boolean getIsSubMerchantPspMerchantIdFromOpportunity() {
+        return isSubMerchantPspMerchantIdFromOpportunity;
+    }
+    public void setIsSubMerchantPspMerchantIdFromOpportunity(
+            Boolean isSubMerchantPspMerchantIdFromOpportunity) {
+        this.isSubMerchantPspMerchantIdFromOpportunity = isSubMerchantPspMerchantIdFromOpportunity;
+    }
+    public Boolean getIsSubMerchantUrlFromOpportunity() {
+        return isSubMerchantUrlFromOpportunity;
+    }
+    public void setIsSubMerchantUrlFromOpportunity(
+            Boolean isSubMerchantUrlFromOpportunity) {
+        this.isSubMerchantUrlFromOpportunity = isSubMerchantUrlFromOpportunity;
+    }
+    public Boolean getIsSubMerchanteCheckBillingDescriptorFromOpportunity() {
+        return isSubMerchanteCheckBillingDescriptorFromOpportunity;
+    }
+    public void setIsSubMerchanteCheckBillingDescriptorFromOpportunity(
+            Boolean isSubMerchanteCheckBillingDescriptorFromOpportunity) {
+        this.isSubMerchanteCheckBillingDescriptorFromOpportunity = isSubMerchanteCheckBillingDescriptorFromOpportunity;
+    }
+    public Boolean getIsSubMerchanteCheckCompanyNameFromOpportunity() {
+        return isSubMerchanteCheckCompanyNameFromOpportunity;
+    }
+    public void setIsSubMerchanteCheckCompanyNameFromOpportunity(
+            Boolean isSubMerchanteCheckCompanyNameFromOpportunity) {
+        this.isSubMerchanteCheckCompanyNameFromOpportunity = isSubMerchanteCheckCompanyNameFromOpportunity;
+    }
 }

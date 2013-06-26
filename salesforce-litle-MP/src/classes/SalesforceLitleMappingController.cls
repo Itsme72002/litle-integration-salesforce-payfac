@@ -36,7 +36,8 @@ public class SalesforceLitleMappingController {
 
     public List < Selectoption > fetchAllAccountFields() {
         List < Selectoption > allFields = new List < Selectoption > ();
-        allFields.add(new Selectoption('', '-- Select Option --'));
+        //allFields.add(new Selectoption('', '-- Select Option --'));
+        allFields.add(new Selectoption('Opportunity.Name', 'Opportunity.Name'));
         
         // Add account fields
         SObjectType objToken = Schema.getGlobalDescribe().get('Account');
@@ -58,7 +59,7 @@ public class SalesforceLitleMappingController {
             SObjectField fieldToken = fields.get(s);
             DescribeFieldResult selectedField = fieldToken.getDescribe();
             allFields.add(new Selectoption('Opportunity.' + selectedField.getName(),
-            								 'Opportunity.' + selectedField.getLabel()));
+            								 'Opportunity.' + selectedField.getName()));
 		}	
 		return allFields;
     }

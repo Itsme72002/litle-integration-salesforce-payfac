@@ -6,7 +6,6 @@ public class LitleMidFormController {
 	public String urlAccountId {get; set;}
 	public String urlOpportunityId {get; set;}
 	public Account account{get; set;}
-//	public Boolean isTaxDisplayed{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
 	public static final List<Integer> pciLevels = new List<Integer>{ 1, 2, 3, 4 };
 	public static final String LEGAL_ENTITY_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
@@ -17,45 +16,294 @@ public class LitleMidFormController {
 	public SubMerchantResponse subMerchantResponse {get; set;}
 	// stores litle mid / error information
 	public String litleMid;
-	//public static final String INDIVIDUAL_SOLE_PROPRIETORSHIP = 'INDIVIDUAL_SOLE_PROPRIETORSHIP';
-	//public static final String OTHER = 'OTHER';
-	
-	/*public LitleMidFormController(ApexPages.StandardController controller) {
-        this.account = (Account)controller.getRecord();
-        this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
-        this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
-        savedMappings = new SalesforceLitleMappingsObject__c();
-		legalEntityModel = new LegalEntityModel();
-		subMerchantModel = new SubMerchantModel();
-		List<SalesforceLitleMappingsObject__c> mappingRecords 
-    			= [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
-    	if(!mappingRecords.isEmpty()){
-    		this.savedMappings =  mappingRecords.get(0);
-    		legalEntityModel.setLegalEntityName([select website from account where id=:account.Id].website);
-    	}
-	}*/
+	public List<SelectOption> opportunityOptions {get; set;}
+	public String selectedOpportunityId {get; set;}
 	
 	public LitleMidFormController(){
 		this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
+        //populate all opportunities of this account id
+        if(String.isNotEmpty(urlAccountId)){
+        	opportunityOptions = QueryUtil.getOpportunityNameOptions(urlAccountId);
+        }
+        
+        if(String.isEmpty(urlAccountId)){
+        	// call from opportunity page, fetch account id
+        	if(String.isNotEmpty(urlOpportunityId)){
+        		//query for account id
+        		try{
+        			Opportunity opp = [select accountid from opportunity where id=:urlOpportunityId];
+        			urlAccountId = opp.accountid;
+        		}catch(Queryexception e){
+        			system.debug('Error fetching account id from opportunity' + e);
+        		}
+        	}
+        }
+        
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
         	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
         }
-        
-        //legalEntityTypeList.add(new SelectOption(OTHER, 'Other'));
         savedMappings = new SalesforceLitleMappingsObject__c();
 		legalEntityModel = new LegalEntityModel();
 		subMerchantModel = new SubMerchantModel();
 		legalEntityResponse = new LegalEntityResponse();
 		List<SalesforceLitleMappingsObject__c> mappingRecords 
     			= [select id, name, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityDriversLicense__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseState__c, legalEntityDriversLicenseStateD__c, legalEntityDriversLicenseStateX__c, legalEntityDriversLicenseX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityFirstName__c, legalEntityFirstNameD__c, legalEntityFirstNameX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityIsExclusiveToPsp__c, legalEntityIsExclusiveToPspD__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidated__c, legalEntityIsPciComplianceValidatedD__c, legalEntityIsPciComplianceValidatedX__c, legalEntityLastName__c, legalEntityLastNameD__c, legalEntityLastNameX__c, legalEntityMostRecentlyPassedScan__c, legalEntityMostRecentlyPassedScanD__c, legalEntityMostRecentlyPassedScanX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPciLevel__c, legalEntityPciLevelD__c, legalEntityPciLevelX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityQualifiedSecurityAssessor__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityReportOnCompliance__c, legalEntityReportOnComplianceD__c, legalEntityReportOnComplianceX__c, legalEntityScanningVendor__c, legalEntityScanningVendorD__c, legalEntityScanningVendorX__c, legalEntitySsn__c, legalEntitySsnD__c, legalEntitySsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
-    	String foo = 'website';
     	if(!mappingRecords.isEmpty()){
     		this.savedMappings =  mappingRecords.get(0);
     		populateFields();
     	}
 	}
+	
+	
+	public Pagereference onChangeOpportunityOptions(){
+		if(String.isNotEmpty(selectedOpportunityId)){
+			if(subMerchantModel.getIsSubMerchanteCheckCompanyNameFromOpportunity()){
+				populateSMeCheckCompanyName();
+			}
+			
+			if(subMerchantModel.getIsSubMerchanteCheckBillingDescriptorFromOpportunity()){
+				populateSMeCheckBillingDescriptor();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantUrlFromOpportunity()){
+				populateSMUrl();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantPspMerchantIdFromOpportunity()){
+				populateSMPspMerchantId();
+			}
+			
+			if(subMerchantModel.getSubMerchantPrimaryContact().getIsPhoneFromOpportunity()){
+				populateSMPhone();
+			}
+			
+			if(subMerchantModel.getSubMerchantPrimaryContact().getIsEmailAddressFromOpportunity()){
+				populateSMEmailAddress();
+			}
+			
+			if(subMerchantModel.getSubMerchantPrimaryContact().getIsLastNameFromOpportunity()){
+				populateSMLastName();
+			}
+			
+			if(subMerchantModel.getSubMerchantPrimaryContact().getIsFirstNameFromOpportunity()){
+				populateSMFirstName();
+			}
+			system.debug('!why: ' + subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity());
+			if(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity()){
+				populateSMMerchantName();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantMerchantCategoryCodeFromOpportunity()){
+				populateSMMerchantCategoryCode();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantMaxTransactionAmountFromOpportunity()){
+				populateSMMaxTransactionAmount();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantHardCodeBillingDescriptorFromOpportunity()){
+				populateSMHardCodeBillingDescriptor();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantDiscoverConveyMidFromOpportunity()){
+				populateSMDiscoverConveyMid();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantCustomerServiceNumberFromOpportunity()){
+				populateSMCustomerServiceNumber();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantCreateCredentialsFromOpportunity()){
+				populateSMCreateCredentials();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantBankRoutingNumberFromOpportunity()){
+				populateSMBankRoutingNumber();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantBankAccountNumberFromOpportunity()){
+				populateSMBankAccountNumber();
+			}
+			
+			if(subMerchantModel.getIsSubMerchantAmexMidFromOpportunity()){
+				populateSMAmexMid();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsCountryCodeFromOpportunity()){
+				populateSMCountryCode();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsPostalCodeFromOpportunity()){
+				populateSMPostalCode();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsStateProvinceFromOpportunity()){
+				populateSMStateProvince();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsCityFromOpportunity()){
+				populateSMCity();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsStreetAddress2FromOpportunity()){
+				populateSMStreetAddress2();
+			}
+			
+			if(subMerchantModel.getSubMerchantAddress().getIsStreetAddress1FromOpportunity()){
+				populateSMStreetAddress1();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsCountryCodeFromOpportunity()){
+				populateLEPrincipalCountryCode();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsPostalCodeFromOpportunity()){
+				populateLEPrincipalPostalCode();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStateProvinceFromOpportunity()){
+				populateLEPrincipalStateProvince();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsCityFromOpportunity()){
+				populateLEPrincipalCity();
+			}
+			
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStreetAddress2FromOpportunity()){
+				populateLEPrincipalAddress2();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getAddress().getIsStreetAddress1FromOpportunity()){
+				populateLEPrincipalAddress1();
+			}
+			
+			if(legalEntityModel.getIsHasAcceptedCreditCardsFromOpportunity()){
+				populateLEHasAcceptedCreditCards();
+			}
+			
+			if(legalEntityModel.getIsAnnualCreditCardSalesVolumeFromOpportunity()){
+				populateLEAnnualCreditCardSalesVolume();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsReportOnComplianceFromOpportunity()){
+				populateLEReportOnCompliance();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsMostRecentlyPassedScanFromOpportunity()){
+				populateLEMostRecentlyPassedScan();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsQualifiedSecurityAssessorFromOpportunity()){
+				populateLEQualifiedSecurityAssessor();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsScanningVendorFromOpportunity()){
+				populateLEScanningVendor();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsPciLevelFromOpportunity()){
+				populateLEPciLevel();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsIsPciComplianceValidatedFromOpportunity()){
+				populateLEIsPciComplianceValidated();
+			}
+			
+			if(legalEntityModel.getLegalEntityPci().getIsIsExclusiveToPspFromOpportunity()){
+				populateLEIsExclusiveToPsp();
+			}
+			
+			if(legalEntityModel.getIsTaxIdFromOpportunity()){
+				populateLETaxId();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsSsnFromOpportunity()){
+				populateLEPrincipalSsn();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsDriversLicenseStateFromOpportunity()){
+				populateLEPrincipalDriversLicenseState();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsDriversLicenseFromOpportunity()){
+				populateLEPrincipalDriversLicense();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsDateOfBirthFromOpportunity()){
+				populateLEPrincipalDateOfBirth();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsContactPhoneFromOpportunity()){
+				populateLEPrincipalContactPhone();
+			}
+			
+			if(legalEntityModel.getIsContactPhoneFromOpportunity()){
+				populateLEContactPhone();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsEmailAddressFromOpportunity()){
+				populateLEPrincipalEmailAddress();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsLastNameFromOpportunity()){
+				populateLEPrincipalLastName();
+			}
+			
+			if(legalEntityModel.getLegalEntityPrincipal().getIsFirstNameFromOpportunity()){
+				populateLEPrincipalFirstName();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsCountryCodeFromOpportunity()){
+				populateLECountryCode();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsPostalCodeFromOpportunity()){
+				populateLEPostalCode();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsStateProvinceFromOpportunity()){
+				populateLEStateProvince();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsCityFromOpportunity()){
+				populateLECity();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsStreetAddress2FromOpportunity()){
+				populateLEAddress2();
+			}
+			
+			if(legalEntityModel.getLegalEntityAddress().getIsStreetAddress1FromOpportunity()){
+				populateLEAddress1();
+			}
+			
+			if(legalEntityModel.getIsDoingBusinessAsFromOpportunity()){
+				populateLEDoingBusinessAs();
+			}
+			
+			if(legalEntityModel.getIsNameFromOpportunity()){
+				populateLEName();
+			}
+			
+						
+		}
+		return null;
+	}
+	//Returns the select option list from the given list of string values
+	// starting from the given default value e.g '-- Select Option --'
+	/*public List<Selectoption> getSelectOptionList(List<String> values, String defaultValue){
+		List<SelectOption> optionList = new List<SelectOption>();
+		if(values != null && !values.isEmpty()){
+			optionList.add(new Selectoption('', defaultValue));
+			for(String value: values){
+				optionList.add(new Selectoption(value, value));
+			}
+		}
+		return optionList;
+	}*/
 	
 	public void populateFields(){
 		populateLEName();
@@ -117,38 +365,43 @@ public class LitleMidFormController {
 		populateSMeCheckBillingDescriptor();
 		populateSMeCheckCompanyName();
 	}
-		
+	
+	public List<String> splitSObjectNameAndField(String concatenatedSring){
+		List<String> customObjectFieldParts = new List<String>();
+		if(String.isNotEmpty(concatenatedSring)){
+			customObjectFieldParts = concatenatedSring.split('\\.', 2);
+		}
+		return customObjectFieldParts;
+	}
 	
 	public void populateLEName(){
 		if(!savedMappings.legalEntityNameX__c){
 			legalEntityModel.setLegalEntityName(savedMappings.legalEntityNameD__c);
 		}else{
-			if (savedMappings.legalEntityName__c != null &&  savedMappings.legalEntityName__c != ''){
-				String typeField = savedMappings.legalEntityName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -156,72 +409,37 @@ public class LitleMidFormController {
 	}
 	
 	public void populateLEType(){
-		//if(!savedMappings.legalEntityTypeX__c){
-			legalEntityModel.setLegalEntityType(savedMappings.legalEntityTypeD__c);
-			//System.debug(savedMappings.legalEntityTypeD__c);
-		/*}else{
-			if (savedMappings.legalEntityType__c != null &&  savedMappings.legalEntityType__c != ''){
-				String typeField = savedMappings.legalEntityType__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
-						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityType(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityType(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
-					}
-				}	 
-			}
-		}*/
+		legalEntityModel.setLegalEntityType(savedMappings.legalEntityTypeD__c);
 	}
 	
 	public void populateLEDoingBusinessAs(){
 		if(!savedMappings.legalEntityDoingBusinessAsX__c){
 			legalEntityModel.setLegalEntityDoingBusinessAs(savedMappings.legalEntityDoingBusinessAsD__c);
 		}else{
-			if (savedMappings.legalEntityDoingBusinessAs__c != null &&  savedMappings.legalEntityDoingBusinessAs__c != ''){
-				String typeField = savedMappings.legalEntityDoingBusinessAs__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityDoingBusinessAs__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsDoingBusinessAsFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDoingBusinessAs(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityDoingBusinessAs(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -232,32 +450,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityStreetAddress1X__c){
 			legalEntityModel.getLegalEntityAddress().setStreetAddress1(savedMappings.legalEntityStreetAddress1D__c);
 		}else{
-			if (savedMappings.legalEntityStreetAddress1__c != null &&  savedMappings.legalEntityStreetAddress1__c != ''){
-				String typeField = savedMappings.legalEntityStreetAddress1__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStreetAddress1__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsStreetAddress1FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -268,32 +484,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityStreetAddress2X__c){
 			legalEntityModel.getLegalEntityAddress().setStreetAddress2(savedMappings.legalEntityStreetAddress2D__c);
 		}else{
-			if (savedMappings.legalEntityStreetAddress2__c != null &&  savedMappings.legalEntityStreetAddress2__c != ''){
-				String typeField = savedMappings.legalEntityStreetAddress2__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStreetAddress2__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsStreetAddress2FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -304,68 +518,64 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityCityX__c){
 			legalEntityModel.getLegalEntityAddress().setCity(savedMappings.legalEntityCityD__c);
 		}else{
-			if (savedMappings.legalEntityCity__c != null &&  savedMappings.legalEntityCity__c != ''){
-				String typeField = savedMappings.legalEntityCity__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityCity__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsCityFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
 		}
 	}
-	
+	/////////////////////////////////////////////////////////////
 	public void populateLEStateProvince(){
 		if(!savedMappings.legalEntityStateProvinceX__c){
 			legalEntityModel.getLegalEntityAddress().setStateProvince(savedMappings.legalEntityStateProvinceD__c);
 		}else{
-			if (savedMappings.legalEntityStateProvince__c != null &&  savedMappings.legalEntityStateProvince__c != ''){
-				String typeField = savedMappings.legalEntityStateProvince__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStateProvince__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsStateProvinceFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -376,32 +586,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPostalCodeX__c){
 			legalEntityModel.getLegalEntityAddress().setPostalCode(savedMappings.legalEntityPostalCodeD__c);
 		}else{
-			if (savedMappings.legalEntityPostalCode__c != null &&  savedMappings.legalEntityPostalCode__c != ''){
-				String typeField = savedMappings.legalEntityPostalCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPostalCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsPostalCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -412,32 +620,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityCountryCodeX__c){
 			legalEntityModel.getLegalEntityAddress().setCountryCode(savedMappings.legalEntityCountryCodeD__c);
 		}else{
-			if (savedMappings.legalEntityCountryCode__c != null &&  savedMappings.legalEntityCountryCode__c != ''){
-				String typeField = savedMappings.legalEntityCountryCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityCountryCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityAddress().setIsCountryCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -448,32 +654,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalFirstNameX__c){
 			legalEntityModel.getLegalEntityPrincipal().setFirstName(savedMappings.legalEntityPrincipalFirstNameD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalFirstName__c != null &&  savedMappings.legalEntityPrincipalFirstName__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalFirstName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalFirstName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsFirstNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -484,32 +688,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalLastNameX__c){
 			legalEntityModel.getLegalEntityPrincipal().setLastName(savedMappings.legalEntityPrincipalLastNameD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalLastName__c != null &&  savedMappings.legalEntityPrincipalLastName__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalLastName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalLastName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsLastNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -520,32 +722,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalEmailAddressX__c){
 			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(savedMappings.legalEntityPrincipalEmailAddressD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalEmailAddress__c != null &&  savedMappings.legalEntityPrincipalEmailAddress__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalEmailAddress__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalEmailAddress__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsEmailAddressFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -556,32 +756,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityContactPhoneX__c){
 			legalEntityModel.setLegalEntityContactPhone(savedMappings.legalEntityContactPhoneD__c);
 		}else{
-			if (savedMappings.legalEntityContactPhone__c != null &&  savedMappings.legalEntityContactPhone__c != ''){
-				String typeField = savedMappings.legalEntityContactPhone__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityContactPhone__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityContactPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsContactPhoneFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -592,32 +790,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalContactPhoneX__c){
 			legalEntityModel.getLegalEntityPrincipal().setContactPhone(savedMappings.legalEntityPrincipalContactPhoneD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalContactPhone__c != null &&  savedMappings.legalEntityPrincipalContactPhone__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalContactPhone__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalContactPhone__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsContactPhoneFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setContactPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -628,32 +824,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalDateOfBirthX__c){
 			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(savedMappings.legalEntityPrincipalDateOfBirthD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalDateOfBirth__c != null &&  savedMappings.legalEntityPrincipalDateOfBirth__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalDateOfBirth__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDateOfBirth__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsDateOfBirthFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -664,32 +858,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalDriversLicenseX__c){
 			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(savedMappings.legalEntityPrincipalDriversLicenseD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalDriversLicense__c != null &&  savedMappings.legalEntityPrincipalDriversLicense__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalDriversLicense__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDriversLicense__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicense(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -700,32 +892,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalDriversLicenseStateX__c){
 			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(savedMappings.legalEntityPrincipalDriversLicenseStateD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalDriversLicenseState__c != null &&  savedMappings.legalEntityPrincipalDriversLicenseState__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalDriversLicenseState__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDriversLicenseState__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseStateFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -736,32 +926,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalSsnX__c){
 			legalEntityModel.getLegalEntityPrincipal().setSsn(savedMappings.legalEntityPrincipalSsnD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalSsn__c != null &&  savedMappings.legalEntityPrincipalSsn__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalSsn__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalSsn__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().setIsSsnFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setSsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().setSsn(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -772,32 +960,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityTaxIdX__c){
 			legalEntityModel.setLegalEntityTaxId(savedMappings.legalEntityTaxIdD__c);
 		}else{
-			if (savedMappings.legalEntityTaxId__c != null &&  savedMappings.legalEntityTaxId__c != ''){
-				String typeField = savedMappings.legalEntityTaxId__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityTaxId__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityTaxId(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityTaxId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsTaxIdFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityTaxId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityTaxId(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityTaxId(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -808,32 +994,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityIsExclusiveToPspX__c){
 			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(savedMappings.legalEntityIsExclusiveToPspD__c);
 		}else{
-			if (savedMappings.legalEntityIsExclusiveToPsp__c != null &&  savedMappings.legalEntityIsExclusiveToPsp__c != ''){
-				String typeField = savedMappings.legalEntityIsExclusiveToPsp__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityIsExclusiveToPsp__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsIsExclusiveToPspFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -844,32 +1028,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityIsPciComplianceValidatedX__c){
 			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(savedMappings.legalEntityIsPciComplianceValidatedD__c);
 		}else{
-			if (savedMappings.legalEntityIsPciComplianceValidated__c != null &&  savedMappings.legalEntityIsPciComplianceValidated__c != ''){
-				String typeField = savedMappings.legalEntityIsPciComplianceValidated__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityIsPciComplianceValidated__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsIsPciComplianceValidatedFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -880,32 +1062,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPciLevelX__c){
 			legalEntityModel.getLegalEntityPci().setPciLevel(savedMappings.legalEntityPciLevelD__c);
 		}else{
-			if (savedMappings.legalEntityPciLevel__c != null &&  savedMappings.legalEntityPciLevel__c != ''){
-				String typeField = savedMappings.legalEntityPciLevel__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPciLevel__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsPciLevelFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setPciLevel(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -916,32 +1096,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityScanningVendorX__c){
 			legalEntityModel.getLegalEntityPci().setScanningVendor(savedMappings.legalEntityScanningVendorD__c);
 		}else{
-			if (savedMappings.legalEntityScanningVendor__c != null &&  savedMappings.legalEntityScanningVendor__c != ''){
-				String typeField = savedMappings.legalEntityScanningVendor__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityScanningVendor__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsScanningVendorFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setScanningVendor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -952,32 +1130,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityQualifiedSecurityAssessorX__c){
 			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(savedMappings.legalEntityQualifiedSecurityAssessorD__c);
 		}else{
-			if (savedMappings.legalEntityQualifiedSecurityAssessor__c != null &&  savedMappings.legalEntityQualifiedSecurityAssessor__c != ''){
-				String typeField = savedMappings.legalEntityQualifiedSecurityAssessor__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityQualifiedSecurityAssessor__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsQualifiedSecurityAssessorFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -988,32 +1164,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityMostRecentlyPassedScanX__c){
 			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(savedMappings.legalEntityMostRecentlyPassedScanD__c);
 		}else{
-			if (savedMappings.legalEntityMostRecentlyPassedScan__c != null &&  savedMappings.legalEntityMostRecentlyPassedScan__c != ''){
-				String typeField = savedMappings.legalEntityMostRecentlyPassedScan__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityMostRecentlyPassedScan__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsMostRecentlyPassedScanFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1024,32 +1198,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityReportOnComplianceX__c){
 			legalEntityModel.getLegalEntityPci().setReportOnCompliance(savedMappings.legalEntityReportOnComplianceD__c);
 		}else{
-			if (savedMappings.legalEntityReportOnCompliance__c != null &&  savedMappings.legalEntityReportOnCompliance__c != ''){
-				String typeField = savedMappings.legalEntityReportOnCompliance__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityReportOnCompliance__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPci().setIsReportOnComplianceFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPci().setReportOnCompliance(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1060,32 +1232,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c){
 			legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(savedMappings.legalEntityAnnualCreditCardSalesVolumeD__c);
 		}else{
-			if (savedMappings.legalEntityAnnualCreditCardSalesVolume__c != null &&  savedMappings.legalEntityAnnualCreditCardSalesVolume__c != ''){
-				String typeField = savedMappings.legalEntityAnnualCreditCardSalesVolume__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityAnnualCreditCardSalesVolume__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsAnnualCreditCardSalesVolumeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1096,32 +1266,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityHasAcceptedCreditCardsX__c){
 			legalEntityModel.setLegalEntityHasAcceptedCreditCards(savedMappings.legalEntityHasAcceptedCreditCardsD__c);
 		}else{
-			if (savedMappings.legalEntityHasAcceptedCreditCards__c != null &&  savedMappings.legalEntityHasAcceptedCreditCards__c != ''){
-				String typeField = savedMappings.legalEntityHasAcceptedCreditCards__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityHasAcceptedCreditCards__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.setIsHasAcceptedCreditCardsFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityHasAcceptedCreditCards(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.setLegalEntityHasAcceptedCreditCards(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1132,32 +1300,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalStreetAddress1X__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(savedMappings.legalEntityPrincipalStreetAddress1D__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalStreetAddress1__c != null &&  savedMappings.legalEntityPrincipalStreetAddress1__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalStreetAddress1__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStreetAddress1__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress1FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1168,32 +1334,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalStreetAddress2X__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(savedMappings.legalEntityPrincipalStreetAddress2D__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalStreetAddress2__c != null &&  savedMappings.legalEntityPrincipalStreetAddress2__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalStreetAddress2__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStreetAddress2__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress2FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1204,32 +1368,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalCityX__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(savedMappings.legalEntityPrincipalCityD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalCity__c != null &&  savedMappings.legalEntityPrincipalCity__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalCity__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalCity__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCityFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1240,32 +1402,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalStateProvinceX__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(savedMappings.legalEntityPrincipalStateProvinceD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalStateProvince__c != null &&  savedMappings.legalEntityPrincipalStateProvince__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalStateProvince__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStateProvince__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStateProvinceFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1276,32 +1436,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalPostalCodeX__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(savedMappings.legalEntityPrincipalPostalCodeD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalPostalCode__c != null &&  savedMappings.legalEntityPrincipalPostalCode__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalPostalCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalPostalCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsPostalCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1312,32 +1470,30 @@ public class LitleMidFormController {
 		if(!savedMappings.legalEntityPrincipalCountryCodeX__c){
 			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(savedMappings.legalEntityPrincipalCountryCodeD__c);
 		}else{
-			if (savedMappings.legalEntityPrincipalCountryCode__c != null &&  savedMappings.legalEntityPrincipalCountryCode__c != ''){
-				String typeField = savedMappings.legalEntityPrincipalCountryCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalCountryCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCountryCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1348,32 +1504,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantStreetAddress1X__c){
 			subMerchantModel.getSubMerchantAddress().setStreetAddress1(savedMappings.subMerchantStreetAddress1D__c);
 		}else{
-			if (savedMappings.subMerchantStreetAddress1__c != null &&  savedMappings.subMerchantStreetAddress1__c != ''){
-				String typeField = savedMappings.subMerchantStreetAddress1__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStreetAddress1__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsStreetAddress1FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStreetAddress1(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1384,32 +1538,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantStreetAddress2X__c){
 			subMerchantModel.getSubMerchantAddress().setStreetAddress2(savedMappings.subMerchantStreetAddress2D__c);
 		}else{
-			if (savedMappings.subMerchantStreetAddress2__c != null &&  savedMappings.subMerchantStreetAddress2__c != ''){
-				String typeField = savedMappings.subMerchantStreetAddress2__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStreetAddress2__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsStreetAddress2FromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStreetAddress2(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1420,32 +1572,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantCityX__c){
 			subMerchantModel.getSubMerchantAddress().setCity(savedMappings.subMerchantCityD__c);
 		}else{
-			if (savedMappings.subMerchantCity__c != null &&  savedMappings.subMerchantCity__c != ''){
-				String typeField = savedMappings.subMerchantCity__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCity__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsCityFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setCity(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1456,32 +1606,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantStateProvinceX__c){
 			subMerchantModel.getSubMerchantAddress().setStateProvince(savedMappings.subMerchantStateProvinceD__c);
 		}else{
-			if (savedMappings.subMerchantStateProvince__c != null &&  savedMappings.subMerchantStateProvince__c != ''){
-				String typeField = savedMappings.subMerchantStateProvince__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStateProvince__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsStateProvinceFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setStateProvince(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1492,32 +1640,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantPostalCodeX__c){
 			subMerchantModel.getSubMerchantAddress().setPostalCode(savedMappings.subMerchantPostalCodeD__c);
 		}else{
-			if (savedMappings.subMerchantPostalCode__c != null &&  savedMappings.subMerchantPostalCode__c != ''){
-				String typeField = savedMappings.subMerchantPostalCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPostalCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsPostalCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setPostalCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1528,32 +1674,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantCountryCodeX__c){
 			subMerchantModel.getSubMerchantAddress().setCountryCode(savedMappings.subMerchantCountryCodeD__c);
 		}else{
-			if (savedMappings.subMerchantCountryCode__c != null &&  savedMappings.subMerchantCountryCode__c != ''){
-				String typeField = savedMappings.subMerchantCountryCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCountryCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantAddress().setIsCountryCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantAddress().setCountryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1564,32 +1708,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantAmexMidX__c){
 			subMerchantModel.setsubMerchantAmexMid(savedMappings.subMerchantAmexMidD__c);
 		}else{
-			if (savedMappings.subMerchantAmexMid__c != null &&  savedMappings.subMerchantAmexMid__c != ''){
-				String typeField = savedMappings.subMerchantAmexMid__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantAmexMid__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantAmexMid(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantAmexMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantAmexMidFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantAmexMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantAmexMid(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantAmexMid(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1600,32 +1742,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantBankAccountNumberX__c){
 			subMerchantModel.setsubMerchantBankAccountNumber(savedMappings.subMerchantBankAccountNumberD__c);
 		}else{
-			if (savedMappings.subMerchantBankAccountNumber__c != null &&  savedMappings.subMerchantBankAccountNumber__c != ''){
-				String typeField = savedMappings.subMerchantBankAccountNumber__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantBankAccountNumber__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantBankAccountNumberFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantBankAccountNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantBankAccountNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1636,32 +1776,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantBankRoutingNumberX__c){
 			subMerchantModel.setsubMerchantBankRoutingNumber(savedMappings.subMerchantBankRoutingNumberD__c);
 		}else{
-			if (savedMappings.subMerchantBankRoutingNumber__c != null &&  savedMappings.subMerchantBankRoutingNumber__c != ''){
-				String typeField = savedMappings.subMerchantBankRoutingNumber__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantBankRoutingNumber__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantBankRoutingNumberFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantBankRoutingNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantBankRoutingNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1672,32 +1810,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantCreateCredentialsX__c){
 			subMerchantModel.setsubMerchantCreateCredentials(savedMappings.subMerchantCreateCredentialsD__c);
 		}else{
-			if (savedMappings.subMerchantCreateCredentials__c != null &&  savedMappings.subMerchantCreateCredentials__c != ''){
-				String typeField = savedMappings.subMerchantCreateCredentials__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCreateCredentials__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantCreateCredentialsFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCreateCredentials(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCreateCredentials(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1708,32 +1844,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantCustomerServiceNumberX__c){
 			subMerchantModel.setsubMerchantCustomerServiceNumber(savedMappings.subMerchantCustomerServiceNumberD__c);
 		}else{
-			if (savedMappings.subMerchantCustomerServiceNumber__c != null &&  savedMappings.subMerchantCustomerServiceNumber__c != ''){
-				String typeField = savedMappings.subMerchantCustomerServiceNumber__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCustomerServiceNumber__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantCustomerServiceNumberFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCustomerServiceNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantCustomerServiceNumber(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1744,32 +1878,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantDiscoverConveyMidX__c){
 			subMerchantModel.setsubMerchantDiscoverConveyMid(savedMappings.subMerchantDiscoverConveyMidD__c);
 		}else{
-			if (savedMappings.subMerchantDiscoverConveyMid__c != null &&  savedMappings.subMerchantDiscoverConveyMid__c != ''){
-				String typeField = savedMappings.subMerchantDiscoverConveyMid__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantDiscoverConveyMid__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantDiscoverConveyMidFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantDiscoverConveyMid(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantDiscoverConveyMid(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1780,32 +1912,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantHardCodeBillingDescriptorX__c){
 			subMerchantModel.setsubMerchantHardCodeBillingDescriptor(savedMappings.subMerchantHardCodeBillingDescD__c);
 		}else{
-			if (savedMappings.subMerchantHardCodeBillingDescriptor__c != null &&  savedMappings.subMerchantHardCodeBillingDescriptor__c != ''){
-				String typeField = savedMappings.subMerchantHardCodeBillingDescriptor__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantHardCodeBillingDescriptor__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantHardCodeBillingDescriptor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantHardCodeBillingDescriptor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1816,32 +1946,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantMaxTransactionAmountX__c){
 			subMerchantModel.setsubMerchantMaxTransactionAmount(savedMappings.subMerchantMaxTransactionAmountD__c);
 		}else{
-			if (savedMappings.subMerchantMaxTransactionAmount__c != null &&  savedMappings.subMerchantMaxTransactionAmount__c != ''){
-				String typeField = savedMappings.subMerchantMaxTransactionAmount__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMaxTransactionAmount__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantMaxTransactionAmountFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMaxTransactionAmount(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMaxTransactionAmount(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1852,32 +1980,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantMerchantCategoryCodeX__c){
 			subMerchantModel.setsubMerchantMerchantCategoryCode(savedMappings.subMerchantMerchantCategoryCodeD__c);
 		}else{
-			if (savedMappings.subMerchantMerchantCategoryCode__c != null &&  savedMappings.subMerchantMerchantCategoryCode__c != ''){
-				String typeField = savedMappings.subMerchantMerchantCategoryCode__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMerchantCategoryCode__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantMerchantCategoryCodeFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMerchantCategoryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMerchantCategoryCode(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1888,32 +2014,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantMerchantNameX__c){
 			subMerchantModel.setsubMerchantMerchantName(savedMappings.subMerchantMerchantNameD__c);
 		}else{
-			if (savedMappings.subMerchantMerchantName__c != null &&  savedMappings.subMerchantMerchantName__c != ''){
-				String typeField = savedMappings.subMerchantMerchantName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMerchantName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMerchantName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantMerchantName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantMerchantNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantMerchantName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMerchantName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantMerchantName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1924,32 +2048,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantFirstNameX__c){
 			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(savedMappings.subMerchantFirstNameD__c);
 		}else{
-			if (savedMappings.subMerchantFirstName__c != null &&  savedMappings.subMerchantFirstName__c != ''){
-				String typeField = savedMappings.subMerchantFirstName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantFirstName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantPrimaryContact().setIsFirstNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setFirstName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1960,32 +2082,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantLastNameX__c){
 			subMerchantModel.getSubMerchantPrimaryContact().setLastName(savedMappings.subMerchantLastNameD__c);
 		}else{
-			if (savedMappings.subMerchantLastName__c != null &&  savedMappings.subMerchantLastName__c != ''){
-				String typeField = savedMappings.subMerchantLastName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantLastName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantPrimaryContact().setIsLastNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setLastName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -1996,32 +2116,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantEmailAddressX__c){
 			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(savedMappings.subMerchantEmailAddressD__c);
 		}else{
-			if (savedMappings.subMerchantEmailAddress__c != null &&  savedMappings.subMerchantEmailAddress__c != ''){
-				String typeField = savedMappings.subMerchantEmailAddress__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantEmailAddress__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantPrimaryContact().setIsEmailAddressFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -2032,32 +2150,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantPhoneX__c){
 			subMerchantModel.getSubMerchantPrimaryContact().setPhone(savedMappings.subMerchantPhoneD__c);
 		}else{
-			if (savedMappings.subMerchantPhone__c != null &&  savedMappings.subMerchantPhone__c != ''){
-				String typeField = savedMappings.subMerchantPhone__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPhone__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.getSubMerchantPrimaryContact().setIsPhoneFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.getSubMerchantPrimaryContact().setPhone(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -2068,32 +2184,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantPspMerchantIdX__c){
 			subMerchantModel.setsubMerchantPspMerchantId(savedMappings.subMerchantPspMerchantIdD__c);
 		}else{
-			if (savedMappings.subMerchantPspMerchantId__c != null &&  savedMappings.subMerchantPspMerchantId__c != ''){
-				String typeField = savedMappings.subMerchantPspMerchantId__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPspMerchantId__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantPspMerchantIdFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPspMerchantId(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantPspMerchantId(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -2104,32 +2218,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchantUrlX__c){
 			subMerchantModel.setsubMerchantUrl(savedMappings.subMerchantUrlD__c);
 		}else{
-			if (savedMappings.subMerchantUrl__c != null &&  savedMappings.subMerchantUrl__c != ''){
-				String typeField = savedMappings.subMerchantUrl__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantUrl__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantUrl(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchantUrl(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchantUrlFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchantUrl(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantUrl(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchantUrl(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -2140,32 +2252,30 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchanteCheckBillingDescriptorX__c){
 			subMerchantModel.setsubMerchanteCheckBillingDescriptor(savedMappings.subMerchanteCheckBillingDescD__c);
 		}else{
-			if (savedMappings.subMerchanteCheckBillingDescriptor__c != null &&  savedMappings.subMerchanteCheckBillingDescriptor__c != ''){
-				String typeField = savedMappings.subMerchanteCheckBillingDescriptor__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchanteCheckBillingDescriptor__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchanteCheckBillingDescriptorFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchanteCheckBillingDescriptor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchanteCheckBillingDescriptor(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
@@ -2176,49 +2286,35 @@ public class LitleMidFormController {
 		if(!savedMappings.subMerchanteCheckCompanyNameX__c){
 			subMerchantModel.setsubMerchanteCheckCompanyName(savedMappings.subMerchanteCheckCompanyNameD__c);
 		}else{
-			if (savedMappings.subMerchanteCheckCompanyName__c != null &&  savedMappings.subMerchanteCheckCompanyName__c != ''){
-				String typeField = savedMappings.subMerchanteCheckCompanyName__c;
-				List<String> customObjectFieldParts = typeField.split('\\.', 2);
-				if(customObjectFieldParts.size() == 2){
-					String sObjectName = customObjectFieldParts.get(0);
-					String sObjectFieldName = customObjectFieldParts.get(1);
-					if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-						String sObjectId;
-						if(sObjectName.equalsIgnoreCase('Account')){
-							sObjectId = urlAccountId;
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							sObjectId = urlOpportunityId;
+			String sObjectName, sObjectFieldName;
+			//split saved mapping to get sobject type and its field name
+			List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchanteCheckCompanyName__c);
+			if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
+				sObjectName = customObjectFieldParts.get(0);
+				sObjectFieldName = customObjectFieldParts.get(1);
+			}
+			if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
+				if(sObjectName.equalsIgnoreCase('Account')){
+					if(String.isNotEmpty(urlAccountId)){
+						// we have account id, get the field value
+						// set it as legal entity name
+						subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));	
+					}
+				}else if(sObjectName.equalsIgnoreCase('Opportunity')){
+					if(String.isNotEmpty(urlOpportunityId)){
+						//request from opportunity page, and we have the opportunity id
+						// set it as legal entity name
+						subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
+					}else if(String.isNotEmpty(urlAccountId)){
+						subMerchantModel.setIsSubMerchanteCheckCompanyNameFromOpportunity(true);
+						if(String.isNotEmpty(selectedOpportunityId)){
+							subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
 						}
-						String query = String.escapeSingleQuotes('select '+sObjectFieldName+' from '+sObjectName+ ' where id= :sObjectId');
-						if(sObjectName.equalsIgnoreCase('Account')){
-							List<Account> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchanteCheckCompanyName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}else if(sObjectName.equalsIgnoreCase('Opportunity')){
-							List<Opportunity> sObjectValue = Database.query(query);
-				    		if(!sObjectValue.isEmpty()){
-				    			subMerchantModel.setsubMerchanteCheckCompanyName(String.valueOf(sObjectValue.get(0).get(sObjectFieldName)));	
-				    		}
-						}
-						
 					}
 				}	 
 			}
 		}
 	}
-	
-	//on change event of legal entity type
-	/*public PageReference onChangeLegalEntityType(){
-		if(String.isNotEmpty(legalEntityModel.getLegalEntityType())){
-			if(legalEntityModel.getLegalEntityType().equals(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
-				isTaxDisplayed = false;
-			}else{
-				isTaxDisplayed = true;
-			}
-		}
-		return null;
-	}*/
 	
 	public Pagereference submit(){
 		if(areRequiredFieldsFilled()){
@@ -2412,11 +2508,11 @@ public class LitleMidFormController {
 	}
 		 
 	public Pagereference cancel(){
-	 	/*resetStatus();
-	 	String aId = apexpages.currentpage().getParameters().get('id'); 
-	 	if(aId != null && !aid.equals('')){
-				return new PageReference('/'+aId);	
-			}*/
+	 	if(String.isNotEmpty(urlOpportunityId)){
+	 		return new PageReference('/'+urlOpportunityId);
+	 	}else if(String.isNotEmpty(urlAccountId)){
+	 		return new PageReference('/'+urlAccountId);
+	 	}
 	 	return null;
 	}
 	

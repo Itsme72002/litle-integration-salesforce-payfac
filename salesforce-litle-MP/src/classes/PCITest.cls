@@ -100,4 +100,81 @@ private class PCITest {
         // and then confirm if the value is set correctly
         System.assertEquals(pci.getReportOnCompliance(), testString);
     }
+    
+    static testMethod void testIsIsExclusiveToPspFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsIsExclusiveToPspFromOpportunity(), false);
+        pci.setIsIsExclusiveToPspFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsIsExclusiveToPspFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsIsExclusiveToPspFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsIsPciComplianceValidatedFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsIsPciComplianceValidatedFromOpportunity(), false);
+        pci.setIsIsPciComplianceValidatedFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsIsPciComplianceValidatedFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsIsPciComplianceValidatedFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsPciLevelFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsPciLevelFromOpportunity(), false);
+        pci.setIsPciLevelFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsPciLevelFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsPciLevelFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsScanningVendorFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsScanningVendorFromOpportunity(), false);
+        pci.setIsScanningVendorFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsScanningVendorFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsScanningVendorFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsQualifiedSecurityAssessorFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsQualifiedSecurityAssessorFromOpportunity(), false);
+        pci.setIsQualifiedSecurityAssessorFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsQualifiedSecurityAssessorFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsQualifiedSecurityAssessorFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsMostRecentlyPassedScanFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsMostRecentlyPassedScanFromOpportunity(), false);
+        pci.setIsMostRecentlyPassedScanFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsMostRecentlyPassedScanFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsMostRecentlyPassedScanFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsReportOnComplianceFromOpportunity(){
+    	PCI pci = new PCI();
+        // Check if the account is null initially
+        System.assertEquals(pci.getIsReportOnComplianceFromOpportunity(), false);
+        pci.setIsReportOnComplianceFromOpportunity(true);
+        // Last check if the value is set
+        System.assertNotEquals(pci.getIsReportOnComplianceFromOpportunity(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(pci.getIsReportOnComplianceFromOpportunity(), true);
+    }
 }

@@ -63,4 +63,48 @@ private class PrimaryContactTest {
         // and then confirm if the value is set correctly
         System.assertEquals(primaryContact.getPhone(), testString);
 	}
+	
+	static testMethod void testIsFirstNameFromOpportunity(){
+    	PrimaryContact primaryContact = new PrimaryContact();
+        // Check if the account Is null initially
+        System.assertEquals(primaryContact.getIsFirstNameFromOpportunity(), false);
+        primaryContact.setIsFirstNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(primaryContact.getIsFirstNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(primaryContact.getIsFirstNameFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsLastNameFromOpportunity(){
+    	PrimaryContact primaryContact = new PrimaryContact();
+        // Check if the account Is null initially
+        System.assertEquals(primaryContact.getIsLastNameFromOpportunity(), false);
+        primaryContact.setIsLastNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(primaryContact.getIsLastNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(primaryContact.getIsLastNameFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsEmailAddressFromOpportunity(){
+    	PrimaryContact primaryContact = new PrimaryContact();
+        // Check if the account Is null initially
+        System.assertEquals(primaryContact.getIsEmailAddressFromOpportunity(), false);
+        primaryContact.setIsEmailAddressFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(primaryContact.getIsEmailAddressFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(primaryContact.getIsEmailAddressFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsPhoneFromOpportunity(){
+    	PrimaryContact primaryContact = new PrimaryContact();
+        // Check if the account Is null initially
+        System.assertEquals(primaryContact.getIsPhoneFromOpportunity(), false);
+        primaryContact.setIsPhoneFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(primaryContact.getIsPhoneFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(primaryContact.getIsPhoneFromOpportunity(), true);
+    }
 }

@@ -145,4 +145,94 @@ private class PrincipalTest {
         // and then confirm if the value is set correctly
         System.assertEquals(principal.getSsn(), testString);
     }
+    
+    static testMethod void testIsSsnFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsSsnFromOpportunity(), false);
+        principal.setIsSsnFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsSsnFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsSsnFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsDriversLicenseStateFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsDriversLicenseStateFromOpportunity(), false);
+        principal.setIsDriversLicenseStateFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsDriversLicenseStateFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsDriversLicenseStateFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsDriversLicenseFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsDriversLicenseFromOpportunity(), false);
+        principal.setIsDriversLicenseFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsDriversLicenseFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsDriversLicenseFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsDateOfBirthFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsDateOfBirthFromOpportunity(), false);
+        principal.setIsDateOfBirthFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsDateOfBirthFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsDateOfBirthFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsContactPhoneFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsContactPhoneFromOpportunity(), false);
+        principal.setIsContactPhoneFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsContactPhoneFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsContactPhoneFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsFirstNameFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsFirstNameFromOpportunity(), false);
+        principal.setIsFirstNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsFirstNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsFirstNameFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsLastNameFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsLastNameFromOpportunity(), false);
+        principal.setIsLastNameFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsLastNameFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsLastNameFromOpportunity(), true);
+    }
+    
+    static testMethod void testIsEmailAddressFromOpportunity(){
+    	Principal principal = new Principal();
+        // Check if the account Is null initially
+        System.assertEquals(principal.getIsEmailAddressFromOpportunity(), false);
+        principal.setIsEmailAddressFromOpportunity(true);
+        // Last check if the value Is set
+        System.assertNotEquals(principal.getIsEmailAddressFromOpportunity(), null);
+        // and then confirm if the value Is set correctly
+        System.assertEquals(principal.getIsEmailAddressFromOpportunity(), true);
+    }
+    
+    
 }
