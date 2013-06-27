@@ -31,16 +31,24 @@ public class LoggingUtil {
 	}
 	
 	public static void logCreateLegalEntityRequest(HttpRequest request, LitleRequestResponseLog__c litleRequestResponseLog){
-		if(litleRequestResponseLog != null){
+		if(litleRequestResponseLog != null && request != null){
 			litleRequestResponseLog.createLegalEntityRequestDate__c = Datetime.now();
-			litleRequestResponseLog.createLegalEntityRequestXml__c = getRequestParamsLog(request);
+			litleRequestResponseLog.legalEntityEndpoint__c = request.getEndpoint();
+			litleRequestResponseLog.legalEntityAcceptHeader__c = request.getHeader('Accept');
+			litleRequestResponseLog.legalEntityContentTypeHeader__c = request.getHeader('Content-Type');
+			litleRequestResponseLog.legalEntityAuthorizationHeader__c = request.getHeader('Authorization');
+			litleRequestResponseLog.createLegalEntityRequestXml__c = request.getBody();
 		}
 	}
 	
 	public static void logCreateSubMerchantRequest(HttpRequest request, LitleRequestResponseLog__c litleRequestResponseLog){
-		if(litleRequestResponseLog != null){
+		if(litleRequestResponseLog != null && request != null){
 			litleRequestResponseLog.createSubMerchantRequestDate__c = Datetime.now();
-			litleRequestResponseLog.createSubMerchantRequestXml__c = getRequestParamsLog(request);
+			litleRequestResponseLog.subMerchantEndpoint__c = request.getEndpoint();
+			litleRequestResponseLog.subMerchantAcceptHeader__c = request.getHeader('Accept');
+			litleRequestResponseLog.subMerchantContentTypeHeader__c = request.getHeader('Content-Type');
+			litleRequestResponseLog.subMerchantAuthorizationHeader__c = request.getHeader('Authorization');
+			litleRequestResponseLog.createSubMerchantRequestXml__c = request.getBody();
 		}
 	}
 	

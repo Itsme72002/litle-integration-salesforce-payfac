@@ -10,7 +10,7 @@
         </apex:pageBlock>
         
         <apex:pageBlock title="Add A Sub Merchant" mode="edit">
-        	<apex:pageBlockSection columns="1" rendered="{!IF(opportunityOptions != null && opportunityOptions.size > 0, 'true', 'false')}">
+        	<apex:pageBlockSection columns="1" rendered="{!isOpportunityMappingPresent}">
 	        	<apex:pageBlockSectionItem >
 	            	<apex:outputText value="Select Opportunity to Map values" />
 		        	<apex:selectList size="1" value="{!selectedOpportunityId}" >

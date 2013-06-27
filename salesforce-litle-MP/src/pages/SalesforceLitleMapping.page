@@ -25,7 +25,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
@@ -328,7 +328,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -375,7 +375,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -597,7 +597,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -837,7 +837,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -966,7 +966,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:180px;"/>
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 

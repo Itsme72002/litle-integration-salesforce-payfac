@@ -1,28 +1,50 @@
 public class LitleRequestXml {
-	private String createLegalEntityRequest;
-	private String createSubMerchantRequest;
-	public static final String XML_HEADER = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+	private String createLegalEntityRequestXml;
+	private String createSubMerchantRequestXml;
+	/*private HttpRequest createLegalEntityRequest;
+	private HttpRequest createSubMerchantRequest;*/
+	public static final String LEGAL_ENTITY_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
+	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
+	public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
+	public static final String URL_SEPARATOR = '/';
+	
 	
 	public LitleRequestXml(LegalEntityModel legalEntityModel, SubMerchantModel subMerchantModel){
-		createLegalEntityRequest = generateCreateLegalEntityRequest(legalEntityModel);
-		createSubMerchantRequest = generateCreateSubMerchantRequest(subMerchantModel);
+		createLegalEntityRequestXml = generateCreateLegalEntityRequestXml(legalEntityModel);
+		createSubMerchantRequestXml = generateCreateSubMerchantRequestXml(subMerchantModel);
 	}
 	
-	public void setCreateLegalEntityRequest(String createLegalEntityRequest){
+	public void setCreateLegalEntityRequestXml(String createLegalEntityRequestXml){
+		this.createLegalEntityRequestXml = createLegalEntityRequestXml;
+	}
+	
+	public String getCreateLegalEntityRequestXml(){
+		return createLegalEntityRequestXml;
+	}
+	
+	public void setCreateSubMerchantRequestXml(String createSubMerchantRequestXml){
+		this.createSubMerchantRequestXml = createSubMerchantRequestXml;
+	}
+	
+	public String getCreateSubMerchantRequestXml(){
+		return createSubMerchantRequestXml;
+	}
+	
+	/*public void setCreateLegalEntityRequest(HttpRequest createLegalEntityRequest){
 		this.createLegalEntityRequest = createLegalEntityRequest;
 	}
 	
-	public String getCreateLegalEntityRequest(){
+	public HttpRequest getCreateLegalEntityRequest(){
 		return createLegalEntityRequest;
 	}
 	
-	public void setCreateSubMerchantRequest(String createSubMerchantRequest){
+	public void setCreateSubMerchantRequest(HttpRequest createSubMerchantRequest){
 		this.createSubMerchantRequest = createSubMerchantRequest;
 	}
 	
-	public String getCreateSubMerchantRequest(){
+	public HttpRequest getCreateSubMerchantRequest(){
 		return createSubMerchantRequest;
-	}
+	}*/
 	
 	//creates start and end tag with the given name and the given value
 	//e.g: tagName = 'legalEntity' value='Individual'
@@ -36,173 +58,142 @@ public class LitleRequestXml {
 	} 
 	
 	//generate create legal entity request from the legalentitymodel
-	public String generateCreateLegalEntityRequest(LegalEntityModel legalEntityModel){
+	public String generateCreateLegalEntityRequestXml(LegalEntityModel legalEntityModel){
 		if(legalEntityModel != null){
-			Xmlstreamwriter createLegalEntityRequestXml = new Xmlstreamwriter();
+			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
-			createLegalEntityRequestXml.writeStartDocument('UTF-8', '1.0');
-			//createLegalEntityRequestXml.writeAttribute(null, null, 'standalone', 'yes');
+			requestXml.writeStartDocument('UTF-8', '1.0');
+			//requestXml.writeAttribute(null, null, 'standalone', 'yes');
 			//main element and namespace
-			createLegalEntityRequestXml.writeStartElement(null, 'legalEntityCreateRequest', null);
-			createLegalEntityRequestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
-			//createLegalEntityRequestXml.writeStartElement(null, 'legalEntityName', null);	//start legal entity name
-			addTagToXml(createLegalEntityRequestXml, 'legalEntityName', legalEntityModel.getLegalEntityName());
-			addTagToXml(createLegalEntityRequestXml, 'legalEntityType', legalEntityModel.getLegalEntityType());
-			addTagToXml(createLegalEntityRequestXml, 'doingBusinessAs', legalEntityModel.getLegalEntityDoingBusinessAs());
-			addTagToXml(createLegalEntityRequestXml, 'taxId', legalEntityModel.getLegalEntityTaxId());
-			addTagToXml(createLegalEntityRequestXml, 'contactPhone', legalEntityModel.getLegalEntityContactPhone());
-			addTagToXml(createLegalEntityRequestXml, 'annualCreditCardSalesVolume', legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-			addTagToXml(createLegalEntityRequestXml, 'hasAcceptedCreditCards', legalEntityModel.getLegalEntityHasAcceptedCreditCards());
-			createLegalEntityRequestXml.writeStartElement(null, 'address', null);
-				addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityAddress().getStreetAddress1());
-				addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityAddress().getStreetAddress2());
-				addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityAddress().getCity());
-				addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityAddress().getStateProvince());
-				addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityAddress().getPostalCode());
-				addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityAddress().getCountryCode());
-			createLegalEntityRequestXml.writeEndElement();	//end legal entity address
-			createLegalEntityRequestXml.writeStartElement(null, 'PCI', null);
-				addTagToXml(createLegalEntityRequestXml, 'isExclusiveToPsp', legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
-				addTagToXml(createLegalEntityRequestXml, 'isPciComplianceValidated', legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
-				addTagToXml(createLegalEntityRequestXml, 'scanningVendor', legalEntityModel.getLegalEntityPci().getScanningVendor());
-				addTagToXml(createLegalEntityRequestXml, 'qualifiedSecurityAssessor', legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-				addTagToXml(createLegalEntityRequestXml, 'mostRecentlyPassedScan', legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-				addTagToXml(createLegalEntityRequestXml, 'reportOnCompliance', legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-				addTagToXml(createLegalEntityRequestXml, 'pciLevel', legalEntityModel.getLegalEntityPci().getPciLevel());
-			createLegalEntityRequestXml.writeEndElement();	//end legal entity PCI
-			createLegalEntityRequestXml.writeStartElement(null, 'principals', null);
-				createLegalEntityRequestXml.writeStartElement(null, 'principal', null);
-					addTagToXml(createLegalEntityRequestXml, 'firstName', legalEntityModel.getLegalEntityPrincipal().getFirstName());
-					addTagToXml(createLegalEntityRequestXml, 'lastName', legalEntityModel.getLegalEntityPrincipal().getLastName());
-					addTagToXml(createLegalEntityRequestXml, 'emailAddress', legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
-					addTagToXml(createLegalEntityRequestXml, 'ssn', legalEntityModel.getLegalEntityPrincipal().getSsn());
-					addTagToXml(createLegalEntityRequestXml, 'contactPhone', legalEntityModel.getLegalEntityPrincipal().getContactPhone());
-					addTagToXml(createLegalEntityRequestXml, 'dateOfBirth', legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
-					addTagToXml(createLegalEntityRequestXml, 'driversLicense', legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
-					addTagToXml(createLegalEntityRequestXml, 'driversLicenseState', legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
-					createLegalEntityRequestXml.writeStartElement(null, 'address', null);	//start legal entity principal address
-						addTagToXml(createLegalEntityRequestXml, 'streetAddress1', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
-						addTagToXml(createLegalEntityRequestXml, 'streetAddress2', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
-						addTagToXml(createLegalEntityRequestXml, 'city', legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
-						addTagToXml(createLegalEntityRequestXml, 'stateProvince', legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
-						addTagToXml(createLegalEntityRequestXml, 'postalCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
-						addTagToXml(createLegalEntityRequestXml, 'countryCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
-					createLegalEntityRequestXml.writeEndElement();	//end legal entity principal address
-				createLegalEntityRequestXml.writeEndElement();	//end legal entity principle	
-			createLegalEntityRequestXml.writeEndElement();	//end legal entity principles
-			createLegalEntityRequestXml.writeEndElement(); //end main request
-			createLegalEntityRequestXml.writeEndDocument();
-			String request = createLegalEntityRequestXml.getXmlString();
-			createLegalEntityRequestXml.close();
+			requestXml.writeStartElement(null, 'legalEntityCreateRequest', null);
+			requestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
+			//requestXml.writeStartElement(null, 'legalEntityName', null);	//start legal entity name
+			addTagToXml(requestXml, 'legalEntityName', legalEntityModel.getLegalEntityName());
+			addTagToXml(requestXml, 'legalEntityType', legalEntityModel.getLegalEntityType());
+			addTagToXml(requestXml, 'doingBusinessAs', legalEntityModel.getLegalEntityDoingBusinessAs());
+			addTagToXml(requestXml, 'taxId', legalEntityModel.getLegalEntityTaxId());
+			addTagToXml(requestXml, 'contactPhone', legalEntityModel.getLegalEntityContactPhone());
+			addTagToXml(requestXml, 'annualCreditCardSalesVolume', legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
+			addTagToXml(requestXml, 'hasAcceptedCreditCards', legalEntityModel.getLegalEntityHasAcceptedCreditCards());
+			requestXml.writeStartElement(null, 'address', null);
+				addTagToXml(requestXml, 'streetAddress1', legalEntityModel.getLegalEntityAddress().getStreetAddress1());
+				addTagToXml(requestXml, 'streetAddress2', legalEntityModel.getLegalEntityAddress().getStreetAddress2());
+				addTagToXml(requestXml, 'city', legalEntityModel.getLegalEntityAddress().getCity());
+				addTagToXml(requestXml, 'stateProvince', legalEntityModel.getLegalEntityAddress().getStateProvince());
+				addTagToXml(requestXml, 'postalCode', legalEntityModel.getLegalEntityAddress().getPostalCode());
+				addTagToXml(requestXml, 'countryCode', legalEntityModel.getLegalEntityAddress().getCountryCode());
+			requestXml.writeEndElement();	//end legal entity address
+			requestXml.writeStartElement(null, 'PCI', null);
+				addTagToXml(requestXml, 'isExclusiveToPsp', legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
+				addTagToXml(requestXml, 'isPciComplianceValidated', legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
+				addTagToXml(requestXml, 'scanningVendor', legalEntityModel.getLegalEntityPci().getScanningVendor());
+				addTagToXml(requestXml, 'qualifiedSecurityAssessor', legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
+				addTagToXml(requestXml, 'mostRecentlyPassedScan', legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
+				addTagToXml(requestXml, 'reportOnCompliance', legalEntityModel.getLegalEntityPci().getReportOnCompliance());
+				addTagToXml(requestXml, 'pciLevel', legalEntityModel.getLegalEntityPci().getPciLevel());
+			requestXml.writeEndElement();	//end legal entity PCI
+			requestXml.writeStartElement(null, 'principals', null);
+				requestXml.writeStartElement(null, 'principal', null);
+					addTagToXml(requestXml, 'firstName', legalEntityModel.getLegalEntityPrincipal().getFirstName());
+					addTagToXml(requestXml, 'lastName', legalEntityModel.getLegalEntityPrincipal().getLastName());
+					addTagToXml(requestXml, 'emailAddress', legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
+					addTagToXml(requestXml, 'ssn', legalEntityModel.getLegalEntityPrincipal().getSsn());
+					addTagToXml(requestXml, 'contactPhone', legalEntityModel.getLegalEntityPrincipal().getContactPhone());
+					addTagToXml(requestXml, 'dateOfBirth', legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
+					addTagToXml(requestXml, 'driversLicense', legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+					addTagToXml(requestXml, 'driversLicenseState', legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
+					requestXml.writeStartElement(null, 'address', null);	//start legal entity principal address
+						addTagToXml(requestXml, 'streetAddress1', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
+						addTagToXml(requestXml, 'streetAddress2', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
+						addTagToXml(requestXml, 'city', legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
+						addTagToXml(requestXml, 'stateProvince', legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
+						addTagToXml(requestXml, 'postalCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
+						addTagToXml(requestXml, 'countryCode', legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
+					requestXml.writeEndElement();	//end legal entity principal address
+				requestXml.writeEndElement();	//end legal entity principle	
+			requestXml.writeEndElement();	//end legal entity principles
+			requestXml.writeEndElement(); //end main request
+			requestXml.writeEndDocument();
+			String request = requestXml.getXmlString();
+			requestXml.close();
 			return request;
 		}
 		return null;
 	}
 	
 	//generate create sub merchant request from subMerchantModel
-	public String generateCreateSubMerchantRequest(SubMerchantModel subMerchantModel){
+	public String generateCreateSubMerchantRequestXml(SubMerchantModel subMerchantModel){
 		if(subMerchantModel != null){
-			Xmlstreamwriter createSubMerchantRequestXml = new Xmlstreamwriter();
+			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
-			createSubMerchantRequestXml.writeStartDocument('UTF-8', '1.0');
-			//main element and namespace
-			createSubMerchantRequestXml.writeStartElement(null, 'subMerchantCreateRequest', null);
-			createSubMerchantRequestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
-			createSubMerchantRequestXml.writeStartElement(null, 'address', null);
-				addTagToXml(createSubMerchantRequestXml, 'streetAddress1', subMerchantModel.getSubMerchantAddress().getStreetAddress1());
-				addTagToXml(createSubMerchantRequestXml, 'streetAddress2', subMerchantModel.getSubMerchantAddress().getStreetAddress2());
-				addTagToXml(createSubMerchantRequestXml, 'city', subMerchantModel.getSubMerchantAddress().getCity());
-				addTagToXml(createSubMerchantRequestXml, 'stateProvince', subMerchantModel.getSubMerchantAddress().getStateProvince());
-				addTagToXml(createSubMerchantRequestXml, 'postalCode', subMerchantModel.getSubMerchantAddress().getPostalCode());
-				addTagToXml(createSubMerchantRequestXml, 'countryCode', subMerchantModel.getSubMerchantAddress().getCountryCode());
-			createSubMerchantRequestXml.writeEndElement();	//end legal entity address
-			addTagToXml(createSubMerchantRequestXml, 'amexMid', subMerchantModel.getSubMerchantAmexMid());
-			addTagToXml(createSubMerchantRequestXml, 'bankAccountNumber', subMerchantModel.getSubMerchantBankAccountNumber());
-			addTagToXml(createSubMerchantRequestXml, 'bankRoutingNumber', subMerchantModel.getSubMerchantBankRoutingNumber());
-			addTagToXml(createSubMerchantRequestXml, 'createCredentials', subMerchantModel.getSubMerchantCreateCredentials());
-			addTagToXml(createSubMerchantRequestXml, 'customerServiceNumber', subMerchantModel.getSubMerchantCustomerServiceNumber());
-			addTagToXml(createSubMerchantRequestXml, 'discoverConveyedMid', subMerchantModel.getSubMerchantDiscoverConveyMid());
-			addTagToXml(createSubMerchantRequestXml, 'hardCodedBillingDescriptor', subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
-			addTagToXml(createSubMerchantRequestXml, 'maxTransactionAmount', subMerchantModel.getSubMerchantMaxTransactionAmount());
-			addTagToXml(createSubMerchantRequestXml, 'merchantCategoryCode', subMerchantModel.getSubMerchantMerchantCategoryCode());
-			addTagToXml(createSubMerchantRequestXml, 'merchantName', subMerchantModel.getSubMerchantMerchantName());
-			createSubMerchantRequestXml.writeStartElement(null, 'primaryContact', null);	//primary contact
-				addTagToXml(createSubMerchantRequestXml, 'firstName', subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
-				addTagToXml(createSubMerchantRequestXml, 'lastName', subMerchantModel.getSubMerchantPrimaryContact().getLastName());
-				addTagToXml(createSubMerchantRequestXml, 'phone', subMerchantModel.getSubMerchantPrimaryContact().getPhone());
-				addTagToXml(createSubMerchantRequestXml, 'emailAddress', subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
-			createSubMerchantRequestXml.writeEndElement();	//end primary contact
-			addTagToXml(createSubMerchantRequestXml, 'pspMerchantId', subMerchantModel.getSubMerchantPspMerchantId());
-			addTagToXml(createSubMerchantRequestXml, 'url', subMerchantModel.getSubMerchantUrl());
-			addTagToXml(createSubMerchantRequestXml, 'eCheckBillingDescriptor', subMerchantModel.getSubMerchanteCheckBillingDescriptor());
-			addTagToXml(createSubMerchantRequestXml, 'eCheckCompanyName', subMerchantModel.getSubMerchanteCheckCompanyName());
-			createSubMerchantRequestXml.writeEndElement(); //end main request
-			createSubMerchantRequestXml.writeEndDocument();
-			String request = createSubMerchantRequestXml.getXmlString();
-			createSubMerchantRequestXml.close();
+			requestXml.writeStartDocument('UTF-8', '1.0');
+			//marequest
+			requestXml.writeStartElement(null, 'subMerchantCreateRequest', null);
+			requestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
+			requestXml.writeStartElement(null, 'address', null);
+				addTagToXml(requestXml, 'streetAddress1', subMerchantModel.getSubMerchantAddress().getStreetAddress1());
+				addTagToXml(requestXml, 'streetAddress2', subMerchantModel.getSubMerchantAddress().getStreetAddress2());
+				addTagToXml(requestXml, 'city', subMerchantModel.getSubMerchantAddress().getCity());
+				addTagToXml(requestXml, 'stateProvince', subMerchantModel.getSubMerchantAddress().getStateProvince());
+				addTagToXml(requestXml, 'postalCode', subMerchantModel.getSubMerchantAddress().getPostalCode());
+				addTagToXml(requestXml, 'countryCode', subMerchantModel.getSubMerchantAddress().getCountryCode());
+			requestXml.writeEndElement();	//end legal entity address
+			addTagToXml(requestXml, 'amexMid', subMerchantModel.getSubMerchantAmexMid());
+			addTagToXml(requestXml, 'bankAccountNumber', subMerchantModel.getSubMerchantBankAccountNumber());
+			addTagToXml(requestXml, 'bankRoutingNumber', subMerchantModel.getSubMerchantBankRoutingNumber());
+			addTagToXml(requestXml, 'createCredentials', subMerchantModel.getSubMerchantCreateCredentials());
+			addTagToXml(requestXml, 'customerServiceNumber', subMerchantModel.getSubMerchantCustomerServiceNumber());
+			addTagToXml(requestXml, 'discoverConveyedMid', subMerchantModel.getSubMerchantDiscoverConveyMid());
+			addTagToXml(requestXml, 'hardCodedBillingDescriptor', subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
+			addTagToXml(requestXml, 'maxTransactionAmount', subMerchantModel.getSubMerchantMaxTransactionAmount());
+			addTagToXml(requestXml, 'merchantCategoryCode', subMerchantModel.getSubMerchantMerchantCategoryCode());
+			addTagToXml(requestXml, 'merchantName', subMerchantModel.getSubMerchantMerchantName());
+			requestXml.writeStartElement(null, 'primaryContact', null);	//primary contact
+				addTagToXml(requestXml, 'firstName', subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
+				addTagToXml(requestXml, 'lastName', subMerchantModel.getSubMerchantPrimaryContact().getLastName());
+				addTagToXml(requestXml, 'phone', subMerchantModel.getSubMerchantPrimaryContact().getPhone());
+				addTagToXml(requestXml, 'emailAddress', subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
+			requestXml.writeEndElement();	//end primary contact
+			addTagToXml(requestXml, 'pspMerchantId', subMerchantModel.getSubMerchantPspMerchantId());
+			addTagToXml(requestXml, 'url', subMerchantModel.getSubMerchantUrl());
+			addTagToXml(requestXml, 'eCheckBillingDescriptor', subMerchantModel.getSubMerchanteCheckBillingDescriptor());
+			addTagToXml(requestXml, 'eCheckCompanyName', subMerchantModel.getSubMerchanteCheckCompanyName());
+			requestXml.writeEndElement(); //end main request
+			requestXml.writeEndDocument();
+			String request = requestXml.getXmlString();
+			requestXml.close();
 			return request;
 		}
 		return null;
 	}
-	/*
-	//creates start and end tag with the given name and the given value
-	//e.g: tagName = 'legalEntity' value='Individual'
-	//outputs <legalEntity>Individual</legalEntity>
-	public String addTagToXml(String tagName, String value){
-		return '<'+ tagName +'>'+ value +'</'+ tagName +'>'
-	} 
 	
-	public String generateCreateLegalEntityRequest(LegalEntityModel legalEntityModel){
-		if(legalEntityModel != null){
-			String createLegalEntityRequestXml = XML_HEADER;
-			createLegalEntityRequestXml += '<legalEntityCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">';
-			addTagToXml('legalEntityName', legalEntityModel.getLegalEntityName());
-			addTagToXml('legalEntityType', legalEntityModel.getLegalEntityType());
-			addTagToXml('doingBusinessAs', legalEntityModel.getLegalEntityDoingBusinessAs());
-			addTagToXml('taxId', legalEntityModel.getLegalEntityTaxId());
-			addTagToXml('contactPhone', legalEntityModel.getLegalEntityContactPhone());
-			addTagToXml('annualCreditCardSalesVolume', legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-			addTagToXml('hasAcceptedCreditCards', legalEntityModel.getLegalEntityHasAcceptedCreditCards());
-			'<address>'
-				addTagToXml('streetAddress1', legalEntityModel.getLegalEntityStreetAddress1());
-				addTagToXml('streetAddress2', legalEntityModel.getLegalEntityStreetAddress2());
-				addTagToXml('city', legalEntityModel.getLegalEntityCity());
-				addTagToXml('stateProvince', legalEntityModel.getLegalEntityStateProvince());
-				addTagToXml('postalCode', legalEntityModel.getLegalEntityPostalCode());
-				addTagToXml('countryCode', legalEntityModel.getLegalEntityCountryCode());
-			'</address>'	//end legal entity address
-			createLegalEntityRequestXml.writeStartElement(null, 'PCI', null);
-				addTagToXml('isExclusiveToPsp', legalEntityModel.getLegalEntityIsExclusiveToPsp());
-				addTagToXml('isPciComplianceValidated', legalEntityModel.getLegalEntityIsPciComplianceValidated());
-				addTagToXml('scanningVendor', legalEntityModel.getLegalEntityScanningVendor());
-				addTagToXml('qualifiedSecurityAssessor', legalEntityModel.getLegalEntityQualifiedSecurityAssessor());
-				addTagToXml('mostRecentlyPassedScan', legalEntityModel.getLegalEntityMostRecentlyPassedScan());
-				addTagToXml('reportOnCompliance', legalEntityModel.getLegalEntityReportOnCompliance());
-				addTagToXml('pciLevel', legalEntityModel.getLegalEntityPciLevel());
-			createLegalEntityRequestXml.writeEndElement();	//end legal entity PCI
-			createLegalEntityRequestXml.writeStartElement(null, 'principals', null);
-				createLegalEntityRequestXml.writeStartElement(null, 'principal', null);
-					addTagToXml('firstName', legalEntityModel.getLegalEntityFirstName());
-					addTagToXml('lastName', legalEntityModel.getLegalEntityLastName());
-					addTagToXml('emailAddress', legalEntityModel.getLegalEntityEmailAddress());
-					addTagToXml('ssn', legalEntityModel.getLegalEntitySsn());
-					addTagToXml('contactPhone', legalEntityModel.getLegalEntityContactPhone());
-					addTagToXml('dateOfBirth', legalEntityModel.getLegalEntityDateOfBirth());
-					addTagToXml('driversLicense', legalEntityModel.getLegalEntityDriversLicense());
-					addTagToXml('driversLicenseState', legalEntityModel.getLegalEntityDriversLicenseState());
-					createLegalEntityRequestXml.writeStartElement(null, 'address', null);	//start legal entity principal address
-						addTagToXml('streetAddress1', legalEntityModel.getLegalEntityStreetAddress1());
-						addTagToXml('streetAddress2', legalEntityModel.getLegalEntityStreetAddress2());
-						addTagToXml('city', legalEntityModel.getLegalEntityCity());
-						addTagToXml('stateProvince', legalEntityModel.getLegalEntityStateProvince());
-						addTagToXml('postalCode', legalEntityModel.getLegalEntityPostalCode());
-						addTagToXml('countryCode', legalEntityModel.getLegalEntityCountryCode());
-					createLegalEntityRequestXml.writeEndElement();	//end legal entity principal address
-				createLegalEntityRequestXml.writeEndElement();	//end legal entity principle	
-			createLegalEntityRequestXml.writeEndElement();	//end legal entity principles
-			createLegalEntityRequestXml.writeEndElement(); //end main request
-		}
-		return createLegalEntityRequest;
-	}*/
-
+	public Httprequest getCreateLegalEntityRequest(String username, String password){
+		Httprequest createLegalEntityRequest = new Httprequest();
+        setRequestParams(createLegalEntityRequest, LEGAL_ENTITY_ENDPOINT, 'POST', createLegalEntityRequestXml,
+        					username, password);
+        return createLegalEntityRequest;        
+	}
+	
+	public Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId){
+		Httprequest createSubMerchantRequest = new Httprequest();
+        //sub merchant endpoint /legalentity/legalentityid/submerchant
+        String subMerchantEndpoint = LEGAL_ENTITY_ENDPOINT + URL_SEPARATOR +legalEntityId + URL_SEPARATOR + 'submerchant';
+        setRequestParams(createSubMerchantRequest, subMerchantEndpoint, 'POST', createSubMerchantRequestXml,
+        					username, password);
+        return createSubMerchantRequest;
+	}
+	
+	// Set the request parameters of the given http request
+	public void setRequestParams(HttpRequest request, String endPoint, String method, String body
+									, String username, String password){
+		request.setEndpoint(endPoint);
+        // create header
+        Blob headerValue = Blob.valueOf(username+':'+password); //Enter username and password
+        String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
+        request.setHeader('Authorization', authorizationHeader);
+        request.setHeader('Content-Type', CONTENT_TYPE);
+		request.setHeader('Accept', ACCEPT);
+		request.setMethod(method);
+        request.setBody(body);
+	}
 }

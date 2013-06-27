@@ -26,6 +26,7 @@ public class MockCreateLegalEntityDuplicateResponse implements HttpCalloutMock {
     public static final String RESPONSE_CODE = '36';
     public static final String RESPONSE_DESCRIPTION = 'Duplicate';
     public static final String TRANSACTION_ID = '82821203948749101';
+    public static final String LEGAL_ENTITY_ID = '82821203948912667';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
@@ -90,7 +91,7 @@ public class MockCreateLegalEntityDuplicateResponse implements HttpCalloutMock {
 						 + '</address>'
 						 + '</principal>'
 						 + '</principals>'
-						 + '<legalEntityId>82821203948912667</legalEntityId>'
+						 + '<legalEntityId>'+LEGAL_ENTITY_ID+'</legalEntityId>'
 						 + '<responseCode>10</responseCode>'
 						 + '<responseDescription>Approved</responseDescription>'
 						 + '<backgroundCheckResults>'

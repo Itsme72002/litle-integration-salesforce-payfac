@@ -152,10 +152,76 @@
         <visibleLines>50</visibleLines>
     </fields>
     <fields>
+        <fullName>legalEntityAcceptHeader__c</fullName>
+        <description>Accept header for legal entity request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Accept header for legal entity request</inlineHelpText>
+        <label>Legal Entity Accept Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityAuthorizationHeader__c</fullName>
+        <description>Authorization header for legal entity request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Authorization header for legal entity request</inlineHelpText>
+        <label>Legal Entity Authorization Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityContentTypeHeader__c</fullName>
+        <description>Content type header for legal entity request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Content type header for legal entity request</inlineHelpText>
+        <label>Legal Entity Content Type Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityEndpoint__c</fullName>
+        <description>Endpoint for legal entity requests</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Endpoint for legal entity requests</inlineHelpText>
+        <label>Legal Entity Endpoint</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityId__c</fullName>
+        <description>Stores the legal entity id from the create legal entity response</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the legal entity id from the create legal entity response</inlineHelpText>
+        <label>Legal Entity ID</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legalEntityResponseCode__c</fullName>
+        <description>Stores the legal entity response code from the create legal entity request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the legal entity response code from the create legal entity request</inlineHelpText>
+        <label>Legal Entity Response Code</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>sObjectId__c</fullName>
         <description>The Id of the sObject (AccountId / OpportunityId) of the logged request</description>
         <externalId>false</externalId>
-        <label>sObjectId</label>
+        <label>sObject Id</label>
         <length>30</length>
         <required>false</required>
         <type>Text</type>
@@ -165,7 +231,7 @@
         <fullName>sObjectName__c</fullName>
         <description>The name of the sObject of the logged request.</description>
         <externalId>false</externalId>
-        <label>sObjectName</label>
+        <label>sObject Name</label>
         <length>50</length>
         <required>false</required>
         <type>Text</type>
@@ -175,18 +241,57 @@
         <fullName>sObjectType__c</fullName>
         <description>Type Of Object (Account/Opportunity) which is logged.</description>
         <externalId>false</externalId>
-        <label>sObjectType</label>
+        <label>sObject Type</label>
         <length>30</length>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>subMerchantAcceptHeader__c</fullName>
+        <description>Accept Header of sub merchant request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Accept Header of sub merchant request</inlineHelpText>
+        <label>SubMerchant Accept Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>subMerchantAuthorizationHeader__c</fullName>
+        <description>Authorization header</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Authorization header</inlineHelpText>
+        <label>SubMerchant Authorization Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>subMerchantContentTypeHeader__c</fullName>
+        <description>Content Type Header of sub merchant request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Content Type Header of sub merchant request</inlineHelpText>
+        <label>SubMerchant Content Type Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>subMerchantEndpoint__c</fullName>
+        <description>Endpoint for create submerchant request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Endpoint for create submerchant request</inlineHelpText>
+        <label>SubMerchant Endpoint</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>LitleRequestResponseLog</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <listViews>
         <fullName>LitleLogView</fullName>
         <columns>NAME</columns>

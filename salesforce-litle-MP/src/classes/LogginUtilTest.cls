@@ -72,15 +72,55 @@ private class LogginUtilTest {
 		LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
 		// test null http request
 		LoggingUtil.logCreateLegalEntityRequest(null, litleRequestResponseLog);
-		System.assertNotEquals(null, litleRequestResponseLog.createLegalEntityRequestDate__c);
+		System.assertEquals(null, litleRequestResponseLog.createLegalEntityRequestDate__c);
 		System.assertEquals(null, litleRequestResponseLog.createLegalEntityRequestXml__c);
+		System.assertEquals(null, litleRequestResponseLog.legalEntityEndpoint__c);
+		System.assertEquals(null, litleRequestResponseLog.legalEntityAcceptHeader__c);
+		System.assertEquals(null, litleRequestResponseLog.legalEntityContentTypeHeader__c);
+		System.assertEquals(null, litleRequestResponseLog.legalEntityAuthorizationHeader__c);
+		
+		// test with http request
+		litleRequestResponseLog = new LitleRequestResponseLog__c();
+		HttpRequest request = new HttpRequest();
+		request.setEndpoint(DEFAULT_NAME);
+        request.setHeader('Authorization', DEFAULT_NAME);
+        request.setHeader('Content-Type', DEFAULT_NAME);
+		request.setHeader('Accept', DEFAULT_NAME);
+		request.setBody(DEFAULT_NAME);
+		LoggingUtil.logCreateLegalEntityRequest(request, litleRequestResponseLog);
+		System.assertNotEquals(null, litleRequestResponseLog.createLegalEntityRequestDate__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.createLegalEntityRequestXml__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.legalEntityEndpoint__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.legalEntityAcceptHeader__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.legalEntityContentTypeHeader__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.legalEntityAuthorizationHeader__c);
 	} 
 	static testMethod void testlogCreateSubMerchantRequest(){
 		LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
 		// test null http request
 		LoggingUtil.logCreateSubMerchantRequest(null, litleRequestResponseLog);
+		System.assertEquals(null, litleRequestResponseLog.createSubMerchantRequestDate__c);
+		System.assertEquals(null, litleRequestResponseLog.createSubMerchantRequestXml__c);
+		System.assertEquals(null, litleRequestResponseLog.subMerchantEndpoint__c);
+		System.assertEquals(null, litleRequestResponseLog.subMerchantAcceptHeader__c);
+		System.assertEquals(null, litleRequestResponseLog.subMerchantContentTypeHeader__c);
+		System.assertEquals(null, litleRequestResponseLog.subMerchantAuthorizationHeader__c);
+		
+		// test with http request
+		litleRequestResponseLog = new LitleRequestResponseLog__c();
+		HttpRequest request = new HttpRequest();
+		request.setEndpoint(DEFAULT_NAME);
+        request.setHeader('Authorization', DEFAULT_NAME);
+        request.setHeader('Content-Type', DEFAULT_NAME);
+		request.setHeader('Accept', DEFAULT_NAME);
+		request.setBody(DEFAULT_NAME);
+		LoggingUtil.logCreateSubMerchantRequest(request, litleRequestResponseLog);
 		System.assertNotEquals(null, litleRequestResponseLog.createSubMerchantRequestDate__c);
-		System.assertEquals(null, litleRequestResponseLog.createSubMerchantRequestXml__c);	
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.createSubMerchantRequestXml__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.subMerchantEndpoint__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.subMerchantAcceptHeader__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.subMerchantContentTypeHeader__c);
+		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.subMerchantAuthorizationHeader__c);	
 	} 
 	static testMethod void testLogCreateLegalEntityResponse(){
 		LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();	
