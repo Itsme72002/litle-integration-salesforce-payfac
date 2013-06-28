@@ -2350,13 +2350,13 @@ public class LitleMidFormController {
 					LoggingUtil.logSObjectDetails(urlAccountId, urlOpportunityId, litleRequestResponseLog);
 					//Insert Litle Mid
 					if(String.isNotEmpty(urlOpportunityId)){
-						try{
+						/*try{
 							Opportunity thisOpportunity = [select id, Litle_MID__c from Opportunity where id=:urlOpportunityId];
 							thisOpportunity.Litle_MID__c = litleMid;
 							upsert thisOpportunity;
 						}catch (Queryexception e){
 							System.debug('Error inserting litle mid value in opportunity'+ e);
-						}
+						}*/
 					}else if(String.isNotEmpty(urlAccountId)){
 						try{
 							Account thisAccount = [select id, Litle_MID__c from Account where id=:urlAccountId];
