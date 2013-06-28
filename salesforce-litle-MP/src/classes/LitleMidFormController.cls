@@ -5,13 +5,8 @@ public class LitleMidFormController {
 	public SalesforceLitleMappingsObject__c savedMappings {get; set;}
 	public String urlAccountId {get; set;}
 	public String urlOpportunityId {get; set;}
-	public Account account{get; set;}
 	public List<SelectOption> legalEntityTypeList{get; set;}
-	public static final List<Integer> pciLevels = new List<Integer>{ 1, 2, 3, 4 };
-	public static final String LEGAL_ENTITY_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
-	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
-	public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
-	public static final String URL_SEPARATOR = '/';
+	
 	public LegalEntityResponse legalEntityResponse {get; set;}
 	public SubMerchantResponse subMerchantResponse {get; set;}
 	// stores litle mid / error information
@@ -2347,7 +2342,7 @@ public class LitleMidFormController {
 						//Log Sub Merchant request
 						LoggingUtil.logCreateSubMerchantRequest(createSubMerchantRequest, litleRequestResponseLog);
                 		if(String.isNotEmpty(legalEntityResponse.getResponseCode())
-							&& legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))){
+							&& legalEntityResponse.getResponseCode().equals(LitleConstants.RESPONSE_APPROVED)){
 								// make sub merchant request
 								makeCreateSubMerchantRequest(litleRequestResponseLog, createSubMerchantRequest);
 							}
@@ -2475,18 +2470,18 @@ public class LitleMidFormController {
         	//lEResponse = mockManualReview();
         	//Log response
         	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
-        	if(lEResponse.getStatusCode() == 201){
+        	if(lEResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
         		//get response code, transaction id and response description
-        		legalEntityResponse.setTransactionId(extractXmlTagText(lEResponse, 'transactionId'));
-        		legalEntityResponse.setResponseCode(extractXmlTagText(lEResponse, 'responseCode'));
-        		legalEntityResponse.setResponseDespcription(extractXmlTagText(lEResponse, 'responseDescription'));
+        		legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, 'transactionId'));
+        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, 'responseCode'));
+        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, 'responseDescription'));
         		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
-        		legalEntityResponse.setLegalEntityId(extractXmlTagText(lEResponse, 'legalEntityId'));
+        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, 'legalEntityId'));
         		//Log response codes and legal entity id
         		litleRequestResponseLog.legalEntityResponseCode__c = legalEntityResponse.getResponseCode();
         		litleRequestResponseLog.legalEntityId__c = legalEntityResponse.getLegalEntityId();
         		// Show error message if not approved
-        		if(!legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))){
+        		if(!legalEntityResponse.getResponseCode().equals(LitleConstants.RESPONSE_APPROVED)){
         			ApexPages.addmessage(new ApexPages.message
         			(ApexPages.severity.ERROR,String.valueOf(legalEntityResponse.getResponseCode()+
         												': '+legalEntityResponse.getResponseDespcription())));
@@ -2497,7 +2492,7 @@ public class LitleMidFormController {
         			//For approved response
         			if(legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))){
         				//approved, get legal entity id
-        				legalEntityResponse.setLegalEntityId(extractXmlTagText(lEResponse, 'legalEntityId'));
+        				legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, 'legalEntityId'));
         			}else{
 	        			//TODO for other response codes
 	        			legalEntityResponse.setLegalEntityId(null);
@@ -2507,7 +2502,7 @@ public class LitleMidFormController {
         		//reset the legal entity id
         		legalEntityResponse.setLegalEntityId(null);
         		legalEntityResponse.setResponseCode(String.valueOf(lEResponse.getStatusCode()));
-        		legalEntityResponse.setResponseDespcription(extractXmlTagText(lEResponse,'error'));
+        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse,'error'));
         		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
         		ApexPages.addmessage(new ApexPages.message
         			(ApexPages.severity.ERROR,String.valueOf(legalEntityResponse.getResponseCode()+
@@ -2520,33 +2515,12 @@ public class LitleMidFormController {
         }
 	}
 	
-	// extract tag's text from response
-	public static String extractXmlTagText(HttpResponse response, String tagName){
-		if(response != null && String.isNotEmpty(tagName)){
-			try{
-				Xmlstreamreader xmlReader = response.getXmlStreamReader();
-				while(xmlReader.hasNext()){
-					if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
-						if(xmlReader.getLocalName().equals(tagName)){
-							xmlReader.next();
-							if(xmlReader.getEventType() == Xmltag.CHARACTERS){
-								return xmlReader.getText();
-							}
-						}
-					}
-					xmlReader.next();
-				}
-			}catch(XMLException e){
-				System.debug('Error in Xml text extraction: '+ e);
-			}
-		}
-		return null;
-	}
+	
 	
 	/*public void extractResponse(Httpresponse response){
 		if(response != null){
 			//check response code 10
-			String responseCode = extractXmlTagText(response, 'responseCode');
+			String responseCode = XmlUtil.extractXmlTagText(response, 'responseCode');
 			if(String.isNotEmpty(responseCode)){
 				if(responseCode.trim().equals('10')){
 					//Approved
@@ -2556,7 +2530,7 @@ public class LitleMidFormController {
 					//set legal entity id to null
 					legalEntityModel.setLegalEntityId(null);
 					//Extract response description
-					String responseDescription = extractXmlTagText(response, 'responseDescription');
+					String responseDescription = XmlUtil.extractXmlTagText(response, 'responseDescription');
 					//store in custom object
 				}
 				//set legal entity id
@@ -2577,16 +2551,16 @@ public class LitleMidFormController {
         	//Log response
         	LoggingUtil.logCreateSubMerchantResponse(sMResponse, litleRequestResponseLog);
         	//TODO Handle sub merchant response
-        	if(sMResponse.getStatusCode() == 200){
+        	if(sMResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
         		//get litle mid
-        		litleMid = extractXmlTagText(sMResponse, 'subMerchantId');
+        		litleMid = XmlUtil.extractXmlTagText(sMResponse, 'subMerchantId');
         		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,'Request Approved. Litle MID: '+litleMid));	
         	}else{
         		//set litle mid with the error description
-        		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + extractXmlTagText(sMResponse,'error');
+        		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + XmlUtil.extractXmlTagText(sMResponse,'error');
         		ApexPages.addmessage(new ApexPages.message
         			(ApexPages.severity.ERROR,String.valueOf(String.valueOf(sMResponse.getStatusCode())+
-        												': '+extractXmlTagText(sMResponse,'error'))));	
+        												': '+XmlUtil.extractXmlTagText(sMResponse,'error'))));	
         	}
         }catch(System.CalloutException e){
         	System.debug('Sub Merchant Request Callout error: '+ e);
@@ -2748,7 +2722,7 @@ public class LitleMidFormController {
 		//System.debug('!!!levels'+pciLevels.get(0));
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getPciLevel());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
-			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPci().getPciLevel(), pciLevels)){
+			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPci().getPciLevel(), LitleConstants.PCI_LEVELS)){
 				isInputValid = false;
 				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Levels should be either 1,2,3 or 4'));
 			}

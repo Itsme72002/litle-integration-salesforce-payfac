@@ -1,30 +1,7 @@
-/**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
- *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
- *
- * All test methods in an organization are executed whenever Apex code is deployed
- * to a production organization to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production organization. In addition, all triggers must have some code coverage.
- * 
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the organization size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
- */
 @isTest
 private class LitleRequestXmlTest {
 	public static final String TEST_STRING = 'test';
-	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
-    public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
-    
+	
     static testMethod void testCreateLegalEntityRequestXml() {
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
@@ -175,12 +152,13 @@ private class LitleRequestXmlTest {
     	System.assertEquals(expectedXml, actualXml);
     	Httprequest request = litleRequest.getCreateLegalEntityRequest(TEST_STRING, TEST_STRING);
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
- 	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(LitleRequestXml.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
+ 	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+ 	    
+ 	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, request.getEndpoint());
     	System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals('POST', request.getMethod());
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+ 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(expectedXml, request.getBody());
     }
     
@@ -195,13 +173,14 @@ private class LitleRequestXmlTest {
     	System.assertEquals(expectedXml, actualXml);
     	Httprequest request = litleRequest.getCreateSubMerchantRequest(TEST_STRING, TEST_STRING, TEST_STRING);
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
- 	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(LitleRequestXml.LEGAL_ENTITY_ENDPOINT+LitleRequestXml.URL_SEPARATOR
- 	    						+ TEST_STRING + LitleRequestXml.URL_SEPARATOR + 'submerchant' , request.getEndpoint());
+ 	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+ 	    
+ 	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT+LitleConstants.URL_SEPARATOR
+ 	    						+ TEST_STRING + LitleConstants.URL_SEPARATOR + 'submerchant' , request.getEndpoint());
     	System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals('POST', request.getMethod());
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+ 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(expectedXml, request.getBody());
     }
     static testMethod void testSetRequestParams(){
@@ -209,15 +188,17 @@ private class LitleRequestXmlTest {
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
         LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
     	HttpRequest request = new Httprequest();
-    	String method = 'POST';
-    	litleRequestXml.setRequestParams(request, TEST_STRING, method, TEST_STRING,TEST_STRING,TEST_STRING);
+    	String method = LitleConstants.CREATE_HTTP_REQUEST_METHOD;
+    	
+    	HttpUtil.setRequestHeaders(request, TEST_STRING, method, TEST_STRING,TEST_STRING,TEST_STRING);
     	System.assertEquals(TEST_STRING, request.getEndpoint());
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
- 	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
+ 	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals('POST', request.getMethod());
+ 	    
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+ 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
     }
     

@@ -29,8 +29,6 @@ private class LitleFormControllerTest {
 	public static final String ACCOUNT_NAME = 'Test Account';
 	public static final String OPPORTUNITY_NAME = 'Test Opportunity';
 	public static final String DEFAULT_STRING = 'Default String';
-	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
-    public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
 	public static final Date DEFAULT_DATE = Date.today();
 
    static testMethod void testIsInputDataValid() {

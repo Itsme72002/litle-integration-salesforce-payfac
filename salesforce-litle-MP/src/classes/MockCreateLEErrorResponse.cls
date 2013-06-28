@@ -27,10 +27,10 @@ public class MockCreateLEErrorResponse implements HttpCalloutMock{
 	public static final String ERROR_MESSAGE = 'You are not authorized to access this resource. Please check your credentials.';
 	
     public HttpResponse respond(HttpRequest request){
-    	System.assertEquals(LitleMidFormController.LEGAL_ENTITY_ENDPOINT, request.getEndpoint());
-    	System.assertEquals('POST', request.getMethod());
-    	System.assertEquals(LitleMidFormController.CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleMidFormController.ACCEPT, request.getHeader('Accept'));
+    	System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, request.getEndpoint());
+    	System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
+    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
  	    
  	    HttpResponse res = new HttpResponse();
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'

@@ -29,8 +29,6 @@ private class LitleFormControllerTest2 {
 	public static final String ACCOUNT_NAME = 'Test Account';
 	public static final String OPPORTUNITY_NAME = 'Test Opportunity';
 	public static final String DEFAULT_STRING = 'Default String';
-	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
-    public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
 	public static final Date DEFAULT_DATE = Date.today();
 
     static testMethod void testConstructor(){
@@ -1302,15 +1300,15 @@ private class LitleFormControllerTest2 {
     	insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	HttpRequest request = new Httprequest();
-    	String method = 'POST';
+    	String method = LitleConstants.CREATE_HTTP_REQUEST_METHOD;
     	litleMidFormController.setRequestParams(request, DEFAULT_STRING, method, DEFAULT_STRING);
     	System.assertEquals(DEFAULT_STRING, request.getEndpoint());
     	Blob headerValue = Blob.valueOf(DEFAULT_STRING+':'+DEFAULT_STRING); 
  	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
  	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals('POST', request.getMethod());
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+ 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(DEFAULT_STRING, request.getBody());
     	delete mappingObject;
     }*/
@@ -1452,8 +1450,8 @@ private class LitleFormControllerTest2 {
     	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
     	//Enter username and password
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
-        Httprequest request = HttpUtil.getLitleMPHttpRequest('POST', LitleMidFormController.LEGAL_ENTITY_ENDPOINT, authorizationHeader, 
-        							LitleMidFormController.CONTENT_TYPE, LitleMidFormController.ACCEPT,'');
+        Httprequest request = HttpUtil.getLitleMPHttpRequest(LitleConstants.CREATE_HTTP_REQUEST_METHOD, LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, authorizationHeader, 
+        							LitleConstants.REQUEST_HEADER_CONTENT_TYPE, LitleConstants.REQUEST_HEADER_ACCEPT,'');
     	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
         // check request xml in log
     	//System.assertEquals(request.getBody(), litleRequestResponseLog.createLegalEntityRequestXml__c ); 
@@ -1468,7 +1466,8 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION
     							, controller.litleMid);
     	// check if response code is approved
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()), controller.legalEntityResponse.getResponseCode());
+    	
+    	System.assertEquals(LitleConstants.RESPONSE_APPROVED, controller.legalEntityResponse.getResponseCode());
     	// check legal entity id
     	System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
     	
@@ -1489,7 +1488,7 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION
     							, controller.litleMid);
     	// check if response code is duplicate
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.DUPLICATE.name()), controller.legalEntityResponse.getResponseCode());
+    	System.assertEquals(LitleConstants.RESPONSE_DUPLICATE, controller.legalEntityResponse.getResponseCode());
     	// check legal entity id to be null
     	System.assertEquals(MockCreateLegalEntityDuplicateResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
     	
@@ -1509,7 +1508,7 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE+' : '+MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION
     							, controller.litleMid);
     	// check if response code is manual review
-    	System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.MANUAL_REVIEW.name()), controller.legalEntityResponse.getResponseCode());
+    	System.assertEquals(LitleConstants.RESPONSE_MANUAL_REVIEW, controller.legalEntityResponse.getResponseCode());
     	// check legal entity id to be null
     	System.assertEquals(MockCreateLEManualReviewResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
     	
@@ -1539,8 +1538,8 @@ private class LitleFormControllerTest2 {
     	/* Success condition*/
     	Test.setMock(HttpCalloutMock.class, new MockCreateSMSuccess());
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
-        Httprequest request = HttpUtil.getLitleMPHttpRequest('POST', LitleMidFormController.LEGAL_ENTITY_ENDPOINT, authorizationHeader, 
-        							LitleMidFormController.CONTENT_TYPE, LitleMidFormController.ACCEPT,'');
+        Httprequest request = HttpUtil.getLitleMPHttpRequest(LitleConstants.CREATE_HTTP_REQUEST_METHOD, LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, authorizationHeader, 
+        							LitleConstants.REQUEST_HEADER_CONTENT_TYPE, LitleConstants.REQUEST_HEADER_ACCEPT,'');
     	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request);
     	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
     	//check log response status code and status message
@@ -1566,21 +1565,7 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(null, controller.cancel());
     }
     
-    static testMethod void testExtractXmlTagText(){
-    	//LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpResponse response = new HttpResponse();
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '</CD> ');
-    	
-    	XmlStreamReader xmlReader = response.getXmlStreamReader();
-    	System.assertEquals('USA', LitleMidFormController.extractXmlTagText(response, 'COUNTRY'));
-    	System.assertEquals(null, LitleMidFormController.extractXmlTagText(response, 'COUN'));
-    	// test for blank tag name
-    	System.assertEquals(null, LitleMidFormController.extractXmlTagText(response, ''));
-    	// test for null response
-    	response = null;
-    	System.assertEquals(null, LitleMidFormController.extractXmlTagText(response, 'COUNTRY'));
-    }
+    
     
     /*static testMethod void testExtractResponse(){
     	LitleMidFormController litleMidFormController = new LitleMidFormController();

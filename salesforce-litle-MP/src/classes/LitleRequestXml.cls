@@ -3,10 +3,7 @@ public class LitleRequestXml {
 	private String createSubMerchantRequestXml;
 	/*private HttpRequest createLegalEntityRequest;
 	private HttpRequest createSubMerchantRequest;*/
-	public static final String LEGAL_ENTITY_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
-	public static final String CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
-	public static final String ACCEPT = 'application/com.litle.psp-v5+xml';
-	public static final String URL_SEPARATOR = '/';
+	
 	
 	
 	public LitleRequestXml(LegalEntityModel legalEntityModel, SubMerchantModel subMerchantModel){
@@ -62,11 +59,11 @@ public class LitleRequestXml {
 		if(legalEntityModel != null){
 			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
-			requestXml.writeStartDocument('UTF-8', '1.0');
+			requestXml.writeStartDocument(LitleConstants.XML_ENCODING, LitleConstants.XML_VERSION);
 			//requestXml.writeAttribute(null, null, 'standalone', 'yes');
 			//main element and namespace
 			requestXml.writeStartElement(null, 'legalEntityCreateRequest', null);
-			requestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
+			requestXml.writeDefaultNamespace(LitleConstants.REQUEST_XML_NAMESPACE);
 			//requestXml.writeStartElement(null, 'legalEntityName', null);	//start legal entity name
 			addTagToXml(requestXml, 'legalEntityName', legalEntityModel.getLegalEntityName());
 			addTagToXml(requestXml, 'legalEntityType', legalEntityModel.getLegalEntityType());
@@ -126,10 +123,10 @@ public class LitleRequestXml {
 		if(subMerchantModel != null){
 			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
-			requestXml.writeStartDocument('UTF-8', '1.0');
+			requestXml.writeStartDocument(LitleConstants.XML_ENCODING, LitleConstants.XML_VERSION);
 			//marequest
 			requestXml.writeStartElement(null, 'subMerchantCreateRequest', null);
-			requestXml.writeDefaultNamespace('http://psp.litle.com/api/merchant/onboard');
+			requestXml.writeDefaultNamespace(LitleConstants.REQUEST_XML_NAMESPACE);
 			requestXml.writeStartElement(null, 'address', null);
 				addTagToXml(requestXml, 'streetAddress1', subMerchantModel.getSubMerchantAddress().getStreetAddress1());
 				addTagToXml(requestXml, 'streetAddress2', subMerchantModel.getSubMerchantAddress().getStreetAddress2());
@@ -169,22 +166,26 @@ public class LitleRequestXml {
 	
 	public Httprequest getCreateLegalEntityRequest(String username, String password){
 		Httprequest createLegalEntityRequest = new Httprequest();
-        setRequestParams(createLegalEntityRequest, LEGAL_ENTITY_ENDPOINT, 'POST', createLegalEntityRequestXml,
-        					username, password);
-        return createLegalEntityRequest;        
+		return HttpUtil.setRequestHeaders(createLegalEntityRequest, 
+        				LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, 
+        				LitleConstants.CREATE_HTTP_REQUEST_METHOD, 
+        				createLegalEntityRequestXml, username, password);     
 	}
 	
 	public Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId){
 		Httprequest createSubMerchantRequest = new Httprequest();
         //sub merchant endpoint /legalentity/legalentityid/submerchant
-        String subMerchantEndpoint = LEGAL_ENTITY_ENDPOINT + URL_SEPARATOR +legalEntityId + URL_SEPARATOR + 'submerchant';
-        setRequestParams(createSubMerchantRequest, subMerchantEndpoint, 'POST', createSubMerchantRequestXml,
-        					username, password);
-        return createSubMerchantRequest;
+        String subMerchantEndpoint = LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT 
+        							+ LitleConstants.URL_SEPARATOR + legalEntityId 
+        							+ LitleConstants.URL_SEPARATOR + 'submerchant';
+        return HttpUtil.setRequestHeaders(createSubMerchantRequest, 
+        				subMerchantEndpoint, 
+        				LitleConstants.CREATE_HTTP_REQUEST_METHOD, 
+        				createSubMerchantRequestXml, username, password);
 	}
 	
 	// Set the request parameters of the given http request
-	public void setRequestParams(HttpRequest request, String endPoint, String method, String body
+	/*public void setRequestParams(HttpRequest request, String endPoint, String method, String body
 									, String username, String password){
 		request.setEndpoint(endPoint);
         // create header
@@ -195,5 +196,5 @@ public class LitleRequestXml {
 		request.setHeader('Accept', ACCEPT);
 		request.setMethod(method);
         request.setBody(body);
-	}
+	}*/
 }
