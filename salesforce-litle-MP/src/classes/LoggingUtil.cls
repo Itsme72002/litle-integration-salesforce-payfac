@@ -2,15 +2,7 @@ public class LoggingUtil {
 	
 	public static void logSObjectDetails(String accid, String oppid, LitleRequestResponseLog__c litleRequestResponseLog){
 		if(litleRequestResponseLog != null){
-			if(String.isNotEmpty(accid)){
-				//get account details
-				try{
-					Account thisAccount = [select name from Account where id=:accid];
-					fillSObjectLogObject('Account', thisAccount.Name, accid, litleRequestResponseLog);
-				}catch (Queryexception e){
-					System.debug('Error fetching account details for logging'+ e);
-				}
-			}else if(String.isNotEmpty(oppid)){
+			if(String.isNotEmpty(oppid)){
 				//get opportunity details
 				try{
 					Opportunity thisOpportunity = [select name from Opportunity where id=:oppid];
@@ -18,7 +10,15 @@ public class LoggingUtil {
 				}catch (Queryexception e){
 					System.debug('Error fetching opportunity details for logging'+ e);
 				}
-			}
+			}else if(String.isNotEmpty(accid)){
+				//get account details
+				try{
+					Account thisAccount = [select name from Account where id=:accid];
+					fillSObjectLogObject('Account', thisAccount.Name, accid, litleRequestResponseLog);
+				}catch (Queryexception e){
+					System.debug('Error fetching account details for logging'+ e);
+				}
+			} 
 		}
 	}
 	
