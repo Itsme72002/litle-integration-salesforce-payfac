@@ -2483,8 +2483,7 @@ public class LitleMidFormController {
         		// Show error message if not approved
         		if(!legalEntityResponse.getResponseCode().equals(LitleConstants.RESPONSE_APPROVED)){
         			ApexPages.addmessage(new ApexPages.message
-        			(ApexPages.severity.ERROR,String.valueOf(legalEntityResponse.getResponseCode()+
-        												': '+legalEntityResponse.getResponseDespcription())));
+        			(ApexPages.severity.ERROR,LitleConstants.getResponseMessage(legalEntityResponse.getResponseCode())));
         		}
         		/*//check response code
         		if(String.isNotEmpty(legalEntityResponse.getResponseCode())){
@@ -2554,7 +2553,7 @@ public class LitleMidFormController {
         	if(sMResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
         		//get litle mid
         		litleMid = XmlUtil.extractXmlTagText(sMResponse, 'subMerchantId');
-        		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,'Request Approved. Litle MID: '+litleMid));	
+        		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED)));	
         	}else{
         		//set litle mid with the error description
         		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + XmlUtil.extractXmlTagText(sMResponse,'error');

@@ -32,7 +32,7 @@ public class LitleConstants {
 	//scheduler constants
 	public static final String SCHEDULER_CRON_EXP = '0 38 * * 6 ? 2013';
 	
-	public String getResponseMessage(String responseCode){
+	public static String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){
 			return 'Litle Mid has been generated successfully. It will appear on the Litle MID field.';
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW)){
