@@ -90,7 +90,7 @@ global class ManualReviewStatusScheduler implements Schedulable{
 												}
 											}else if(litleRequestResponse.sObjectType__c.equalsIgnoreCase('Opportunity')){
 												//update litle mid on account page.
-												/*try{
+												try{
 													Opportunity opportunity = [select litle_Mid__c from Opportunity where Id = :litleRequestResponse.sObjectId__c];
 													opportunity.litle_Mid__c = subMerchantId;
 													update opportunity;
@@ -98,7 +98,7 @@ global class ManualReviewStatusScheduler implements Schedulable{
 													System.debug('Error in query to fetch litle mid from opportunity id: '+ litleRequestResponse.sObjectId__c+ ', '+ e);
 												}catch(DMLException e){
 													System.debug('Error in updating litle mid for opportunity id: '+ litleRequestResponse.sObjectId__c+ ', '+ e);
-												}*/
+												}
 											} 
 											
 											//update log
