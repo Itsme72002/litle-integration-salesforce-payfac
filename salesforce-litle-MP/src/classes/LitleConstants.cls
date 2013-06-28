@@ -34,19 +34,19 @@ public class LitleConstants {
 	
 	public String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){
-			return 'Response Approved';
+			return 'Litle Mid has been generated successfully. It will appear on the Litle MID field.';
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW)){
-			return 'Your request is under Manual Review.';
+			return 'Your request is under Manual Review. The status shall be updated within 2 business days.';
 		}else if(responseCode.equals(RESPONSE_RETRY)){
 			return 'Retry Request.';
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW_DUPLICATE)){
-			return '';
+			return 'Your request is a duplicate of manual review.';
 		}else if(responseCode.equals(RESPONSE_DUPLICATE)){
-			return 'Duplicate Response';
+			return 'Your request is a duplicate request.';
 		}else if(responseCode.equals(RESPONSE_DECLINED)){
 			return 'Your request has been Declined.';
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW_BACKGROUND_CHECK_ERROR)){
-			return '';
+			return 'Your request has a background check error.';
 		}
 		return null;
 	}
