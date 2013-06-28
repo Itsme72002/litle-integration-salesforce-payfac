@@ -2485,7 +2485,7 @@ public class LitleMidFormController {
         		// Show error message if not approved
         		if(!legalEntityResponse.getResponseCode().equals(LitleConstants.RESPONSE_APPROVED)){
         			ApexPages.addmessage(new ApexPages.message
-        			(ApexPages.severity.ERROR,LitleConstants.getResponseMessage(legalEntityResponse.getResponseCode())));
+        			(ApexPages.severity.INFO,LitleConstants.getResponseMessage(legalEntityResponse.getResponseCode())));
         		}
         		/*//check response code
         		if(String.isNotEmpty(legalEntityResponse.getResponseCode())){
