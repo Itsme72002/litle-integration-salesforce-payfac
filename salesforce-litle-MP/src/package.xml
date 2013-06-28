@@ -37,7 +37,8 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>*</members>
+        <members>LitleRequestResponseLog__c</members>
+        <members>Litle_Mapping</members>
         <name>CustomTab</name>
     </types>
     <types>
