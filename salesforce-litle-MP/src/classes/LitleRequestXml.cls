@@ -1,13 +1,13 @@
 public class LitleRequestXml {
-	private String createLegalEntityRequestXml;
+	/*private String createLegalEntityRequestXml;
 	private String createSubMerchantRequestXml;
 	/*private HttpRequest createLegalEntityRequest;
 	private HttpRequest createSubMerchantRequest;*/
 	
 	
 	
-	public LitleRequestXml(LegalEntityModel legalEntityModel, SubMerchantModel subMerchantModel){
-		createLegalEntityRequestXml = generateCreateLegalEntityRequestXml(legalEntityModel);
+	/*public LitleRequestXml(LegalEntityModel legalEntityModel, SubMerchantModel subMerchantModel, Boolean maskPiInformation){
+		createLegalEntityRequestXml = generateCreateLegalEntityRequestXml(legalEntityModel, maskPiInformation);
 		createSubMerchantRequestXml = generateCreateSubMerchantRequestXml(subMerchantModel);
 	}
 	
@@ -46,7 +46,7 @@ public class LitleRequestXml {
 	//creates start and end tag with the given name and the given value
 	//e.g: tagName = 'legalEntity' value='Individual'
 	//outputs <legalEntity>Individual</legalEntity>
-	public void addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
+	public static void addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
 		xmlWriter.writeStartElement(null, tagName, null);	//start tagName
 		if(String.isNotEmpty(value)){
 			xmlWriter.writeCharacters(value.escapeXml());
@@ -55,7 +55,7 @@ public class LitleRequestXml {
 	} 
 	
 	//generate create legal entity request from the legalentitymodel
-	public String generateCreateLegalEntityRequestXml(LegalEntityModel legalEntityModel){
+	public static String generateCreateLegalEntityRequestXml(LegalEntityModel legalEntityModel, Boolean maskPiInformation){
 		if(legalEntityModel != null){
 			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
@@ -94,10 +94,18 @@ public class LitleRequestXml {
 					addTagToXml(requestXml, 'firstName', legalEntityModel.getLegalEntityPrincipal().getFirstName());
 					addTagToXml(requestXml, 'lastName', legalEntityModel.getLegalEntityPrincipal().getLastName());
 					addTagToXml(requestXml, 'emailAddress', legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
-					addTagToXml(requestXml, 'ssn', legalEntityModel.getLegalEntityPrincipal().getSsn());
+					if(maskPiInformation){
+						addTagToXml(requestXml, 'ssn', StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getSsn()));
+					}else{
+						addTagToXml(requestXml, 'ssn', legalEntityModel.getLegalEntityPrincipal().getSsn());
+					}
 					addTagToXml(requestXml, 'contactPhone', legalEntityModel.getLegalEntityPrincipal().getContactPhone());
 					addTagToXml(requestXml, 'dateOfBirth', legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
-					addTagToXml(requestXml, 'driversLicense', legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+					if(maskPiInformation){
+						addTagToXml(requestXml, 'driversLicense', StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getDriversLicense()));
+					}else{
+						addTagToXml(requestXml, 'driversLicense', legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+					}	
 					addTagToXml(requestXml, 'driversLicenseState', legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
 					requestXml.writeStartElement(null, 'address', null);	//start legal entity principal address
 						addTagToXml(requestXml, 'streetAddress1', legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
@@ -119,7 +127,7 @@ public class LitleRequestXml {
 	}
 	
 	//generate create sub merchant request from subMerchantModel
-	public String generateCreateSubMerchantRequestXml(SubMerchantModel subMerchantModel){
+	public static String generateCreateSubMerchantRequestXml(SubMerchantModel subMerchantModel){
 		if(subMerchantModel != null){
 			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
@@ -164,15 +172,15 @@ public class LitleRequestXml {
 		return null;
 	}
 	
-	public Httprequest getCreateLegalEntityRequest(String username, String password){
+	public static Httprequest getCreateLegalEntityRequest(String username, String password, LegalEntityModel legalEntityModel, Boolean maskPiInformation){
 		Httprequest createLegalEntityRequest = new Httprequest();
 		return HttpUtil.setRequestHeaders(createLegalEntityRequest, 
         				LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, 
         				LitleConstants.CREATE_HTTP_REQUEST_METHOD, 
-        				createLegalEntityRequestXml, username, password);     
+        				generateCreateLegalEntityRequestXml(legalEntityModel, maskPiInformation), username, password);     
 	}
 	
-	public Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId){
+	public static Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId, SubMerchantModel subMerchantModel){
 		Httprequest createSubMerchantRequest = new Httprequest();
         //sub merchant endpoint /legalentity/legalentityid/submerchant
         String subMerchantEndpoint = LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT 
@@ -181,8 +189,9 @@ public class LitleRequestXml {
         return HttpUtil.setRequestHeaders(createSubMerchantRequest, 
         				subMerchantEndpoint, 
         				LitleConstants.CREATE_HTTP_REQUEST_METHOD, 
-        				createSubMerchantRequestXml, username, password);
+        				generateCreateSubMerchantRequestXml(subMerchantModel), username, password);
 	}
+	
 	
 	// Set the request parameters of the given http request
 	/*public void setRequestParams(HttpRequest request, String endPoint, String method, String body

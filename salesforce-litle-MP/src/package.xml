@@ -29,6 +29,7 @@
         <members>LitleRequestResponseLog__c.sObjectId__c</members>
         <members>LitleRequestResponseLog__c.sObjectName__c</members>
         <members>LitleRequestResponseLog__c.sObjectType__c</members>
+        <members>Opportunity.Litle_MID__c</members>
         <name>CustomField</name>
     </types>
     <types>

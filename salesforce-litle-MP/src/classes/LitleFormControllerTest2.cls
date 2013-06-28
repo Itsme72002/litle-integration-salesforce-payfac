@@ -1443,15 +1443,14 @@ private class LitleFormControllerTest2 {
     	LitleMidFormController controller = new LitleMidFormController();
     	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
-    	LitleRequestXml litleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
+    	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	
     	/* Test approved response */
     	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
     	//Enter username and password
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
-        Httprequest request = HttpUtil.getLitleMPHttpRequest(LitleConstants.CREATE_HTTP_REQUEST_METHOD, LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, authorizationHeader, 
-        							LitleConstants.REQUEST_HEADER_CONTENT_TYPE, LitleConstants.REQUEST_HEADER_ACCEPT,'');
+        Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false);
     	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
         // check request xml in log
     	//System.assertEquals(request.getBody(), litleRequestResponseLog.createLegalEntityRequestXml__c ); 
@@ -1533,13 +1532,13 @@ private class LitleFormControllerTest2 {
     	LitleMidFormController controller = new LitleMidFormController();
     	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
-    	LitleRequestXml litleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
+    	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	/* Success condition*/
     	Test.setMock(HttpCalloutMock.class, new MockCreateSMSuccess());
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
-        Httprequest request = HttpUtil.getLitleMPHttpRequest(LitleConstants.CREATE_HTTP_REQUEST_METHOD, LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, authorizationHeader, 
-        							LitleConstants.REQUEST_HEADER_CONTENT_TYPE, LitleConstants.REQUEST_HEADER_ACCEPT,'');
+        Httprequest request = LitleRequestXml.getCreateSubMerchantRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c
+		        																					,controller.legalEntityResponse.getLegalEntityId(),controller.subMerchantModel);
     	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request);
     	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
     	//check log response status code and status message

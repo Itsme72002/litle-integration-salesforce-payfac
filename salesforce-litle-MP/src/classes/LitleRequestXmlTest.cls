@@ -2,12 +2,12 @@
 private class LitleRequestXmlTest {
 	public static final String TEST_STRING = 'test';
 	
-    static testMethod void testCreateLegalEntityRequestXml() {
+    /*static testMethod void testCreateLegalEntityRequestXml() {
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
         // Check if the account is null initially
-        System.assertEquals(litleRequestXml.getCreateLegalEntityRequestXml(), getCreateLegalEntityRequestXML('',''));
+        System.assertEquals(litleRequestXml.getCreateLegalEntityRequestXml(), getCreateLegalEntityRequestXML('','',false));
         litleRequestXml.setCreateLegalEntityRequestXml(TEST_STRING);
         // First check if the value is set
         System.assertNotEquals(litleRequestXml.getCreateLegalEntityRequestXml(), null);
@@ -18,7 +18,7 @@ private class LitleRequestXmlTest {
     static testMethod void testCreateSubMerchantRequestXml() {
         LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
         // Check if the account is null initially
         System.assertEquals(litleRequestXml.getCreateSubMerchantRequestXml(), getCreateSubMerchantRequestXML(''));
         litleRequestXml.setCreateSubMerchantRequestXml(TEST_STRING);
@@ -26,19 +26,19 @@ private class LitleRequestXmlTest {
         System.assertNotEquals(litleRequestXml.getCreateSubMerchantRequestXml(), null);
         // and then confirm if the value is set correctly
         System.assertEquals(litleRequestXml.getCreateSubMerchantRequestXml(), TEST_STRING);
-    }
+    }*/
     
     static testMethod void testGenerateCreateLegalEntityRequestXml(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        //LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
     	// TODO check for null
-    	System.assertEquals(null, litleRequestXml.generateCreateLegalEntityRequestXml(null));
+    	System.assertEquals(null, litleRequestXml.generateCreateLegalEntityRequestXml(null, false));
     	
     	// Check for XML with no values, just tags
     	//LegalEntityModel legalEntityModel = new LegalEntityModel();
-    	String actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel);
-    	String expectedXml = getCreateLegalEntityRequestXML('','');
+    	String actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel, false);
+    	String expectedXml = getCreateLegalEntityRequestXML('','',false);
     	
     	System.assertEquals(expectedXml, actualXml);
     	
@@ -83,14 +83,22 @@ private class LitleRequestXmlTest {
     	legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(TEST_STRING);
     	legalEntityModel.setLegalEntityHasAcceptedCreditCards(TEST_STRING);
     	// Create its XML
-    	 actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel);
-    	 expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());
+    	 actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel,false);
+    	 expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name(),false);
+    	System.assertEquals(expectedXml, actualXml);
+    	
+    	 actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel,true);
+    	 expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name(),true);
     	System.assertEquals(expectedXml, actualXml);
     	
     	// change the legal entity type and check
     	legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
-    	actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel);
-    	expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.CORPORATION.name());
+    	actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel, false);
+    	expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.CORPORATION.name(), false);
+    	System.assertEquals(expectedXml, actualXml);
+    	
+    	actualXml = litleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel, true);
+    	expectedXml = getCreateLegalEntityRequestXML(TEST_STRING,LegalEntityType.LegalEntityTypeEnum.CORPORATION.name(), true);
     	System.assertEquals(expectedXml, actualXml);
     }
     
@@ -98,7 +106,7 @@ private class LitleRequestXmlTest {
     static testMethod void testGenerateCreateSubMerchantRequestXml(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        //LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
     	// TODO check for null
     	System.assertEquals(null, litleRequestXml.generateCreateSubMerchantRequestXml(null));
     	
@@ -144,13 +152,13 @@ private class LitleRequestXmlTest {
     static testMethod void testGetCreateLegalEntityRequest(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequest = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        //LitleRequestXml LitleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
     	
     	// Check for XML with no values, just tags
-    	String actualXml = litleRequest.generateCreateLegalEntityRequestXml(legalEntityModel);
-    	String expectedXml = getCreateLegalEntityRequestXML('','');
+    	String actualXml = LitleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel, false);
+    	String expectedXml = getCreateLegalEntityRequestXML('','', false);
     	System.assertEquals(expectedXml, actualXml);
-    	Httprequest request = litleRequest.getCreateLegalEntityRequest(TEST_STRING, TEST_STRING);
+    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(TEST_STRING, TEST_STRING,legalEntityModel, false);
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
@@ -165,13 +173,13 @@ private class LitleRequestXmlTest {
     static testMethod void testGetCreateSubMerchantRequest(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequest = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        //LitleRequestXml LitleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
     	
     	// Check for XML with no values, just tags
-    	String actualXml = litleRequest.generateCreateSubMerchantRequestXml(subMerchantModel);
+    	String actualXml = LitleRequestXml.generateCreateSubMerchantRequestXml(subMerchantModel);
     	String expectedXml = getCreateSubMerchantRequestXML('');
     	System.assertEquals(expectedXml, actualXml);
-    	Httprequest request = litleRequest.getCreateSubMerchantRequest(TEST_STRING, TEST_STRING, TEST_STRING);
+    	Httprequest request = LitleRequestXml.getCreateSubMerchantRequest(TEST_STRING, TEST_STRING, TEST_STRING, subMerchantModel);
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
@@ -183,10 +191,10 @@ private class LitleRequestXmlTest {
  		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(expectedXml, request.getBody());
     }
-    static testMethod void testSetRequestParams(){
+    /*static testMethod void testSetRequestParams(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();
     	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel) ;
+        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
     	HttpRequest request = new Httprequest();
     	String method = LitleConstants.CREATE_HTTP_REQUEST_METHOD;
     	
@@ -200,7 +208,7 @@ private class LitleRequestXmlTest {
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
  		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
-    }
+    }*/
     
     
     static String getCreateSubMerchantRequestXML(String defaultValue){
@@ -237,7 +245,7 @@ private class LitleRequestXmlTest {
 				+ '</subMerchantCreateRequest>';
 				    	
     }
-    static String getCreateLegalEntityRequestXML(String defaultValue, String legalEntityType){
+    static String getCreateLegalEntityRequestXML(String defaultValue, String legalEntityType, Boolean maskPiInformation){
     	return '<?xml version="1.0" encoding="UTF-8"?>'+
 					'<legalEntityCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">'+
 						'<legalEntityName>'+ defaultValue +'</legalEntityName>'+
@@ -269,11 +277,11 @@ private class LitleRequestXmlTest {
 								'<firstName>'+ defaultValue +'</firstName>'+
 								'<lastName>'+ defaultValue +'</lastName>'+
 								'<emailAddress>'+ defaultValue +'</emailAddress>'+
-								'<ssn>'+ defaultValue +'</ssn>'+
-								'<contactPhone>'+ defaultValue +'</contactPhone>'+
+								(maskPiInformation ? '<ssn>'+ StringUtil.getMaskCharacters(defaultValue) +'</ssn>' : '<ssn>'+ defaultValue +'</ssn>')
+								+'<contactPhone>'+ defaultValue +'</contactPhone>'+
 								'<dateOfBirth>'+ defaultValue +'</dateOfBirth>'+
-								'<driversLicense>'+ defaultValue +'</driversLicense>'+
-								'<driversLicenseState>'+ defaultValue +'</driversLicenseState>'+
+								(maskPiInformation ? '<driversLicense>'+ StringUtil.getMaskCharacters(defaultValue) +'</driversLicense>' : '<driversLicense>'+ defaultValue +'</driversLicense>')
+								+'<driversLicenseState>'+ defaultValue +'</driversLicenseState>'+
 								'<address>'+
 									'<streetAddress1>'+ defaultValue +'</streetAddress1>'+
 									'<streetAddress2>'+ defaultValue +'</streetAddress2>'+

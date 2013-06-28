@@ -2325,11 +2325,13 @@ public class LitleMidFormController {
 		        } else {
 		        	//Make API call	
 		        	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-		        	LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel);
+		        	//LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false);
 		        	// Get the request
-		        	Httprequest createLegalEntityRequest = litleRequestXml.getCreateLegalEntityRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c);
+		        	Httprequest createLegalEntityRequest = LitleRequestXml.getCreateLegalEntityRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c,legalEntityModel, false);
 		        	//Log request
-    				LoggingUtil.logCreateLegalEntityRequest(createLegalEntityRequest, litleRequestResponseLog);	
+		        	// create masked entity request
+		        	Httprequest maskedLegalEntityRequest = LitleRequestXml.getCreateLegalEntityRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c,legalEntityModel, true);
+    				LoggingUtil.logCreateLegalEntityRequest(maskedLegalEntityRequest, litleRequestResponseLog);	
 		        	// Make Legal entity request 
 		        	if(createLegalEntityRequest != null){
 		        		makeCreateLegalEntityRequest(litleRequestResponseLog, createLegalEntityRequest);
@@ -2337,8 +2339,8 @@ public class LitleMidFormController {
 		        	
 					//check if legal entity id is populated
 					if(String.isNotEmpty(legalEntityResponse.getLegalEntityId())){
-						Httprequest createSubMerchantRequest = litleRequestXml.getCreateSubMerchantRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c
-		        																					,legalEntityResponse.getLegalEntityId());
+						Httprequest createSubMerchantRequest = LitleRequestXml.getCreateSubMerchantRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c
+		        																					,legalEntityResponse.getLegalEntityId(),subMerchantModel);
 						//Log Sub Merchant request
 						LoggingUtil.logCreateSubMerchantRequest(createSubMerchantRequest, litleRequestResponseLog);
                 		if(String.isNotEmpty(legalEntityResponse.getResponseCode())

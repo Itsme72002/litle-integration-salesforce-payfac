@@ -23,8 +23,53 @@
 private class TestManualReviewStatusScheduler {
 	
 	//job id = 08ei0000004HWYsAAO
+	public static final String LEGAL_ENTITY_ID = '123';
+	public static final String AUTH_HEADER = 'test';
+	public static final String REQUEST_XML = '<test />';
+	public static final String TEST_STRING = 'test';
+	
+	static testMethod void testScheduleIt(){
+		Test.startTest();
+		String jobId = ManualReviewStatusScheduler.scheduleIt();
+		CronTrigger ct = fetchCronTrigger(jobId);
+    	//check the cron expression
+    	System.assertEquals(LitleConstants.SCHEDULER_CRON_EXP, ct.CronExpression);
+    	System.abortJob(jobId);
+    	//add account
+    	Account account = new Account(name = TEST_STRING);
+    	insert account;
+    	//insert one record for manual review
+    	LitleRequestResponseLog__c logObject = new LitleRequestResponseLog__c();
+    	logObject.legalEntityId__c = LEGAL_ENTITY_ID; 
+		logObject.legalEntityResponseCode__c = LitleConstants.RESPONSE_MANUAL_REVIEW; 
+		logObject.subMerchantAcceptHeader__c = LitleConstants.REQUEST_HEADER_ACCEPT; 
+		logObject.subMerchantAuthorizationHeader__c = AUTH_HEADER; 
+		logObject.subMerchantContentTypeHeader__c = LitleConstants.REQUEST_HEADER_CONTENT_TYPE; 
+		logObject.sObjectId__c = String.valueOf(account.Id); 
+		logObject.sObjectType__c = 'Account'; 
+		logObject.createSubMerchantRequestXml__c = REQUEST_XML; 
+		insert logObject;
+		Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
+		 jobId = ManualReviewStatusScheduler.scheduleIt();
+		 ct = fetchCronTrigger(jobId);
+    	//check the cron expression
+    	System.assertEquals(LitleConstants.SCHEDULER_CRON_EXP, ct.CronExpression);
+    	
+    	// check for failed legal entity request
+    	// check for success legal entity request
+    	// check for failed sub merchant request
+    	// check for success sub merchant request
+    	// check for account litle mid
+    	// check for opportunity litle mid
+    	// check response log if updated
+    	
+		Test.stopTest();
+	}
 
-    static testmethod void test() {
+	public static CronTrigger fetchCronTrigger(String jobId) {
+	 	return [select CronExpression, TimesTriggered, NextFireTime from CronTrigger where Id = :jobId];
+	}
+    /*static testmethod void test() {
     	Test.startTest();
     	String jobId = System.schedule('TestScheduling', LitleConstants.SCHEDULER_CRON_EXP, new ManualReviewStatusScheduler());
     	CronTrigger ct = fetchCronTrigger(jobId);
@@ -51,9 +96,7 @@ private class TestManualReviewStatusScheduler {
 			sObjectId__c, sObjectType__c, createSubMerchantRequestXml__c from LitleRequestResponseLog__c where legalEntityResponseCode__c = '20'];
 	}
 	
-	 public static CronTrigger fetchCronTrigger(String jobId) {
-	 	return [select CronExpression, TimesTriggered, NextFireTime from CronTrigger where Id = :jobId];
-	}
+	 
 	
 /*    	Account a = new Account(name = 'test');
     	a.forceMock__TestCount__c = '2';

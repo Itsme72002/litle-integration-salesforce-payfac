@@ -1,5 +1,7 @@
 public class LitleConstants {
 	
+	public static final String MASK_CHARACTER = '*';
+	
 	// MP request constants
 	public static final String RETRIEVE_HTTP_REQUEST_METHOD = 'GET';
 	public static final String CREATE_HTTP_REQUEST_METHOD = 'POST';
@@ -23,6 +25,14 @@ public class LitleConstants {
 	public static final String RESPONSE_DUPLICATE = '36';
 	public static final String RESPONSE_DECLINED = '40';
 	public static final String RESPONSE_MANUAL_REVIEW_BACKGROUND_CHECK_ERROR = '99';
+	
+	public static final String RESPONSE_APPROVED_MESSAGE = 'Litle Mid has been generated successfully. It will appear on the Litle MID field.';
+	public static final String RESPONSE_MANUAL_REVIEW_MESSAGE = 'Your request is under Manual Review. The status shall be updated within 2 business days.';
+	public static final String RESPONSE_RETRY_MESSAGE = 'Retry Request.';
+	public static final String RESPONSE_MANUAL_REVIEW_DUPLICATE_MESSAGE = 'Your request is a duplicate of manual review.';
+	public static final String RESPONSE_DUPLICATE_MESSAGE = 'Your request is a duplicate request.';
+	public static final String RESPONSE_DECLINED_MESSAGE = 'Your request has been Declined.';
+	public static final String RESPONSE_MANUAL_REVIEW_BACKGROUND_CHECK_ERROR_MESSAGE = 'Your request has a background check error.';
 	// http response codes
 	public static final Integer LEGAL_ENTITY_SUCCESS_RESPONSE_CODE = 201;
 	public static final Integer SUB_MERCHANT_SUCCESS_RESPONSE_CODE = 200;
@@ -34,19 +44,19 @@ public class LitleConstants {
 	
 	public static String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){
-			return 'Litle Mid has been generated successfully. It will appear on the Litle MID field.';
+			return RESPONSE_APPROVED_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW)){
-			return 'Your request is under Manual Review. The status shall be updated within 2 business days.';
+			return RESPONSE_MANUAL_REVIEW_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_RETRY)){
-			return 'Retry Request.';
+			return RESPONSE_RETRY_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW_DUPLICATE)){
-			return 'Your request is a duplicate of manual review.';
+			return RESPONSE_MANUAL_REVIEW_DUPLICATE_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_DUPLICATE)){
-			return 'Your request is a duplicate request.';
+			return RESPONSE_DUPLICATE_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_DECLINED)){
-			return 'Your request has been Declined.';
+			return RESPONSE_DECLINED_MESSAGE;
 		}else if(responseCode.equals(RESPONSE_MANUAL_REVIEW_BACKGROUND_CHECK_ERROR)){
-			return 'Your request has a background check error.';
+			return RESPONSE_MANUAL_REVIEW_BACKGROUND_CHECK_ERROR_MESSAGE;
 		}
 		return null;
 	}
