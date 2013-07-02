@@ -40,7 +40,7 @@ public class LitleConstants {
 	public static final List<Integer> PCI_LEVELS = new List<Integer>{ 1, 2, 3, 4 };
 	
 	//scheduler constants
-	public static final String SCHEDULER_CRON_EXP = '0 38 * * 6 ? 2013';
+	public static final String SCHEDULER_CRON_EXP = '0 0 * * * ?';
 	
 	public static String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){
