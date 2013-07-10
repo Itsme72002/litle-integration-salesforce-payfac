@@ -13,6 +13,8 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Litle_MID__c</members>
+        <members>Account.PayFac_Portal_Link__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestDate__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestXml__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityResponseDate__c</members>
@@ -28,6 +30,8 @@
         <members>LitleRequestResponseLog__c.sObjectId__c</members>
         <members>LitleRequestResponseLog__c.sObjectName__c</members>
         <members>LitleRequestResponseLog__c.sObjectType__c</members>
+        <members>Opportunity.Litle_MID__c</members>
+        <members>Opportunity.PayFac_Portal_Link__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -50,9 +54,7 @@
     </types>
     <types>
         <members>Account.Get_Litle_MID</members>
-        <members>Account.Litle_Fields_Mapping</members>
         <members>Opportunity.Get_Litle_MID</members>
-        <members>Opportunity.Litle_Fields_Mapping</members>
         <name>WebLink</name>
     </types>
     <version>27.0</version>
