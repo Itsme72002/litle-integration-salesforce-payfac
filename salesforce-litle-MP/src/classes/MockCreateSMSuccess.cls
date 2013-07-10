@@ -25,6 +25,7 @@ public class MockCreateSMSuccess implements HttpCalloutMock{
 	public static final String STATUS_MESSAGE = 'Success';
     public static final Integer STATUS_CODE = 200;
 	public static final String SUB_MERCHANT_ID = '1100003';
+	public static final String LITLE_MID = '01100003';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
@@ -36,7 +37,7 @@ public class MockCreateSMSuccess implements HttpCalloutMock{
 						 + '<subMerchantCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
 						 + '<transactionId>82821240469914003</transactionId>'
 						 + '<subMerchantId>'+SUB_MERCHANT_ID+'</subMerchantId>'
-						 + '<merchantIdentString>01100003</merchantIdentString>'
+						 + '<merchantIdentString>'+LITLE_MID+'</merchantIdentString>'
 						 + '</subMerchantCreateResponse>';
     	res.setBody(response);
     	res.setStatusCode(200);

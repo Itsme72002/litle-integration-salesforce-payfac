@@ -1637,7 +1637,7 @@ private class LitleFormControllerTest2 {
     	//check log response status code and status message
     	System.assertEquals(String.valueOf(MockCreateSMSuccess.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
     	System.assertEquals(MockCreateSMSuccess.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
-    	System.assertEquals(MockCreateSMSuccess.SUB_MERCHANT_ID, controller.litleMid);
+    	System.assertEquals(MockCreateSMSuccess.LITLE_MID, controller.litleMid);
     	
     	/* Error condition*/
     	Test.setMock(HttpCalloutMock.class, new MockCreateSMErrorResponse());

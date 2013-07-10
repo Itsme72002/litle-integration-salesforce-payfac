@@ -2492,8 +2492,8 @@ public class LitleMidFormController {
 		Http h = new Http();
         Httpresponse lEResponse = new Httpresponse();
         try{
-        	//lEResponse = h.send(createLegalEntityRequest); 
-        	lEResponse = mockManualReview();
+        	lEResponse = h.send(createLegalEntityRequest); 
+        	//lEResponse = mockManualReview();
         	//Log response
         	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
         	if(lEResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
@@ -2572,8 +2572,8 @@ public class LitleMidFormController {
 		Http h = new Http();
         Httpresponse sMResponse = new Httpresponse();
         try{
-        	//sMResponse = h.send(createSubMerchantRequest); 
-        	smResponse = mockApprovedSubMerchant();
+        	sMResponse = h.send(createSubMerchantRequest); 
+        	//sMResponse = mockApprovedSubMerchant();
         	//Log response
         	LoggingUtil.logCreateSubMerchantResponse(sMResponse, litleRequestResponseLog);
         	//TODO Handle sub merchant response

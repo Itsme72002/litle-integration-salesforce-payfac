@@ -55,7 +55,7 @@ public class LitleConstants {
 	public static final String LITLE_ENV_SANDBOX = 'https://psp-cert.litle.com';
 	
 	//scheduler constants
-	public static final String SCHEDULER_CRON_EXP = '0 0 30 * * ?';
+	public static final String SCHEDULER_CRON_EXP = '0 0 * * * ?';
 	
 	public static String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){
