@@ -203,7 +203,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityNameX__c = true;
     	mappingObject.legalEntityName__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityName());
     	delete mappingObject;
@@ -211,7 +212,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityNameX__c = false;
     	mappingObject.legalEntityNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityName());
     	delete mappingObject;
@@ -223,7 +225,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityNameX__c = true;
     	mappingObject.legalEntityName__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityName());
     	// check as if initiated from account page
@@ -246,7 +249,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityDoingBusinessAsX__c = true;
     	mappingObject.legalEntityDoingBusinessAs__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityDoingBusinessAs());
     	delete mappingObject;
@@ -254,7 +258,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityDoingBusinessAsX__c = false;
     	mappingObject.legalEntityDoingBusinessAsD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityDoingBusinessAs());
     	delete mappingObject;
@@ -266,7 +271,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityDoingBusinessAsX__c = true;
     	mappingObject.legalEntityDoingBusinessAs__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityDoingBusinessAs());
     	
@@ -289,7 +295,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStreetAddress1X__c = true;
     	mappingObject.legalEntityStreetAddress1__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress1());
     	delete mappingObject;
@@ -297,7 +304,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityStreetAddress1X__c = false;
     	mappingObject.legalEntityStreetAddress1D__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress1());
     	delete mappingObject;
@@ -309,7 +317,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStreetAddress1X__c = true;
     	mappingObject.legalEntityStreetAddress1__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress1());
     	
@@ -332,7 +341,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStreetAddress2X__c = true;
     	mappingObject.legalEntityStreetAddress2__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress2());
     	delete mappingObject;
@@ -340,7 +350,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityStreetAddress2X__c = false;
     	mappingObject.legalEntityStreetAddress2D__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress2());
     	delete mappingObject;
@@ -352,7 +363,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStreetAddress2X__c = true;
     	mappingObject.legalEntityStreetAddress2__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStreetAddress2());
     	
@@ -375,7 +387,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityCityX__c = true;
     	mappingObject.legalEntityCity__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCity());
     	delete mappingObject;
@@ -383,7 +396,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityCityX__c = false;
     	mappingObject.legalEntityCityD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCity());
     	delete mappingObject;
@@ -395,7 +409,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityCityX__c = true;
     	mappingObject.legalEntityCity__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCity());
     	
@@ -418,7 +433,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStateProvinceX__c = true;
     	mappingObject.legalEntityStateProvince__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStateProvince());
     	delete mappingObject;
@@ -426,7 +442,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityStateProvinceX__c = false;
     	mappingObject.legalEntityStateProvinceD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStateProvince());
     	delete mappingObject;
@@ -438,7 +455,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityStateProvinceX__c = true;
     	mappingObject.legalEntityStateProvince__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getStateProvince());
     	
@@ -461,7 +479,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPostalCodeX__c = true;
     	mappingObject.legalEntityPostalCode__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getPostalCode());
     	delete mappingObject;
@@ -469,7 +488,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPostalCodeX__c = false;
     	mappingObject.legalEntityPostalCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getPostalCode());
     	delete mappingObject;
@@ -481,7 +501,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPostalCodeX__c = true;
     	mappingObject.legalEntityPostalCode__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getPostalCode());
     	
@@ -504,7 +525,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityCountryCodeX__c = true;
     	mappingObject.legalEntityCountryCode__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCountryCode());
     	delete mappingObject;
@@ -512,7 +534,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityCountryCodeX__c = false;
     	mappingObject.legalEntityCountryCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCountryCode());
     	delete mappingObject;
@@ -524,7 +547,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityCountryCodeX__c = true;
     	mappingObject.legalEntityCountryCode__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityAddress().getCountryCode());
     	
@@ -547,7 +571,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityContactPhoneX__c = true;
     	mappingObject.legalEntityContactPhone__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityContactPhone());
     	delete mappingObject;
@@ -555,7 +580,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityContactPhoneX__c = false;
     	mappingObject.legalEntityContactPhoneD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityContactPhone());
     	delete mappingObject;
@@ -567,7 +593,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityContactPhoneX__c = true;
     	mappingObject.legalEntityContactPhone__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityContactPhone());
     	
@@ -590,7 +617,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalFirstNameX__c = true;
     	mappingObject.legalEntityPrincipalFirstName__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getFirstName());
     	delete mappingObject;
@@ -598,7 +626,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalFirstNameX__c = false;
     	mappingObject.legalEntityPrincipalFirstNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getFirstName());
     	delete mappingObject;
@@ -610,7 +639,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalFirstNameX__c = true;
     	mappingObject.legalEntityPrincipalFirstName__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getFirstName());
     	
@@ -633,7 +663,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalLastNameX__c = true;
     	mappingObject.legalEntityPrincipalLastName__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getLastName());
     	delete mappingObject;
@@ -641,7 +672,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalLastNameX__c = false;
     	mappingObject.legalEntityPrincipalLastNameD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getLastName());
     	delete mappingObject;
@@ -653,7 +685,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalLastNameX__c = true;
     	mappingObject.legalEntityPrincipalLastName__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getLastName());
     	
@@ -676,7 +709,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalEmailAddressX__c = true;
     	mappingObject.legalEntityPrincipalEmailAddress__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
     	delete mappingObject;
@@ -684,7 +718,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalEmailAddressX__c = false;
     	mappingObject.legalEntityPrincipalEmailAddressD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
     	delete mappingObject;
@@ -696,7 +731,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalEmailAddressX__c = true;
     	mappingObject.legalEntityPrincipalEmailAddress__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
     	
@@ -718,7 +754,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStreetAddress1X__c = true;
     	mappingObject.legalEntityPrincipalStreetAddress1__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
     	delete mappingObject;
@@ -726,7 +763,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalStreetAddress1X__c = false;
     	mappingObject.legalEntityPrincipalStreetAddress1D__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
     	delete mappingObject;
@@ -738,7 +776,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStreetAddress1X__c = true;
     	mappingObject.legalEntityPrincipalStreetAddress1__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
     	
@@ -762,7 +801,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStreetAddress2X__c = true;
     	mappingObject.legalEntityPrincipalStreetAddress2__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
     	delete mappingObject;
@@ -770,7 +810,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalStreetAddress2X__c = false;
     	mappingObject.legalEntityPrincipalStreetAddress2D__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
     	delete mappingObject;
@@ -782,7 +823,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStreetAddress2X__c = true;
     	mappingObject.legalEntityPrincipalStreetAddress2__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
     	
@@ -805,7 +847,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalCityX__c = true;
     	mappingObject.legalEntityPrincipalCity__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
     	delete mappingObject;
@@ -813,7 +856,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalCityX__c = false;
     	mappingObject.legalEntityPrincipalCityD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
     	delete mappingObject;
@@ -825,7 +869,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalCityX__c = true;
     	mappingObject.legalEntityPrincipalCity__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
     	
@@ -848,7 +893,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStateProvinceX__c = true;
     	mappingObject.legalEntityPrincipalStateProvince__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
     	delete mappingObject;
@@ -856,7 +902,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalStateProvinceX__c = false;
     	mappingObject.legalEntityPrincipalStateProvinceD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
     	delete mappingObject;
@@ -868,7 +915,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalStateProvinceX__c = true;
     	mappingObject.legalEntityPrincipalStateProvince__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
     	
@@ -891,7 +939,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalPostalCodeX__c = true;
     	mappingObject.legalEntityPrincipalPostalCode__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
     	delete mappingObject;
@@ -899,7 +948,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalPostalCodeX__c = false;
     	mappingObject.legalEntityPrincipalPostalCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
     	delete mappingObject;
@@ -911,7 +961,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalPostalCodeX__c = true;
     	mappingObject.legalEntityPrincipalPostalCode__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
     	
@@ -934,7 +985,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalCountryCodeX__c = true;
     	mappingObject.legalEntityPrincipalCountryCode__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
     	delete mappingObject;
@@ -942,7 +994,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalCountryCodeX__c = false;
     	mappingObject.legalEntityPrincipalCountryCodeD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
     	delete mappingObject;
@@ -954,7 +1007,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalCountryCodeX__c = true;
     	mappingObject.legalEntityPrincipalCountryCode__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
     	
@@ -977,7 +1031,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalContactPhoneX__c = true;
     	mappingObject.legalEntityPrincipalContactPhone__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getContactPhone());
     	delete mappingObject;
@@ -985,7 +1040,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalContactPhoneX__c = false;
     	mappingObject.legalEntityPrincipalContactPhoneD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getContactPhone());
     	delete mappingObject;
@@ -997,7 +1053,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalContactPhoneX__c = true;
     	mappingObject.legalEntityPrincipalContactPhone__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getContactPhone());
     	
@@ -1020,7 +1077,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDateOfBirthX__c = true;
     	mappingObject.legalEntityPrincipalDateOfBirth__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
     	delete mappingObject;
@@ -1028,7 +1086,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalDateOfBirthX__c = false;
     	mappingObject.legalEntityPrincipalDateOfBirthD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
     	delete mappingObject;
@@ -1040,7 +1099,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDateOfBirthX__c = true;
     	mappingObject.legalEntityPrincipalDateOfBirth__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
     	
@@ -1063,7 +1123,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDriversLicenseX__c = true;
     	mappingObject.legalEntityPrincipalDriversLicense__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
     	delete mappingObject;
@@ -1071,7 +1132,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalDriversLicenseX__c = false;
     	mappingObject.legalEntityPrincipalDriversLicenseD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
     	delete mappingObject;
@@ -1083,7 +1145,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDriversLicenseX__c = true;
     	mappingObject.legalEntityPrincipalDriversLicense__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
     	
@@ -1106,7 +1169,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDriversLicenseStateX__c = true;
     	mappingObject.legalEntityPrincipalDriversLicenseState__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
     	delete mappingObject;
@@ -1114,7 +1178,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalDriversLicenseStateX__c = false;
     	mappingObject.legalEntityPrincipalDriversLicenseStateD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
     	delete mappingObject;
@@ -1126,7 +1191,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalDriversLicenseStateX__c = true;
     	mappingObject.legalEntityPrincipalDriversLicenseState__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
     	
@@ -1149,7 +1215,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalSsnX__c = true;
     	mappingObject.legalEntityPrincipalSsn__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getSsn());
     	delete mappingObject;
@@ -1157,7 +1224,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPrincipalSsnX__c = false;
     	mappingObject.legalEntityPrincipalSsnD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getSsn());
     	delete mappingObject;
@@ -1169,7 +1237,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPrincipalSsnX__c = true;
     	mappingObject.legalEntityPrincipalSsn__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPrincipal().getSsn());
     	
@@ -1192,7 +1261,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityTaxIdX__c = true;
     	mappingObject.legalEntityTaxId__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityTaxId());
     	delete mappingObject;
@@ -1200,7 +1270,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityTaxIdX__c = false;
     	mappingObject.legalEntityTaxIdD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityTaxId());
     	delete mappingObject;
@@ -1212,7 +1283,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityTaxIdX__c = true;
     	mappingObject.legalEntityTaxId__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityTaxId());
     	
@@ -1235,7 +1307,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityIsExclusiveToPspX__c = true;
     	mappingObject.legalEntityIsExclusiveToPsp__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
     	delete mappingObject;
@@ -1243,7 +1316,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityIsExclusiveToPspX__c = false;
     	mappingObject.legalEntityIsExclusiveToPspD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
     	delete mappingObject;
@@ -1255,7 +1329,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityIsExclusiveToPspX__c = true;
     	mappingObject.legalEntityIsExclusiveToPsp__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
     	
@@ -1278,7 +1353,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityIsPciComplianceValidatedX__c = true;
     	mappingObject.legalEntityIsPciComplianceValidated__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
     	delete mappingObject;
@@ -1286,7 +1362,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityIsPciComplianceValidatedX__c = false;
     	mappingObject.legalEntityIsPciComplianceValidatedD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
     	delete mappingObject;
@@ -1298,7 +1375,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityIsPciComplianceValidatedX__c = true;
     	mappingObject.legalEntityIsPciComplianceValidated__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
     	
@@ -1321,7 +1399,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPciLevelX__c = true;
     	mappingObject.legalEntityPciLevel__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getPciLevel());
     	delete mappingObject;
@@ -1329,7 +1408,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityPciLevelX__c = false;
     	mappingObject.legalEntityPciLevelD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getPciLevel());
     	delete mappingObject;
@@ -1341,7 +1421,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityPciLevelX__c = true;
     	mappingObject.legalEntityPciLevel__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getPciLevel());
     	
@@ -1364,7 +1445,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityScanningVendorX__c = true;
     	mappingObject.legalEntityScanningVendor__c = 'Account.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getScanningVendor());
     	delete mappingObject;
@@ -1372,7 +1454,8 @@ private class LitleFormControllerTest {
     	mappingObject = new SalesforceLitleMappingsObject__c();
     	mappingObject.legalEntityScanningVendorX__c = false;
     	mappingObject.legalEntityScanningVendorD__c = DEFAULT_STRING;
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getScanningVendor());
     	delete mappingObject;
@@ -1384,7 +1467,8 @@ private class LitleFormControllerTest {
     	// check account mapping value
     	mappingObject.legalEntityScanningVendorX__c = true;
     	mappingObject.legalEntityScanningVendor__c = 'Opportunity.Name';
-    	insert mappingObject;
+    	mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getScanningVendor());
     	

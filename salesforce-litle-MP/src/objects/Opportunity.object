@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <fullName>Litle_MID__c</fullName>
-        <description>Merchant Identifer</description>
-        <externalId>false</externalId>
-        <label>Litle MID</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <webLinks>
         <fullName>Get_Litle_MID</fullName>
         <availability>online</availability>
@@ -23,18 +12,5 @@
         <openType>sidebar</openType>
         <protected>false</protected>
         <url>/apex/forcemock__GetLitleMidForm?oppid={!Opportunity.Id}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>Litle_Fields_Mapping</fullName>
-        <availability>online</availability>
-        <description>Button to save initial configuration</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Litle Fields Mapping</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <url>apex/forceMock__SalesforceLitleMapping?id={!Opportunity.Id}</url>
     </webLinks>
 </CustomObject>

@@ -172,18 +172,22 @@ public class LitleRequestXml {
 		return null;
 	}
 	
-	public static Httprequest getCreateLegalEntityRequest(String username, String password, LegalEntityModel legalEntityModel, Boolean maskPiInformation){
+	public static Httprequest getCreateLegalEntityRequest(String username, String password, LegalEntityModel legalEntityModel, Boolean maskPiInformation
+															, String litleEnv){
 		Httprequest createLegalEntityRequest = new Httprequest();
+		String LEGAL_ENTITY_REQUEST_ENDPOINT= LitleEnvironment.getEnvironmentUrl(litleEnv);
 		return HttpUtil.setRequestHeaders(createLegalEntityRequest, 
-        				LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, 
+        				LEGAL_ENTITY_REQUEST_ENDPOINT, 
         				LitleConstants.CREATE_HTTP_REQUEST_METHOD, 
         				generateCreateLegalEntityRequestXml(legalEntityModel, maskPiInformation), username, password);     
 	}
 	
-	public static Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId, SubMerchantModel subMerchantModel){
+	public static Httprequest getCreateSubMerchantRequest(String username, String password, String legalEntityId, SubMerchantModel subMerchantModel
+														, String litleEnv){
 		Httprequest createSubMerchantRequest = new Httprequest();
         //sub merchant endpoint /legalentity/legalentityid/submerchant
-        String subMerchantEndpoint = LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT 
+        String LEGAL_ENTITY_REQUEST_ENDPOINT= LitleEnvironment.getEnvironmentUrl(litleEnv);
+        String subMerchantEndpoint = LEGAL_ENTITY_REQUEST_ENDPOINT 
         							+ LitleConstants.URL_SEPARATOR + legalEntityId 
         							+ LitleConstants.URL_SEPARATOR + 'submerchant';
         return HttpUtil.setRequestHeaders(createSubMerchantRequest, 

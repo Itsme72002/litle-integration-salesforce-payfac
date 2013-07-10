@@ -1277,6 +1277,7 @@ private class SalesforceLitleMappingControllerTest {
 	static testMethod void testConstructor(){
 		SalesforceLitleMappingsObject__c customObject = new SalesforceLitleMappingsObject__c();
 		customObject.legalEntityName__c = testString;
+		customObject.litleEnvironment__c = 'CERT';
 		insert customObject;
 		SalesforceLitleMappingController controller = new SalesforceLitleMappingController();
 		System.assertEquals(testString, controller.currentMappings.legalEntityName__c);

@@ -1,5 +1,7 @@
 <apex:page controller="LitleMidFormController">
-    <apex:form >
+	<apex:includeScript value="{!URLFOR($Resource.jQuery)}"  />
+
+    <apex:form id="midForm">
         <apex:pageBlock title="Get Litle MID" mode="maindetail">
             <apex:pageBlockSection columns="1">
                 Fill the form below to apply for Litle MID. Once done, click Submit.
@@ -9,7 +11,7 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
         
-        <apex:pageBlock title="Add A Sub Merchant" mode="edit">
+        <apex:pageBlock title="Add A Sub Merchant" mode="edit" id="smBlock">
         	<apex:pageBlockSection columns="1" rendered="{!isOpportunityMappingPresent}">
 	        	<apex:pageBlockSectionItem >
 	            	<apex:outputText value="Select Opportunity to Map values" />
@@ -224,13 +226,78 @@
                 </apex:pageBlockSectionItem>
                 
                 
+                <script type="text/javascript">
+                	gg = $.noConflict();
+                	function setRequired () {
+                		newType = gg('select').filter(function(){
+                			return /.*legalEntityTypeList.*/.test(this.name);
+                		}).val();
+                		
+                		console.log(newType);
+                		if(newType == 'INDIVIDUAL_SOLE_PROPRIETORSHIP') {
+                			gg('input').filter(function() {
+                				return /.*legalEntityTaxIdDefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalSsnDefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalStreetAddress1DefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalCityDefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalStateProvinceDefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalPostalCodeDefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                				
+                		}
+                		else {
+                			gg('input').filter(function() {
+                				return /.*legalEntityTaxIdDefaultTxtBox.*/.test(this.name);
+                			}).parent().addClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalSsnDefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalCityDefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalStreetAddress1DefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalStateProvinceDefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                			
+                			gg('input').filter(function() {
+                				return /.*legalEntityPrincipalPostalCodeDefaultTxtBox.*/.test(this.name);
+                			}).parent().removeClass('requiredInput');
+                		}               
+                	}
+                	gg(document).ready(setRequired);
+                	
+                </script>
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Type" />
-                    <apex:selectList id="legalEntityTypeList" value="{!legalEntityModel.legalEntityType}" size="1">
+                    <apex:selectList id="legalEntityTypeList" value="{!legalEntityModel.legalEntityType}" size="1" onchange="setRequired();">
                         <apex:selectOptions value="{!legalEntityTypeList}"></apex:selectOptions>
                     </apex:selectList>
                 </apex:pageBlockSectionItem>
+                
+                
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Doing Business As" />
@@ -252,7 +319,7 @@
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
                         <apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress1}"
-                            maxlength="2" />
+                             />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -400,7 +467,7 @@
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
                         <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox"
-                            value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" maxlength="2" />
+                            value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 

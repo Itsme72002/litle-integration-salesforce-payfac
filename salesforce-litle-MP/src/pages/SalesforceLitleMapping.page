@@ -6,7 +6,7 @@
          <apex:pageMessages />
         	Map Litle's fields with the appropriate value from Salesforce.com fields or enter any default value against it. Once done, click Save.
         	</apex:pageBlockSection>
-            <apex:pageBlockSection title="Litle Credentials" columns="1">
+            <apex:pageBlockSection title="Litle Context" columns="1">
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Merchant Username: " />
                     <apex:inputText id="merchantUsernameTxtBox" value="{!currentMappings.merchantUsername__c}" />
@@ -15,6 +15,12 @@
                     <apex:outputText value="Merchant Password: " />
                     <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}"
                         redisplay="true" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Litle Environment " />
+                    <apex:selectList size="1" value="{!currentMappings.litleEnvironment__c}">
+                    	<apex:selectOptions value="{!litleEnvironmentList}" />
+                    </apex:selectList>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             <!-- Payment Processing Configuration start -->

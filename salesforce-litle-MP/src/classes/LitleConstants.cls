@@ -4,11 +4,18 @@ public class LitleConstants {
 	
 	// MP request constants
 	public static final String RETRIEVE_HTTP_REQUEST_METHOD = 'GET';
+	public static final String MCC_HTTP_REQUEST_METHOD = 'GET';
 	public static final String CREATE_HTTP_REQUEST_METHOD = 'POST';
-	public static final String LEGAL_ENTITY_REQUEST_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
+	public static String LEGAL_ENTITY_REQUEST_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
+	public static final String LEGAL_ENTITY_URI = 'legalentity';
+	public static final String SUBMERCHANT_URI = 'submerchant';
+	public static final String LEGAL_ENTITY_META_UI_URI = 'legalEntity';
+	public static final String SUBMERCHANT_META_UI_URI = 'subMerchant';
+	
 	public static final String REQUEST_HEADER_CONTENT_TYPE = 'application/com.litle.psp-v5+xml';
 	public static final String REQUEST_HEADER_ACCEPT = 'application/com.litle.psp-v5+xml';
 	public static final String URL_SEPARATOR = '/';
+	public static final String PAY_FAC_PORTAL_URI = 'metaui' + URL_SEPARATOR + 'payfacPortal';
 	// auth has space at the end
 	public static final String REQUEST_AUTH_TYPE = 'Basic ';
 	
@@ -39,8 +46,16 @@ public class LitleConstants {
 	
 	public static final List<Integer> PCI_LEVELS = new List<Integer>{ 1, 2, 3, 4 };
 	
+	
+	// litle environment constants
+	public static final String LITLE_ENV_PROD = 'https://psp.litle.com';
+	public static final String LITLE_ENV_CERT = 'https://psp-cert.litle.com';
+	public static final String LITLE_ENV_PRE_CERT = 'https://psp-cert.litle.com';
+	public static final String LITLE_ENV_PRE_LIVE = 'https://psp-cert.litle.com';
+	public static final String LITLE_ENV_SANDBOX = 'https://psp-cert.litle.com';
+	
 	//scheduler constants
-	public static final String SCHEDULER_CRON_EXP = '0 0 * * * ?';
+	public static final String SCHEDULER_CRON_EXP = '0 0 30 * * ?';
 	
 	public static String getResponseMessage(String responseCode){
 		if(responseCode.equals(RESPONSE_APPROVED)){

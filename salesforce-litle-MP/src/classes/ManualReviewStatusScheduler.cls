@@ -49,7 +49,8 @@ global class ManualReviewStatusScheduler implements Schedulable{
 					HttpResponse legalEntityResponse = new HttpResponse();
 					// get the legal entity status from the GET method
 					try{
-						legalEntityResponse = h.send(legalEntityRequest);
+						//legalEntityResponse = h.send(legalEntityRequest);
+						legalEntityResponse = mockApprovedLegalEntity();
 						///////////////////////////////////////////////////////
 						// check http response code 
 						if(legalEntityResponse != null && legalEntityResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
@@ -67,7 +68,8 @@ global class ManualReviewStatusScheduler implements Schedulable{
 																		litleRequestResponse.createSubMerchantRequestXml__c);
 								HttpResponse subMerchantResponse = new HttpResponse();
 								try{
-									subMerchantResponse = h.send(subMerchantRequest);
+									//subMerchantResponse = h.send(subMerchantRequest);
+									subMerchantResponse = mockApprovedSubMerchant();
 									// check http response code 
 									if(subMerchantResponse != null && subMerchantResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
 										// response success, extract the sub merchant id
@@ -123,4 +125,107 @@ global class ManualReviewStatusScheduler implements Schedulable{
 			}
 		}
 	}
+	
+	/* For demo only*/
+	public static Httpresponse mockApprovedLegalEntity(){
+		String STATUS_MESSAGE = 'Success';
+	    Integer STATUS_CODE = 201;
+	    String RESPONSE_CODE = '10';
+	    String RESPONSE_DESCRIPTION = 'Approved';
+	    String TRANSACTION_ID = '82821536819527712';
+	    String LEGAL_ENTITY_ID = '82821536565085998';
+		HttpResponse res = new HttpResponse();
+    	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+						 + '<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard">'
+						 + '<transactionId>'+TRANSACTION_ID+'</transactionId>'
+						 + '<legalEntityId>'+LEGAL_ENTITY_ID+'</legalEntityId>'
+						 + '<principals>'
+						 + '<principal>'
+						 + '<principalId>1</principalId>'
+						 + '<firstName>p first</firstName>'
+						 + '<lastName>p last</lastName>'
+						 + '</principal>'
+						 + '</principals>'
+						 + '<responseCode>'+RESPONSE_CODE+'</responseCode>'
+						 + '<responseDescription>'+RESPONSE_DESCRIPTION+'</responseDescription>'
+						 + '<backgroundCheckResults>'
+						 + '<business>'
+						 + '<verificationResult>'
+						 + '<overallScore>'
+						 + '<score>50</score>'
+						 + '<description>Business is verified on multiple sources with no contradictory findings</description>'
+						 + '</overallScore>'
+						 + '<nameAddressTaxIdAssociation/>'
+						 + '<nameAddressPhoneAssociation/>'
+						 + '<verificationIndicators>'
+						 + '<nameVerified>false</nameVerified>'
+						 + '<addressVerified>false</addressVerified>'
+						 + '<cityVerified>false</cityVerified>'
+						 + '<stateVerified>false</stateVerified>'
+						 + '<zipVerified>false</zipVerified>'
+						 + '<phoneVerified>false</phoneVerified>'
+						 + '<taxIdVerified>false</taxIdVerified>'
+						 + '</verificationIndicators>'
+						 + '<riskIndicators>'
+						 + '<riskIndicator>'
+						 + '<code>ZIP_BELONGS_POST_OFFICE</code>'
+						 + '<description>The input zip code belongs to a post office box</description>'
+						 + '</riskIndicator>'
+						 + '</riskIndicators>'
+						 + '</verificationResult>'
+						 + '</business>'
+						 + '<principal>'
+						 + '<verificationResult>'
+						 + '<overallScore>'
+						 + '<score>50</score>'
+						 + '<description>Full name, address, phone , SSN verified</description>'
+						 + '</overallScore>'
+						 + '<nameAddressSsnAssociation/>'
+						 + '<nameAddressPhoneAssociation/>'
+						 + '<verificationIndicators>'
+						 + '<nameVerified>false</nameVerified>'
+						 + '<addressVerified>false</addressVerified>'
+						 + '<phoneVerified>false</phoneVerified>'
+						 + '<ssnVerified>false</ssnVerified>'
+						 + '<dobVerified>false</dobVerified>'
+						 + '</verificationIndicators>'
+						 + '<riskIndicators>'
+						 + '<riskIndicator>'
+						 + '<code>ZIP_BELONGS_POST_OFFICE</code>'
+						 + '<description>The input zip code belongs to a post office box</description>'
+						 + '</riskIndicator>'
+						 + '</riskIndicators>'
+						 + '</verificationResult>'
+						 + '</principal>'
+						 + '<businessToPrincipalAssociation>'
+						 + '<score>50</score>'
+						 + '<description>Association found between the person and the company in the Company Contacts data</description>'
+						 + '</businessToPrincipalAssociation>'
+						 + '</backgroundCheckResults>'
+						 + '</legalEntityCreateResponse>';
+    	res.setBody(response);
+    	res.setStatusCode(STATUS_CODE);
+    	res.setStatus(STATUS_MESSAGE);
+    	return res;
+	} 
+	
+	
+	
+    public static HttpResponse mockApprovedSubMerchant(){
+    	String STATUS_MESSAGE = 'Success';
+	    Integer STATUS_CODE = 200;
+		String SUB_MERCHANT_ID = '1100003';
+    	
+    	HttpResponse res = new HttpResponse();
+    	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+						 + '<subMerchantCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard" duplicate="true">'
+						 + '<transactionId>82821240469914003</transactionId>'
+						 + '<subMerchantId>'+SUB_MERCHANT_ID+'</subMerchantId>'
+						 + '<merchantIdentString>01100003</merchantIdentString>'
+						 + '</subMerchantCreateResponse>';
+    	res.setBody(response);
+    	res.setStatusCode(200);
+    	res.setStatus(STATUS_MESSAGE);
+    	return res;
+    }
 }

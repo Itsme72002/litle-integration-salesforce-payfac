@@ -1119,6 +1119,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>litleEnvironment__c</fullName>
+        <description>Stores the environment for MP</description>
+        <externalId>false</externalId>
+        <label>Litle Environment</label>
+        <length>10</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>merchantPassword__c</fullName>
         <description>password used to connect to make litle request</description>
         <externalId>false</externalId>
@@ -1797,30 +1807,4 @@
     <pluralLabel>SalesforceLitleMappingsObjects</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
-    <webLinks>
-        <fullName>Get_Litle_MID</fullName>
-        <availability>online</availability>
-        <description>Opens up form to get Litle MID</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Get Litle MID</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <url>/apex/forcemock__GetLitleMidForm?accid={!Account.Id}&amp;oppid={!Opportunity.Id}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>Litle_Fields_Mapping</fullName>
-        <availability>online</availability>
-        <description>Opens page to map Litle and Salesforce&apos;s fields.</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Litle Fields Mapping</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <url>/apex/forceMock__SalesforceLitleMapping?id={!Account.Id}</url>
-    </webLinks>
 </CustomObject>

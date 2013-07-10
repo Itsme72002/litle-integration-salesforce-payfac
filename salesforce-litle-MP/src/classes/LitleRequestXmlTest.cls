@@ -158,7 +158,7 @@ private class LitleRequestXmlTest {
     	String actualXml = LitleRequestXml.generateCreateLegalEntityRequestXml(legalEntityModel, false);
     	String expectedXml = getCreateLegalEntityRequestXML('','', false);
     	System.assertEquals(expectedXml, actualXml);
-    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(TEST_STRING, TEST_STRING,legalEntityModel, false);
+    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(TEST_STRING, TEST_STRING,legalEntityModel, false, 'CERT');
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
@@ -179,7 +179,7 @@ private class LitleRequestXmlTest {
     	String actualXml = LitleRequestXml.generateCreateSubMerchantRequestXml(subMerchantModel);
     	String expectedXml = getCreateSubMerchantRequestXML('');
     	System.assertEquals(expectedXml, actualXml);
-    	Httprequest request = LitleRequestXml.getCreateSubMerchantRequest(TEST_STRING, TEST_STRING, TEST_STRING, subMerchantModel);
+    	Httprequest request = LitleRequestXml.getCreateSubMerchantRequest(TEST_STRING, TEST_STRING, TEST_STRING, subMerchantModel, 'CERT');
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    

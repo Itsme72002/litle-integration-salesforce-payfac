@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customButtons>Litle_Fields_Mapping</customButtons>
     <customButtons>Get_Litle_MID</customButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -32,6 +31,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Probability</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PayFac_Portal_Link__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
