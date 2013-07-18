@@ -23,14 +23,13 @@
 public class MockCreateSMSuccess implements HttpCalloutMock{
 	
 	public static final String STATUS_MESSAGE = 'Success';
-    public static final Integer STATUS_CODE = 200;
-	public static final String SUB_MERCHANT_ID = '1100003';
+    public static final String SUB_MERCHANT_ID = '1100003';
 	public static final String LITLE_MID = '01100003';
 	
     public HttpResponse respond(HttpRequest request){
     	System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
-    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
         
     	HttpResponse res = new HttpResponse();
     	String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -40,7 +39,7 @@ public class MockCreateSMSuccess implements HttpCalloutMock{
 						 + '<merchantIdentString>'+LITLE_MID+'</merchantIdentString>'
 						 + '</subMerchantCreateResponse>';
     	res.setBody(response);
-    	res.setStatusCode(200);
+    	res.setStatusCode(LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE);
     	res.setStatus(STATUS_MESSAGE);
     	return res;
     }

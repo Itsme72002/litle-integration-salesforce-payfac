@@ -2325,7 +2325,7 @@ public class LitleMidFormController {
 			if(isInputDataValid()){
 				// Check if username and password are available
 				if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
-		        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Username or Password are not set in the Mappings page. Request Failed.'));
+		        	ApexPageUtil.addErrorMessage('Merchant Username or Password are not set in the Mappings page. Request Failed.');
 		        } else {
 		        	//Make API call	
 		        	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
@@ -2362,6 +2362,8 @@ public class LitleMidFormController {
 							thisOpportunity.PayFac_Portal_Link__c = payfacUrl;
 							upsert thisOpportunity;
 						}catch (Queryexception e){
+							System.debug('Error selecting litle mid value and payface link in opportunity'+ e);
+						}catch (Dmlexception e){
 							System.debug('Error inserting litle mid value in opportunity'+ e);
 						}
 					}else if(String.isNotEmpty(urlAccountId)){
@@ -2371,6 +2373,8 @@ public class LitleMidFormController {
 							thisAccount.PayFac_Portal_Link__c = payfacUrl;
 							upsert thisAccount;
 						}catch (Queryexception e){
+							System.debug('Error selecting litle mid value and payface link in account'+ e);
+						}catch (Dmlexception e){
 							System.debug('Error inserting litle mid value in account'+ e);
 						} 
 					}
@@ -2498,75 +2502,34 @@ public class LitleMidFormController {
         	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
         	if(lEResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
         		//get response code, transaction id and response description
-        		legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, 'transactionId'));
-        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, 'responseCode'));
-        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, 'responseDescription'));
+        		legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_TRANSACTION_ID));
+        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_CODE));
+        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
         		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
-        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, 'legalEntityId'));
+        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_LEGALENTITY_ID));
         		//Log response codes and legal entity id
         		litleRequestResponseLog.legalEntityResponseCode__c = legalEntityResponse.getResponseCode();
         		litleRequestResponseLog.legalEntityId__c = legalEntityResponse.getLegalEntityId();
         		// Show error message if not approved
         		if(!legalEntityResponse.getResponseCode().equals(LitleConstants.RESPONSE_APPROVED)){
-        			ApexPages.addmessage(new ApexPages.message
-        			(ApexPages.severity.INFO,LitleConstants.getResponseMessage(legalEntityResponse.getResponseCode())));
+        			ApexPageUtil.addInfoMessage(LitleConstants.getResponseMessage(legalEntityResponse.getResponseCode()));
         		}
-        		/*//check response code
-        		if(String.isNotEmpty(legalEntityResponse.getResponseCode())){
-        			//decide based on response codes
-        			//For approved response
-        			if(legalEntityResponse.getResponseCode().equals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()))){
-        				//approved, get legal entity id
-        				legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, 'legalEntityId'));
-        			}else{
-	        			//TODO for other response codes
-	        			legalEntityResponse.setLegalEntityId(null);
-        			}
-        		}*/
         	}else{
         		//reset the legal entity id
         		legalEntityResponse.setLegalEntityId(null);
         		legalEntityResponse.setResponseCode(String.valueOf(lEResponse.getStatusCode()));
-        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse,'error'));
-        		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
-        		ApexPages.addmessage(new ApexPages.message
-        			(ApexPages.severity.ERROR,String.valueOf(legalEntityResponse.getResponseCode()+
-        												': '+legalEntityResponse.getResponseDespcription())));	
+        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_ERROR));
+        		litleMid = String.valueOf(lEResponse.getStatusCode()) + ' : ' + lEResponse.getStatus();
+        		ApexPageUtil.addErrorMessage(String.valueOf(legalEntityResponse.getResponseCode()+
+        												' : '+lEResponse.getStatus()));	
         	}
         }catch(System.CalloutException e){
         	System.debug('Legal Entity Request Callout error: '+ e);
         	System.debug(lEResponse.toString());
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
+			ApexPageUtil.addErrorMessage('Error in making API request.');
         }
 	}
 	
-	
-	
-	/*public void extractResponse(Httpresponse response){
-		if(response != null){
-			//check response code 10
-			String responseCode = XmlUtil.extractXmlTagText(response, 'responseCode');
-			if(String.isNotEmpty(responseCode)){
-				if(responseCode.trim().equals('10')){
-					//Approved
-					//Extract legal entity id
-				}else{
-					//Not approved
-					//set legal entity id to null
-					legalEntityModel.setLegalEntityId(null);
-					//Extract response description
-					String responseDescription = XmlUtil.extractXmlTagText(response, 'responseDescription');
-					//store in custom object
-				}
-				//set legal entity id
-				//else
-				//set error message in custom field
-			}else{
-				// for null response code
-				legalEntityModel.setLegalEntityId(null);
-			}
-		}
-	}*/
 	
 	public void makeCreateSubMerchantRequest(LitleRequestResponseLog__c litleRequestResponseLog, Httprequest createSubMerchantRequest){
 		Http h = new Http();
@@ -2579,26 +2542,25 @@ public class LitleMidFormController {
         	//TODO Handle sub merchant response
         	if(sMResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
         		//get litle mid
-        		litleMid = XmlUtil.extractXmlTagText(sMResponse, 'merchantIdentString');
-        		submerchantId = XmlUtil.extractXmlTagText(sMResponse, 'subMerchantId');
+        		litleMid = XmlUtil.extractXmlTagText(sMResponse, LitleConstants.XML_TAG_MERCHANT_IDENT_STRING);
+        		submerchantId = XmlUtil.extractXmlTagText(sMResponse, LitleConstants.XML_TAG_SUBMERCHANT_ID);
         		payfacUrl = LitleEnvironment.getEnvironmentUrl(savedMappings.litleEnvironment__c) + LitleConstants.URL_SEPARATOR 
         			+ LitleConstants.PAY_FAC_PORTAL_URI + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_META_UI_URI + LitleConstants.URL_SEPARATOR 
         			+ LegalEntityResponse.getLegalEntityId() + LitleConstants.URL_SEPARATOR + LitleConstants.SUBMERCHANT_META_UI_URI
         			+ LitleConstants.URL_SEPARATOR + submerchantId; 
         		
         		
-        		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED)));	
+        		ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));	
         	}else{
         		//set litle mid with the error description
-        		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + XmlUtil.extractXmlTagText(sMResponse,'error');
-        		ApexPages.addmessage(new ApexPages.message
-        			(ApexPages.severity.ERROR,String.valueOf(String.valueOf(sMResponse.getStatusCode())+
-        												': '+XmlUtil.extractXmlTagText(sMResponse,'error'))));	
+        		litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + sMResponse.getStatus();
+        		ApexPageUtil.addErrorMessage(String.valueOf(String.valueOf(sMResponse.getStatusCode())+
+        												' : '+XmlUtil.extractXmlTagText(sMResponse,LitleConstants.XML_TAG_ERROR)));	
         	}
         }catch(System.CalloutException e){
         	System.debug('Sub Merchant Request Callout error: '+ e);
         	System.debug(sMResponse.toString());
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in making API request.'));
+			ApexPageUtil.addErrorMessage('Error in making API request.');
         }
 	}
 	
@@ -2618,91 +2580,91 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityName())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityName(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Name cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Name cannot exceed 60 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityDoingBusinessAs());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityDoingBusinessAs())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityDoingBusinessAs(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Doing Business As cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Doing Business As cannot exceed 60 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityStreetAddress1());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress1())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStreetAddress1(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Street Address 1 cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Street Address 1 cannot exceed 60 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getStreetAddress2());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress2())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Street Address 2 cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Street Address 2 cannot exceed 60 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getCity());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getCity())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getCity(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s City cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s City cannot exceed 20 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getStateProvince());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStateProvince())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStateProvince(), 2)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s State/Province cannot exceed 2 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s State/Province cannot exceed 2 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getPostalCode());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getPostalCode())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getPostalCode(), 5)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Postal Code cannot exceed 5 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Postal Code cannot exceed 5 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityAddress().getCountryCode());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getCountryCode())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getCountryCode(), 3)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Country Code cannot exceed 3 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Country Code cannot exceed 3 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getFirstName());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getFirstName())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getFirstName(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s First Name cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s First Name cannot exceed 20 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getLastName());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getLastName())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getLastName(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Last Name cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Last Name cannot exceed 20 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getEmailAddress())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getEmailAddress(), 100)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Email Address cannot exceed 100 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Email Address cannot exceed 100 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getContactPhone());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getContactPhone())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getContactPhone(), 10)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Contact Phone cannot exceed 10 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Contact Phone cannot exceed 10 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDateOfBirth())){
 			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPrincipal().getDateOfBirth())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Date of Birth is not in yyyy-mm-dd format'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Date of Birth is not in yyyy-mm-dd format');
 			}
 		}
 		
@@ -2710,7 +2672,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDriversLicense())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getDriversLicense(), 25)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Drivers License cannot exceed 25 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Drivers License cannot exceed 25 characters');
 			}
 		}
 		
@@ -2718,21 +2680,21 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState(), 2)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Drivers License State cannot exceed 2 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s Drivers License State cannot exceed 2 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityPrincipal().getSsn());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getSsn())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getSsn(), 9)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s SSN cannot exceed 9 characters'));
+				ApexPageUtil.addErrorMessage('Company Representative\'s SSN cannot exceed 9 characters');
 			}
 		}
 		//System.debug('!!!'+legalEntityModel.getLegalEntityTaxId());
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityTaxId())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityTaxId(), 9)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Tax ID cannot exceed 9 characters'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Tax ID cannot exceed 9 characters');
 			}
 		}
 		
@@ -2740,7 +2702,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
 			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP should be either true or false'));
+				ApexPageUtil.addErrorMessage('Is Exclusive to PSP should be either true or false');
 			}
 		}
 		
@@ -2748,32 +2710,32 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
 			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated should be either true or false'));
+				ApexPageUtil.addErrorMessage('Is PCI Compliance Validated should be either true or false');
 			}
 		}
 		
 		//System.debug('!!!levels'+pciLevels.get(0));
-		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getPciLevel());
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getPciLevel();
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
 			if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPci().getPciLevel(), LitleConstants.PCI_LEVELS)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Levels should be either 1,2,3 or 4'));
+				ApexPageUtil.addErrorMessage('PCI Levels should be either 1,2,3 or 4');
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getScanningVendor());
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getScanningVendor();
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getScanningVendor())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getScanningVendor(), 9)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Scanning Vendor cannot exceed 9 characters'));
+				ApexPageUtil.addErrorMessage('Scanning Vendor cannot exceed 9 characters');
 			}
 		}
 		
-		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
+		//System.debug('!!!'+legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor();
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor())){
 			if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor(), 50)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Qualified Security Assessor cannot exceed 50 characters'));
+				ApexPageUtil.addErrorMessage('Qualified Security Assessor cannot exceed 50 characters');
 			}
 		}
 		
@@ -2781,7 +2743,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
 			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Most Recently Passed Scan is not in yyyy-mm-dd format'));
+				ApexPageUtil.addErrorMessage('Most Recently Passed Scan is not in yyyy-mm-dd format');
 			}
 		}
 		
@@ -2789,7 +2751,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
 			if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Report On Compliance is not in yyyy-mm-dd format'));
+				ApexPageUtil.addErrorMessage('Report On Compliance is not in yyyy-mm-dd format');
 			}
 		}
 		
@@ -2797,7 +2759,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
 			if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Annual Credit Card Sales Volume should be integer'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Annual Credit Card Sales Volume should be integer');
 			}
 		}
 		
@@ -2805,7 +2767,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
 			if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Accepted Credit Cards in the Past should be either true or false'));
+				ApexPageUtil.addErrorMessage('Legal Entity\'s Accepted Credit Cards in the Past should be either true or false');
 			}
 		}
 		//subMerchant Validations
@@ -2814,7 +2776,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStreetAddress1())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStreetAddress1(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Street Address 1 cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Street Address 1 cannot exceed 60 characters');
 			}
 		}
 		
@@ -2822,7 +2784,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStreetAddress2())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStreetAddress2(), 60)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Street Address 2 cannot exceed 60 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Street Address 2 cannot exceed 60 characters');
 			}
 		}
 
@@ -2830,7 +2792,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getCity())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getCity(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s City cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s City cannot exceed 20 characters');
 			}
 		}
 
@@ -2838,7 +2800,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getStateProvince())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getStateProvince(), 2)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s State/Province cannot exceed 2 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s State/Province cannot exceed 2 characters');
 			}
 		}
 
@@ -2846,7 +2808,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getPostalCode())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getPostalCode(), 5)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Postal Code cannot exceed 5 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Postal Code cannot exceed 5 characters');
 			}
 		}
 
@@ -2854,7 +2816,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getCountryCode())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getCountryCode(), 3)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Country Code cannot exceed 3 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Country Code cannot exceed 3 characters');
 			}
 		}
 
@@ -2862,7 +2824,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantAmexMid())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAmexMid(), 15)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Amex Merchant ID cannot exceed 15 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Amex Merchant ID cannot exceed 15 characters');
 			}
 		}
 
@@ -2870,7 +2832,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantBankAccountNumber())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankAccountNumber(), 50)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number cannot exceed 50 characters'));
+				ApexPageUtil.addErrorMessage('Bank Account Number cannot exceed 50 characters');
 			}
 		}
 
@@ -2878,7 +2840,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantBankRoutingNumber())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantBankRoutingNumber(), 50)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number cannot exceed 50 characters'));
+				ApexPageUtil.addErrorMessage('Bank Routing Number cannot exceed 50 characters');
 			}
 		}
 		
@@ -2886,7 +2848,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantCreateCredentials())){
 			if(!ValidationUtil.validateBoolean(subMerchantModel.getSubMerchantCreateCredentials())){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Create Connectivity Credentials should be either true or false'));
+				ApexPageUtil.addErrorMessage('Create Connectivity Credentials should be either true or false');
 			}
 		}
 
@@ -2894,7 +2856,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantCustomerServiceNumber())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number cannot exceed 13 characters'));
+				ApexPageUtil.addErrorMessage('Customer Service Number cannot exceed 13 characters');
 			}
 		}
 
@@ -2902,7 +2864,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantDiscoverConveyMid())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantDiscoverConveyMid(), 15)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Discover Merchant ID cannot exceed 15 characters'));
+				ApexPageUtil.addErrorMessage('Discover Merchant ID cannot exceed 15 characters');
 			}
 		}
 
@@ -2910,7 +2872,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantHardCodeBillingDescriptor())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 25)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Default Billing Descriptor cannot exceed 25 characters'));
+				ApexPageUtil.addErrorMessage('Default Billing Descriptor cannot exceed 25 characters');
 			}
 		}
 
@@ -2918,7 +2880,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantMaxTransactionAmount())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 19)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount cannot exceed 19 characters'));
+				ApexPageUtil.addErrorMessage('Max Transaction Amount cannot exceed 19 characters');
 			}
 		}
 
@@ -2926,7 +2888,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantMerchantCategoryCode())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantCategoryCode(), 4)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code cannot exceed 4 characters'));
+				ApexPageUtil.addErrorMessage('Merchant Category Code cannot exceed 4 characters');
 			}
 		}
 
@@ -2934,7 +2896,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantMerchantName())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMerchantName(), 50)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name cannot exceed 50 characters'));
+				ApexPageUtil.addErrorMessage('Merchant Name cannot exceed 50 characters');
 			}
 		}
 
@@ -2942,7 +2904,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getFirstName())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getFirstName(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Primary Contact\'s First Name cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Primary Contact\'s First Name cannot exceed 20 characters');
 			}
 		}
 
@@ -2950,7 +2912,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getLastName())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getLastName(), 20)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Primary Contact\'s Last Name cannot exceed 20 characters'));
+				ApexPageUtil.addErrorMessage('Primary Contact\'s Last Name cannot exceed 20 characters');
 			}
 		}
 
@@ -2958,7 +2920,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress(), 100)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Primary Contact\'s Email Address cannot exceed 100 characters'));
+				ApexPageUtil.addErrorMessage('Primary Contact\'s Email Address cannot exceed 100 characters');
 			}
 		}
 
@@ -2966,7 +2928,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getPhone())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getPhone(), 13)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Primary Contact\'s Phone cannot exceed 13 characters'));
+				ApexPageUtil.addErrorMessage('Primary Contact\'s Phone cannot exceed 13 characters');
 			}
 		}
 
@@ -2974,7 +2936,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantPspMerchantId())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPspMerchantId(), 32)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PayFac Sub-Merchant ID cannot exceed 32 characters'));
+				ApexPageUtil.addErrorMessage('PayFac Sub-Merchant ID cannot exceed 32 characters');
 			}
 		}
 
@@ -2982,7 +2944,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchantUrl())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantUrl(), 120)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s URL cannot exceed 120 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s URL cannot exceed 120 characters');
 			}
 		}
 
@@ -2990,7 +2952,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchanteCheckBillingDescriptor())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckBillingDescriptor(), 10)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s eCheck Billing Descriptor cannot exceed 10 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s eCheck Billing Descriptor cannot exceed 10 characters');
 			}
 		}
 
@@ -2998,7 +2960,7 @@ public class LitleMidFormController {
 		if(String.isNotEmpty(subMerchantModel.getSubMerchanteCheckCompanyName())){
 			if(!ValidationUtil.validateString(subMerchantModel.getSubMerchanteCheckCompanyName(), 16)){
 				isInputValid = false;
-				ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s eCheck Company Name cannot exceed 16 characters'));
+				ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s eCheck Company Name cannot exceed 16 characters');
 			}
 		}
 		
@@ -3009,135 +2971,135 @@ public class LitleMidFormController {
 		Boolean isAllRequiredFieldsPresent = true;
 		if(String.isEmpty(legalEntityModel.getLegalEntityName())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity Name is Required'));
+			ApexPageUtil.addErrorMessage('Legal Entity Name is Required');
 	
 		}
 		/*if(String.isEmpty(legalEntityModel.getLegalEntityType())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'is Required'));
+			ApexPageUtil.addErrorMessage('is Required'));
 	
 		}*/
 		if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress1())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Street Address 1 is Required'));
+			ApexPageUtil.addErrorMessage('Legal Entity\'s Street Address 1 is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getCountryCode())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Country Code is Required'));
+			ApexPageUtil.addErrorMessage('Legal Entity\'s Country Code is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getLastName())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s Last Name is Required'));
+			ApexPageUtil.addErrorMessage('Company Representative\'s Last Name is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getFirstName())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s First Name is Required'));
+			ApexPageUtil.addErrorMessage('Company Representative\'s First Name is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityType())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity Type is Required'));
+			ApexPageUtil.addErrorMessage('Legal Entity Type is Required');
 		}else{
 			if(legalEntityModel.getLegalEntityType().equalsIgnoreCase(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name())){
 				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getCity())){
 					isAllRequiredFieldsPresent = false;
-					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s City is Required'));
+					ApexPageUtil.addErrorMessage('Legal Entity\'s City is Required');
 		
 				}
 				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getStateProvince())){
 					isAllRequiredFieldsPresent = false;
-					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s State/Province is Required'));
+					ApexPageUtil.addErrorMessage('Legal Entity\'s State/Province is Required');
 		
 				}
 				if(String.isEmpty(legalEntityModel.getLegalEntityAddress().getPostalCode())){
 					isAllRequiredFieldsPresent = false;
-					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Postal Code is Required'));
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Postal Code is Required');
 		
 				}
 				if(String.isEmpty(legalEntityModel.getLegalEntityPrincipal().getSsn())){
 					isAllRequiredFieldsPresent = false;
-					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Company Representative\'s SSN is Required'));
+					ApexPageUtil.addErrorMessage('Company Representative\'s SSN is Required');
 		
 				}
 			}else{
 				if(String.isEmpty(legalEntityModel.getLegalEntityTaxId())){
 					isAllRequiredFieldsPresent = false;
-					ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Legal Entity\'s Tax ID is Required'));
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Tax ID is Required');
 		
 				}
 			}
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is Exclusive to PSP is Required'));
+			ApexPageUtil.addErrorMessage('Is Exclusive to PSP is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Is PCI Compliance Validated is Required'));
+			ApexPageUtil.addErrorMessage('Is PCI Compliance Validated is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PCI Level is Required'));
+			ApexPageUtil.addErrorMessage('PCI Level is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Annual Credit Card Sales Volume is Required'));
+			ApexPageUtil.addErrorMessage('Annual Credit Card Sales Volume is Required');
 	
 		}
 		if(String.isEmpty(legalEntityModel.getLegalEntityHasAcceptedCreditCards())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Accepted Credit Cards in the Past is Required'));
+			ApexPageUtil.addErrorMessage('Accepted Credit Cards in the Past is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantAddress().getCountryCode())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Payment Processing Configuration\'s Country Code is Required'));
+			ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Country Code is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantBankAccountNumber())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Account Number is Required'));
+			ApexPageUtil.addErrorMessage('Bank Account Number is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantBankRoutingNumber())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Bank Routing Number is Required'));
+			ApexPageUtil.addErrorMessage('Bank Routing Number is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantCustomerServiceNumber())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Customer Service Number is Required'));
+			ApexPageUtil.addErrorMessage('Customer Service Number is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantHardCodeBillingDescriptor())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Default Billing Descriptor is Required'));
+			ApexPageUtil.addErrorMessage('Default Billing Descriptor is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantMaxTransactionAmount())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Max Transaction Amount is Required'));
+			ApexPageUtil.addErrorMessage('Max Transaction Amount is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantMerchantCategoryCode())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Category Code is Required'));
+			ApexPageUtil.addErrorMessage('Merchant Category Code is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantMerchantName())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Merchant Name is Required'));
+			ApexPageUtil.addErrorMessage('Merchant Name is Required');
 	
 		}
 		if(String.isEmpty(subMerchantModel.getSubMerchantPspMerchantId())){
 			isAllRequiredFieldsPresent = false;
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'PayFac Sub-Merchant ID is Required'));
+			ApexPageUtil.addErrorMessage('PayFac Sub-Merchant ID is Required');
 	
 		}
 		return isAllRequiredFieldsPresent;		

@@ -34,9 +34,9 @@ public class LoggingUtil {
 		if(litleRequestResponseLog != null && request != null){
 			litleRequestResponseLog.createLegalEntityRequestDate__c = Datetime.now();
 			litleRequestResponseLog.legalEntityEndpoint__c = request.getEndpoint();
-			litleRequestResponseLog.legalEntityAcceptHeader__c = request.getHeader('Accept');
-			litleRequestResponseLog.legalEntityContentTypeHeader__c = request.getHeader('Content-Type');
-			litleRequestResponseLog.legalEntityAuthorizationHeader__c = request.getHeader('Authorization');
+			litleRequestResponseLog.legalEntityAcceptHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT);
+			litleRequestResponseLog.legalEntityContentTypeHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE);
+			litleRequestResponseLog.legalEntityAuthorizationHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION);
 			litleRequestResponseLog.createLegalEntityRequestXml__c = request.getBody();
 		}
 	}
@@ -45,9 +45,9 @@ public class LoggingUtil {
 		if(litleRequestResponseLog != null && request != null){
 			litleRequestResponseLog.createSubMerchantRequestDate__c = Datetime.now();
 			litleRequestResponseLog.subMerchantEndpoint__c = request.getEndpoint();
-			litleRequestResponseLog.subMerchantAcceptHeader__c = request.getHeader('Accept');
-			litleRequestResponseLog.subMerchantContentTypeHeader__c = request.getHeader('Content-Type');
-			litleRequestResponseLog.subMerchantAuthorizationHeader__c = request.getHeader('Authorization');
+			litleRequestResponseLog.subMerchantAcceptHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT);
+			litleRequestResponseLog.subMerchantContentTypeHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE);
+			litleRequestResponseLog.subMerchantAuthorizationHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION);
 			litleRequestResponseLog.createSubMerchantRequestXml__c = request.getBody();
 		}
 	}
@@ -74,9 +74,9 @@ public class LoggingUtil {
 	//returns the request headers and body from the given http request
 	public static String getRequestParamsLog(HttpRequest request){
 		if(request != null){
-			return 'Authorization: '+ request.getHeader('Authorization') + '\n'
-							+ 'Content-Type: '+ request.getHeader('Content-Type') + '\n'
-							+ 'Accept: '+ request.getHeader('Accept') + '\n'
+			return 'Authorization: '+ request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION) + '\n'
+							+ 'Content-Type: '+ request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE) + '\n'
+							+ 'Accept: '+ request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT) + '\n'
 							+ String.valueOf(request.getBody());
 		}
 		return null;

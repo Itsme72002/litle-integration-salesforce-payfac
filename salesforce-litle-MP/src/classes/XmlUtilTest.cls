@@ -7,16 +7,16 @@ private class XmlUtilTest {
     					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '</CD> ');
     	
     	System.assertEquals('USA', XmlUtil.extractXmlTagText(response, 'COUNTRY'));
-    	System.assertEquals(null, XmlUtil.extractXmlTagText(response, 'COUN'));
+    	System.assertEquals('', XmlUtil.extractXmlTagText(response, 'COUN'));
     	// test for blank tag name
-    	System.assertEquals(null, XmlUtil.extractXmlTagText(response, ''));
+    	System.assertEquals('', XmlUtil.extractXmlTagText(response, ''));
     	// test for null response
     	response = null;
-    	System.assertEquals(null, XmlUtil.extractXmlTagText(response, 'COUNTRY'));
+    	System.assertEquals('', XmlUtil.extractXmlTagText(response, 'COUNTRY'));
     	// test for null body
     	response = new HttpResponse();
     	
-    	System.assertEquals(null, XmlUtil.extractXmlTagText(response, 'COUNTRY'));
+    	System.assertEquals('', XmlUtil.extractXmlTagText(response, 'COUNTRY'));
     	
     }
 }

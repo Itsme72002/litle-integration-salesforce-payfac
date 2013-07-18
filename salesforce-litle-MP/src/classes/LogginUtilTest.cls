@@ -83,9 +83,9 @@ private class LogginUtilTest {
 		litleRequestResponseLog = new LitleRequestResponseLog__c();
 		HttpRequest request = new HttpRequest();
 		request.setEndpoint(DEFAULT_NAME);
-        request.setHeader('Authorization', DEFAULT_NAME);
-        request.setHeader('Content-Type', DEFAULT_NAME);
-		request.setHeader('Accept', DEFAULT_NAME);
+        request.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, DEFAULT_NAME);
+        request.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, DEFAULT_NAME);
+		request.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, DEFAULT_NAME);
 		request.setBody(DEFAULT_NAME);
 		LoggingUtil.logCreateLegalEntityRequest(request, litleRequestResponseLog);
 		System.assertNotEquals(null, litleRequestResponseLog.createLegalEntityRequestDate__c);
@@ -110,9 +110,9 @@ private class LogginUtilTest {
 		litleRequestResponseLog = new LitleRequestResponseLog__c();
 		HttpRequest request = new HttpRequest();
 		request.setEndpoint(DEFAULT_NAME);
-        request.setHeader('Authorization', DEFAULT_NAME);
-        request.setHeader('Content-Type', DEFAULT_NAME);
-		request.setHeader('Accept', DEFAULT_NAME);
+        request.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, DEFAULT_NAME);
+        request.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, DEFAULT_NAME);
+		request.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, DEFAULT_NAME);
 		request.setBody(DEFAULT_NAME);
 		LoggingUtil.logCreateSubMerchantRequest(request, litleRequestResponseLog);
 		System.assertNotEquals(null, litleRequestResponseLog.createSubMerchantRequestDate__c);
@@ -168,9 +168,9 @@ private class LogginUtilTest {
 		// test with blank request
 		System.assertEquals('Authorization: null\nContent-Type: null\nAccept: null\n', LoggingUtil.getRequestParamsLog(request));
 		// set headers and body
-		request.setHeader('Authorization', DEFAULT_NAME);
-		request.setHeader('Content-Type', DEFAULT_NAME);
-		request.setHeader('Accept', DEFAULT_NAME);
+		request.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, DEFAULT_NAME);
+		request.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, DEFAULT_NAME);
+		request.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, DEFAULT_NAME);
 		request.setBody(DEFAULT_NAME);
 		System.assertEquals('Authorization: '+ DEFAULT_NAME +'\nContent-Type: '+ DEFAULT_NAME +'\nAccept: '+ DEFAULT_NAME +'\n'+ DEFAULT_NAME, LoggingUtil.getRequestParamsLog(request));
 			
@@ -180,9 +180,9 @@ private class LogginUtilTest {
 		HttpResponse response = new HttpResponse();	
 		System.assertEquals('', LoggingUtil.getResponseParamsLog(response));
 		// set headers and body
-		response.setHeader('Authorization', DEFAULT_NAME);
-		response.setHeader('Content-Type', DEFAULT_NAME);
-		response.setHeader('Accept', DEFAULT_NAME);
+		response.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, DEFAULT_NAME);
+		response.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, DEFAULT_NAME);
+		response.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, DEFAULT_NAME);
 		response.setBody(DEFAULT_NAME);
 		System.assertEquals('Authorization :'+ DEFAULT_NAME  +'\nAccept :'+ DEFAULT_NAME +'\nContent-Type :'+ DEFAULT_NAME +'\n'+ DEFAULT_NAME, LoggingUtil.getResponseParamsLog(response));
 		

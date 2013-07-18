@@ -1384,28 +1384,7 @@ private class LitleFormControllerTest2 {
     	delete mappingObject;
     }
     
-    /*static testMethod void testSetRequestParams(){
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.merchantUsername__c = DEFAULT_STRING;
-    	mappingObject.merchantPassword__c = DEFAULT_STRING;
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpRequest request = new Httprequest();
-    	String method = LitleConstants.CREATE_HTTP_REQUEST_METHOD;
-    	litleMidFormController.setRequestParams(request, DEFAULT_STRING, method, DEFAULT_STRING);
-    	System.assertEquals(DEFAULT_STRING, request.getEndpoint());
-    	Blob headerValue = Blob.valueOf(DEFAULT_STRING+':'+DEFAULT_STRING); 
- 	    String authorizationHeader = 'Basic ' + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
- 		System.assertEquals(DEFAULT_STRING, request.getBody());
-    	delete mappingObject;
-    }*/
-    
+       
     static testMethod void testSubmit(){
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
@@ -1615,7 +1594,7 @@ private class LitleFormControllerTest2 {
     	//check legal entity response fields;
     	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE), controller.legalEntityResponse.getResponseCode());
     	System.assertEquals(MockCreateLEErrorResponse.ERROR_MESSAGE, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)+' : '+MockCreateLEErrorResponse.ERROR_MESSAGE
+    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)+' : '+MockCreateLEErrorResponse.STATUS_MESSAGE
     							, controller.litleMid);
 		System.assertEquals(null, controller.legalEntityResponse.getLegalEntityId());
     	
@@ -1635,7 +1614,7 @@ private class LitleFormControllerTest2 {
     	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request);
     	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
     	//check log response status code and status message
-    	System.assertEquals(String.valueOf(MockCreateSMSuccess.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
+    	System.assertEquals(String.valueOf(LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
     	System.assertEquals(MockCreateSMSuccess.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
     	System.assertEquals(MockCreateSMSuccess.LITLE_MID, controller.litleMid);
     	
@@ -1648,7 +1627,7 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
     	System.assertEquals(MockCreateSMErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
     	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE) + ' : '+
-    	MockCreateSMErrorResponse.ERROR_MESSAGE, controller.litleMid);
+    	MockCreateSMErrorResponse.STATUS_MESSAGE, controller.litleMid);
     	
     }
     
@@ -1657,23 +1636,6 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(null, controller.cancel());
     }
     
-    
-    
-    /*static testMethod void testExtractResponse(){
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	HttpResponse response = new HttpResponse();
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '<responseCode>20</responseCode>' + 
-	    					'<responseDescription>test Description</responseDescription> </CD> ');
-    	litleMidFormController.extractResponse(response);
-    	System.assertEquals(null, litleMidFormController.legalEntityModel.getLegalEntityId());
-    	System.assertEquals('20',  litleMidFormController.extractXmlTagText(response, 'responseCode'));
-    	System.assertEquals('test Description',  litleMidFormController.extractXmlTagText(response, 'responseDescription'));
-    	response.setBody('<CD> ' + '<TITLE>Empire Burlesque</TITLE> ' + '<ARTIST>Bob Dylan</ARTIST> ' + '<COUNTRY>USA</COUNTRY> ' + 
-    					'<COMPANY>Columbia</COMPANY> ' + '<PRICE>10.90</PRICE> ' + '<YEAR>1985</YEAR> ' + '</CD> ');
-		litleMidFormController.extractResponse(response);
-    	System.assertEquals(null, litleMidFormController.legalEntityModel.getLegalEntityId());
-    }*/
     
     static testMethod void testOnChangeOpportunityOptions(){
     	LitleMidFormController litleMidFormController = new LitleMidFormController();

@@ -850,14 +850,14 @@ public class SalesforceLitleMappingController {
             if (aId != null && !aid.equals('')) {
                 return new PageReference('/' + aId);
             }*/
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,'Mappings Saved.'));
+            ApexPageUtil.addConfirmMessage('Mappings Saved.');
             //savingStatus = true;
         } catch (DmlException e) {
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Error in Saving Mappings.'));
+        	ApexPageUtil.addErrorMessage('Error in Saving Mappings.');
             //errorStatus = true;
         }
         if(String.isEmpty(currentMappings.merchantUsername__c) || String.isEmpty(currentMappings.merchantPassword__c)){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING,'Merchant Username and Passwords are required to create Litle MID.'));
+        	ApexPageUtil.addWarningMessage('Merchant Username and Passwords are required to create Litle MID.');
         } 
         return null;
 

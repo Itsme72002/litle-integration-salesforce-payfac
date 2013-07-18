@@ -163,9 +163,9 @@ private class LitleRequestXmlTest {
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
  	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, request.getEndpoint());
-    	System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+    	System.assertEquals(authorizationHeader, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(expectedXml, request.getBody());
     }
@@ -185,113 +185,95 @@ private class LitleRequestXmlTest {
  	    
  	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT+LitleConstants.URL_SEPARATOR
  	    						+ TEST_STRING + LitleConstants.URL_SEPARATOR + 'submerchant' , request.getEndpoint());
-    	System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
+    	System.assertEquals(authorizationHeader, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
  		System.assertEquals(expectedXml, request.getBody());
     }
-    /*static testMethod void testSetRequestParams(){
-    	LegalEntityModel legalEntityModel = new LegalEntityModel();
-    	SubMerchantModel subMerchantModel = new SubMerchantModel();
-        LitleRequestXml litleRequestXml = new LitleRequestXml(legalEntityModel, subMerchantModel, false) ;
-    	HttpRequest request = new Httprequest();
-    	String method = LitleConstants.CREATE_HTTP_REQUEST_METHOD;
-    	
-    	HttpUtil.setRequestHeaders(request, TEST_STRING, method, TEST_STRING,TEST_STRING,TEST_STRING);
-    	System.assertEquals(TEST_STRING, request.getEndpoint());
-    	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
- 	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
- 	    
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT, request.getHeader('Accept'));
- 		System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
- 		System.assertEquals(TEST_STRING, request.getBody());
-    }*/
     
     
     static String getCreateSubMerchantRequestXML(String defaultValue){
     	return '<?xml version="1.0" encoding="UTF-8"?>'
 				+ '<subMerchantCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">'
 				+ '<address>'
-				+ '<streetAddress1>'+ defaultValue +'</streetAddress1>'
-				+ '<streetAddress2>'+ defaultValue +'</streetAddress2>'
-				+ '<city>'+ defaultValue +'</city>'
-				+ '<stateProvince>'+ defaultValue +'</stateProvince>'
-				+ '<postalCode>'+ defaultValue +'</postalCode>'
-				+ '<countryCode>'+ defaultValue +'</countryCode>'
+				+ (String.isNotEmpty(defaultValue) ? '<streetAddress1>'+ defaultValue +'</streetAddress1>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<streetAddress2>'+ defaultValue +'</streetAddress2>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<city>'+ defaultValue +'</city>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<stateProvince>'+ defaultValue +'</stateProvince>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<postalCode>'+ defaultValue +'</postalCode>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<countryCode>'+ defaultValue +'</countryCode>': '')
 				+ '</address>'
-				+ '<amexMid>'+ defaultValue +'</amexMid>'
-				+ '<bankAccountNumber>'+ defaultValue +'</bankAccountNumber>'
-				+ '<bankRoutingNumber>'+ defaultValue +'</bankRoutingNumber>'
-				+ '<createCredentials>'+ defaultValue +'</createCredentials>'
-				+ '<customerServiceNumber>'+ defaultValue +'</customerServiceNumber>'
-				+ '<discoverConveyedMid>'+ defaultValue +'</discoverConveyedMid>'
-				+ '<hardCodedBillingDescriptor>'+ defaultValue +'</hardCodedBillingDescriptor>'
-				+ '<maxTransactionAmount>'+ defaultValue +'</maxTransactionAmount>'
-				+ '<merchantCategoryCode>'+ defaultValue +'</merchantCategoryCode>'
-				+ '<merchantName>'+ defaultValue +'</merchantName>'
+				+ (String.isNotEmpty(defaultValue) ? '<amexMid>'+ defaultValue +'</amexMid>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<bankAccountNumber>'+ defaultValue +'</bankAccountNumber>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<bankRoutingNumber>'+ defaultValue +'</bankRoutingNumber>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<createCredentials>'+ defaultValue +'</createCredentials>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<customerServiceNumber>'+ defaultValue +'</customerServiceNumber>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<discoverConveyedMid>'+ defaultValue +'</discoverConveyedMid>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<hardCodedBillingDescriptor>'+ defaultValue +'</hardCodedBillingDescriptor>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<maxTransactionAmount>'+ defaultValue +'</maxTransactionAmount>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<merchantCategoryCode>'+ defaultValue +'</merchantCategoryCode>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<merchantName>'+ defaultValue +'</merchantName>': '')
 				+ '<primaryContact>'
-				+ '<firstName>'+ defaultValue +'</firstName>'
-				+ '<lastName>'+ defaultValue +'</lastName>'
-				+ '<phone>'+ defaultValue +'</phone>'
-				+ '<emailAddress>'+ defaultValue +'</emailAddress>'
+				+ (String.isNotEmpty(defaultValue) ? '<firstName>'+ defaultValue +'</firstName>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<lastName>'+ defaultValue +'</lastName>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<phone>'+ defaultValue +'</phone>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<emailAddress>'+ defaultValue +'</emailAddress>': '')
 				+ '</primaryContact>'
-				+ '<pspMerchantId>'+ defaultValue +'</pspMerchantId>'
-				+ '<url>'+ defaultValue +'</url>'
-				+ '<eCheckBillingDescriptor>'+ defaultValue +'</eCheckBillingDescriptor>'
-				+ '<eCheckCompanyName>'+ defaultValue +'</eCheckCompanyName>'
+				+ (String.isNotEmpty(defaultValue) ? '<pspMerchantId>'+ defaultValue +'</pspMerchantId>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<url>'+ defaultValue +'</url>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<eCheckBillingDescriptor>'+ defaultValue +'</eCheckBillingDescriptor>': '')
+				+ (String.isNotEmpty(defaultValue) ? '<eCheckCompanyName>'+ defaultValue +'</eCheckCompanyName>': '')
 				+ '</subMerchantCreateRequest>';
 				    	
     }
     static String getCreateLegalEntityRequestXML(String defaultValue, String legalEntityType, Boolean maskPiInformation){
     	return '<?xml version="1.0" encoding="UTF-8"?>'+
 					'<legalEntityCreateRequest xmlns="http://psp.litle.com/api/merchant/onboard">'+
-						'<legalEntityName>'+ defaultValue +'</legalEntityName>'+
-						'<legalEntityType>'+ legalEntityType +'</legalEntityType>'+
-						'<doingBusinessAs>'+ defaultValue +'</doingBusinessAs>'+
-						'<taxId>'+ defaultValue +'</taxId>'+
-						'<contactPhone>'+ defaultValue +'</contactPhone>'+
-						'<annualCreditCardSalesVolume>'+ defaultValue +'</annualCreditCardSalesVolume>'+
-						'<hasAcceptedCreditCards>'+ defaultValue +'</hasAcceptedCreditCards>'+
+						(String.isNotEmpty(defaultValue) ? '<legalEntityName>'+ defaultValue +'</legalEntityName>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<legalEntityType>'+ legalEntityType +'</legalEntityType>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<doingBusinessAs>'+ defaultValue +'</doingBusinessAs>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<taxId>'+ defaultValue +'</taxId>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<contactPhone>'+ defaultValue +'</contactPhone>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<annualCreditCardSalesVolume>'+ defaultValue +'</annualCreditCardSalesVolume>' : '')+
+						(String.isNotEmpty(defaultValue) ? '<hasAcceptedCreditCards>'+ defaultValue +'</hasAcceptedCreditCards>' : '')+
 						'<address>'+
-							'<streetAddress1>'+ defaultValue +'</streetAddress1>'+
-							'<streetAddress2>'+ defaultValue +'</streetAddress2>'+
-							'<city>'+ defaultValue +'</city>'+
-							'<stateProvince>'+ defaultValue +'</stateProvince>'+
-							'<postalCode>'+ defaultValue +'</postalCode>'+
-							'<countryCode>'+ defaultValue +'</countryCode>'+
-						'</address>'+
-						'<PCI>'+
-							'<isExclusiveToPsp>'+ defaultValue +'</isExclusiveToPsp>'+
-							'<isPciComplianceValidated>'+ defaultValue +'</isPciComplianceValidated>'+
-							'<scanningVendor>'+ defaultValue +'</scanningVendor>'+
-							'<qualifiedSecurityAssessor>'+ defaultValue +'</qualifiedSecurityAssessor>'+
-							'<mostRecentlyPassedScan>'+ defaultValue +'</mostRecentlyPassedScan>'+
-							'<reportOnCompliance>'+ defaultValue +'</reportOnCompliance>'+
-							'<pciLevel>'+ defaultValue +'</pciLevel>'+
-						'</PCI>'+
-						'<principals>'+
-							'<principal>'+
-								'<firstName>'+ defaultValue +'</firstName>'+
-								'<lastName>'+ defaultValue +'</lastName>'+
-								'<emailAddress>'+ defaultValue +'</emailAddress>'+
-								(maskPiInformation ? '<ssn>'+ StringUtil.getMaskCharacters(defaultValue) +'</ssn>' : '<ssn>'+ defaultValue +'</ssn>')
-								+'<contactPhone>'+ defaultValue +'</contactPhone>'+
-								'<dateOfBirth>'+ defaultValue +'</dateOfBirth>'+
-								(maskPiInformation ? '<driversLicense>'+ StringUtil.getMaskCharacters(defaultValue) +'</driversLicense>' : '<driversLicense>'+ defaultValue +'</driversLicense>')
-								+'<driversLicenseState>'+ defaultValue +'</driversLicenseState>'+
-								'<address>'+
-									'<streetAddress1>'+ defaultValue +'</streetAddress1>'+
-									'<streetAddress2>'+ defaultValue +'</streetAddress2>'+
-									'<city>'+ defaultValue +'</city>'+
-									'<stateProvince>'+ defaultValue +'</stateProvince>'+
-									'<postalCode>'+ defaultValue +'</postalCode>'+
-									'<countryCode>'+ defaultValue +'</countryCode>'+
-								'</address>'+
+							(String.isNotEmpty(defaultValue) ? '<streetAddress1>'+ defaultValue +'</streetAddress1>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<streetAddress2>'+ defaultValue +'</streetAddress2>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<city>'+ defaultValue +'</city>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<stateProvince>'+ defaultValue +'</stateProvince>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<postalCode>'+ defaultValue +'</postalCode>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<countryCode>'+ defaultValue +'</countryCode>' : '')+
+						'</address>' +
+						'<PCI>' +
+							(String.isNotEmpty(defaultValue) ? '<isExclusiveToPsp>'+ defaultValue +'</isExclusiveToPsp>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<isPciComplianceValidated>'+ defaultValue +'</isPciComplianceValidated>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<scanningVendor>'+ defaultValue +'</scanningVendor>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<qualifiedSecurityAssessor>'+ defaultValue +'</qualifiedSecurityAssessor>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<mostRecentlyPassedScan>'+ defaultValue +'</mostRecentlyPassedScan>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<reportOnCompliance>'+ defaultValue +'</reportOnCompliance>' : '')+
+							(String.isNotEmpty(defaultValue) ? '<pciLevel>'+ defaultValue +'</pciLevel>' : '')+
+						'</PCI>' +
+						'<principals>' +
+							'<principal>' +
+								(String.isNotEmpty(defaultValue) ? '<firstName>'+ defaultValue +'</firstName>' : '')+
+								(String.isNotEmpty(defaultValue) ? '<lastName>'+ defaultValue +'</lastName>' : '')+
+								(String.isNotEmpty(defaultValue) ? '<emailAddress>'+ defaultValue +'</emailAddress>' : '')+
+								(maskPiInformation ? (String.isNotEmpty(defaultValue) ? '<ssn>'+ StringUtil.getMaskCharacters(defaultValue) +'</ssn>' : '') : (String.isNotEmpty(defaultValue) ? '<ssn>'+ defaultValue +'</ssn>': ''))
+								+(String.isNotEmpty(defaultValue) ? '<contactPhone>'+ defaultValue +'</contactPhone>' : '')+
+								(String.isNotEmpty(defaultValue) ? '<dateOfBirth>'+ defaultValue +'</dateOfBirth>' : '')+
+								(maskPiInformation ? (String.isNotEmpty(defaultValue) ? '<driversLicense>'+ StringUtil.getMaskCharacters(defaultValue) +'</driversLicense>' : '') : (String.isNotEmpty(defaultValue) ? '<driversLicense>'+ defaultValue +'</driversLicense>': ''))
+								+(String.isNotEmpty(defaultValue) ? '<driversLicenseState>'+ defaultValue +'</driversLicenseState>' : '')+
+								'<address>' +
+									(String.isNotEmpty(defaultValue) ? '<streetAddress1>'+ defaultValue +'</streetAddress1>' : '')+
+									(String.isNotEmpty(defaultValue) ? '<streetAddress2>'+ defaultValue +'</streetAddress2>' : '')+
+									(String.isNotEmpty(defaultValue) ? '<city>'+ defaultValue +'</city>' : '')+
+									(String.isNotEmpty(defaultValue) ? '<stateProvince>'+ defaultValue +'</stateProvince>' : '')+
+									(String.isNotEmpty(defaultValue) ? '<postalCode>'+ defaultValue +'</postalCode>' : '')+
+									(String.isNotEmpty(defaultValue) ? '<countryCode>'+ defaultValue +'</countryCode>' : '')+
+								'</address>' +
 							'</principal>'+
-						'</principals>'+
+						'</principals>' +
 					'</legalEntityCreateRequest>';
     }
 }

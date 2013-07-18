@@ -42,9 +42,9 @@ private class TestManualReviewStatusScheduler {
     	LitleRequestResponseLog__c logObject = new LitleRequestResponseLog__c();
     	logObject.legalEntityId__c = LEGAL_ENTITY_ID; 
 		logObject.legalEntityResponseCode__c = LitleConstants.RESPONSE_MANUAL_REVIEW; 
-		logObject.subMerchantAcceptHeader__c = LitleConstants.REQUEST_HEADER_ACCEPT; 
+		logObject.subMerchantAcceptHeader__c = LitleConstants.REQUEST_HEADER_ACCEPT_VALUE; 
 		logObject.subMerchantAuthorizationHeader__c = AUTH_HEADER; 
-		logObject.subMerchantContentTypeHeader__c = LitleConstants.REQUEST_HEADER_CONTENT_TYPE; 
+		logObject.subMerchantContentTypeHeader__c = LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE; 
 		logObject.sObjectId__c = String.valueOf(account.Id); 
 		logObject.sObjectType__c = 'Account'; 
 		logObject.createSubMerchantRequestXml__c = REQUEST_XML; 

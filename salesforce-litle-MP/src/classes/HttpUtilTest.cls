@@ -6,19 +6,19 @@ private class HttpUtilTest {
         // TO DO: implement unit test
         // test with null parameters
         Httprequest request = HttpUtil.getLitleMPHttpRequest(null, null, null, null, null, null);
-        System.assertEquals(null, request.getHeader('Authorization'));
+        System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(null, request.getEndpoint());
-    	System.assertEquals(null, request.getHeader('Content-Type'));
- 	    System.assertEquals(null, request.getHeader('Accept'));
+    	System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(null, request.getMethod());
  		System.assertEquals('', request.getBody());
  		
  		//test with some parameters
  		request = HttpUtil.getLitleMPHttpRequest(TEST_STRING,TEST_STRING,TEST_STRING,TEST_STRING,TEST_STRING,TEST_STRING);
- 		System.assertEquals(TEST_STRING, request.getHeader('Authorization'));
+ 		System.assertEquals(TEST_STRING, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(TEST_STRING, request.getEndpoint());
-    	System.assertEquals(TEST_STRING, request.getHeader('Content-Type'));
- 	    System.assertEquals(TEST_STRING, request.getHeader('Accept'));
+    	System.assertEquals(TEST_STRING, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(TEST_STRING, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(TEST_STRING, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
     }
@@ -34,10 +34,10 @@ private class HttpUtilTest {
  		HttpUtil.setRequestHeaders(request, null, null, null,null,null);
  		Blob headerValue = Blob.valueOf(null+':'+null); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(null, request.getHeader('Authorization'));
+ 	    System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(null, request.getEndpoint());
-    	System.assertEquals(null, request.getHeader('Content-Type'));
- 	    System.assertEquals(null, request.getHeader('Accept'));
+    	System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(null, request.getMethod());
  		System.assertEquals('', request.getBody());
  		
@@ -45,10 +45,10 @@ private class HttpUtilTest {
     	HttpUtil.setRequestHeaders(request, TEST_STRING, TEST_STRING, TEST_STRING,TEST_STRING,TEST_STRING);
     	headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
- 	    System.assertEquals(authorizationHeader, request.getHeader('Authorization'));
+ 	    System.assertEquals(authorizationHeader, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(TEST_STRING, request.getEndpoint());
-    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Content-Type'));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, request.getHeader('Accept'));
+    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
  		System.assertEquals(TEST_STRING, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
     }
