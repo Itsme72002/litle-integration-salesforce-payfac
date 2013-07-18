@@ -1,7 +1,7 @@
 public class LitleRequestXml {
 	
 	
-	//creates start and end tag with the given name and the given value
+	/*//creates start and end tag with the given name and the given value
 	//e.g: tagName = 'legalEntity' value='Individual'
 	//outputs <legalEntity>Individual</legalEntity>
 	public static void addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
@@ -10,7 +10,7 @@ public class LitleRequestXml {
 			xmlWriter.writeCharacters(value.escapeXml());
 			xmlWriter.writeEndElement();	//end tagName
 		}
-	} 
+	} */
 	
 	//generate create legal entity request from the legalentitymodel
 	public static String generateCreateLegalEntityRequestXml(LegalEntityModel legalEntityModel, Boolean maskPiInformation){
@@ -22,60 +22,80 @@ public class LitleRequestXml {
 			//main element and namespace
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_LEGALENTITY_CREATE_REQUEST, null);
 			requestXml.writeDefaultNamespace(LitleConstants.REQUEST_XML_NAMESPACE);
-			//requestXml.writeStartElement(null, 'legalEntityName', null);	//start legal entity name
-			addTagToXml(requestXml, LitleConstants.XML_TAG_LEGALENTITY_NAME, legalEntityModel.getLegalEntityName());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_LEGALENTITY_TYPE, legalEntityModel.getLegalEntityType());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_DOING_BUSINESS_AS, legalEntityModel.getLegalEntityDoingBusinessAs());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_TAXID, legalEntityModel.getLegalEntityTaxId());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_CONTACT_PHONE, legalEntityModel.getLegalEntityContactPhone());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_ANNUAL_CREDIT_CARD_SALES_VOLUME, legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_HAS_ACCEPTED_CREDIT_CARDS, legalEntityModel.getLegalEntityHasAcceptedCreditCards());
+			
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_LEGALENTITY_NAME, legalEntityModel.getLegalEntityName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_LEGALENTITY_TYPE, legalEntityModel.getLegalEntityType());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DOING_BUSINESS_AS, legalEntityModel.getLegalEntityDoingBusinessAs());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_TAXID, legalEntityModel.getLegalEntityTaxId());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CONTACT_PHONE, legalEntityModel.getLegalEntityContactPhone());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_ANNUAL_CREDIT_CARD_SALES_VOLUME, legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_HAS_ACCEPTED_CREDIT_CARDS, legalEntityModel.getLegalEntityHasAcceptedCreditCards());
+			
+			// Start Legal Entity's Address
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_ADDRESS, null);
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, legalEntityModel.getLegalEntityAddress().getStreetAddress1());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, legalEntityModel.getLegalEntityAddress().getStreetAddress2());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, legalEntityModel.getLegalEntityAddress().getCity());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, legalEntityModel.getLegalEntityAddress().getStateProvince());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, legalEntityModel.getLegalEntityAddress().getPostalCode());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, legalEntityModel.getLegalEntityAddress().getCountryCode());
-			requestXml.writeEndElement();	//end legal entity address
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, legalEntityModel.getLegalEntityAddress().getStreetAddress1());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, legalEntityModel.getLegalEntityAddress().getStreetAddress2());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, legalEntityModel.getLegalEntityAddress().getCity());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, legalEntityModel.getLegalEntityAddress().getStateProvince());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, legalEntityModel.getLegalEntityAddress().getPostalCode());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, legalEntityModel.getLegalEntityAddress().getCountryCode());
+			requestXml.writeEndElement();	
+			// End Legal Entity's Address
+			
+			// Start PCI Details
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_PCI, null);
-				addTagToXml(requestXml, LitleConstants.XML_TAG_IS_EXCLUSIVE_TO_PSP, legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_IS_PCI_COMPLIANCE_VALIDATED, legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_SCANNING_VENDOR, legalEntityModel.getLegalEntityPci().getScanningVendor());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_QUALIFIED_SECURITY_ASSESSOR, legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_MOST_RECENTLY_PASSED_SCAN, legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_REPORT_ON_COMPLIANCE, legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_PCI_LEVEL, legalEntityModel.getLegalEntityPci().getPciLevel());
-			requestXml.writeEndElement();	//end legal entity PCI
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_IS_EXCLUSIVE_TO_PSP, legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_IS_PCI_COMPLIANCE_VALIDATED, legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_SCANNING_VENDOR, legalEntityModel.getLegalEntityPci().getScanningVendor());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_QUALIFIED_SECURITY_ASSESSOR, legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_MOST_RECENTLY_PASSED_SCAN, legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_REPORT_ON_COMPLIANCE, legalEntityModel.getLegalEntityPci().getReportOnCompliance());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_PCI_LEVEL, legalEntityModel.getLegalEntityPci().getPciLevel());
+			requestXml.writeEndElement();	
+			// End PCI Details
+			
+			// Start Company Representative
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_PRINCIPALS, null);
-				requestXml.writeStartElement(null, LitleConstants.XML_TAG_PRINCIPAL, null);
-					addTagToXml(requestXml, LitleConstants.XML_TAG_FIRST_NAME, legalEntityModel.getLegalEntityPrincipal().getFirstName());
-					addTagToXml(requestXml, LitleConstants.XML_TAG_LAST_NAME, legalEntityModel.getLegalEntityPrincipal().getLastName());
-					addTagToXml(requestXml, LitleConstants.XML_TAG_EMAIL_ADDRESS, legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
-					if(maskPiInformation){
-						addTagToXml(requestXml, LitleConstants.XML_TAG_SSN, StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getSsn()));
-					}else{
-						addTagToXml(requestXml, LitleConstants.XML_TAG_SSN, legalEntityModel.getLegalEntityPrincipal().getSsn());
-					}
-					addTagToXml(requestXml, LitleConstants.XML_TAG_CONTACT_PHONE, legalEntityModel.getLegalEntityPrincipal().getContactPhone());
-					addTagToXml(requestXml, LitleConstants.XML_TAG_DATE_OF_BIRTH, legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
-					if(maskPiInformation){
-						addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE, StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getDriversLicense()));
-					}else{
-						addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE, legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
-					}	
-					addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE_STATE, legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
-					requestXml.writeStartElement(null, LitleConstants.XML_TAG_ADDRESS, null);	//start legal entity principal address
-						addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
-						addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
-						addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
-						addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
-						addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
-						addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
-					requestXml.writeEndElement();	//end legal entity principal address
-				requestXml.writeEndElement();	//end legal entity principle	
-			requestXml.writeEndElement();	//end legal entity principles
-			requestXml.writeEndElement(); //end main request
+			
+			// Start Principal
+			requestXml.writeStartElement(null, LitleConstants.XML_TAG_PRINCIPAL, null);
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_FIRST_NAME, legalEntityModel.getLegalEntityPrincipal().getFirstName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_LAST_NAME, legalEntityModel.getLegalEntityPrincipal().getLastName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_EMAIL_ADDRESS, legalEntityModel.getLegalEntityPrincipal().getEmailAddress());
+			if(maskPiInformation){
+				XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_SSN, StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getSsn()));
+			}else{
+				XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_SSN, legalEntityModel.getLegalEntityPrincipal().getSsn());
+			}
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CONTACT_PHONE, legalEntityModel.getLegalEntityPrincipal().getContactPhone());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DATE_OF_BIRTH, legalEntityModel.getLegalEntityPrincipal().getDateOfBirth());
+			if(maskPiInformation){
+				XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE, StringUtil.getMaskCharacters(legalEntityModel.getLegalEntityPrincipal().getDriversLicense()));
+			}else{
+				XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE, legalEntityModel.getLegalEntityPrincipal().getDriversLicense());
+			}	
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DRIVERS_LICENSE_STATE, legalEntityModel.getLegalEntityPrincipal().getDriversLicenseState());
+			
+			// Start Principal's Address
+			requestXml.writeStartElement(null, LitleConstants.XML_TAG_ADDRESS, null);	
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, legalEntityModel.getLegalEntityPrincipal().getAddress().getCity());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode());
+			requestXml.writeEndElement();	
+			// End Principal's Address
+			
+			// End Principal
+			requestXml.writeEndElement();
+			
+			// End Company Representative	
+			requestXml.writeEndElement();	
+			
+			// End Main Request
+			requestXml.writeEndElement();
+			
 			requestXml.writeEndDocument();
 			String request = requestXml.getXmlString();
 			requestXml.close();
@@ -90,38 +110,47 @@ public class LitleRequestXml {
 			Xmlstreamwriter requestXml = new Xmlstreamwriter();
 			// encoding and version
 			requestXml.writeStartDocument(LitleConstants.XML_ENCODING, LitleConstants.XML_VERSION);
-			//marequest
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_SUBMERCHANT_CREATE_REQUEST, null);
 			requestXml.writeDefaultNamespace(LitleConstants.REQUEST_XML_NAMESPACE);
+			
+			// Start Sub Merchant's Address
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_ADDRESS, null);
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, subMerchantModel.getSubMerchantAddress().getStreetAddress1());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, subMerchantModel.getSubMerchantAddress().getStreetAddress2());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, subMerchantModel.getSubMerchantAddress().getCity());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, subMerchantModel.getSubMerchantAddress().getStateProvince());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, subMerchantModel.getSubMerchantAddress().getPostalCode());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, subMerchantModel.getSubMerchantAddress().getCountryCode());
-			requestXml.writeEndElement();	//end legal entity address
-			addTagToXml(requestXml, LitleConstants.XML_TAG_AMEX_MID, subMerchantModel.getSubMerchantAmexMid());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_BANK_ACCOUNT_NUMBER, subMerchantModel.getSubMerchantBankAccountNumber());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_BANK_ROUNTING_NUMBER, subMerchantModel.getSubMerchantBankRoutingNumber());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_CREATE_CREDENTIALS, subMerchantModel.getSubMerchantCreateCredentials());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_CUSTOMER_SERVICE_NUMBER, subMerchantModel.getSubMerchantCustomerServiceNumber());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_DISCOVER_CONVEY_MID, subMerchantModel.getSubMerchantDiscoverConveyMid());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_HARD_CODE_BILLING_DESCRIPTOR, subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_MAX_TRANSACTION_AMOUNT, subMerchantModel.getSubMerchantMaxTransactionAmount());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_MERCHANT_CATEGORY_CODE, subMerchantModel.getSubMerchantMerchantCategoryCode());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_MERCHANT_NAME, subMerchantModel.getSubMerchantMerchantName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS1, subMerchantModel.getSubMerchantAddress().getStreetAddress1());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STREET_ADDRESS2, subMerchantModel.getSubMerchantAddress().getStreetAddress2());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CITY, subMerchantModel.getSubMerchantAddress().getCity());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_STATE_PROVINCE, subMerchantModel.getSubMerchantAddress().getStateProvince());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_POSTAL_CODE, subMerchantModel.getSubMerchantAddress().getPostalCode());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_COUNTRY_CODE, subMerchantModel.getSubMerchantAddress().getCountryCode());
+			requestXml.writeEndElement();	
+			// End Sub Merchant Address
+			
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_AMEX_MID, subMerchantModel.getSubMerchantAmexMid());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_BANK_ACCOUNT_NUMBER, subMerchantModel.getSubMerchantBankAccountNumber());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_BANK_ROUNTING_NUMBER, subMerchantModel.getSubMerchantBankRoutingNumber());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CREATE_CREDENTIALS, subMerchantModel.getSubMerchantCreateCredentials());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_CUSTOMER_SERVICE_NUMBER, subMerchantModel.getSubMerchantCustomerServiceNumber());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_DISCOVER_CONVEY_MID, subMerchantModel.getSubMerchantDiscoverConveyMid());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_HARD_CODE_BILLING_DESCRIPTOR, subMerchantModel.getSubMerchantHardCodeBillingDescriptor());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_MAX_TRANSACTION_AMOUNT, subMerchantModel.getSubMerchantMaxTransactionAmount());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_MERCHANT_CATEGORY_CODE, subMerchantModel.getSubMerchantMerchantCategoryCode());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_MERCHANT_NAME, subMerchantModel.getSubMerchantMerchantName());
+			
+			// Start Primary Contact
 			requestXml.writeStartElement(null, LitleConstants.XML_TAG_PRIMARY_CONTACT, null);	//primary contact
-				addTagToXml(requestXml, LitleConstants.XML_TAG_FIRST_NAME, subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_LAST_NAME, subMerchantModel.getSubMerchantPrimaryContact().getLastName());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_PHONE, subMerchantModel.getSubMerchantPrimaryContact().getPhone());
-				addTagToXml(requestXml, LitleConstants.XML_TAG_EMAIL_ADDRESS, subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
-			requestXml.writeEndElement();	//end primary contact
-			addTagToXml(requestXml, LitleConstants.XML_TAG_PSP_MERCHANT_ID, subMerchantModel.getSubMerchantPspMerchantId());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_URL, subMerchantModel.getSubMerchantUrl());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_ECHECK_BILING_DESCRIPTOR, subMerchantModel.getSubMerchanteCheckBillingDescriptor());
-			addTagToXml(requestXml, LitleConstants.XML_TAG_ECHECK_COMPANY_NAME, subMerchantModel.getSubMerchanteCheckCompanyName());
-			requestXml.writeEndElement(); //end main request
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_FIRST_NAME, subMerchantModel.getSubMerchantPrimaryContact().getFirstName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_LAST_NAME, subMerchantModel.getSubMerchantPrimaryContact().getLastName());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_PHONE, subMerchantModel.getSubMerchantPrimaryContact().getPhone());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_EMAIL_ADDRESS, subMerchantModel.getSubMerchantPrimaryContact().getEmailAddress());
+			requestXml.writeEndElement();	
+			// End Primary Contact
+			
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_PSP_MERCHANT_ID, subMerchantModel.getSubMerchantPspMerchantId());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_URL, subMerchantModel.getSubMerchantUrl());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_ECHECK_BILING_DESCRIPTOR, subMerchantModel.getSubMerchanteCheckBillingDescriptor());
+			XmlUtil.addTagToXml(requestXml, LitleConstants.XML_TAG_ECHECK_COMPANY_NAME, subMerchantModel.getSubMerchanteCheckCompanyName());
+			requestXml.writeEndElement(); 
+			// End Main Request XML
+			
 			requestXml.writeEndDocument();
 			String request = requestXml.getXmlString();
 			requestXml.close();

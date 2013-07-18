@@ -28,4 +28,16 @@ public class XmlUtil {
 		}
 		return tagValue;
 	}
+	
+	
+	//creates start and end tag with the given name and the given value
+	//e.g: tagName = 'legalEntity' value='Individual'
+	//outputs <legalEntity>Individual</legalEntity>
+	public static void addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
+		if(String.isNotEmpty(value)){
+			xmlWriter.writeStartElement(null, tagName, null);	//start tagName
+			xmlWriter.writeCharacters(value.escapeXml());
+			xmlWriter.writeEndElement();	//end tagName
+		}
+	} 
 }
