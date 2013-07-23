@@ -11,22 +11,16 @@
 	    <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"/>
 	  </target>
 
-    <!-- deploying code & running tests for code in directory -->
-    <target name="deployCode" depends="proxy">
-      <!-- Upload the contents of the "codepkg" directory, running the tests for just 1 class -->
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src">
-        <runTest>LoginControlTest</runTest>
-      </sf:deploy>
-    </target>
-
     <!-- Shows removing code; only succeeds if done after deployCode -->
     <target name="undeployCode" depends="proxy">
       <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"/>
     </target>
 
-    
     <!-- Shows deploying code, running all tests, and running tests (1 of which fails), and logging. -->
     <target name="deployAndTest" depends="proxy">
+      <replaceregexp file="src/objects/Account.object" match="forceMock" replace="${namespace.prefix}" byline="true"/>
+	  <replaceregexp file="src/objects/Opportunity.object" match="forceMock" replace="${namespace.prefix}" byline="true"/>
+
       <!-- Upload the contents of the "codepkg" package, running all tests -->
       <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" runAllTests="true"/>
     </target>

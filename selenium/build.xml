@@ -31,16 +31,46 @@
 		<javac srcdir="test" destdir="${build.classes}" classpathref="build.classpath" />
 	</target>
 
-	<!-- Run all the test classes starting with 'Test' -->
+	<target name="removeApex" depends="compile">
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/RemoveApex.java" />
+            </batchtest>
+        </junit>
+	</target>
+	
+	<target name="installWithJunit" depends="compile">
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/FirstTestInstallation.java" />
+            </batchtest>
+        </junit>
+	</target>
+	
+	<!-- Run all the test classes starting with 'Test' and uninstall.  Should be proceeded by installWithJunit -->
 	<target name="test" depends="compile">
-		<junit printsummary="on" fork="true" haltonfailure="yes">
-			<classpath refid="build.classpath" />
-			<classpath refid="test.path" />
-			<formatter type="plain" usefile="false" />
-			<batchtest>
-				<fileset dir="${src.dir}" includes="**/Test*.java" />
-			</batchtest>
-		</junit>
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/Test*.java" />
+            </batchtest>
+        </junit>
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/LastTestInstallation.java" />
+            </batchtest>
+        </junit>
 	</target>
 	
 	<!-- Run deployCodeCheckOnly of salesforce project -->

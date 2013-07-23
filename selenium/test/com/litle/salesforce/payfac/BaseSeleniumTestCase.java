@@ -15,6 +15,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -69,7 +71,7 @@ public class BaseSeleniumTestCase {
         waitFor(By.className("messageCell"));
         System.out.println(startPrintMessage);
         String messageText = null;
-        for(int i = 0; i < 45; i++) {
+        for(int i = 0; i < 600; i++) {
             try {
                 messageText = driver.findElement(By.className("messageCell")).getText();
             } catch(Exception e) {}
@@ -84,20 +86,49 @@ public class BaseSeleniumTestCase {
 
     protected void login(String username, String password) throws Exception {
         driver.get(props.getProperty("login.url"));
-        //System.out.println("Login page loaded");
-        //System.out.println("Done sleeping");
-        //Login
-        //waitFor(By.id("infobarcontent"));
-        //waitFor(By.id("username"));
-        //waitFor(By.id("Login"));
-        //WebElement field = driver.findElement(By.id("username"));
-        WebElement field = driver.findElement(By.cssSelector("html body#loginpage div#pagewrap div#contentwrap div#content.content div#login_form_box form#login div.inputs div.inputbox span input#username.txtbox"));
-        field.clear();
-        field.sendKeys(username);
-        field = driver.findElement(By.id("password"));
-        field.clear();
-        field.sendKeys(password);
-        driver.findElement(By.id("Login")).click();
+
+        int tries = 0;
+        while(driver.executeScript("return document.getElementById('tabContainer')") == null) {
+            if(tries % 2 == 0) {
+                System.out.println("Trying with selenium");
+                WebElement field = driver.findElement(By.id("username"));
+                field.clear();
+                field.sendKeys(username);
+                field = driver.findElement(By.id("password"));
+                field.clear();
+                field.sendKeys(password);
+            } else {
+                System.out.println("Trying with javascript");
+                driver.executeScript("document.getElementById('username').value = '" + username + "'");
+                driver.executeScript("document.getElementById('password').value = '" + password + "'");
+            }
+            driver.findElement(By.id("Login")).click();
+            Thread.sleep(1000L);
+            tries++;
+        }
+
+//        int tries = 0;
+//        while(driver.executeScript(return , args))
+//        waitFor(By.id("username"));
+//
+//
+//
+//        int tries = 0;
+//        while(driver.executeScript("return document.getElementById('errorDiv_ep')") != null) {
+//            if(tries % 2 == 0) {
+//                System.out.println("The save had errors - try again with selenium");
+//                driver.findElement(By.id("errorDiv_ep"));
+//                driver.findElement(By.id("Name")).clear();
+//                driver.findElement(By.id("Name")).sendKeys(PACKAGE_NAME);
+//            } else {
+//                System.out.println("The save had errors - try again with javascript");
+//                driver.executeScript("document.getElementsByName('Name')[0].value = '"+PACKAGE_NAME+"'");
+//            }
+//            driver.findElement(By.name("save")).click();
+//            tries++;
+//        }
+
+
         waitFor(By.id("tabContainer"));
     }
 
@@ -116,19 +147,91 @@ public class BaseSeleniumTestCase {
         }
     }
 
+    protected void getToEditAccountLinkScreen() {
+        driver.findElement(By.id("Customize_font")).click(); //Customize
+        waitFor(By.id("Account_font"));
+        driver.findElement(By.id("Account_font")).click(); //Accounts
+        waitFor(By.id("AccountLayouts_font"));
+        driver.findElement(By.id("AccountLayouts_font")).click(); //Page Layouts
+        waitFor(By.id("LayoutList_body"));
+        WebElement editLink = null;
+        for(WebElement link : driver.findElement(By.id("LayoutList_body")).findElements(By.tagName("a"))) {
+            String title = link.getAttribute("title");
+            if(title != null && title.contains("Edit") && title.contains("Account Layout")) {
+                editLink = link;
+            }
+        }
+        assertNotNull("Couldn't find edit Account Layout link", editLink);
+        editLink.click();
+        waitFor(By.id("troughRightPane"));
+    }
+
+    protected void getTooEditOpportunityLinkScreen() {
+        //Remove Litle buttons from Opportunities
+        driver.findElement(By.id("Customize_font")).click(); //Customize
+        waitFor(By.id("Opportunity_font"));
+        driver.findElement(By.id("Opportunity_font")).click(); //Accounts
+        waitFor(By.id("OpportunityLayouts_font"));
+        driver.findElement(By.id("OpportunityLayouts_font")).click(); //Page Layouts
+        waitFor(By.id("LayoutList_body"));
+        WebElement editLink = null;
+        for(WebElement link : driver.findElement(By.id("LayoutList_body")).findElements(By.tagName("a"))) {
+            String title = link.getAttribute("title");
+            if(title != null && title.contains("Edit") && title.contains("Opportunity Layout")) {
+                editLink = link;
+            }
+        }
+        assertNotNull("Couldn't find edit Opportunity Layout link", editLink);
+        editLink.click();
+
+        //Drag buttons
+        waitFor(By.id("troughRightPane"));
+
+    }
+
     protected void uninstallPackageIfInstalledAlready() throws Exception {
         driver.findElement(By.id("ImportedPackage_font")).click(); //Installed Packages
         waitFor(By.className("pbBody"));
-    
+
         if(driver.findElement(By.className("pbBody")).getText().contains("No packages installed")) {
             return; //Already installed
         }
-    
+
+        getToEditAccountLinkScreen();
+        removeButtonsFromLayout();
+
+        getTooEditOpportunityLinkScreen();
+        removeButtonsFromLayout();
+
+        driver.findElement(By.id("ImportedPackage_font")).click(); //Installed Packages
+        waitFor(By.className("pbBody"));
         driver.findElement(By.linkText("Uninstall")).click();
         waitFor(By.id("p5"));
         driver.findElement(By.id("p5")).click(); //Yes, I want to uninstall
         driver.findElement(By.name("save")).click(); //Uninstall
-    
+
+    }
+
+    private void removeButtonsFromLayout() {
+        //Drag buttons
+        WebElement trough = driver.findElement(By.id("troughRightPane"));
+        for(WebElement button : driver.findElements(By.className("customButton"))) {
+            Actions builder = new Actions(driver);
+
+            Action dragAndDrop = builder.clickAndHold(button).moveToElement(trough).release(trough).build();
+            dragAndDrop.perform();
+        }
+        //Save layout
+        WebElement saveButton = null;
+        for(WebElement button : driver.findElement(By.id("saveBtn")).findElements(By.tagName("button"))) {
+            System.out.println("Found button with text: " + button.getText());
+            if(button.getText().equals("Save")) {
+                saveButton = button;
+            }
+        }
+        assertNotNull("Couldn't find save button", saveButton);
+        saveButton.click();
+        waitFor(By.id("LayoutList_body"));
     }
 
 }
