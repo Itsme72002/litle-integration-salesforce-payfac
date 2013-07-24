@@ -28,7 +28,7 @@
 
 	<!-- Compile all the classes to the location -->
 	<target name="compile" depends="clean, makedir">
-		<javac srcdir="test" destdir="${build.classes}" classpathref="build.classpath" />
+		<javac srcdir="test" destdir="${build.classes}" classpathref="build.classpath" debug="on" />
 	</target>
 
 	<target name="removeApex" depends="compile">
@@ -42,13 +42,24 @@
         </junit>
 	</target>
 	
-	<target name="installWithJunit" depends="compile">
+   <target name="createPackage" depends="compile">
         <junit printsummary="on" fork="true" haltonfailure="yes">
             <classpath refid="build.classpath" />
             <classpath refid="test.path" />
             <formatter type="plain" usefile="false" />
             <batchtest>
-                <fileset dir="${src.dir}" includes="**/FirstTestInstallation.java" />
+                <fileset dir="${src.dir}" includes="**/CreatePackage.java" />
+            </batchtest>
+        </junit>
+    </target>
+	
+	<target name="install" depends="compile">
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/Install.java" />
             </batchtest>
         </junit>
 	</target>
@@ -74,5 +85,5 @@
 	</target>
 	
 	<!-- Run deployCodeCheckOnly of salesforce project -->
-	<ant dir="${salesforce.project.path}" target="deployCodeCheckOnly"></ant>
+	<!--<ant dir="${salesforce.project.path}" target="deployCodeCheckOnly"></ant>-->
 </project>

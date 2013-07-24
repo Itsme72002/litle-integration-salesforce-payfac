@@ -16,17 +16,16 @@ public class Install extends BaseSeleniumTestCase {
     @Test
     public void packageCreationAndInstallation() throws Exception {
         // Login to the build instance
-//        login(props.getProperty("login.build.username"), props.getProperty("login.build.password"));
-//
-//        String installUrl = uploadPackage();
-//        System.setProperty("SALESFORCE_INSTALL_URL", installUrl);
-//        logout();
+        login(props.getProperty("login.build.username"), props.getProperty("login.build.password"));
+
+        String installUrl = uploadPackage();
+        System.setProperty("SALESFORCE_INSTALL_URL", installUrl);
+        logout();
 
         //Login to the test instance
         login(props.getProperty("login.test.username"), props.getProperty("login.test.password"));
 
         //Install the package
-        String installUrl = "https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000FDTx";
         installPackage(installUrl);
 
         //Get and verify list of installed packages
@@ -99,6 +98,17 @@ public class Install extends BaseSeleniumTestCase {
         driver.findElement(By.className("pbBottomButtons")).findElement(By.name("goNext")).click(); //Next again (Security level)
         driver.findElement(By.className("pbBottomButtons")).findElement(By.name("save")).click(); //Install
         String installText = waitForMessage("Waiting for install to complete", "Install Complete");
+        if(installText.contains("Please try this again")) {
+            System.out.println("Install text was: " + installText);
+            System.out.println("Trying again");
+            driver.get(installUrl);
+            waitFor(By.id("InstallPackagePage:InstallPackageForm:InstallBtn"));
+            driver.findElement(By.id("InstallPackagePage:InstallPackageForm:InstallBtn")).click(); //Continue
+            driver.findElement(By.className("pbBottomButtons")).findElement(By.name("goNext")).click(); //Next (API Access)
+            driver.findElement(By.className("pbBottomButtons")).findElement(By.name("goNext")).click(); //Next again (Security level)
+            driver.findElement(By.className("pbBottomButtons")).findElement(By.name("save")).click(); //Install
+            installText = waitForMessage("Waiting for install to complete", "Install Complete");
+        }
         assertTrue(installText, installText.contains("Install Complete"));
     }
 
@@ -116,15 +126,24 @@ public class Install extends BaseSeleniumTestCase {
         WebElement uploadButton = findButtonOrFail("Upload the current package");
         assertNotNull("Couldn't find upload button", uploadButton);
         uploadButton.click();
-        waitFor(By.id("ExportPackagePage:UploadPackageForm:PackageDetailsPageBlock:PackageDetailsBlockSection:VersionInfoSectionItem:VersionText"));
+        String id = "ExportPackagePage:UploadPackageForm:PackageDetailsPageBlock:PackageDetailsBlockSection:VersionInfoSectionItem:VersionText";
+        waitFor(By.id(id));
 
+        int tries = 0;
         Long count = 0L;
         do {
-            System.out.println("Entering version name");
-            driver.findElement(By.id("ExportPackagePage:UploadPackageForm:PackageDetailsPageBlock:PackageDetailsBlockSection:VersionInfoSectionItem:VersionText")).clear(); //Version name
-            driver.findElement(By.id("ExportPackagePage:UploadPackageForm:PackageDetailsPageBlock:PackageDetailsBlockSection:VersionInfoSectionItem:VersionText")).sendKeys("Selenium Test");
+            if(tries % 2 == 0) {
+                System.out.println("Entering version name with selenium");
+                driver.findElement(By.id(id)).clear(); //Version name
+                driver.findElement(By.id(id)).sendKeys("Selenium Test");
+            }
+            else {
+                System.out.println("Entering version name with javascript");
+                driver.executeScript("document.getElementById('"+id+"').value = 'Selenium Test'");
+            }
             driver.findElement(By.id("ExportPackagePage:UploadPackageForm:PackageDetailsPageBlock:PackageDetailsPageBlockButtons:upload")).click(); //Upload button
             count = (Long)driver.executeScript("return document.getElementsByClassName('errorMsg').length");
+            tries++;
         } while(count != 0L);
 
         String uploadText = waitForMessage("Waiting for upload to complete", "Your package is now available for install");

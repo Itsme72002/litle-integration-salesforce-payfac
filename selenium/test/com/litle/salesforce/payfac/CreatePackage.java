@@ -1,13 +1,11 @@
 package com.litle.salesforce.payfac;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 public class CreatePackage extends BaseSeleniumTestCase {
@@ -69,55 +67,27 @@ public class CreatePackage extends BaseSeleniumTestCase {
             }
             assertNotNull("Couldn't find 'Versions' tab", versionTab);
             versionTab.click();
-            //Thread.sleep(5000L);
-            //waitFor(By.className("messageCell"));
-//            System.out.println("Waiting for Versions tab to show");
-//            String messageText = null;
-//            for(int i = 0; i < 45; i++) {
-//                try {
-//                    messageText = driver.findElement(By.className("messageCell")).getText();
-//                } catch(Exception e) {}
-//                if(messageText != null && messageText.contains(waitForMessage)) {
-//                    break;
-//                }
-//                System.out.print(".");
-//                Thread.sleep(1000L);
-//            }
-            //return messageText;
+            System.out.println("Deprecating packages");
+            waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
 
-            //Deprecate the package
-            System.out.println("----------------------\nDeprecating the package");
-            WebElement deprecateLink = null;
-            WebElement undeprecateLink = null;
-            list = driver.findElement(By.id("bodyCell")).findElements(By.tagName("a"));
-            for(WebElement e : list) {
-                String linkText = null;
-                try {
-                    linkText = e.getText();
-                    System.out.println("Checking link: " + linkText);
-                    if(linkText.equals("Deprecate")) {
-                        deprecateLink = e;
-                    }
-                    else if(linkText.equals("Undeprecate")) {
-                        undeprecateLink = e;
-                    }
-                } catch(StaleElementReferenceException ex) {}
-            }
-            if(undeprecateLink == null && deprecateLink == null) {
-                System.out.println("Package never uploaded, so skipping");
-            }
-            else if(undeprecateLink == null && deprecateLink != null) {
+
+            List<WebElement> deprecateLinks = driver.findElements(By.linkText("Deprecate"));
+            for(int i = 0; i < deprecateLinks.size(); i++) {
+                WebElement deprecateLink = deprecateLinks.get(i);
                 deprecateLink.click();
-                waitFor(By.id("simpleDialog0button0"));
-                driver.findElement(By.id("simpleDialog0button0")).click();
-                System.out.println("Package deprecated");
+                String deprecateButtonid = "simpleDialog" + i + "button0";
+                waitFor(By.id(deprecateButtonid));
+                driver.findElement(By.id(deprecateButtonid)).click();
+                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
             }
-            else if(undeprecateLink != null && deprecateLink == null) {
-                System.out.println("Package already deprecated, so skipping");
-            }
-            else { //Both are non-null
-                fail("Found both a deprecate link and undeprecate link - I don't know the state");
-            }
+
+//            while(driver.findElements(By.linkText("Deprecate")).size() != 0) {
+//                driver.findElement(By.linkText("Deprecate")).click();
+//                waitFor(By.className("cssDialog"));
+//                findButtonByValue("Deprecate").click();
+//                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+//            }
+            System.out.println("Done deprecating");
 
             //Delete the package
             System.out.println("----------------------\nDeleting the package");
@@ -229,6 +199,19 @@ public class CreatePackage extends BaseSeleniumTestCase {
         WebElement save = findButtonOrFail("Save");
         save.click();
         waitFor(By.name("new"));
+    }
+
+    private WebElement findButtonByValue(String buttonValue) {
+        WebElement found = null;
+        List<WebElement> inputs = driver.findElements(By.tagName("input"));
+        for(WebElement input : inputs) {
+            String value = input.getAttribute("value");
+            if(value.contains(buttonValue)) {
+                found = input;
+                break;
+            }
+        }
+        return found;
     }
 
     private WebElement findButtonOrFail(String buttonTitle) {
