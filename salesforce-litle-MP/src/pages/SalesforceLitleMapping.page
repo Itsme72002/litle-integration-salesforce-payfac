@@ -836,7 +836,7 @@
 
 
             <!-- PCI Details start -->
-            <apex:pageBlockSection columns="1" title="PCI Details">
+            <!--<apex:pageBlockSection columns="1" title="PCI Details">
             	<apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Litle Field" />
@@ -960,7 +960,7 @@
                             disabled="{!currentMappings.legalEntityPciLevelX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-            </apex:pageBlockSection>
+            </apex:pageBlockSection> -->
             <!-- PCI Details end -->
 
 

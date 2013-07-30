@@ -182,6 +182,16 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(LONG_STRING);
 		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(LONG_STRING);
 		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(LONG_STRING);
+		//new required fields
+		System.assertEquals(false, litleMidFormController.areRequiredFieldsFilled());
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(LONG_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(LONG_STRING);
 		System.assertEquals(true, litleMidFormController.areRequiredFieldsFilled());
 		// set the entity type to sole proprietorship
 		litleMidFormController.legalEntityModel.setLegalEntityType(LegalEntityType.LegalEntityTypeEnum.INDIVIDUAL_SOLE_PROPRIETORSHIP.name());

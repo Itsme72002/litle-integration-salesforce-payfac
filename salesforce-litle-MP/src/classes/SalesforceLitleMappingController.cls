@@ -304,7 +304,8 @@ public class SalesforceLitleMappingController {
         }
         return null;
     }
-
+	
+	/* Removed Pci Fields
     public PageReference onSelectChangeLegalEntityIsExclusiveToPsp() {
         if (currentMappings.legalEntityIsExclusiveToPsp__c == null) {
             currentMappings.legalEntityIsExclusiveToPspX__c = false;
@@ -367,7 +368,8 @@ public class SalesforceLitleMappingController {
         }
         return null;
     }
-
+	*/
+	
     public PageReference onSelectChangeLegalEntityAnnualCreditCardSalesVolume() {
         if (currentMappings.legalEntityAnnualCreditCardSalesVolume__c == null) {
             currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = false;
@@ -801,7 +803,8 @@ public class SalesforceLitleMappingController {
         if (currentMappings.legalEntityTaxIdX__c) {
             currentMappings.legalEntityTaxIdD__c = emptyString;
         }
-
+		
+		/* Removed Pci Fields
         if (currentMappings.legalEntityIsExclusiveToPspX__c) {
             currentMappings.legalEntityIsExclusiveToPspD__c = emptyString;
         }
@@ -829,7 +832,8 @@ public class SalesforceLitleMappingController {
         if (currentMappings.legalEntityReportOnComplianceX__c) {
             currentMappings.legalEntityReportOnComplianceD__c = emptyString;
         }
-
+		*/
+		
         if (currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c) {
             currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c = emptyString;
         }
