@@ -1309,6 +1309,7 @@ private class LitleFormControllerTest {
     	delete mappingObject;
 	}
     
+    /*
     static testMethod void testPopulateLEIsExclusiveToPsp(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
@@ -1493,7 +1494,7 @@ private class LitleFormControllerTest {
     	delete mappingObject;
 	}
     
-    
+    */
     
     
     

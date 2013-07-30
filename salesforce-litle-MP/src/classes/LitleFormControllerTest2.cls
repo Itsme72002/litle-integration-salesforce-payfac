@@ -44,7 +44,7 @@ private class LitleFormControllerTest2 {
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(null, litleMidFormController.urlAccountId);
     }
-    
+    /*
     static testMethod void testPopulateLEQualifiedSecurityAssessor(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
@@ -182,7 +182,7 @@ private class LitleFormControllerTest2 {
     	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
     	delete mappingObject;
 	}
-    
+    */
     static testMethod void testPopulateLEAnnualCreditCardSalesVolume(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
