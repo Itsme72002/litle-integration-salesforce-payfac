@@ -125,7 +125,10 @@
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Street Address 1" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" />
+                   	</apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 
@@ -138,21 +141,30 @@
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="City" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                   		<apex:inputText value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" />
+                   	</apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="State/Province" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" />
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Postal Code" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" />
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 
@@ -525,6 +537,7 @@
 			
 			
 			<!-- PCI Details start -->
+            <!--
             <apex:pageBlockSection columns="1" title="PCI Details" id="pciSection">
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Is Exclusive To PSP " />
@@ -583,7 +596,7 @@
                 </apex:pageBlockSectionItem>
                 
                 
-            </apex:pageBlockSection>
+            </apex:pageBlockSection> -->
 			<!-- PCI Details end -->
 			
 				
@@ -591,29 +604,41 @@
             <apex:pageBlockSection columns="1" title="Primary Contact" id="primaryContactSection">
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="First Name" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" />
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Last Name" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" />
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Email Address" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}"
-                        id="subMerchantEmailAddressDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+	                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}"
+	                        id="subMerchantEmailAddressDefaultTxtBox" />
+	                </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Phone" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                    	<apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" />
+                    </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
                 

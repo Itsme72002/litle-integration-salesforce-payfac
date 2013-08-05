@@ -131,7 +131,7 @@ private class LegalEntityModelTest {
         System.assertEquals(legalEntityModel.getLegalEntityTaxId(), testString);
     }
     
-     static testMethod void testLegalEntityPci(){
+     /*static testMethod void testLegalEntityPci(){
      	LegalEntityModel legalEntityModel = new LegalEntityModel();
         // Check if the account is null initially
         //System.assertEquals(legalEntityModel.getLegalEntityPci(), null);
@@ -157,6 +157,7 @@ private class LegalEntityModelTest {
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityPci(), pci);
      }
+     */
     
    static testMethod void testLegalEntityAnnualCreditCardSalesVolume(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();

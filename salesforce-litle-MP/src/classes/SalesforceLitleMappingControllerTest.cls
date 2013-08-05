@@ -484,7 +484,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.onSelectChangeLegalEntityTaxId();
 		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTaxIdX__c, false);
 	 }
-	
+	/*
 	static testMethod void testOnSelectChangeLegalEntityIsExclusiveToPsp(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
@@ -603,7 +603,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.onSelectChangeLegalEntityReportOnCompliance();
 		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c, false);
 	 }
-	
+	*/
 	static testMethod void testOnSelectChangeLegalEntityAnnualCreditCardSalesVolume(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
@@ -1114,13 +1114,13 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c = flag; 
+		/*salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPciLevelX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityScanningVendorX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c = flag; 
+		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c = flag; */
 		salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsX__c = flag;
 	}
@@ -1174,13 +1174,13 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c = stringToSet; 
+		/*salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c = stringToSet; 
+		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c = stringToSet; */
 		salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c = stringToSet;  
 		
@@ -1234,13 +1234,13 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c);
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c); 
+		/*System.assertEquals('true', salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c); 
+		System.assertEquals('true', salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c); 
+		System.assertEquals('4', salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c); 
+		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c); */
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c);  
 		
