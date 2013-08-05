@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 public class CreatePackage extends BaseSeleniumTestCase {
@@ -74,11 +75,13 @@ public class CreatePackage extends BaseSeleniumTestCase {
             List<WebElement> deprecateLinks = driver.findElements(By.linkText("Deprecate"));
             for(int i = 0; i < deprecateLinks.size(); i++) {
                 WebElement deprecateLink = deprecateLinks.get(i);
-                deprecateLink.click();
-                String deprecateButtonid = "simpleDialog" + i + "button0";
-                waitFor(By.id(deprecateButtonid));
-                driver.findElement(By.id(deprecateButtonid)).click();
-                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+                try {
+                    deprecateLink.click();
+                    String deprecateButtonid = "simpleDialog" + i + "button0";
+                    waitFor(By.id(deprecateButtonid));
+                    driver.findElement(By.id(deprecateButtonid)).click();
+                    waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+                } catch(StaleElementReferenceException e) {}
             }
 
 //            while(driver.findElements(By.linkText("Deprecate")).size() != 0) {
