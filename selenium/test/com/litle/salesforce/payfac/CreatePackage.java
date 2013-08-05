@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 public class CreatePackage extends BaseSeleniumTestCase {
@@ -71,25 +70,17 @@ public class CreatePackage extends BaseSeleniumTestCase {
             System.out.println("Deprecating packages");
             waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
 
-
-            List<WebElement> deprecateLinks = driver.findElements(By.linkText("Deprecate"));
-            for(int i = 0; i < deprecateLinks.size(); i++) {
-                WebElement deprecateLink = deprecateLinks.get(i);
-                try {
-                    deprecateLink.click();
-                    String deprecateButtonid = "simpleDialog" + i + "button0";
-                    waitFor(By.id(deprecateButtonid));
-                    driver.findElement(By.id(deprecateButtonid)).click();
-                    waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
-                } catch(StaleElementReferenceException e) {}
+            while(driver.findElement(By.linkText("Deprecate")) != null) {
+                System.out.println("Found a deprecate link, so clicking it");
+                WebElement deprecateLink = driver.findElement(By.linkText("Deprecate"));
+                deprecateLink.click();
+                String deprecateButtonId = "simpleDialog0button0";
+                waitFor(By.id(deprecateButtonId));
+                driver.findElement(By.id(deprecateButtonId)).click(); //Click the confirm button
+                driver.navigate().refresh();
+                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
             }
 
-//            while(driver.findElements(By.linkText("Deprecate")).size() != 0) {
-//                driver.findElement(By.linkText("Deprecate")).click();
-//                waitFor(By.className("cssDialog"));
-//                findButtonByValue("Deprecate").click();
-//                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
-//            }
             System.out.println("Done deprecating");
 
             //Delete the package
@@ -99,8 +90,6 @@ public class CreatePackage extends BaseSeleniumTestCase {
             driver.switchTo().alert().accept();
 
             waitFor(By.name("new"));
-
-
 
             length = (Long)driver.executeScript("return document.getElementsByClassName('dataRow').length");
             if(length > 0) {
