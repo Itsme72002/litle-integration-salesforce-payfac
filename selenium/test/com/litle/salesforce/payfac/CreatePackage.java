@@ -69,7 +69,7 @@ public class CreatePackage extends BaseSeleniumTestCase {
             assertNotNull("Couldn't find 'Versions' tab", versionTab);
             versionTab.click();
             System.out.println("Deprecating packages");
-            waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+            waitFor(By.className("headerRow"));
 
             while(true) {
                 try {
