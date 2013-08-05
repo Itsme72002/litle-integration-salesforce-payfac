@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class CreatePackage extends BaseSeleniumTestCase {
@@ -70,15 +71,32 @@ public class CreatePackage extends BaseSeleniumTestCase {
             System.out.println("Deprecating packages");
             waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
 
-            while(driver.findElement(By.linkText("Deprecate")) != null) {
-                System.out.println("Found a deprecate link, so clicking it");
-                WebElement deprecateLink = driver.findElement(By.linkText("Deprecate"));
-                deprecateLink.click();
-                String deprecateButtonId = "simpleDialog0button0";
-                waitFor(By.id(deprecateButtonId));
-                driver.findElement(By.id(deprecateButtonId)).click(); //Click the confirm button
-                driver.navigate().refresh();
-                waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+            while(true) {
+                try {
+                    System.out.println("Found a deprecate link, so clicking it");
+                    WebElement deprecateLink = driver.findElement(By.linkText("Deprecate"));
+                    deprecateLink.click();
+                    String deprecateButtonId = "simpleDialog0button0";
+                    waitFor(By.id(deprecateButtonId));
+                    driver.findElement(By.id(deprecateButtonId)).click(); //Click the confirm button
+                    driver.navigate().refresh();
+                    waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsTab_cell"));
+
+                    //Remove uploaded versions
+                    versionTab = null;
+                    list = driver.findElement(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsTab_cell")).findElements(By.tagName("td"));
+                    for(WebElement e : list) {
+                        if(e.getText().equals("Versions")) {
+                            versionTab = e;
+                        }
+                    }
+                    assertNotNull("Couldn't find 'Versions' tab", versionTab);
+                    versionTab.click();
+                    System.out.println("Deprecating packages");
+                    waitFor(By.id("ViewAllPackage:theForm:mainDetailBlock:packageExportsList"));
+                } catch(NoSuchElementException e) {
+                    break;
+                }
             }
 
             System.out.println("Done deprecating");
