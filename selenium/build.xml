@@ -64,6 +64,17 @@
         </junit>
 	</target>
 	
+   <target name="uninstall" depends="compile">
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="build.classpath" />
+            <classpath refid="test.path" />
+            <formatter type="plain" usefile="false" />
+            <batchtest>
+                <fileset dir="${src.dir}" includes="**/Uninstall.java" />
+            </batchtest>
+        </junit>
+    </target>
+	
 	<!-- Run all the test classes starting with 'Test' and uninstall.  Should be proceeded by installWithJunit -->
 	<target name="test" depends="compile">
         <junit printsummary="on" fork="true" haltonfailure="yes">
