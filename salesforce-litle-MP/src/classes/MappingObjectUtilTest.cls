@@ -80,39 +80,8 @@ private class MappingObjectUtilTest {
 		 delete mappingObject;
 		
 		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityIsExclusiveToPsp__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityIsPciComplianceValidated__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityMostRecentlyPassedScan__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
 		mappingObject.legalEntityName__c = 'Opportunity.Name';
 		mappingObject.litleEnvironment__c = 'CERT';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityPciLevel__c = 'Opportunity.Name';
 		mappingObject.litleEnvironment__c = 'CERT';
 		insert mappingObject;
 		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
@@ -211,27 +180,6 @@ private class MappingObjectUtilTest {
 		
 		mappingObject = new SalesforceLitleMappingsObject__c();
 		mappingObject.legalEntityPrincipalStreetAddress2__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityQualifiedSecurityAssessor__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityReportOnCompliance__c = 'Opportunity.Name';
-		mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));
-		 delete mappingObject;
-		
-		mappingObject = new SalesforceLitleMappingsObject__c();
-		mappingObject.legalEntityScanningVendor__c = 'Opportunity.Name';
 		mappingObject.litleEnvironment__c = 'CERT';
 		insert mappingObject;
 		System.assert(MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, 'Opportunity'));

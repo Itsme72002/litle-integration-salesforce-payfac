@@ -42,7 +42,7 @@
         <fullName>legalEntityAnnualCreditCardSalesVolumeD__c</fullName>
         <description>Legal Entity AnnualCreditCardSalesVolumeD</description>
         <externalId>false</externalId>
-        <label>legalEntityAnnualCreditCardSalesVolumeD</label>
+        <label>Default Annual CreditCard Sales Volume</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -52,14 +52,14 @@
         <fullName>legalEntityAnnualCreditCardSalesVolumeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityAnnualCreditCardSalesVolumeX</label>
+        <label>Default Annual CreditCard Sales Volume?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityAnnualCreditCardSalesVolume__c</fullName>
         <description>Legal Entity AnnualCreditCardSalesVolume</description>
         <externalId>false</externalId>
-        <label>legalEntityAnnualCreditCardSalesVolume</label>
+        <label>SF Annual CreditCard Sales Volume</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -69,7 +69,7 @@
         <fullName>legalEntityCityD__c</fullName>
         <description>Legal Entity CityD</description>
         <externalId>false</externalId>
-        <label>legalEntityCityD</label>
+        <label>Default Legal Entity City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -79,14 +79,14 @@
         <fullName>legalEntityCityX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityCityX</label>
+        <label>Default Legal Entity City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityCity__c</fullName>
         <description>Legal Entity City</description>
         <externalId>false</externalId>
-        <label>legalEntityCity</label>
+        <label>SF Legal Entity City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -96,7 +96,7 @@
         <fullName>legalEntityContactPhoneD__c</fullName>
         <description>Legal Entity ContactPhoneD</description>
         <externalId>false</externalId>
-        <label>legalEntityContactPhoneD</label>
+        <label>Default Legal Entity ContactPhone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -106,14 +106,14 @@
         <fullName>legalEntityContactPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityContactPhoneX</label>
+        <label>Default Legal Entity ContactPhone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityContactPhone__c</fullName>
         <description>Legal Entity ContactPhone</description>
         <externalId>false</externalId>
-        <label>legalEntityContactPhone</label>
+        <label>SF Legal Entity ContactPhone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -123,7 +123,7 @@
         <fullName>legalEntityCountryCodeD__c</fullName>
         <description>Legal Entity CountryCodeD</description>
         <externalId>false</externalId>
-        <label>legalEntityCountryCodeD</label>
+        <label>Default Legal Entity CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -133,14 +133,14 @@
         <fullName>legalEntityCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityCountryCodeX</label>
+        <label>Default Legal Entity CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityCountryCode__c</fullName>
         <description>Legal Entity CountryCode</description>
         <externalId>false</externalId>
-        <label>legalEntityCountryCode</label>
+        <label>SF Legal Entity CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -150,7 +150,7 @@
         <fullName>legalEntityDateOfBirthD__c</fullName>
         <description>Legal Entity DateOfBirthD</description>
         <externalId>false</externalId>
-        <label>legalEntityDateOfBirthD</label>
+        <label>Default Legal Entity DOB</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -160,14 +160,14 @@
         <fullName>legalEntityDateOfBirthX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityDateOfBirthX</label>
+        <label>Default Legal Entity DOB?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDateOfBirth__c</fullName>
         <description>Legal Entity DateOfBirth</description>
         <externalId>false</externalId>
-        <label>legalEntityDateOfBirth</label>
+        <label>SF Legal Entity DOB</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -177,7 +177,7 @@
         <fullName>legalEntityDoingBusinessAsD__c</fullName>
         <description>Legal Entity DoingBusinessAsD</description>
         <externalId>false</externalId>
-        <label>legalEntityDoingBusinessAsD</label>
+        <label>Default Legal Entity DoingBusinessAs</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -187,14 +187,14 @@
         <fullName>legalEntityDoingBusinessAsX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityDoingBusinessAsX</label>
+        <label>Default Legal Entity DoingBusinessAs?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDoingBusinessAs__c</fullName>
         <description>Legal Entity DoingBusinessAs</description>
         <externalId>false</externalId>
-        <label>legalEntityDoingBusinessAs</label>
+        <label>SF Legal Entity DoingBusinessAs</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -204,7 +204,7 @@
         <fullName>legalEntityDriversLicenseD__c</fullName>
         <description>Legal Entity DriversLicenseD</description>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicenseD</label>
+        <label>Default Legal Entity DL</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -214,7 +214,7 @@
         <fullName>legalEntityDriversLicenseStateD__c</fullName>
         <description>Legal Entity DriversLicenseStateD</description>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicenseStateD</label>
+        <label>Default Legal Entity DL State</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -224,14 +224,14 @@
         <fullName>legalEntityDriversLicenseStateX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicenseStateX</label>
+        <label>Default Legal Entity DL State?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDriversLicenseState__c</fullName>
         <description>Legal Entity DriversLicenseState</description>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicenseState</label>
+        <label>SF Legal Entity DL State</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -241,14 +241,14 @@
         <fullName>legalEntityDriversLicenseX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicenseX</label>
+        <label>Default Legal Entity DL?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDriversLicense__c</fullName>
         <description>Legal Entity DriversLicense</description>
         <externalId>false</externalId>
-        <label>legalEntityDriversLicense</label>
+        <label>SF Legal Entity DL</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -258,7 +258,7 @@
         <fullName>legalEntityFirstNameD__c</fullName>
         <description>Legal Entity FirstNameD</description>
         <externalId>false</externalId>
-        <label>legalEntityFirstNameD</label>
+        <label>Default Legal Entity FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -268,14 +268,14 @@
         <fullName>legalEntityFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityFirstNameX</label>
+        <label>Default Legal Entity FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityFirstName__c</fullName>
         <description>Legal Entity FirstName</description>
         <externalId>false</externalId>
-        <label>legalEntityFirstName</label>
+        <label>SF Legal Entity FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -285,7 +285,7 @@
         <fullName>legalEntityHasAcceptedCreditCardsD__c</fullName>
         <description>Legal Entity HasAcceptedCreditCardsD</description>
         <externalId>false</externalId>
-        <label>legalEntityHasAcceptedCreditCardsDefault</label>
+        <label>Default Legal Entity HasAcceptedCCs</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -295,68 +295,14 @@
         <fullName>legalEntityHasAcceptedCreditCardsX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityHasAcceptedCreditCardsX</label>
+        <label>Default Legal Entity HasAcceptedCCs?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityHasAcceptedCreditCards__c</fullName>
         <description>Legal Entity HasAcceptedCreditCards</description>
         <externalId>false</externalId>
-        <label>legalEntityHasAcceptedCreditCards</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsExclusiveToPspD__c</fullName>
-        <description>Legal Entity IsExclusiveToPspD</description>
-        <externalId>false</externalId>
-        <label>legalEntityIsExclusiveToPspD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsExclusiveToPspX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityIsExclusiveToPspX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsExclusiveToPsp__c</fullName>
-        <description>Legal Entity IsExclusiveToPsp</description>
-        <externalId>false</externalId>
-        <label>legalEntityIsExclusiveToPsp</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsPciComplianceValidatedD__c</fullName>
-        <description>Legal Entity IsPciComplianceValidatedD</description>
-        <externalId>false</externalId>
-        <label>legalEntityIsPciComplianceValidatedD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsPciComplianceValidatedX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityIsPciComplianceValidatedX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityIsPciComplianceValidated__c</fullName>
-        <description>Legal Entity IsPciComplianceValidated</description>
-        <externalId>false</externalId>
-        <label>legalEntityIsPciComplianceValidated</label>
+        <label>SF Legal Entity HasAcceptedCCs</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -366,7 +312,7 @@
         <fullName>legalEntityLastNameD__c</fullName>
         <description>Legal Entity LastNameD</description>
         <externalId>false</externalId>
-        <label>legalEntityLastNameD</label>
+        <label>Default Legal Entity LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -376,41 +322,14 @@
         <fullName>legalEntityLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityLastNameX</label>
+        <label>Default Legal Entity LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityLastName__c</fullName>
         <description>Legal Entity LastName</description>
         <externalId>false</externalId>
-        <label>legalEntityLastName</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityMostRecentlyPassedScanD__c</fullName>
-        <description>Legal Entity MostRecentlyPassedScanD</description>
-        <externalId>false</externalId>
-        <label>legalEntityMostRecentlyPassedScanD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityMostRecentlyPassedScanX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityMostRecentlyPassedScanX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityMostRecentlyPassedScan__c</fullName>
-        <description>Legal Entity MostRecentlyPassedScan</description>
-        <externalId>false</externalId>
-        <label>legalEntityMostRecentlyPassedScan</label>
+        <label>SF Legal Entity LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -438,33 +357,6 @@
         <description>Legal Entity Name</description>
         <externalId>false</externalId>
         <label>legalEntityName</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityPciLevelD__c</fullName>
-        <description>Legal Entity PciLevelD</description>
-        <externalId>false</externalId>
-        <label>legalEntityPciLevelD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityPciLevelX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityPciLevelX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityPciLevel__c</fullName>
-        <description>Legal Entity PciLevel</description>
-        <externalId>false</externalId>
-        <label>legalEntityPciLevel</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -870,87 +762,6 @@
         <description>Legal Entity StreetAddress2</description>
         <externalId>false</externalId>
         <label>legalEntityPrincipalStreetAddress2</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityQualifiedSecurityAssessorD__c</fullName>
-        <description>Legal Entity QualifiedSecurityAssessorD</description>
-        <externalId>false</externalId>
-        <label>legalEntityQualifiedSecurityAssessorD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityQualifiedSecurityAssessorX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityQualifiedSecurityAssessorX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityQualifiedSecurityAssessor__c</fullName>
-        <description>Legal Entity QualifiedSecurityAssessor</description>
-        <externalId>false</externalId>
-        <label>legalEntityQualifiedSecurityAssessor</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityReportOnComplianceD__c</fullName>
-        <description>Legal Entity ReportOnComplianceD</description>
-        <externalId>false</externalId>
-        <label>legalEntityReportOnComplianceD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityReportOnComplianceX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityReportOnComplianceX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityReportOnCompliance__c</fullName>
-        <description>Legal Entity ReportOnCompliance</description>
-        <externalId>false</externalId>
-        <label>legalEntityReportOnCompliance</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityScanningVendorD__c</fullName>
-        <description>Legal Entity ScanningVendorD</description>
-        <externalId>false</externalId>
-        <label>legalEntityScanningVendorD</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityScanningVendorX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>legalEntityScanningVendorX</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityScanningVendor__c</fullName>
-        <description>Legal Entity ScanningVendor</description>
-        <externalId>false</externalId>
-        <label>legalEntityScanningVendor</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>

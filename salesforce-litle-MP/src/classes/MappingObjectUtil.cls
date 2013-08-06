@@ -25,19 +25,7 @@ public class MappingObjectUtil {
 			if(String.isNotEmpty(mappingObject.legalEntityHasAcceptedCreditCards__c) && mappingObject.legalEntityHasAcceptedCreditCards__c.startsWith(sObjectType)) {
 				return true;
 			}
-			if(String.isNotEmpty(mappingObject.legalEntityIsExclusiveToPsp__c) && mappingObject.legalEntityIsExclusiveToPsp__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityIsPciComplianceValidated__c) && mappingObject.legalEntityIsPciComplianceValidated__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityMostRecentlyPassedScan__c) && mappingObject.legalEntityMostRecentlyPassedScan__c.startsWith(sObjectType)) {
-				return true;
-			}
 			if(String.isNotEmpty(mappingObject.legalEntityName__c) && mappingObject.legalEntityName__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityPciLevel__c) && mappingObject.legalEntityPciLevel__c.startsWith(sObjectType)) {
 				return true;
 			}
 			if(String.isNotEmpty(mappingObject.legalEntityPostalCode__c) && mappingObject.legalEntityPostalCode__c.startsWith(sObjectType)) {
@@ -80,15 +68,6 @@ public class MappingObjectUtil {
 				return true;
 			}
 			if(String.isNotEmpty(mappingObject.legalEntityPrincipalStreetAddress2__c) && mappingObject.legalEntityPrincipalStreetAddress2__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityQualifiedSecurityAssessor__c) && mappingObject.legalEntityQualifiedSecurityAssessor__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityReportOnCompliance__c) && mappingObject.legalEntityReportOnCompliance__c.startsWith(sObjectType)) {
-				return true;
-			}
-			if(String.isNotEmpty(mappingObject.legalEntityScanningVendor__c) && mappingObject.legalEntityScanningVendor__c.startsWith(sObjectType)) {
 				return true;
 			}
 			if(String.isNotEmpty(mappingObject.legalEntityStateProvince__c) && mappingObject.legalEntityStateProvince__c.startsWith(sObjectType)) {
