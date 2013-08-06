@@ -23,6 +23,7 @@ public class CreatePackage extends BaseSeleniumTestCase {
     }
 
     private void runCodeCoverage() throws Exception {
+        waitFor(By.id("DevToolsIntegrate_font"));
         driver.findElement(By.id("DevToolsIntegrate_font")).click(); //AppSetup -> Develop
         waitFor(By.id("ApexClasses_font"));
         driver.findElement(By.id("ApexClasses_font")).click(); //Apex Classes

@@ -107,28 +107,6 @@ public class BaseSeleniumTestCase {
             tries++;
         }
 
-//        int tries = 0;
-//        while(driver.executeScript(return , args))
-//        waitFor(By.id("username"));
-//
-//
-//
-//        int tries = 0;
-//        while(driver.executeScript("return document.getElementById('errorDiv_ep')") != null) {
-//            if(tries % 2 == 0) {
-//                System.out.println("The save had errors - try again with selenium");
-//                driver.findElement(By.id("errorDiv_ep"));
-//                driver.findElement(By.id("Name")).clear();
-//                driver.findElement(By.id("Name")).sendKeys(PACKAGE_NAME);
-//            } else {
-//                System.out.println("The save had errors - try again with javascript");
-//                driver.executeScript("document.getElementsByName('Name')[0].value = '"+PACKAGE_NAME+"'");
-//            }
-//            driver.findElement(By.name("save")).click();
-//            tries++;
-//        }
-
-
         waitFor(By.id("tabContainer"));
     }
 
