@@ -9,15 +9,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -45,6 +51,23 @@ public class BaseSeleniumTestCase {
         profile.setEnableNativeEvents(true);
         driver = new EventFiringWebDriver(new FirefoxDriver(profile));
         wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
+        WebDriverEventListener errorListener = new AbstractWebDriverEventListener() {
+            @Override
+            public void onException(Throwable throwable, WebDriver driver) {
+                takeScreenshot(String.valueOf(System.currentTimeMillis()) + "-" + driver.getTitle() + "-");
+            }
+
+            private void takeScreenshot(String screenshotName) {
+                File tempFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                try {
+                    FileUtils.copyFile(tempFile, new File("/usr/local/litle-home/gdake/workspace/litle-integration-salesforce-payfac/selenium/test/screenshots/" + screenshotName + ".png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        };
+        driver.register(errorListener);
     }
 
     @AfterClass
