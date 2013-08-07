@@ -40,6 +40,29 @@
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
     <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
+        <relationshipName>LitleRequestResponseLogs</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Opportutunity causing this log entry</description>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
+        <relationshipName>LitleRequestResponseLogs</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>createLegalEntityRequestDate__c</fullName>
         <description>Request/response date for create legal entity request</description>
         <externalId>false</externalId>
@@ -215,16 +238,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>sObjectId__c</fullName>
-        <description>The Id of the sObject (AccountId / OpportunityId) of the logged request</description>
-        <externalId>false</externalId>
-        <label>sObject Id</label>
-        <length>30</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>sObjectName__c</fullName>
         <description>The name of the sObject of the logged request.</description>
         <externalId>false</externalId>
@@ -260,7 +273,7 @@
         <description>Authorization header for sub merchant requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Authorization header for sub merchant requests</inlineHelpText>
-        <label>SubMerchant  Authorization Header</label>
+        <label>Sub Merchant Authorization Header</label>
         <length>100</length>
         <maskChar>asterisk</maskChar>
         <maskType>all</maskType>
@@ -295,7 +308,6 @@
         <columns>NAME</columns>
         <columns>sObjectType__c</columns>
         <columns>sObjectName__c</columns>
-        <columns>sObjectId__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
@@ -306,6 +318,31 @@
         <label>LogId</label>
         <type>AutoNumber</type>
     </nameField>
+    <namedFilters>
+        <fullName>Account_00Ni0000007sb96EAA</fullName>
+        <active>true</active>
+        <field>Account.SalesforceLitleMappingsObject__c</field>
+        <filterItems>
+            <field>LitleRequestResponseLog__c.sObjectType__c</field>
+            <operation>equals</operation>
+            <value>Account</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Account_SalesforceLitleMappingsObject</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>Account_00Ni0000007sbZxEAI</fullName>
+        <active>true</active>
+        <field>Account.LitleRequestResponseLog__c</field>
+        <filterItems>
+            <field>LitleRequestResponseLog__c.Account__r.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.Id</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Account_LitleRequestResponseLog</name>
+        <sourceObject>Account</sourceObject>
+    </namedFilters>
     <pluralLabel>LitleRequestResponseLogs</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>

@@ -1445,6 +1445,10 @@ private class LitleFormControllerTest2 {
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
 		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		
+		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
+		System.assertEquals(insertedaccount.Id, litleRequestResponseLog.Account__c);
+		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);
 		Test.stopTest();
     }
     
@@ -1524,6 +1528,10 @@ private class LitleFormControllerTest2 {
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisOpportunity.Litle_Mid__c);
 		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisOpportunity.PayFac_Portal_Link__c);
+		
+		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
+		System.assertEquals(opportunity.Id, litleRequestResponseLog.Opportunity__c);
+		System.assertEquals(null, litleRequestResponseLog.Account__c);
 		Test.stopTest();
     }
     

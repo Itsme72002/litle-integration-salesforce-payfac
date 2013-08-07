@@ -45,7 +45,8 @@ private class TestManualReviewStatusScheduler {
 		logObject.subMerchantAcceptHeader__c = LitleConstants.REQUEST_HEADER_ACCEPT_VALUE; 
 		logObject.subMerchantAuthorizationHeader__c = AUTH_HEADER; 
 		logObject.subMerchantContentTypeHeader__c = LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE; 
-		logObject.sObjectId__c = String.valueOf(account.Id); 
+		//TODO
+		//logObject.sObjectId__c = String.valueOf(account.Id); 
 		logObject.sObjectType__c = 'Account'; 
 		logObject.createSubMerchantRequestXml__c = REQUEST_XML; 
 		insert logObject;

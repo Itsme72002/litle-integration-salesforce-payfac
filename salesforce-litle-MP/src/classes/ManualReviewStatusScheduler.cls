@@ -16,7 +16,7 @@ global class ManualReviewStatusScheduler implements Schedulable{
 	@future(callout=true)
 	public static void scheduleManualReviews(){
 		//get all the response logs where manual review is the response code
-		List<LitleRequestResponseLog__c> litleRequestResponseLogs = 
+		/*List<LitleRequestResponseLog__c> litleRequestResponseLogs = 
 		[select legalEntityId__c, 
 				legalEntityResponseCode__c,
 				subMerchantAcceptHeader__c, 
@@ -123,7 +123,7 @@ global class ManualReviewStatusScheduler implements Schedulable{
 					}
 				}
 			}
-		}
+		}*/
 	}
 	
 	/* For demo only*/

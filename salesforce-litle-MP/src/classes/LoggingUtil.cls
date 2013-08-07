@@ -26,7 +26,13 @@ public class LoggingUtil {
 		if(litleRequestResponseLog != null){
 			litleRequestResponseLog.sObjectType__c = sObjectType;
 			litleRequestResponseLog.sObjectName__c = sObjectName;
-			litleRequestResponseLog.sObjectId__c = sObjectId;
+			//TODO
+			//litleRequestResponseLog.sObjectId__c = sObjectId;
+			if(String.isNotEmpty(sObjectType) && sObjectType.equals('Account')){
+				litleRequestResponseLog.Account__c = sObjectId;
+			}else if(String.isNotEmpty(sObjectType) && sObjectType.equals('Opportunity')){
+				litleRequestResponseLog.Opportunity__c = sObjectId;
+			}
 		}
 	}
 	
