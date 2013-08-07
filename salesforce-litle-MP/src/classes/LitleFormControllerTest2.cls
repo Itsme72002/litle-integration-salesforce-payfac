@@ -44,145 +44,7 @@ private class LitleFormControllerTest2 {
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(null, litleMidFormController.urlAccountId);
     }
-    /*
-    static testMethod void testPopulateLEQualifiedSecurityAssessor(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = true;
-    	mappingObject.legalEntityQualifiedSecurityAssessor__c = 'Account.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = false;
-    	mappingObject.legalEntityQualifiedSecurityAssessorD__c = DEFAULT_STRING;
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityQualifiedSecurityAssessorX__c = true;
-    	mappingObject.legalEntityQualifiedSecurityAssessor__c = 'Opportunity.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	
-    	// check as if initiated from account page
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	ApexPages.currentPage().getParameters().put('oppid','');
-    	litleMidFormController = new LitleMidFormController();
-    	litleMidFormController.selectedOpportunityId = opportunity.Id;
-    	litleMidFormController.populateLEQualifiedSecurityAssessor();
-    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsQualifiedSecurityAssessorFromOpportunity());
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor());
-    	delete mappingObject;
-	}
     
-    static testMethod void testPopulateLEMostRecentlyPassedScan(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = true;
-    	mappingObject.legalEntityMostRecentlyPassedScan__c = 'Account.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = false;
-    	mappingObject.legalEntityMostRecentlyPassedScanD__c = DEFAULT_STRING;
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityMostRecentlyPassedScanX__c = true;
-    	mappingObject.legalEntityMostRecentlyPassedScan__c = 'Opportunity.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	
-    	// check as if initiated from account page
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	ApexPages.currentPage().getParameters().put('oppid','');
-    	litleMidFormController = new LitleMidFormController();
-    	litleMidFormController.selectedOpportunityId = opportunity.Id;
-    	litleMidFormController.populateLEMostRecentlyPassedScan();
-    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsMostRecentlyPassedScanFromOpportunity());
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan());
-    	delete mappingObject;
-	}
-    
-    static testMethod void testPopulateLEReportOnCompliance(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityReportOnComplianceX__c = true;
-    	mappingObject.legalEntityReportOnCompliance__c = 'Account.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	LitleMidFormController litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(ACCOUNT_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.legalEntityReportOnComplianceX__c = false;
-    	mappingObject.legalEntityReportOnComplianceD__c = DEFAULT_STRING;
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(DEFAULT_STRING, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.legalEntityReportOnComplianceX__c = true;
-    	mappingObject.legalEntityReportOnCompliance__c = 'Opportunity.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	litleMidFormController = new LitleMidFormController();
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	
-    	// check as if initiated from account page
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	ApexPages.currentPage().getParameters().put('oppid','');
-    	litleMidFormController = new LitleMidFormController();
-    	litleMidFormController.selectedOpportunityId = opportunity.Id;
-    	litleMidFormController.populateLEReportOnCompliance();
-    	System.assert(litleMidFormController.legalEntityModel.getLegalEntityPci().getIsReportOnComplianceFromOpportunity());
-    	System.assertEquals(OPPORTUNITY_NAME, litleMidFormController.legalEntityModel.getLegalEntityPci().getReportOnCompliance());
-    	delete mappingObject;
-	}
-    */
     static testMethod void testPopulateLEAnnualCreditCardSalesVolume(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
@@ -1384,9 +1246,11 @@ private class LitleFormControllerTest2 {
     	delete mappingObject;
     }
     
-       
-    static testMethod void testSubmit(){
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+    
+    static testMethod void testSubmitInvalidEntriesNoValueSavedInAccount(){
+    	Account account = new Account(name=ACCOUNT_NAME);
+    	insert account;
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
 		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
@@ -1439,15 +1303,16 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
-		// check submit on invalid entries
-		System.assertEquals(null, litleMidFormController.submit());
-		// check legal entity id should be null
-		System.assertEquals(null, litleMidFormController.legalEntityResponse.getLegalEntityId());
-		
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// insert username and password
-    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
-    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
+		litleMidFormController.submit();
+		System.assertEquals(null, account.Litle_Mid__c);
+		System.assertEquals(null, account.PayFac_Portal_Link__c);
+    }
+    
+    static testMethod void testSubmitInvalidEntriesNoValueSavedInOpportunity(){
+    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
+    	insert opportunity;
+    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
+    	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
 		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
 		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
@@ -1499,106 +1364,328 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
-		
-		
-    	System.assertEquals(null, litleMidFormController.submit());
-    	/*Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
 		litleMidFormController.submit();
-		//check response code
-		System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, litleMidFormController.legalEntityResponse.getResponseCode());
-		System.assertEquals(ResponseCode.codeValue(ResponseCode.ResponseCodeEnum.APPROVED.name()), litleMidFormController.legalEntityResponse.getResponseCode());
-		//check the legal entity id
-		System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, litleMidFormController.legalEntityResponse.getLegalEntityId());*/
+		System.assertEquals(null, opportunity.Litle_Mid__c);
+		System.assertEquals(null, opportunity.PayFac_Portal_Link__c);
+    }
+       
+    static testMethod void testSubmitSuccessInAccount(){
+    	
+    	Account insertedaccount = new Account(name=ACCOUNT_NAME);
+    	insert insertedaccount;
+    	ApexPages.currentPage().getParameters().put('accid',insertedaccount.Id);
+		LitleMidFormController litleMidFormController = new LitleMidFormController();
+		SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	
+    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
+		Test.startTest();
+		
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+		litleMidFormController.submit();
+		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		List<String> actualMessageList = new List<String>();
+		for(Apexpages.Message message: Apexpages.getMessages()){
+			actualMessageList.add(message.getSummary());
+		}
+		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
+		System.assertEquals(expectedMessagesList, actualMessageList);	
+		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
+		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		Test.stopTest();
     }
     
-    static testMethod void testMakeCreateLegalEntityRequest(){
+    static testMethod void testSubmitSuccessInOpportunity(){
+    	
+    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
+    	insert opportunity;
+    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
+		LitleMidFormController litleMidFormController = new LitleMidFormController();
+		SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	
+    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
+		Test.startTest();
+		
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
+		litleMidFormController.submit();
+		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		List<String> actualMessageList = new List<String>();
+		for(Apexpages.Message message: Apexpages.getMessages()){
+			actualMessageList.add(message.getSummary());
+		}
+		Opportunity thisOpportunity = [select Litle_Mid__c, PayFac_Portal_Link__c from Opportunity where Id = :opportunity.Id];	
+		System.assertEquals(expectedMessagesList, actualMessageList);	
+		System.assertEquals('01100003', thisOpportunity.Litle_Mid__c);
+		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisOpportunity.PayFac_Portal_Link__c);
+		Test.stopTest();
+    }
+    
+    static testMethod void testMakeCreateLegalEntityRequest_ApprovedResponse(){
     	LitleMidFormController controller = new LitleMidFormController();
     	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
     	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	
-    	/* Test approved response */
     	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityApprovedResponse());
     	//Enter username and password
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
         Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
+    	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
         // check request xml in log
-    	//System.assertEquals(request.getBody(), litleRequestResponseLog.createLegalEntityRequestXml__c ); 
     	//check response log status code and message
     	System.assertEquals(String.valueOf(MockCreateLegalEntityApprovedResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
     	System.assertEquals(MockCreateLegalEntityApprovedResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
+    	System.assertEquals(MockCreateLegalEntityApprovedResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
+    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
+    	//TODO: test litle mid value
+    	//System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION
+    					//		, controller.litleMid);
     	// check if response code is approved
     	
-    	System.assertEquals(LitleConstants.RESPONSE_APPROVED, controller.legalEntityResponse.getResponseCode());
+    	System.assertEquals(LitleConstants.RESPONSE_APPROVED, legalEntityResponse.getResponseCode());
     	// check legal entity id
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	
-    	/* Test duplicate response */
+    	System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
+    }
+    
+    
+    static testMethod void testMakeCreateLegalEntityRequest_DuplicateResponse(){	
+    	LitleMidFormController controller = new LitleMidFormController();
+    	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Test.setMock(HttpCalloutMock.class, new MockCreateLegalEntityDuplicateResponse());
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
+    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
+    	
+    	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
     	
     	//check response log status code and message
     	System.assertEquals(String.valueOf(MockCreateLegalEntityDuplicateResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
     	System.assertEquals(MockCreateLegalEntityDuplicateResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
+    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
+    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
+    	//TODO check litle mid
+    	//System.assertEquals(MockCreateLegalEntityDuplicateResponse.RESPONSE_CODE+' : '+MockCreateLegalEntityDuplicateResponse.RESPONSE_DESCRIPTION
+    				//			, controller.litleMid);
     	// check if response code is duplicate
-    	System.assertEquals(LitleConstants.RESPONSE_DUPLICATE, controller.legalEntityResponse.getResponseCode());
+    	System.assertEquals(LitleConstants.RESPONSE_DUPLICATE, legalEntityResponse.getResponseCode());
     	// check legal entity id to be null
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	/* Test manual review response */
+    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
+    }
+    
+    static testMethod void testMakeCreateLegalEntityRequest_ManualReviewResponse(){	
+    	LitleMidFormController controller = new LitleMidFormController();
+    	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Test.setMock(HttpCalloutMock.class, new MockCreateLEManualReviewResponse());
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
+    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
+    	
+    	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
     	
     	//check response log status code and message
     	System.assertEquals(String.valueOf(MockCreateLEManualReviewResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
     	System.assertEquals(MockCreateLEManualReviewResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLEManualReviewResponse.TRANSACTION_ID, controller.legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE, controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE+' : '+MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION
-    							, controller.litleMid);
+    	System.assertEquals(MockCreateLEManualReviewResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
+    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
+    	//TODO Check for litle mid
+    	//System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE+' : '+MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION
+    			//				, controller.litleMid);
     	// check if response code is manual review
-    	System.assertEquals(LitleConstants.RESPONSE_MANUAL_REVIEW, controller.legalEntityResponse.getResponseCode());
+    	System.assertEquals(LitleConstants.RESPONSE_MANUAL_REVIEW, legalEntityResponse.getResponseCode());
     	// check legal entity id to be null
-    	System.assertEquals(MockCreateLEManualReviewResponse.LEGAL_ENTITY_ID, controller.legalEntityResponse.getLegalEntityId());
-    	
-    	/* Test error response */
+    	System.assertEquals(MockCreateLEManualReviewResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
+    }
+    
+    static testMethod void testMakeCreateLegalEntityRequest_ErrorResponse(){	
+    	LitleMidFormController controller = new LitleMidFormController();
+    	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Test.setMock(HttpCalloutMock.class, new MockCreateLEErrorResponse());
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
+    	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
+    	
+    	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
 		//check response log status code and message
     	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
     	System.assertEquals(MockCreateLEErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE), controller.legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLEErrorResponse.ERROR_MESSAGE, controller.legalEntityResponse.getResponseDespcription());
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)+' : '+MockCreateLEErrorResponse.STATUS_MESSAGE
-    							, controller.litleMid);
-		System.assertEquals(null, controller.legalEntityResponse.getLegalEntityId());
+    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE), legalEntityResponse.getResponseCode());
+    	System.assertEquals('Unauthorized', legalEntityResponse.getResponseDespcription());
+    	//TODO check for litle mid
+    	//System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)+' : '+MockCreateLEErrorResponse.STATUS_MESSAGE
+    		//					, controller.litleMid);
+		System.assertEquals(null, legalEntityResponse.getLegalEntityId());
     	
     }
+    
+    static testMethod void testGenerateResponseDescForErrorResponse(){
+    	LitleMidFormController controller = new LitleMidFormController();
+    	Httpresponse response = new Httpresponse();
+    	String body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+						'<errorResponse xmlns="http://psp.litle.com/api/merchant/onboard">'+
+						    '<transactionId>82821592641044699</transactionId>'+
+						    '<errors>'+
+						        '<error>Error of [may not be null] on [annualCreditCardSalesVolume]</error>'+
+						    '</errors>'+
+						'</errorResponse>';
+		response.setBody(body);
+		//System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', controller.generateResponseDescForErrorResponse(response));
+		controller.generateErrorMessages(response);
+		System.assertEquals(1, Apexpages.getMessages().size());
+		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(0).getSummary());
+		
+		// multiple error response
+		String errors = '<error>Error of [may not be null] on [annualCreditCardSalesVolume]</error>'+
+						        '<error>Error of [may not be null] on [hasAcceptedCreditCards]</error>'+
+						        '<error>Error of [may not be null] on [pciInfo.isExclusiveToPsp]</error>'+
+						        '<error>Error of [may not be null] on [pciInfo.isPciComplianceValidated]</error>'+
+						        '<error>Error of [must be between 1 and 4] on [pciInfo.pciLevel]</error>'+
+						        '<error>Error of [size must be between 1 and 20] on [addressUpdatable.city]</error>'+
+						        '<error>Error of [size must be between 1 and 2] on [addressUpdatable.stateProvince]</error>'+
+						        '<error>Error of [size must be between 1 and 50] on [pciInfo.qualifiedSecurityAssessor]</error>'+
+						        '<error>Error of [size must be between 1 and 50] on [pciInfo.scanningVendor]</error>'+
+						        '<error>Error of [size must be between 1 and 5] on [addressUpdatable.postalCode]</error>'+
+						        '<error>Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress1]</error>'+
+						        '<error>Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]</error>';
+		body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+						'<errorResponse xmlns="http://psp.litle.com/api/merchant/onboard">'+
+						    '<transactionId>82821592641044699</transactionId>'+
+						    '<errors>'+
+						        errors +
+						    '</errors>'+
+						'</errorResponse>';
+		response.setBody(body);
+		
+		controller.generateErrorMessages(response);
+		System.assertEquals(12, Apexpages.getMessages().size());
+		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(0).getSummary());
+		System.assertEquals('Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]', Apexpages.getMessages().get(11).getSummary());
+    	
+    }
+    
     
     static testMethod void testMakeCreateSubMerchantRequest(){
     	LitleMidFormController controller = new LitleMidFormController();
@@ -1610,8 +1697,8 @@ private class LitleFormControllerTest2 {
     	Test.setMock(HttpCalloutMock.class, new MockCreateSMSuccess());
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
         Httprequest request = LitleRequestXml.getCreateSubMerchantRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c
-		        																					,controller.legalEntityResponse.getLegalEntityId(),controller.subMerchantModel, 'CERT');
-    	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request);
+		        																					,'123',controller.subMerchantModel, 'CERT');
+    	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request, '123');
     	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
     	//check log response status code and status message
     	System.assertEquals(String.valueOf(LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
@@ -1621,7 +1708,7 @@ private class LitleFormControllerTest2 {
     	/* Error condition*/
     	Test.setMock(HttpCalloutMock.class, new MockCreateSMErrorResponse());
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request);
+    	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request, '123');
     	//System.assertEquals(DEFAULT_STRING, litleRequestResponseLog.createSubMerchantResponseXml__c );
     	//check log response status code and status message
     	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);

@@ -339,7 +339,7 @@
         <fullName>legalEntityNameD__c</fullName>
         <description>Legal Entity NameD</description>
         <externalId>false</externalId>
-        <label>legalEntityNameD</label>
+        <label>Default Legal Entity Name</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -349,14 +349,14 @@
         <fullName>legalEntityNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityNameX</label>
+        <label>Default Legal Entity Name?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityName__c</fullName>
         <description>Legal Entity Name</description>
         <externalId>false</externalId>
-        <label>legalEntityName</label>
+        <label>SF Legal Entity Name</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -366,7 +366,7 @@
         <fullName>legalEntityPostalCodeD__c</fullName>
         <description>Legal Entity PostalCodeD</description>
         <externalId>false</externalId>
-        <label>legalEntityPostalCodeD</label>
+        <label>Default Legal Entity PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -376,14 +376,14 @@
         <fullName>legalEntityPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPostalCodeX</label>
+        <label>Default Legal Entity PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPostalCode__c</fullName>
         <description>Legal Entity PostalCode</description>
         <externalId>false</externalId>
-        <label>legalEntityPostalCode</label>
+        <label>SF Legal Entity PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -393,7 +393,7 @@
         <fullName>legalEntityPrincipalCityD__c</fullName>
         <description>Legal Entity CityD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCityD</label>
+        <label>Default Principal City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -403,14 +403,14 @@
         <fullName>legalEntityPrincipalCityX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCityX</label>
+        <label>Default Principal City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCity__c</fullName>
         <description>Legal Entity City</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCity</label>
+        <label>SF Principal City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -420,7 +420,7 @@
         <fullName>legalEntityPrincipalContactPhoneD__c</fullName>
         <description>Legal Entity ContactPhoneD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalContactPhoneD</label>
+        <label>Default Principal ContactPhone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -430,14 +430,14 @@
         <fullName>legalEntityPrincipalContactPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalContactPhoneX</label>
+        <label>Default Principal ContactPhone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalContactPhone__c</fullName>
         <description>Legal Entity ContactPhone</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalContactPhone</label>
+        <label>SF Principal ContactPhone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -447,7 +447,7 @@
         <fullName>legalEntityPrincipalCountryCodeD__c</fullName>
         <description>Legal Entity CountryCodeD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCountryCodeD</label>
+        <label>Default Principal CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -457,14 +457,14 @@
         <fullName>legalEntityPrincipalCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCountryCodeX</label>
+        <label>Default Principal CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCountryCode__c</fullName>
         <description>Legal Entity CountryCode</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalCountryCode</label>
+        <label>SF Principal CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -474,7 +474,7 @@
         <fullName>legalEntityPrincipalDateOfBirthD__c</fullName>
         <description>legal Entity Principal Date Of Birth Default</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDateOfBirthD</label>
+        <label>Default Principal DOB</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -484,14 +484,14 @@
         <fullName>legalEntityPrincipalDateOfBirthX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDateOfBirthX</label>
+        <label>Default Principal DOB?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDateOfBirth__c</fullName>
         <description>Legal Entity Principal DateOfBirth</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDateOfBirth</label>
+        <label>SF Principal DOB</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -501,7 +501,7 @@
         <fullName>legalEntityPrincipalDriversLicenseD__c</fullName>
         <description>Legal Entity Principal DriversLicenseD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicenseD</label>
+        <label>Default Principal DL</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -511,7 +511,7 @@
         <fullName>legalEntityPrincipalDriversLicenseStateD__c</fullName>
         <description>Legal Entity Principal DriversLicenseStateD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicenseStateD</label>
+        <label>Default Principal DL State</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -521,14 +521,14 @@
         <fullName>legalEntityPrincipalDriversLicenseStateX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicenseStateX</label>
+        <label>Default Principal DL State?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseState__c</fullName>
         <description>Legal Entity Principal DriversLicenseState</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicenseState</label>
+        <label>SF Principal DL State</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -538,14 +538,14 @@
         <fullName>legalEntityPrincipalDriversLicenseX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicenseX</label>
+        <label>Default Principal DL?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicense__c</fullName>
         <description>Legal Entity Principal DriversLicense</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalDriversLicense</label>
+        <label>SF Principal DL</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -555,7 +555,7 @@
         <fullName>legalEntityPrincipalEmailAddressD__c</fullName>
         <description>Legal Entity Principal EmailAddressD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalEmailAddressD</label>
+        <label>Default Principal EmailAddress</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -565,14 +565,14 @@
         <fullName>legalEntityPrincipalEmailAddressX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalEmailAddressX</label>
+        <label>Default Principal EmailAddress?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalEmailAddress__c</fullName>
         <description>Legal Entity Principal EmailAddress</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalEmailAddress</label>
+        <label>SF Principal EmailAddress</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -582,7 +582,7 @@
         <fullName>legalEntityPrincipalFirstNameD__c</fullName>
         <description>Legal Entity Principal FirstNameD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalFirstNameD</label>
+        <label>Default Principal FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -592,14 +592,14 @@
         <fullName>legalEntityPrincipalFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalFirstNameX</label>
+        <label>Default Principal FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalFirstName__c</fullName>
         <description>Legal Entity Principal FirstName</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalFirstName</label>
+        <label>SF Principal FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -609,7 +609,7 @@
         <fullName>legalEntityPrincipalLastNameD__c</fullName>
         <description>Legal Entity Principal LastNameD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalLastNameD</label>
+        <label>Default Principal LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -619,14 +619,14 @@
         <fullName>legalEntityPrincipalLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalLastNameX</label>
+        <label>Default Principal LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalLastName__c</fullName>
         <description>Legal Entity Principal LastName</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalLastName</label>
+        <label>SF Principal LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -636,7 +636,7 @@
         <fullName>legalEntityPrincipalPostalCodeD__c</fullName>
         <description>Legal Entity PostalCodeD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalPostalCodeD</label>
+        <label>Default Principal PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -646,14 +646,14 @@
         <fullName>legalEntityPrincipalPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalPostalCodeX</label>
+        <label>Default Principal PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalPostalCode__c</fullName>
         <description>Legal Entity PostalCode</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalPostalCode</label>
+        <label>SF Principal PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -663,7 +663,7 @@
         <fullName>legalEntityPrincipalSsnD__c</fullName>
         <description>Legal Entity Principal SsnD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalSsnD</label>
+        <label>Default Principal Ssn</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -673,14 +673,14 @@
         <fullName>legalEntityPrincipalSsnX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalSsnX</label>
+        <label>Default Principal Ssn?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalSsn__c</fullName>
         <description>Legal Entity Principal Ssn</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalSsn</label>
+        <label>SF Principal Ssn</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -690,7 +690,7 @@
         <fullName>legalEntityPrincipalStateProvinceD__c</fullName>
         <description>Legal Entity StateProvinceD</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStateProvinceD</label>
+        <label>Default Principal StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -700,14 +700,14 @@
         <fullName>legalEntityPrincipalStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStateProvinceX</label>
+        <label>Default Principal StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStateProvince__c</fullName>
         <description>Legal Entity StateProvince</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStateProvince</label>
+        <label>SF Principal StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -717,7 +717,7 @@
         <fullName>legalEntityPrincipalStreetAddress1D__c</fullName>
         <description>Legal Entity StreetAddress1D</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress1D</label>
+        <label>Default Principal StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -727,14 +727,14 @@
         <fullName>legalEntityPrincipalStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress1X</label>
+        <label>Default Principal StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress1__c</fullName>
         <description>Legal Entity StreetAddress1</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress1</label>
+        <label>SF Principal StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -744,7 +744,7 @@
         <fullName>legalEntityPrincipalStreetAddress2D__c</fullName>
         <description>Legal Entity StreetAddress2D</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress2D</label>
+        <label>Default Principal StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -754,14 +754,14 @@
         <fullName>legalEntityPrincipalStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress2X</label>
+        <label>Default Principal StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress2__c</fullName>
         <description>Legal Entity StreetAddress2</description>
         <externalId>false</externalId>
-        <label>legalEntityPrincipalStreetAddress2</label>
+        <label>SF Principal StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -771,7 +771,7 @@
         <fullName>legalEntitySsnD__c</fullName>
         <description>Legal Entity SsnD</description>
         <externalId>false</externalId>
-        <label>legalEntitySsnD</label>
+        <label>legalEntitySsn</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -781,7 +781,7 @@
         <fullName>legalEntitySsnX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntitySsnX</label>
+        <label>legalEntitySsn?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
@@ -798,7 +798,7 @@
         <fullName>legalEntityStateProvinceD__c</fullName>
         <description>Legal Entity StateProvinceD</description>
         <externalId>false</externalId>
-        <label>legalEntityStateProvinceD</label>
+        <label>Default Legal Entity StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -808,14 +808,14 @@
         <fullName>legalEntityStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityStateProvinceX</label>
+        <label>Default Legal Entity StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStateProvince__c</fullName>
         <description>Legal Entity StateProvince</description>
         <externalId>false</externalId>
-        <label>legalEntityStateProvince</label>
+        <label>SF Legal Entity StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -825,7 +825,7 @@
         <fullName>legalEntityStreetAddress1D__c</fullName>
         <description>Legal Entity StreetAddress1D</description>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress1D</label>
+        <label>Default Legal Entity StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -835,14 +835,14 @@
         <fullName>legalEntityStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress1X</label>
+        <label>Default Legal Entity StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress1__c</fullName>
         <description>Legal Entity StreetAddress1</description>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress1</label>
+        <label>SF Legal Entity StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -852,7 +852,7 @@
         <fullName>legalEntityStreetAddress2D__c</fullName>
         <description>Legal Entity StreetAddress2D</description>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress2D</label>
+        <label>Default Legal Entity StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -862,14 +862,14 @@
         <fullName>legalEntityStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress2X</label>
+        <label>Default Legal Entity StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress2__c</fullName>
         <description>Legal Entity StreetAddress2</description>
         <externalId>false</externalId>
-        <label>legalEntityStreetAddress2</label>
+        <label>SF Legal Entity StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -879,7 +879,7 @@
         <fullName>legalEntityTaxIdD__c</fullName>
         <description>Legal Entity TaxIdD</description>
         <externalId>false</externalId>
-        <label>legalEntityTaxIdD</label>
+        <label>Default Legal Entity TaxId</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -889,14 +889,14 @@
         <fullName>legalEntityTaxIdX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityTaxIdX</label>
+        <label>Default Legal Entity TaxId?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityTaxId__c</fullName>
         <description>Legal Entity TaxId</description>
         <externalId>false</externalId>
-        <label>legalEntityTaxId</label>
+        <label>SF Legal Entity TaxI</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -906,7 +906,7 @@
         <fullName>legalEntityTypeD__c</fullName>
         <description>Legal Entity TypeD</description>
         <externalId>false</externalId>
-        <label>legalEntityTypeD</label>
+        <label>Default Legal Entity Type</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -916,14 +916,14 @@
         <fullName>legalEntityTypeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>legalEntityTypeX</label>
+        <label>Default Legal Entity Type?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityType__c</fullName>
         <description>Legal Entity Type</description>
         <externalId>false</externalId>
-        <label>legalEntityType</label>
+        <label>SF Legal Entity Type</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -943,7 +943,7 @@
         <fullName>merchantPassword__c</fullName>
         <description>password used to connect to make litle request</description>
         <externalId>false</externalId>
-        <label>merchantPassword</label>
+        <label>Merchant Password</label>
         <length>100</length>
         <maskChar>asterisk</maskChar>
         <maskType>all</maskType>
@@ -955,7 +955,7 @@
         <caseSensitive>true</caseSensitive>
         <description>Merchant username for Litle requests</description>
         <externalId>false</externalId>
-        <label>merchantUsername</label>
+        <label>Merchant Username</label>
         <length>100</length>
         <required>false</required>
         <type>Text</type>
@@ -965,7 +965,7 @@
         <fullName>subMerchantAmexMidD__c</fullName>
         <description>Sub Merchant AmexMidD</description>
         <externalId>false</externalId>
-        <label>subMerchantAmexMidDefault</label>
+        <label>Default SubMerchant AmexMid</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -975,14 +975,14 @@
         <fullName>subMerchantAmexMidX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantAmexMidX</label>
+        <label>Default SubMerchant AmexMid?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantAmexMid__c</fullName>
         <description>Sub Merchant AmexMid</description>
         <externalId>false</externalId>
-        <label>subMerchantAmexMid</label>
+        <label>SF SubMerchant AmexMid</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -992,7 +992,7 @@
         <fullName>subMerchantBankAccountNumberD__c</fullName>
         <description>Sub Merchant BankAccountNumberD</description>
         <externalId>false</externalId>
-        <label>subMerchantBankAccountNumberDefault</label>
+        <label>Default SubMerchant BankAccountNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1002,14 +1002,14 @@
         <fullName>subMerchantBankAccountNumberX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantBankAccountNumberX</label>
+        <label>Default SubMerchant BankAccountNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantBankAccountNumber__c</fullName>
         <description>Sub Merchant BankAccountNumber</description>
         <externalId>false</externalId>
-        <label>subMerchantBankAccountNumber</label>
+        <label>SF SubMerchant BankAccountNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1019,7 +1019,7 @@
         <fullName>subMerchantBankRoutingNumberD__c</fullName>
         <description>Sub Merchant BankRoutingNumberD</description>
         <externalId>false</externalId>
-        <label>subMerchantBankRoutingNumberDefault</label>
+        <label>Default SubMerchant BankRoutingNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1029,14 +1029,14 @@
         <fullName>subMerchantBankRoutingNumberX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantBankRoutingNumberX</label>
+        <label>Default SubMerchant BankRoutingNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantBankRoutingNumber__c</fullName>
         <description>Sub Merchant BankRoutingNumber</description>
         <externalId>false</externalId>
-        <label>subMerchantBankRoutingNumber</label>
+        <label>SF SubMerchant BankRoutingNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1046,7 +1046,7 @@
         <fullName>subMerchantCityD__c</fullName>
         <description>Sub Merchant CityD</description>
         <externalId>false</externalId>
-        <label>subMerchantCityDefault</label>
+        <label>Default SubMerchant City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1056,14 +1056,14 @@
         <fullName>subMerchantCityX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantCityX</label>
+        <label>Default SubMerchant City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCity__c</fullName>
         <description>Sub Merchant City</description>
         <externalId>false</externalId>
-        <label>subMerchantCity</label>
+        <label>SF SubMerchant City</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1073,7 +1073,7 @@
         <fullName>subMerchantCountryCodeD__c</fullName>
         <description>Sub Merchant CountryCodeD</description>
         <externalId>false</externalId>
-        <label>subMerchantCountryCodeDefault</label>
+        <label>Default SubMerchant CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1083,14 +1083,14 @@
         <fullName>subMerchantCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantCountryCodeX</label>
+        <label>Default SubMerchant CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCountryCode__c</fullName>
         <description>Sub Merchant CountryCode</description>
         <externalId>false</externalId>
-        <label>subMerchantCountryCode</label>
+        <label>SF SubMerchant CountryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1100,7 +1100,7 @@
         <fullName>subMerchantCreateCredentialsD__c</fullName>
         <description>Sub Merchant CreateCredentialsD</description>
         <externalId>false</externalId>
-        <label>subMerchantCreateCredentialsDefault</label>
+        <label>Default SubMerchant CreateCredentials</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1110,14 +1110,14 @@
         <fullName>subMerchantCreateCredentialsX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantCreateCredentialsX</label>
+        <label>Default SubMerchant CreateCredentials?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCreateCredentials__c</fullName>
         <description>Sub Merchant CreateCredentials</description>
         <externalId>false</externalId>
-        <label>subMerchantCreateCredentials</label>
+        <label>SF SubMerchant CreateCredentials</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1127,7 +1127,7 @@
         <fullName>subMerchantCustomerServiceNumberD__c</fullName>
         <description>Sub Merchant CustomerServiceNumberD</description>
         <externalId>false</externalId>
-        <label>subMerchantCustomerServiceNumberDefault</label>
+        <label>Default CustomerServiceNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1137,14 +1137,14 @@
         <fullName>subMerchantCustomerServiceNumberX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantCustomerServiceNumberX</label>
+        <label>Default CustomerServiceNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCustomerServiceNumber__c</fullName>
         <description>Sub Merchant CustomerServiceNumber</description>
         <externalId>false</externalId>
-        <label>subMerchantCustomerServiceNumber</label>
+        <label>SF CustomerServiceNumber</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1154,7 +1154,7 @@
         <fullName>subMerchantDiscoverConveyMidD__c</fullName>
         <description>Sub Merchant DiscoverConveyMidD</description>
         <externalId>false</externalId>
-        <label>subMerchantDiscoverConveyMidDefault</label>
+        <label>Default SubMerchant DiscoverConveyMid</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1164,14 +1164,14 @@
         <fullName>subMerchantDiscoverConveyMidX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantDiscoverConveyMidX</label>
+        <label>Default SubMerchant DiscoverConveyMid?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantDiscoverConveyMid__c</fullName>
         <description>Sub Merchant DiscoverConveyMid</description>
         <externalId>false</externalId>
-        <label>subMerchantDiscoverConveyMid</label>
+        <label>SF SubMerchant DiscoverConveyMid</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1181,7 +1181,7 @@
         <fullName>subMerchantEmailAddressD__c</fullName>
         <description>Sub Merchant EmailAddressD</description>
         <externalId>false</externalId>
-        <label>subMerchantEmailAddressDefault</label>
+        <label>Default SubMerchant EmailAddress</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1191,14 +1191,14 @@
         <fullName>subMerchantEmailAddressX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantEmailAddressX</label>
+        <label>Default SubMerchant EmailAddress?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantEmailAddress__c</fullName>
         <description>Sub Merchant EmailAddress</description>
         <externalId>false</externalId>
-        <label>subMerchantEmailAddress</label>
+        <label>SF SubMerchant EmailAddress</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1208,7 +1208,7 @@
         <fullName>subMerchantFirstNameD__c</fullName>
         <description>Sub Merchant FirstNameD</description>
         <externalId>false</externalId>
-        <label>subMerchantFirstNameDefault</label>
+        <label>Default SubMerchant FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1218,14 +1218,14 @@
         <fullName>subMerchantFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantFirstNameX</label>
+        <label>Default SubMerchant FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantFirstName__c</fullName>
         <description>Sub Merchant FirstName</description>
         <externalId>false</externalId>
-        <label>subMerchantFirstName</label>
+        <label>SF SubMerchant FirstName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1235,7 +1235,7 @@
         <fullName>subMerchantHardCodeBillingDescD__c</fullName>
         <description>Sub Merchant HardCodeBillingDescriptorD</description>
         <externalId>false</externalId>
-        <label>subMerchantHardCodeBillingDescD</label>
+        <label>Default HardCodeBillingDescriptor</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1245,14 +1245,14 @@
         <fullName>subMerchantHardCodeBillingDescriptorX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantHardCodeBillingDescriptorX</label>
+        <label>Default HardCodeBillingDescriptor?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantHardCodeBillingDescriptor__c</fullName>
         <description>Sub Merchant HardCodeBillingDescriptor</description>
         <externalId>false</externalId>
-        <label>subMerchantHardCodeBillingDescriptor</label>
+        <label>SF HardCodeBillingDescriptor</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1262,7 +1262,7 @@
         <fullName>subMerchantLastNameD__c</fullName>
         <description>Sub Merchant LastNameD</description>
         <externalId>false</externalId>
-        <label>subMerchantLastNameDefault</label>
+        <label>Default SubMerchant LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1272,14 +1272,14 @@
         <fullName>subMerchantLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantLastNameX</label>
+        <label>Default SubMerchant LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantLastName__c</fullName>
         <description>Sub Merchant LastName</description>
         <externalId>false</externalId>
-        <label>subMerchantLastName</label>
+        <label>SF SubMerchant LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1289,7 +1289,7 @@
         <fullName>subMerchantMaxTransactionAmountD__c</fullName>
         <description>Sub Merchant MaxTransactionAmountD</description>
         <externalId>false</externalId>
-        <label>subMerchantMaxTransactionAmountDefault</label>
+        <label>Default MaxTransactionAmount</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1299,14 +1299,14 @@
         <fullName>subMerchantMaxTransactionAmountX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantMaxTransactionAmountX</label>
+        <label>Default MaxTransactionAmount?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMaxTransactionAmount__c</fullName>
         <description>Sub Merchant MaxTransactionAmount</description>
         <externalId>false</externalId>
-        <label>subMerchantMaxTransactionAmount</label>
+        <label>SF MaxTransactionAmount</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1316,7 +1316,7 @@
         <fullName>subMerchantMerchantCategoryCodeD__c</fullName>
         <description>Sub Merchant MerchantCategoryCodeD</description>
         <externalId>false</externalId>
-        <label>subMerchantMerchantCategoryCodeDefault</label>
+        <label>Default MerchantCategoryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1326,14 +1326,14 @@
         <fullName>subMerchantMerchantCategoryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantMerchantCategoryCodeX</label>
+        <label>Default MerchantCategoryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMerchantCategoryCode__c</fullName>
         <description>Sub Merchant MerchantCategoryCode</description>
         <externalId>false</externalId>
-        <label>subMerchantMerchantCategoryCode</label>
+        <label>SF MerchantCategoryCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1343,7 +1343,7 @@
         <fullName>subMerchantMerchantNameD__c</fullName>
         <description>Sub Merchant MerchantNameD</description>
         <externalId>false</externalId>
-        <label>subMerchantMerchantNameDefault</label>
+        <label>Default SubMerchant MerchantName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1353,14 +1353,14 @@
         <fullName>subMerchantMerchantNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantMerchantNameX</label>
+        <label>Default SubMerchant MerchantName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMerchantName__c</fullName>
         <description>Sub Merchant MerchantName</description>
         <externalId>false</externalId>
-        <label>subMerchantMerchantName</label>
+        <label>SF SubMerchant MerchantName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1370,7 +1370,7 @@
         <fullName>subMerchantPhoneD__c</fullName>
         <description>Sub Merchant PhoneD</description>
         <externalId>false</externalId>
-        <label>subMerchantPhoneDefault</label>
+        <label>Default SubMerchant Phone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1380,14 +1380,14 @@
         <fullName>subMerchantPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantPhoneX</label>
+        <label>Default SubMerchant Phone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPhone__c</fullName>
         <description>Sub Merchant Phone</description>
         <externalId>false</externalId>
-        <label>subMerchantPhone</label>
+        <label>SF SubMerchant Phone</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1397,7 +1397,7 @@
         <fullName>subMerchantPostalCodeD__c</fullName>
         <description>Sub Merchant PostalCodeD</description>
         <externalId>false</externalId>
-        <label>subMerchantPostalCodeDefault</label>
+        <label>Default SubMerchant PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1407,14 +1407,14 @@
         <fullName>subMerchantPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantPostalCodeX</label>
+        <label>Default SubMerchant PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPostalCode__c</fullName>
         <description>Sub Merchant PostalCode</description>
         <externalId>false</externalId>
-        <label>subMerchantPostalCode</label>
+        <label>SF SubMerchant PostalCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1424,7 +1424,7 @@
         <fullName>subMerchantPspMerchantIdD__c</fullName>
         <description>Sub Merchant PspMerchantIdD</description>
         <externalId>false</externalId>
-        <label>subMerchantPspMerchantIdDefault</label>
+        <label>Default SubMerchant PspMerchantId</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1434,14 +1434,14 @@
         <fullName>subMerchantPspMerchantIdX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantPspMerchantIdX</label>
+        <label>Default SubMerchant PspMerchantId?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPspMerchantId__c</fullName>
         <description>Sub Merchant PspMerchantId</description>
         <externalId>false</externalId>
-        <label>subMerchantPspMerchantId</label>
+        <label>SF SubMerchant PspMerchantId</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1451,7 +1451,7 @@
         <fullName>subMerchantStateProvinceD__c</fullName>
         <description>Sub Merchant StateProvinceD</description>
         <externalId>false</externalId>
-        <label>subMerchantStateProvinceDefault</label>
+        <label>Default SubMerchant StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1461,14 +1461,14 @@
         <fullName>subMerchantStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantStateProvinceX</label>
+        <label>Default SubMerchant StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStateProvince__c</fullName>
         <description>Sub Merchant StateProvince</description>
         <externalId>false</externalId>
-        <label>subMerchantStateProvince</label>
+        <label>SF SubMerchant StateProvince</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1478,7 +1478,7 @@
         <fullName>subMerchantStreetAddress1D__c</fullName>
         <description>Sub Merchant StreetAddress1D</description>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress1Default</label>
+        <label>Default SubMerchant StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1488,14 +1488,14 @@
         <fullName>subMerchantStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress1X</label>
+        <label>Default SubMerchant StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress1__c</fullName>
         <description>Sub Merchant StreetAddress1</description>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress1</label>
+        <label>SF SubMerchant StreetAddress1</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1505,7 +1505,7 @@
         <fullName>subMerchantStreetAddress2D__c</fullName>
         <description>Sub Merchant StreetAddress2D</description>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress2Default</label>
+        <label>Default SubMerchant StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1515,14 +1515,14 @@
         <fullName>subMerchantStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress2X</label>
+        <label>Default SubMerchant StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress2__c</fullName>
         <description>Sub Merchant StreetAddress2</description>
         <externalId>false</externalId>
-        <label>subMerchantStreetAddress2</label>
+        <label>SF SubMerchant StreetAddress2</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1532,7 +1532,7 @@
         <fullName>subMerchantUrlD__c</fullName>
         <description>Sub Merchant UrlD</description>
         <externalId>false</externalId>
-        <label>subMerchantUrlDefault</label>
+        <label>Default SubMerchant Url</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1542,14 +1542,14 @@
         <fullName>subMerchantUrlX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchantUrlX</label>
+        <label>Default SubMerchant Url?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantUrl__c</fullName>
         <description>Sub Merchant Url</description>
         <externalId>false</externalId>
-        <label>subMerchantUrl</label>
+        <label>SF SubMerchant Url</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1559,7 +1559,7 @@
         <fullName>subMerchanteCheckBillingDescD__c</fullName>
         <description>Sub Merchant eCheckBillingDescriptorD</description>
         <externalId>false</externalId>
-        <label>subMerchanteCheckBillingDescD</label>
+        <label>Default eCheckBillingDescriptor</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1569,14 +1569,14 @@
         <fullName>subMerchanteCheckBillingDescriptorX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchanteCheckBillingDescriptorX</label>
+        <label>Default eCheckBillingDescriptor?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchanteCheckBillingDescriptor__c</fullName>
         <description>Sub Merchant eCheckBillingDescriptor</description>
         <externalId>false</externalId>
-        <label>subMerchanteCheckBillingDescriptor</label>
+        <label>SF eCheckBillingDescriptor</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1586,7 +1586,7 @@
         <fullName>subMerchanteCheckCompanyNameD__c</fullName>
         <description>Sub Merchant eCheckCompanyNameD</description>
         <externalId>false</externalId>
-        <label>subMerchanteCheckCompanyNameDefault</label>
+        <label>Default SubMerchant eCheckCompanyName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -1596,14 +1596,14 @@
         <fullName>subMerchanteCheckCompanyNameX__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>subMerchanteCheckCompanyNameX</label>
+        <label>Default SubMerchant eCheckCompanyName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchanteCheckCompanyName__c</fullName>
         <description>Sub Merchant eCheckCompanyName</description>
         <externalId>false</externalId>
-        <label>subMerchanteCheckCompanyName</label>
+        <label>SF SubMerchant eCheckCompanyName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>

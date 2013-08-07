@@ -43,7 +43,7 @@
         <fullName>createLegalEntityRequestDate__c</fullName>
         <description>Request/response date for create legal entity request</description>
         <externalId>false</externalId>
-        <label>createLegalEntityRequestDate</label>
+        <label>Create LegalEntity  RequestDate</label>
         <required>false</required>
         <type>DateTime</type>
     </fields>
@@ -51,7 +51,7 @@
         <fullName>createLegalEntityRequestXml__c</fullName>
         <description>create Legal Entity Request Xml</description>
         <externalId>false</externalId>
-        <label>createLegalEntityRequestXml</label>
+        <label>Create LegalEntity  RequestXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
         <visibleLines>50</visibleLines>
@@ -60,7 +60,7 @@
         <fullName>createLegalEntityResponseDate__c</fullName>
         <description>create Legal Entity Response Date</description>
         <externalId>false</externalId>
-        <label>createLegalEntityResponseDate</label>
+        <label>Create LegalEntity  ResponseDate</label>
         <required>false</required>
         <type>DateTime</type>
     </fields>
@@ -68,7 +68,7 @@
         <fullName>createLegalEntityResponseStatusCode__c</fullName>
         <description>create Legal Entity Response Status Code</description>
         <externalId>false</externalId>
-        <label>createLegalEntityResponseStatusCode</label>
+        <label>Create LegalEntity  ResponseStatusCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -78,7 +78,7 @@
         <fullName>createLegalEntityResponseStatusMessage__c</fullName>
         <description>create Legal Entity Response Status Message</description>
         <externalId>false</externalId>
-        <label>createLegalEntityResponseStatusMessage</label>
+        <label>Create LegalEntity  ResponseStatusMsg</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -88,7 +88,7 @@
         <fullName>createLegalEntityResponseXml__c</fullName>
         <description>create Legal Entity Response Xml</description>
         <externalId>false</externalId>
-        <label>createLegalEntityResponseXml</label>
+        <label>Create LegalEntity  ResponseXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
         <visibleLines>50</visibleLines>
@@ -97,7 +97,7 @@
         <fullName>createSubMerchantRequestDate__c</fullName>
         <description>Request/response date for create Sub Merchant request</description>
         <externalId>false</externalId>
-        <label>createSubMerchantRequestDate</label>
+        <label>Create SubMerchantRequestDate</label>
         <required>false</required>
         <type>DateTime</type>
     </fields>
@@ -105,7 +105,7 @@
         <fullName>createSubMerchantRequestXml__c</fullName>
         <description>create Sub Merchant Request Xml</description>
         <externalId>false</externalId>
-        <label>createSubMerchantRequestXml</label>
+        <label>Create SubMerchantRequestXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
         <visibleLines>50</visibleLines>
@@ -114,7 +114,7 @@
         <fullName>createSubMerchantResponseDate__c</fullName>
         <description>create Sub Merchant Response Date</description>
         <externalId>false</externalId>
-        <label>createSubMerchantResponseDate</label>
+        <label>Create SubMerchantResponseDate</label>
         <required>false</required>
         <type>DateTime</type>
     </fields>
@@ -122,7 +122,7 @@
         <fullName>createSubMerchantResponseStatusCode__c</fullName>
         <description>create Sub Merchant Response Status Code</description>
         <externalId>false</externalId>
-        <label>createSubMerchantResponseStatusCode</label>
+        <label>Create SubMerchantResponseStatusCode</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -132,7 +132,7 @@
         <fullName>createSubMerchantResponseStatusMessage__c</fullName>
         <description>create Sub Merchant Response Status Message</description>
         <externalId>false</externalId>
-        <label>createSubMerchantResponseStatusMessage</label>
+        <label>Create SubMerchantResponseStatusMessage</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>
@@ -142,7 +142,7 @@
         <fullName>createSubMerchantResponseXml__c</fullName>
         <description>create Sub Merchant Response Xml</description>
         <externalId>false</externalId>
-        <label>createSubMerchantResponseXml</label>
+        <label>Create SubMerchantResponseXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
         <visibleLines>50</visibleLines>
@@ -152,7 +152,7 @@
         <description>Accept header for legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Accept header for legal entity request</inlineHelpText>
-        <label>Legal Entity Accept Header</label>
+        <label>LegalEntity  Accept Header</label>
         <length>100</length>
         <required>false</required>
         <type>Text</type>
@@ -163,7 +163,7 @@
         <description>Authorization header for legal entity requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Authorization header for legal entity requests</inlineHelpText>
-        <label>Legal Entity Authorization Header</label>
+        <label>LegalEntity  Authorization Header</label>
         <length>100</length>
         <maskChar>asterisk</maskChar>
         <maskType>all</maskType>
@@ -175,7 +175,7 @@
         <description>Content type header for legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Content type header for legal entity request</inlineHelpText>
-        <label>Legal Entity Content Type Header</label>
+        <label>LegalEntity  Content Type Header</label>
         <length>100</length>
         <required>false</required>
         <type>Text</type>
@@ -186,7 +186,7 @@
         <description>Endpoint for legal entity requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Endpoint for legal entity requests</inlineHelpText>
-        <label>Legal Entity Endpoint</label>
+        <label>LegalEntity  Endpoint</label>
         <length>250</length>
         <required>false</required>
         <type>Text</type>
@@ -197,7 +197,7 @@
         <description>Stores the legal entity id from the create legal entity response</description>
         <externalId>false</externalId>
         <inlineHelpText>Stores the legal entity id from the create legal entity response</inlineHelpText>
-        <label>Legal Entity ID</label>
+        <label>LegalEntity  ID</label>
         <length>50</length>
         <required>false</required>
         <type>Text</type>
@@ -208,7 +208,7 @@
         <description>Stores the legal entity response code from the create legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Stores the legal entity response code from the create legal entity request</inlineHelpText>
-        <label>Legal Entity Response Code</label>
+        <label>LegalEntity  Response Code</label>
         <length>10</length>
         <required>false</required>
         <type>Text</type>
@@ -260,7 +260,7 @@
         <description>Authorization header for sub merchant requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Authorization header for sub merchant requests</inlineHelpText>
-        <label>Sub Merchant Authorization Header</label>
+        <label>SubMerchant  Authorization Header</label>
         <length>100</length>
         <maskChar>asterisk</maskChar>
         <maskType>all</maskType>
