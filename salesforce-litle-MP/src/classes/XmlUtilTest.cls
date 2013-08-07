@@ -118,4 +118,46 @@ private class XmlUtilTest {
 		System.assertEquals(null, XmlUtil.extractAttributeValue(null, null, null));
 		System.assertEquals(null, XmlUtil.extractAttributeValue(response, null, 'author'));
     }
+    
+    static testMethod void extractTagValueWithParentTag(){
+    	HttpResponse response = new HttpResponse();
+    	String body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+						'<errorResponse xmlns="http://psp.litle.com/api/merchant/onboard">'+
+						    '<transactionId>82821592641044699</transactionId>'+
+						    '<errors>'+
+						        '<error>Error of [may not be null] on [annualCreditCardSalesVolume]</error>'+
+						        '<error>Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]</error>' +
+						        '<transactionId>123456</transactionId>'+
+						    '</errors>'+
+						'</errorResponse>';
+		response.setBody(body);
+    	System.assertEquals('123456', XmlUtil.extractTagValueWithParentTag(response, 'errors', 'transactionId'));
+    	System.assertEquals('82821592641044699', XmlUtil.extractTagValueWithParentTag(response, 'errorResponse', 'transactionId'));
+    	System.assertEquals(null, XmlUtil.extractTagValueWithParentTag(response, 'errors', 'transact'));
+    	System.assertEquals(null, XmlUtil.extractTagValueWithParentTag(response, 'transact', 'transactionId'));
+    	System.assertEquals(null, XmlUtil.extractTagValueWithParentTag(response, 'errors', null));
+    	System.assertEquals(null, XmlUtil.extractTagValueWithParentTag(response, null, 'error'));
+    	System.assertEquals(null, XmlUtil.extractTagValueWithParentTag(null, 'errors', 'transactionId'));
+    	
+    }
+    
+    static testMethod void elementExists(){
+    	HttpResponse response = new HttpResponse();
+    	String body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+						'<errorResponse xmlns="http://psp.litle.com/api/merchant/onboard">'+
+						    '<transactionId>82821592641044699</transactionId>'+
+						    '<errors>'+
+						        '<error>Error of [may not be null] on [annualCreditCardSalesVolume]</error>'+
+						        '<error>Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]</error>' +
+						        '<transactionId>123456</transactionId>'+
+						    '</errors>'+
+						'</errorResponse>';
+		response.setBody(body);
+		System.assert(XmlUtil.elementExists(response, 'errors'));
+		System.assert(!XmlUtil.elementExists(response, 'transact'));
+		System.assert(!XmlUtil.elementExists(response, null));
+		System.assert(!XmlUtil.elementExists(null, 'errors'));
+    }
+    
+    
 }

@@ -1,43 +1,13 @@
-/**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
- *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
- *
- * All test methods in an organization are executed whenever Apex code is deployed
- * to a production organization to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production organization. In addition, all triggers must have some code coverage.
- * 
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the organization size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
- */
-@isTest
-public class MockCreateLegalEntityApprovedResponse {
+public class LegalEntityApprovedResponse implements TestResponse{
 
-    public static final String STATUS_MESSAGE = 'Approved';
+	public static final String STATUS_MESSAGE = 'Approved';
     public static final Integer STATUS_CODE = 201;
     public static final String RESPONSE_CODE = '10';
     public static final String RESPONSE_DESCRIPTION = 'Approved';
     public static final String TRANSACTION_ID = '82821536564756680';
     public static final String LEGAL_ENTITY_ID = '82821536565084223';
-	
-    public HttpResponse respond(HttpRequest request){
-    	
-    	System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, request.getEndpoint());
-    	System.assertEquals(LitleConstants.CREATE_HTTP_REQUEST_METHOD, request.getMethod());
-    	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
- 	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
-        
-    	HttpResponse res = new HttpResponse();
-    	String approvedResponse = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+    
+    public static final String approvedResponse = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
 								 + '<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard">'
 								 + '<transactionId>'+TRANSACTION_ID+'</transactionId>'
 								 + '<legalEntityId>'+LEGAL_ENTITY_ID+'</legalEntityId>'
@@ -105,9 +75,17 @@ public class MockCreateLegalEntityApprovedResponse {
 								 + '</businessToPrincipalAssociation>'
 								 + '</backgroundCheckResults>'
 								 + '</legalEntityCreateResponse>';
-    	res.setBody(approvedResponse);
-    	res.setStatusCode(STATUS_CODE);
-    	res.setStatus(STATUS_MESSAGE);
-    	return res;
-    }
+								 
+		public String getStatusMessage(){
+			return STATUS_MESSAGE;
+		}
+		
+		public Integer getStatusCode(){
+			return STATUS_CODE;
+		}
+		
+		public String getResponseBody(){
+			return approvedResponse;
+		}
+		
 }

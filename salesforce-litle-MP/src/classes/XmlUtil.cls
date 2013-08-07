@@ -60,6 +60,34 @@ public class XmlUtil {
 		return textList;
 	}
 	
+	public static String extractTagValueWithParentTag(Httpresponse response, String parentTagName, String childTagName){
+		String tagValue;
+		if(response != null && String.isNotEmpty(parentTagName) && String.isNotEmpty(childTagName)){
+			Xmlstreamreader xmlReader = response.getXmlStreamReader();
+			while(xmlReader.hasNext()){
+				if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
+					if(xmlReader.getLocalName().equals(parentTagName)){
+						xmlReader.next();	
+						while(xmlReader.hasNext()){
+							if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
+								if(xmlReader.getLocalName().equals(childTagName)){
+									xmlReader.next();
+									if(xmlReader.getEventType() == Xmltag.CHARACTERS){
+										tagValue = xmlReader.getText();
+										break;
+									}
+								}
+							}
+							xmlReader.next();
+						}
+					}
+				}
+				xmlReader.next();
+			}						
+		}
+		return tagValue;
+	}
+	
 	
 	public static String extractAttributeValue(HttpResponse response, String tagName, String attributeName){
 		String attributeValue;
@@ -90,4 +118,21 @@ public class XmlUtil {
 			xmlWriter.writeEndElement();	//end tagName
 		}
 	} 
+	
+	public static boolean elementExists(Httpresponse response, String elementName){
+		boolean isElementPresent = false;
+		if(response != null && String.isNotEmpty(elementName)){
+			Xmlstreamreader xmlReader = response.getXmlStreamReader();
+			while(xmlReader.hasNext()){
+				if(xmlReader.getEventType() == Xmltag.START_ELEMENT){
+					if(xmlReader.getLocalName().equals(elementName)){
+						isElementPresent = true;
+						break;
+					}
+				}
+				xmlReader.next();
+			}
+		}
+		return isElementPresent;
+	}
 }

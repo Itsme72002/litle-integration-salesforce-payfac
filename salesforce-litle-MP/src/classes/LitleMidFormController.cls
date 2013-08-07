@@ -2412,11 +2412,20 @@ public class LitleMidFormController {
         	LoggingUtil.logCreateLegalEntityResponse(lEResponse, litleRequestResponseLog);
         	if(lEResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
         		//get response code, transaction id and response description
-        		legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_TRANSACTION_ID));
-        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_CODE));
-        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
+        		if(String.isNotEmpty(XmlUtil.extractAttributeValue(lEResponse, 'legalEntityCreateResponse', 'duplicate')) 
+        			&&  XmlUtil.extractAttributeValue(lEResponse, 'legalEntityCreateResponse', 'duplicate').equals('true')
+        			&& XmlUtil.elementExists(lEResponse, 'originalLegalEntity')){
+        			//duplicate response, extract from original entity
+        			legalEntityResponse.setResponseCode(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity', LitleConstants.XML_TAG_RESPONSE_CODE));
+	        		legalEntityResponse.setResponseDespcription(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity',LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
+	        		legalEntityResponse.setLegalEntityId(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity', LitleConstants.XML_TAG_LEGALENTITY_ID));
+        		}else{
+	        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_CODE));
+	        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
+	        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_LEGALENTITY_ID));
+    			}
+    			legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_TRANSACTION_ID));
         		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
-        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_LEGALENTITY_ID));
         		//Log response codes and legal entity id
         		litleRequestResponseLog.legalEntityResponseCode__c = legalEntityResponse.getResponseCode();
         		litleRequestResponseLog.legalEntityId__c = legalEntityResponse.getLegalEntityId();
@@ -2430,9 +2439,7 @@ public class LitleMidFormController {
         		legalEntityResponse.setResponseCode(String.valueOf(lEResponse.getStatusCode()));
         		legalEntityResponse.setResponseDespcription(lEResponse.getStatus());
         		generateErrorMessages(lEResponse);
-        		/*litleMid = String.valueOf(lEResponse.getStatusCode()) + ' : ' + lEResponse.getStatus();
-        		ApexPageUtil.addErrorMessage(String.valueOf(legalEntityResponse.getResponseCode()+
-        												' : '+lEResponse.getStatus()));	*/
+        		litleMid = String.valueOf(lEResponse.getStatusCode()) + ' : ' + lEResponse.getStatus();
         	}
         }catch(System.CalloutException e){
         	System.debug('Legal Entity Request Callout error: '+ e);
