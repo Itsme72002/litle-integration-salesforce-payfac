@@ -1527,6 +1527,163 @@ private class LitleFormControllerTest2 {
 		Test.stopTest();
     }
     
+    static testMethod void testSubmitInAccountLegalEntityRequestManualReview(){
+    	Account insertedaccount = new Account(name=ACCOUNT_NAME);
+    	insert insertedaccount;
+    	ApexPages.currentPage().getParameters().put('accid',insertedaccount.Id);
+		LitleMidFormController litleMidFormController = new LitleMidFormController();
+		SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	
+    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
+		Test.startTest();
+		
+		Test.setMock(HttpCalloutMock.class, new MockCreateLEManualReviewResponse());
+		litleMidFormController.submit();
+		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
+		List<String> actualMessageList = new List<String>();
+		for(Apexpages.Message message: Apexpages.getMessages()){
+			actualMessageList.add(message.getSummary());
+		}
+		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
+		System.assertEquals(expectedMessagesList, actualMessageList);	
+		System.assertEquals('20 : Manual Review', thisAccount.Litle_Mid__c);
+		System.assertEquals(null, thisAccount.PayFac_Portal_Link__c);
+		Test.stopTest();
+    }
+    
+    static testMethod void testSubmitInOpportunityLegalEntityRequestManualReview(){
+    	
+    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
+    	insert opportunity;
+    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
+		LitleMidFormController litleMidFormController = new LitleMidFormController();
+		SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	litleMidFormController.savedMappings.merchantUsername__c = DEFAULT_STRING;
+    	litleMidFormController.savedMappings.merchantPassword__c = DEFAULT_STRING;
+    	
+    	litleMidFormController.legalEntityModel.setLegalEntityName(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityType(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityDoingBusinessAs(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress1(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStreetAddress2(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCity(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setStateProvince(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setPostalCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityAddress().setCountryCode(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setFirstName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setLastName(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setEmailAddress(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setContactPhone(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicense(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPrincipal().setSsn(STATE);
+		litleMidFormController.legalEntityModel.setLegalEntityTaxId(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(BOOLEAN_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setPciLevel(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setScanningVendor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(STATE);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(DATE_STRING);
+		litleMidFormController.legalEntityModel.getLegalEntityPci().setReportOnCompliance(DATE_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(INTEGER_STRING);
+		litleMidFormController.legalEntityModel.setLegalEntityHasAcceptedCreditCards(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress1(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStreetAddress2(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCity(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setStateProvince(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setPostalCode(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantAddress().setCountryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantAmexMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankAccountNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantBankRoutingNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantCreateCredentials(BOOLEAN_STRING);
+		litleMidFormController.subMerchantModel.setSubMerchantCustomerServiceNumber(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantDiscoverConveyMid(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantHardCodeBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMaxTransactionAmount(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantCategoryCode(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantMerchantName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setFirstName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setLastName(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(STATE);
+		litleMidFormController.subMerchantModel.getSubMerchantPrimaryContact().setPhone(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantPspMerchantId(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchantUrl(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckBillingDescriptor(STATE);
+		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
+		Test.startTest();
+		
+		Test.setMock(HttpCalloutMock.class, new MockCreateLEManualReviewResponse());
+		litleMidFormController.submit();
+		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
+		List<String> actualMessageList = new List<String>();
+		for(Apexpages.Message message: Apexpages.getMessages()){
+			actualMessageList.add(message.getSummary());
+		}
+		Opportunity thisOpportunity = [select Litle_Mid__c, PayFac_Portal_Link__c from Opportunity where Id = :opportunity.Id];	
+		System.assertEquals(expectedMessagesList, actualMessageList);	
+		System.assertEquals('20 : Manual Review', thisOpportunity.Litle_Mid__c);
+		System.assertEquals(null, thisOpportunity.PayFac_Portal_Link__c);
+		Test.stopTest();
+    }
+    
     static testMethod void testMakeCreateLegalEntityRequest_ApprovedResponse(){
     	LitleMidFormController controller = new LitleMidFormController();
     	controller.savedMappings.merchantUsername__c = DEFAULT_STRING;
