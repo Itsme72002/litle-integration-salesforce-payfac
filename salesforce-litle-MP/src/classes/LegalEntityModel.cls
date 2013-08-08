@@ -1,7 +1,5 @@
 public class LegalEntityModel {
     
-    // TODO Delete, class not used
-
     private String legalEntityName;
     private String legalEntityType;
     private String legalEntityDoingBusinessAs;

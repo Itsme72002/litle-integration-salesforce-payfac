@@ -32,16 +32,16 @@ private class LogginUtilTest {
 		LoggingUtil.logSObjectDetails(account.id, null, litleRequestResponseLog);
 		System.assertEquals('Account', litleRequestResponseLog.sObjectType__c);
 		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.sObjectName__c);
-		//TODO
-		//System.assertEquals(account.id, litleRequestResponseLog.sObjectId__c);	
+		System.assertEquals(account.id, litleRequestResponseLog.Account__c);	
+		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);
 		
 		//test with bad account id
 		litleRequestResponseLog = new LitleRequestResponseLog__c();
 		LoggingUtil.logSObjectDetails('123', null, litleRequestResponseLog);
 		System.assertEquals(null, litleRequestResponseLog.sObjectType__c);
 		System.assertEquals(null, litleRequestResponseLog.sObjectName__c);
-		//TODO
-		//System.assertEquals(null, litleRequestResponseLog.sObjectId__c);	
+		System.assertEquals(null, litleRequestResponseLog.Account__c);	
+		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);	
 		
 		//test for opportunity
 		Opportunity opportunity = new Opportunity(name = DEFAULT_NAME, stageName=DEFAULT_NAME, CloseDate=DEFAULT_DATE);
@@ -49,16 +49,16 @@ private class LogginUtilTest {
 		LoggingUtil.logSObjectDetails( null,opportunity.id, litleRequestResponseLog);
 		System.assertEquals('Opportunity', litleRequestResponseLog.sObjectType__c);
 		System.assertEquals(DEFAULT_NAME, litleRequestResponseLog.sObjectName__c);
-		//TODO
-		//System.assertEquals(opportunity.id, litleRequestResponseLog.sObjectId__c);	
+		System.assertEquals(null, litleRequestResponseLog.Account__c);	
+		System.assertEquals(opportunity.id, litleRequestResponseLog.Opportunity__c);	
 		
 		//test with bad opportunity id
 		litleRequestResponseLog = new LitleRequestResponseLog__c();
 		LoggingUtil.logSObjectDetails(null, '123', litleRequestResponseLog);
 		System.assertEquals(null, litleRequestResponseLog.sObjectType__c);
 		System.assertEquals(null, litleRequestResponseLog.sObjectName__c);
-		//TODO
-		//System.assertEquals(null, litleRequestResponseLog.sObjectId__c);
+		System.assertEquals(null, litleRequestResponseLog.Account__c);	
+		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);
 			
 	} 
 	static testMethod void testfillSObjectLogObject(){

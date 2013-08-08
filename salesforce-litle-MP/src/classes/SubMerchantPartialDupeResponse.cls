@@ -1,4 +1,4 @@
-public with sharing class SubMerchantPartialDupeResponse implements TestResponse {
+public class SubMerchantPartialDupeResponse implements TestResponse {
 
 	public static final String STATUS_MESSAGE = 'Success';
 	public static final Integer STATUS_CODE = 201;

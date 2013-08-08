@@ -2462,10 +2462,8 @@ public class LitleMidFormController {
         Httpresponse sMResponse = new Httpresponse();
         try{
         	sMResponse = h.send(createSubMerchantRequest); 
-        	//sMResponse = mockApprovedSubMerchant();
         	//Log response
         	LoggingUtil.logCreateSubMerchantResponse(sMResponse, litleRequestResponseLog);
-        	//TODO Handle sub merchant response
         	if(sMResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
         		//get litle mid
         		litleMid = XmlUtil.extractXmlTagText(sMResponse, LitleConstants.XML_TAG_MERCHANT_IDENT_STRING);
