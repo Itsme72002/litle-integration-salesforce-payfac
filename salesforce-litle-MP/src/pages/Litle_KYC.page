@@ -61,30 +61,16 @@
 	                </apex:pageBlockSectionItem>
                  </apex:pageBlockSection>
                  <apex:pageBlockSection columns="1" title="Risk Indicators">
-                 	<apex:pageBlockSectionItem >
+                 <apex:repeat value="{!litleBusinessRiskIndicators}" var="risks">
+			        <apex:pageBlockSectionItem >
 	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="{!risks.Code__c}" />
 	                </apex:pageBlockSectionItem>
 					<apex:pageBlockSectionItem >
 	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="{!risks.Description__c}" />
 	                </apex:pageBlockSectionItem>
-	                <apex:pageBlockSectionItem >
-	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
-	                </apex:pageBlockSectionItem>
-					<apex:pageBlockSectionItem >
-	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
-	                </apex:pageBlockSectionItem>
-	                <apex:pageBlockSectionItem >
-	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
-	                </apex:pageBlockSectionItem>
-					<apex:pageBlockSectionItem >
-	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
-	                </apex:pageBlockSectionItem>
+			    </apex:repeat>
                  </apex:pageBlockSection>   
                  <apex:pageBlockButtons location="top">
                  	<apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
@@ -151,30 +137,16 @@
 	                </apex:pageBlockSectionItem>
                  </apex:pageBlockSection>
                  <apex:pageBlockSection columns="1" title="Risk Indicators">
-                 	<apex:pageBlockSectionItem >
+                 	<apex:repeat value="{!litlePrincipalRiskIndicators}" var="risks">
+			        <apex:pageBlockSectionItem >
 	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="{!risks.Code__c}" />
 	                </apex:pageBlockSectionItem>
 					<apex:pageBlockSectionItem >
 	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="{!risks.Description__c}" />
 	                </apex:pageBlockSectionItem>
-	                <apex:pageBlockSectionItem >
-	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
-	                </apex:pageBlockSectionItem>
-					<apex:pageBlockSectionItem >
-	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
-	                </apex:pageBlockSectionItem>
-	                <apex:pageBlockSectionItem >
-	                    <apex:outputText value="Code" />
-	                    <apex:outputText value="Code" />
-	                </apex:pageBlockSectionItem>
-					<apex:pageBlockSectionItem >
-	                    <apex:outputText value="Description" />
-	                    <apex:outputText value="Description" />
-	                </apex:pageBlockSectionItem>
+			    </apex:repeat>
                  </apex:pageBlockSection>    
                  <apex:pageBlockButtons location="bottom">
                  	<apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
