@@ -1,0 +1,185 @@
+<apex:page controller="LitleKYCController">
+    <apex:form >
+    
+        <apex:pageBlock title="Litle KYC Information" mode="maindetail"/>
+            <!-- Business Verification Results start -->
+            	<apex:pageBlock title="Business Verification results" mode="edit">
+            	<apex:pageBlockSection columns="1" title="Overall Score">
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Score" />
+	                    <apex:outputText value="Score" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Overall Score Description" />
+	                    <apex:outputText value="Overall Score Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1" title="Name Address Tax-Id Association">
+                	<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1" title="Name Address Phone Association">
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                 <apex:pageBlockSection columns="1" title="Verification Indicators">
+	                 <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Name Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Address Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="City Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Zip Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Phone Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Tax-Id Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+                 </apex:pageBlockSection>
+                 <apex:pageBlockSection columns="1" title="Risk Indicators">
+                 	<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                 </apex:pageBlockSection>   
+                 <apex:pageBlockButtons location="top">
+                 	<apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+                 </apex:pageBlockButtons>
+                 </apex:pageBlock>
+            <!-- Business Verification Results end -->
+            <!-- Principal Verification Results start -->
+            <apex:pageBlock title="Principal Verification results" mode="edit">
+            
+            	<apex:pageBlockSection columns="1" title="Overall Score">
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Score" />
+	                    <apex:outputText value="Score" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Overall Score Description" />
+	                    <apex:outputText value="Overall Score Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1" title="Name Address Tax-Id Association">
+                	<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1" title="Name Address Phone Association">
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                 <apex:pageBlockSection columns="1" title="Verification Indicators">
+	                 <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Name Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Address Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="City Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Zip Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Phone Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Tax-Id Verified" />
+	                    <apex:outputText value="true" />
+	                </apex:pageBlockSectionItem>
+                 </apex:pageBlockSection>
+                 <apex:pageBlockSection columns="1" title="Risk Indicators">
+                 	<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+	                <apex:pageBlockSectionItem >
+	                    <apex:outputText value="Code" />
+	                    <apex:outputText value="Code" />
+	                </apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+	                    <apex:outputText value="Description" />
+	                    <apex:outputText value="Description" />
+	                </apex:pageBlockSectionItem>
+                 </apex:pageBlockSection>    
+                 <apex:pageBlockButtons location="bottom">
+                 	<apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+                 </apex:pageBlockButtons>
+            <!-- Principal Verification Results end-->
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
