@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Litle Verification Result</relationshipLabel>
+        <relationshipName>Litle_Verification_Result</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Address_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Address Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>City_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>City Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Litle_Business__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Litle Business</label>
+        <referenceTo>Litle_Business__c</referenceTo>
+        <relationshipLabel>Litle Verification Result</relationshipLabel>
+        <relationshipName>Litle_Verification_Result</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Litle_Principal__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Litle Principal</label>
+        <referenceTo>Litle_Principal__c</referenceTo>
+        <relationshipLabel>Litle Verification Result</relationshipLabel>
+        <relationshipName>Litle_Verification_Result</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Name_Address_Phone_Association_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Address Phone Association Code</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Address_Phone_Association_Desc__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Address Phone Association Desc</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Address_TaxId_Association_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Address TaxId Association Code</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Address_TaxId_Association_Desc__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Address TaxId Association Desc</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Overall_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Overall Description</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Overall_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Overall Score</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Phone_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Phone Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaxId_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Id Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zip_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Zip Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Litle Verification Result</label>
+    <nameField>
+        <displayFormat>{0}</displayFormat>
+        <label>Litle Verification Result Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Litle Verification Result</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
