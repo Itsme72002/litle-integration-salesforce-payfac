@@ -3,7 +3,7 @@ public class VerificationResult {
 	private DescriptionDetails nameAddressTaxOrSsnIdAssociation;
 	private DescriptionDetails nameAddressPhoneAssociation;
 	private VerificationIndicators verificationIndicator;
-	private DescriptionDetails riskIndicator;
+	private List<DescriptionDetails> riskIndicators;
 	
 	
     public DescriptionDetails getOverallScore() {
@@ -33,11 +33,11 @@ public class VerificationResult {
             VerificationIndicators verificationIndicator) {
         this.verificationIndicator = verificationIndicator;
     }
-    public DescriptionDetails getRiskIndicator() {
-        return riskIndicator;
+    public List<DescriptionDetails> getRiskIndicator() {
+        return riskIndicators;
     }
-    public void setRiskIndicator(DescriptionDetails riskIndicator) {
-        this.riskIndicator = riskIndicator;
+    public void setRiskIndicator(List<DescriptionDetails> riskIndicators) {
+        this.riskIndicators = riskIndicators;
     }
 
 }

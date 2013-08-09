@@ -1267,11 +1267,6 @@ private class SalesforceLitleMappingControllerTest {
 		System.Test.setCurrentPage(new PageReference(testString));
 		System.assertEquals(true, salesforceLitleMappingController.cancelMappings().getRedirect());
 		System.assertEquals(testString, salesforceLitleMappingController.cancelMappings().getUrl());
-		//some account id, return to the account page
-		//Apexpages.currentPage().getParameters().put('id' , testString);
-		//System.Test.setCurrentPage(new PageReference(ApexPages.currentPage().getUrl()));
-		//System.assertEquals( '/' + testString, salesforceLitleMappingController.cancelMappings().getUrl());
-		//Apexpages.currentPage().
 	}
 	
 	static testMethod void testConstructor(){

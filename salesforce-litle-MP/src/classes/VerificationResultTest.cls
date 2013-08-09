@@ -84,17 +84,19 @@ private class VerificationResultTest {
         System.assertEquals(verificationResult.getVerificationIndicator(), verificationIndicators);
     }
     
-    static testMethod void testRiskIndicator(){
+    static testMethod void testRiskIndicators(){
     	VerificationResult verificationResult = new VerificationResult();
     	DescriptionDetails descriptionDetails = new DescriptionDetails();
+    	List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
+    	riskIndicators.add(descriptionDetails);
         // Check null initially
         System.assertEquals(verificationResult.getRiskIndicator(), null);
-        verificationResult.setRiskIndicator(descriptionDetails);
+        verificationResult.setRiskIndicator(riskIndicators);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getRiskIndicator(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(verificationResult.getRiskIndicator(), descriptionDetails);
+        System.assertEquals(riskIndicators, verificationResult.getRiskIndicator());
     }
 }

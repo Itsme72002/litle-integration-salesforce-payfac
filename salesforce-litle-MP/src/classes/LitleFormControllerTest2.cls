@@ -1929,9 +1929,21 @@ private class LitleFormControllerTest2 {
     	
     }
     
-    static testMethod void testCancel(){
+    static testMethod void testCancelFromOpportunity(){
+    	Apexpages.currentPage().getParameters().put('oppid' , DEFAULT_STRING);
+        LitleMidFormController controller = new LitleMidFormController();
+        System.assertEquals('/'+DEFAULT_STRING, controller.cancel().getUrl());
+    }
+    
+    static testMethod void testCancelFromAccount(){
+    	Apexpages.currentPage().getParameters().put('accid' , DEFAULT_STRING);
+        LitleMidFormController controller = new LitleMidFormController();
+        System.assertEquals('/'+DEFAULT_STRING, controller.cancel().getUrl());
+    }
+    
+    static testMethod void testCancelFromNietherAccountNorOpportunity(){
     	LitleMidFormController controller = new LitleMidFormController();
-    	System.assertEquals(null, controller.cancel());
+    	 System.assertEquals(null, controller.cancel());
     }
     
     
