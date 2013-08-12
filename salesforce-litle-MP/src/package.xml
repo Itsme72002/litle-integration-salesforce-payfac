@@ -15,6 +15,8 @@
     <types>
         <members>Account.Litle_MID__c</members>
         <members>Account.PayFac_Portal_Link__c</members>
+        <members>LitleRequestResponseLog__c.Account__c</members>
+        <members>LitleRequestResponseLog__c.Opportunity__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestDate__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityRequestXml__c</members>
         <members>LitleRequestResponseLog__c.createLegalEntityResponseDate__c</members>
@@ -27,7 +29,6 @@
         <members>LitleRequestResponseLog__c.createSubMerchantResponseStatusCode__c</members>
         <members>LitleRequestResponseLog__c.createSubMerchantResponseStatusMessage__c</members>
         <members>LitleRequestResponseLog__c.createSubMerchantResponseXml__c</members>
-        <members>LitleRequestResponseLog__c.sObjectId__c</members>
         <members>LitleRequestResponseLog__c.sObjectName__c</members>
         <members>LitleRequestResponseLog__c.sObjectType__c</members>
         <members>Opportunity.Litle_MID__c</members>
