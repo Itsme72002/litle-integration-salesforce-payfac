@@ -12,7 +12,6 @@ public class XmlUtil {
 							xmlReader.next();
 							while(xmlReader.getEventType() != Xmltag.END_ELEMENT){
 								if(xmlReader.getEventType() == Xmltag.CHARACTERS){
-									system.debug('tagname: '+ tagName + ' value: '+ xmlReader.getText());
 									if(tagValue == null){
 										tagValue = xmlReader.getText();
 									}else{
@@ -111,12 +110,13 @@ public class XmlUtil {
 	//creates start and end tag with the given name and the given value
 	//e.g: tagName = 'legalEntity' value='Individual'
 	//outputs <legalEntity>Individual</legalEntity>
-	public static void addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
-		if(String.isNotEmpty(value)){
+	public static Xmlstreamwriter addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
+		if(xmlWriter != null && String.isNotEmpty(tagName) && value != null){
 			xmlWriter.writeStartElement(null, tagName, null);	//start tagName
 			xmlWriter.writeCharacters(value.escapeXml());
 			xmlWriter.writeEndElement();	//end tagName
 		}
+		return xmlWriter;
 	} 
 	
 	public static boolean elementExists(Httpresponse response, String elementName){
@@ -134,5 +134,36 @@ public class XmlUtil {
 			}
 		}
 		return isElementPresent;
+	}
+	
+	public static Xmlstreamreader getXmlReaderTillNode(Xmlstreamreader inputXmlReader, String tagName){
+		Xmlstreamreader xmlReader;
+		if(inputXmlReader != null && String.isNotEmpty(tagName)){
+			while(inputXmlReader.hasNext()) {
+		         if (inputXmlReader.getEventType() == XmlTag.START_ELEMENT && tagName == inputXmlReader.getLocalName()) {
+		            	xmlReader = inputXmlReader;
+		            	break;
+	            }
+	        	inputXmlReader.next();
+	     	}
+		}
+		return xmlReader;
+	}
+	
+	public static String getTagTextFromXmlStreamReader(Xmlstreamreader inputXmlReader, String tagName){
+		String tagValue;
+		if(inputXmlReader != null && String.isNotEmpty(tagName)){
+			while(inputXmlReader.hasNext()) {
+		        if(XmlTag.START_ELEMENT == inputXmlReader.getEventType() && tagName == inputXmlReader.getLocalName()){
+		        	inputXmlReader.next();
+			        if (XmlTag.END_ELEMENT != inputXmlReader.getEventType() && inputXmlReader.getEventType() == XmlTag.CHARACTERS) {
+			           tagValue = inputXmlReader.getText();
+			           break;
+			        }
+				}
+		        inputXmlReader.next();
+		     }
+		}
+     	return tagValue;
 	}
 }

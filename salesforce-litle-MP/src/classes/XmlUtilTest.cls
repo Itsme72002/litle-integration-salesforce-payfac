@@ -159,5 +159,57 @@ private class XmlUtilTest {
 		System.assert(!XmlUtil.elementExists(null, 'errors'));
     }
     
+    static testMethod void getXmlReaderTillNode(){
+    	String xml = '<Articles><books title="First Book"><book>1</book></books><books title="Second Book"><book>2</book></books>'+
+    					'<Magazines title="First Magazine"><Magazine>10</Magazine></Magazines></Articles>';
+    	Xmlstreamreader xmlReader = new Xmlstreamreader(xml);
+    	//Get the reader till first book
+    	System.assertEquals(Xmltag.START_ELEMENT, XmlUtil.getXmlReaderTillNode(xmlReader, 'books').getEventType());
+    	System.assertEquals('books', XmlUtil.getXmlReaderTillNode(xmlReader, 'books').getLocalName());
+    	System.assertEquals('First Book', XmlUtil.getXmlReaderTillNode(xmlReader, 'books').getAttributeValue(null, 'title'));
+    	
+    	//Get reader till magazine
+    	System.assertEquals(Xmltag.START_ELEMENT, XmlUtil.getXmlReaderTillNode(xmlReader, 'Magazines').getEventType());
+    	System.assertEquals('Magazines', XmlUtil.getXmlReaderTillNode(xmlReader, 'Magazines').getLocalName());
+    	System.assertEquals('First Magazine', XmlUtil.getXmlReaderTillNode(xmlReader, 'Magazines').getAttributeValue(null, 'title'));
+    	
+    	//ugly cases
+    	System.assertEquals(null, XmlUtil.getXmlReaderTillNode(xmlReader, 'invalidTag'));
+    	System.assertEquals(null, XmlUtil.getXmlReaderTillNode(xmlReader, ''));
+    	System.assertEquals(null, XmlUtil.getXmlReaderTillNode(null, 'books'));
+    }
+    
+    static testMethod void getTagTextFromXmlStreamReader(){
+    	String xml = '<Articles><books title="First Book"><book>1</book></books><books title="Second Book"><book>2</book></books>'+
+    					'<Magazines title="First Magazine"><Magazine></Magazine></Magazines></Articles>';
+    	Xmlstreamreader xmlReader = new Xmlstreamreader(xml);
+    	System.assertEquals('1', XmlUtil.getTagTextFromXmlStreamReader(xmlReader, 'book'));
+    	System.assertEquals(null, XmlUtil.getTagTextFromXmlStreamReader(xmlReader, 'Magazine'));
+    	
+    	//ugly cases
+    	System.assertEquals(null, XmlUtil.getTagTextFromXmlStreamReader(xmlReader, 'invalidTag'));
+    	System.assertEquals(null, XmlUtil.getTagTextFromXmlStreamReader(xmlReader, ''));
+    	System.assertEquals(null, XmlUtil.getTagTextFromXmlStreamReader(null, 'books'));
+    }
+    
+    static testMethod void addTagToXml(){
+    	Xmlstreamwriter writer = new Xmlstreamwriter();
+    	Xmlutil.addTagToXml(writer, 'book', 'Let us C');
+    	System.assertEquals('<book>Let us C</book>', writer.getXmlString());
+    	Xmlutil.addTagToXml(writer, 'book', '');
+    	System.assertEquals('<book>Let us C</book><book></book>', writer.getXmlString());
+    	Xmlutil.addTagToXml(writer, 'book', null);
+    	System.assertEquals('<book>Let us C</book><book></book>', writer.getXmlString());
+    	
+    	//ugly cases
+    	writer = new Xmlstreamwriter();
+    	Xmlutil.addTagToXml(writer, '', 'Let us C');
+    	System.assertEquals('', writer.getXmlString());
+    	
+    	Xmlutil.addTagToXml(writer, null, 'Let us C');
+    	System.assertEquals('', writer.getXmlString());
+    	
+    	System.assertEquals(null, Xmlutil.addTagToXml(null, 'book', 'Let us C'));
+    }
     
 }
