@@ -108,7 +108,9 @@ private class LegalEntityResponseTest {
     	verificationResult.setNameAddressTaxOrSsnIdAssociation(descriptionDetails);
     	verificationResult.setNameAddressPhoneAssociation(descriptionDetails);
     	verificationResult.setVerificationIndicator(verificationIndicators);
-    	verificationResult.setRiskIndicator(descriptionDetails);
+    	List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
+    	riskIndicators.add(descriptionDetails);
+    	verificationResult.setRiskIndicators(riskIndicators);
     	// Check null initially
         System.assertEquals(legalEntityResponse.getBusinessVerificationResult(), null);
         legalEntityResponse.setBusinessVerificationResult(verificationResult);
@@ -135,7 +137,9 @@ private class LegalEntityResponseTest {
     	verificationResult.setNameAddressTaxOrSsnIdAssociation(descriptionDetails);
     	verificationResult.setNameAddressPhoneAssociation(descriptionDetails);
     	verificationResult.setVerificationIndicator(verificationIndicators);
-    	verificationResult.setRiskIndicator(descriptionDetails);
+    	List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
+    	riskIndicators.add(descriptionDetails);
+    	verificationResult.setRiskIndicators(riskIndicators);
         // Check null initially
         System.assertEquals(legalEntityResponse.getPrincipalVerificationResult(), null);
         legalEntityResponse.setPrincipalVerificationResult(verificationResult);

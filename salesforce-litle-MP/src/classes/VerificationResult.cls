@@ -33,10 +33,10 @@ public class VerificationResult {
             VerificationIndicators verificationIndicator) {
         this.verificationIndicator = verificationIndicator;
     }
-    public List<DescriptionDetails> getRiskIndicator() {
+    public List<DescriptionDetails> getRiskIndicators() {
         return riskIndicators;
     }
-    public void setRiskIndicator(List<DescriptionDetails> riskIndicators) {
+    public void setRiskIndicators(List<DescriptionDetails> riskIndicators) {
         this.riskIndicators = riskIndicators;
     }
 

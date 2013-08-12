@@ -127,29 +127,15 @@ public class LitleKYCController {
 	
 	private void populateRiskIndicators(){
 		if(litlePrincipalVerificationResult != null){
-			try{
-				litlePrincipalRiskIndicators = 
-				[select Code__c, 
-						Description__c 
-					from Litle_Risk_Indicator__c 
-					where Litle_Verification_Result__c =:litlePrincipalVerificationResult.Id];
-			}catch(QueryException e){
-        		System.debug('Error fetching Risk Indicators for Principal for litlePrincipalVerificationResult id:' + 
-        														litlePrincipalVerificationResult.Id + ' '+ e.getMessage());
-        	}
+			litlePrincipalRiskIndicators = [select Code__c, Description__c 
+											from Litle_Risk_Indicator__c 
+											where Litle_Verification_Result__c =:litlePrincipalVerificationResult.Id];
 		}
 		
 		if(litleBusinessVerificationResult != null){
-			try{
-				litleBusinessRiskIndicators = 
-				[select Code__c, 
-						Description__c 
-					from Litle_Risk_Indicator__c 
-					where Litle_Verification_Result__c =:litleBusinessVerificationResult.Id];
-			}catch(QueryException e){
-        		System.debug('Error fetching Risk Indicators for Business for litleBusinessVerificationResult id:' + 
-        														litleBusinessVerificationResult.Id + ' '+ e.getMessage());
-        	}
+			litleBusinessRiskIndicators = [select Code__c, Description__c 
+											from Litle_Risk_Indicator__c 
+											where Litle_Verification_Result__c =:litleBusinessVerificationResult.Id];
 		}
 	}
 	

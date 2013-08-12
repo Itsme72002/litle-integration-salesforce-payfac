@@ -92,11 +92,11 @@ private class VerificationResultTest {
     	descriptionDetails.setDescription(testString);
     	riskIndicators.add(descriptionDetails);
         // Check null initially
-        System.assertEquals(verificationResult.getRiskIndicator(), null);
-        verificationResult.setRiskIndicator(riskIndicators);
+        System.assertEquals(verificationResult.getRiskIndicators(), null);
+        verificationResult.setRiskIndicators(riskIndicators);
         // First check if the value is set
-        System.assertNotEquals(verificationResult.getRiskIndicator(), null);
+        System.assertNotEquals(verificationResult.getRiskIndicators(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(riskIndicators, verificationResult.getRiskIndicator());
+        System.assertEquals(riskIndicators, verificationResult.getRiskIndicators());
     }
 }
