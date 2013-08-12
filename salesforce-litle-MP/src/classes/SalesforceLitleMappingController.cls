@@ -1,8 +1,6 @@
 public class SalesforceLitleMappingController {
     private List < Selectoption > salesforceFields;
     private final String emptyString = '';
-    //public Boolean savingStatus {get; set;}
-    //public Boolean errorStatus {get; set;}
     //Holds the current mappings from the page
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     public List<SelectOption> legalEntityTypeList{get; set;}
@@ -27,8 +25,6 @@ public class SalesforceLitleMappingController {
         } else {
             this.currentMappings = mappingRecords.get(0);
         }
-        /*savingStatus = false;
-        errorStatus = false;*/
     }
 
     
@@ -73,11 +69,7 @@ public class SalesforceLitleMappingController {
 		return allFields;
     }
 
-    /*public void resetStatus() {
-        savingStatus = false;
-        errorStatus = false;
-    }*/
-
+    
     //Legal Entity on change listeners	 
     public Pagereference onSelectChangeLegalEntityName() {
         if (currentMappings.legalEntityName__c == null) {
@@ -305,70 +297,6 @@ public class SalesforceLitleMappingController {
         return null;
     }
 	
-	/* Removed Pci Fields
-    public PageReference onSelectChangeLegalEntityIsExclusiveToPsp() {
-        if (currentMappings.legalEntityIsExclusiveToPsp__c == null) {
-            currentMappings.legalEntityIsExclusiveToPspX__c = false;
-        } else {
-            currentMappings.legalEntityIsExclusiveToPspX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityIsPciComplianceValidated() {
-        if (currentMappings.legalEntityIsPciComplianceValidated__c == null) {
-            currentMappings.legalEntityIsPciComplianceValidatedX__c = false;
-        } else {
-            currentMappings.legalEntityIsPciComplianceValidatedX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityPciLevel() {
-        if (currentMappings.legalEntityPciLevel__c == null) {
-            currentMappings.legalEntityPciLevelX__c = false;
-        } else {
-            currentMappings.legalEntityPciLevelX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityScanningVendor() {
-        if (currentMappings.legalEntityScanningVendor__c == null) {
-            currentMappings.legalEntityScanningVendorX__c = false;
-        } else {
-            currentMappings.legalEntityScanningVendorX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityQualifiedSecurityAssessor() {
-        if (currentMappings.legalEntityQualifiedSecurityAssessor__c == null) {
-            currentMappings.legalEntityQualifiedSecurityAssessorX__c = false;
-        } else {
-            currentMappings.legalEntityQualifiedSecurityAssessorX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityMostRecentlyPassedScan() {
-        if (currentMappings.legalEntityMostRecentlyPassedScan__c == null) {
-            currentMappings.legalEntityMostRecentlyPassedScanX__c = false;
-        } else {
-            currentMappings.legalEntityMostRecentlyPassedScanX__c = true;
-        }
-        return null;
-    }
-
-    public PageReference onSelectChangeLegalEntityReportOnCompliance() {
-        if (currentMappings.legalEntityReportOnCompliance__c == null) {
-            currentMappings.legalEntityReportOnComplianceX__c = false;
-        } else {
-            currentMappings.legalEntityReportOnComplianceX__c = true;
-        }
-        return null;
-    }
-	*/
 	
     public PageReference onSelectChangeLegalEntityAnnualCreditCardSalesVolume() {
         if (currentMappings.legalEntityAnnualCreditCardSalesVolume__c == null) {
@@ -708,10 +636,6 @@ public class SalesforceLitleMappingController {
             currentMappings.legalEntityNameD__c = emptyString;
         }
 
-        /*if (currentMappings.legalEntityTypeX__c) {
-            currentMappings.legalEntityTypeD__c = emptyString;
-        }*/
-
         if (currentMappings.legalEntityStreetAddress1X__c) {
             currentMappings.legalEntityStreetAddress1D__c = emptyString;
         }
@@ -804,37 +728,7 @@ public class SalesforceLitleMappingController {
             currentMappings.legalEntityTaxIdD__c = emptyString;
         }
 		
-		/* Removed Pci Fields
-        if (currentMappings.legalEntityIsExclusiveToPspX__c) {
-            currentMappings.legalEntityIsExclusiveToPspD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityIsPciComplianceValidatedX__c) {
-            currentMappings.legalEntityIsPciComplianceValidatedD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityPciLevelX__c) {
-            currentMappings.legalEntityPciLevelD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityScanningVendorX__c) {
-            currentMappings.legalEntityScanningVendorD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityQualifiedSecurityAssessorX__c) {
-            currentMappings.legalEntityQualifiedSecurityAssessorD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityMostRecentlyPassedScanX__c) {
-            currentMappings.legalEntityMostRecentlyPassedScanD__c = emptyString;
-        }
-
-        if (currentMappings.legalEntityReportOnComplianceX__c) {
-            currentMappings.legalEntityReportOnComplianceD__c = emptyString;
-        }
-		*/
-		
-        if (currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c) {
+		if (currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c) {
             currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c = emptyString;
         }
 
@@ -850,15 +744,9 @@ public class SalesforceLitleMappingController {
         try{
         	System.debug(currentMappings.legalEntityTypeD__c);
         	upsert currentMappings;
-            /*String aId = apexpages.currentpage().getParameters().get('id');
-            if (aId != null && !aid.equals('')) {
-                return new PageReference('/' + aId);
-            }*/
             ApexPageUtil.addConfirmMessage('Mappings Saved.');
-            //savingStatus = true;
         } catch (DmlException e) {
         	ApexPageUtil.addErrorMessage('Error in Saving Mappings.');
-            //errorStatus = true;
         }
         if(String.isEmpty(currentMappings.merchantUsername__c) || String.isEmpty(currentMappings.merchantPassword__c)){
         	ApexPageUtil.addWarningMessage('Merchant Username and Passwords are required to create Litle MID.');

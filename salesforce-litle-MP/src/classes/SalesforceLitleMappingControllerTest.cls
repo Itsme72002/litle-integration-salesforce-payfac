@@ -23,31 +23,7 @@
 private class SalesforceLitleMappingControllerTest {
 	private static final String testString = 'test';
 
-	// Test legal entity model
-    /*static testMethod void testLegalEntityModel() {
-        SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-        System.assertNotEquals(salesforceLitleMappingController.getLegalEntityModel(), null);
-        LegalEntityModel legalEntityModel = new LegalEntityModel();
-        //String annualCreditCardSalesVolume = '300';
-        legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(testString);
-        salesforceLitleMappingController.setLegalEntityModel(legalEntityModel);
-        System.assertNotEquals(salesforceLitleMappingController.getLegalEntityModel(), null);
-        System.assertEquals(salesforceLitleMappingController.getLegalEntityModel().getLegalEntityAnnualCreditCardSalesVolume(), testString);
-    }
-    
-    // Test sub merchant model
-    static testMethod void testSubMerchantModel() {
-        SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-        System.assertNotEquals(salesforceLitleMappingController.getSubMerchantModel(), null);
-        SubMerchantModel subMerchantModel = new SubMerchantModel();
-        //String subMerchantAmexMid = '12345';
-        subMerchantModel.setSubMerchantAmexMid( = null
-        salesforceLitleMappingController.setSubMerchantModel(subMerchantModel);
-        System.assertNotEquals(salesforceLitleMappingController.getSubMerchantModel(), null);
-        System.assertEquals(salesforceLitleMappingController.getSubMerchantModel().getSubMerchantAmexMid(), testString);
-    }*/
-    
-    // Test salesforce fields
+	// Test salesforce fields
     static testMethod void testSalesforceFields() {
         SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
         System.assert(salesforceLitleMappingController.getSalesforceFields().size()!= 0);
@@ -484,126 +460,7 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.onSelectChangeLegalEntityTaxId();
 		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTaxIdX__c, false);
 	 }
-	/*
-	static testMethod void testOnSelectChangeLegalEntityIsExclusiveToPsp(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPsp__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPsp__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPsp__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityIsExclusiveToPsp();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPsp__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPsp__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityIsExclusiveToPsp();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c, false);
-	 }
 	
-	static testMethod void testOnSelectChangeLegalEntityIsPciComplianceValidated(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidated__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidated__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidated__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityIsPciComplianceValidated();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidated__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidated__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityIsPciComplianceValidated();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedX__c, false);
-	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityPciLevel(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevel__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityPciLevel__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevel__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityPciLevel();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevelX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityPciLevel__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevel__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityPciLevel();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityPciLevelX__c, false);
-	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityScanningVendor(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendor__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityScanningVendor__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendor__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityScanningVendor();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendorX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityScanningVendor__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendor__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityScanningVendor();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityScanningVendorX__c, false);
-	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityQualifiedSecurityAssessor(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessor__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessor__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessor__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityQualifiedSecurityAssessor();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessor__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessor__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityQualifiedSecurityAssessor();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorX__c, false);
-	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityMostRecentlyPassedScan(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScan__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScan__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScan__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityMostRecentlyPassedScan();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScan__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScan__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityMostRecentlyPassedScan();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanX__c, false);
-	 }
-	
-	static testMethod void testOnSelectChangeLegalEntityReportOnCompliance(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnCompliance__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityReportOnCompliance__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnCompliance__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityReportOnCompliance();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityReportOnCompliance__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnCompliance__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityReportOnCompliance();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c, false);
-	 }
-	*/
 	static testMethod void testOnSelectChangeLegalEntityAnnualCreditCardSalesVolume(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
@@ -1025,24 +882,7 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(salesforceLitleMappingController.currentMappings.subMerchanteCheckCompanyNameX__c, false);		
 	}
 	
-	// test for reset status
-	/*static testMethod void testResetStatus(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-		// check initial values to be false
-		System.assertEquals(salesforceLitleMappingController.errorStatus, false);
-		System.assertEquals(salesforceLitleMappingController.savingStatus, false);
-		
-		// set values to true and check setter/getter methods
-		salesforceLitleMappingController.errorStatus = true;
-		salesforceLitleMappingController.savingStatus = true;
-		System.assertEquals(salesforceLitleMappingController.errorStatus, true);
-		System.assertEquals(salesforceLitleMappingController.savingStatus, true);
-		
-		// check resetStatus()
-		salesforceLitleMappingController.resetStatus();
-		System.assertEquals(salesforceLitleMappingController.errorStatus, false);
-		System.assertEquals(salesforceLitleMappingController.savingStatus, false);
-	}*/
+	
 	
 	static testMethod void testRemoveDisabledText(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
@@ -1114,13 +954,6 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdX__c = flag; 
-		/*salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityPciLevelX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityScanningVendorX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanX__c = flag; 
-		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceX__c = flag; */
 		salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = flag; 
 		salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsX__c = flag;
 	}
@@ -1174,13 +1007,6 @@ private class SalesforceLitleMappingControllerTest {
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c = stringToSet; 
-		/*salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c = stringToSet; 
-		salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c = stringToSet; */
 		salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c = stringToSet; 
 		salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c = stringToSet;  
 		
@@ -1234,13 +1060,6 @@ private class SalesforceLitleMappingControllerTest {
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalPostalCodeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityPrincipalCountryCodeD__c);
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityTaxIdD__c); 
-		/*System.assertEquals('true', salesforceLitleMappingController.currentMappings.legalEntityIsExclusiveToPspD__c); 
-		System.assertEquals('true', salesforceLitleMappingController.currentMappings.legalEntityIsPciComplianceValidatedD__c); 
-		System.assertEquals('4', salesforceLitleMappingController.currentMappings.legalEntityPciLevelD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityScanningVendorD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityQualifiedSecurityAssessorD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityMostRecentlyPassedScanD__c); 
-		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityReportOnComplianceD__c); */
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c); 
 		System.assertEquals(stringToCheck, salesforceLitleMappingController.currentMappings.legalEntityHasAcceptedCreditCardsD__c);  
 		
@@ -1248,15 +1067,9 @@ private class SalesforceLitleMappingControllerTest {
 	
 	static testMethod void testSaveMappings(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-		//List<SalesforceLitleMappingsObject__c> mappingRecords 
-    		//	= [select id, name, subMerchantStreetAddress1__c, subMerchantStreetAddress2__c, subMerchantCity__c, subMerchantStateProvince__c, subMerchantPostalCode__c, subMerchantCountryCode__c, subMerchantAmexMid__c, subMerchantBankAccountNumber__c, subMerchantBankRoutingNumber__c, subMerchantCreateCredentials__c, subMerchantCustomerServiceNumber__c, subMerchantDiscoverConveyMid__c, subMerchantHardCodeBillingDescriptor__c, subMerchantMaxTransactionAmount__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantName__c, subMerchantFirstName__c, subMerchantLastName__c, subMerchantEmailAddress__c, subMerchantPhone__c, subMerchantPspMerchantId__c, subMerchantUrl__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckCompanyName__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress2D__c, subMerchantCityD__c, subMerchantStateProvinceD__c, subMerchantPostalCodeD__c, subMerchantCountryCodeD__c, subMerchantAmexMidD__c, subMerchantBankAccountNumberD__c, subMerchantBankRoutingNumberD__c, subMerchantCreateCredentialsD__c, subMerchantCustomerServiceNumberD__c, subMerchantDiscoverConveyMidD__c, subMerchantHardCodeBillingDescD__c, subMerchantMaxTransactionAmountD__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantNameD__c, subMerchantFirstNameD__c, subMerchantLastNameD__c, subMerchantEmailAddressD__c, subMerchantPhoneD__c, subMerchantPspMerchantIdD__c, subMerchantUrlD__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckCompanyNameD__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2X__c, subMerchantCityX__c, subMerchantStateProvinceX__c, subMerchantPostalCodeX__c, subMerchantCountryCodeX__c, subMerchantAmexMidX__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumberX__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMidX__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantNameX__c, subMerchantFirstNameX__c, subMerchantLastNameX__c, subMerchantEmailAddressX__c, subMerchantPhoneX__c, subMerchantPspMerchantIdX__c, subMerchantUrlX__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyNameX__c, legalEntityName__c, legalEntityType__c, legalEntityStreetAddress1__c, legalEntityStreetAddress2__c, legalEntityCity__c, legalEntityStateProvince__c, legalEntityPostalCode__c, legalEntityCountryCode__c, legalEntityFirstName__c, legalEntityLastName__c, legalEntityEmailAddress__c, legalEntityContactPhone__c, legalEntityDateOfBirth__c, legalEntityDriversLicense__c, legalEntityDriversLicenseState__c, legalEntitySsn__c, legalEntityTaxId__c, legalEntityIsExclusiveToPsp__c, legalEntityIsPciComplianceValidated__c, legalEntityPciLevel__c, legalEntityScanningVendor__c, legalEntityQualifiedSecurityAssessor__c, legalEntityMostRecentlyPassedScan__c, legalEntityReportOnCompliance__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityHasAcceptedCreditCards__c, legalEntityNameD__c, legalEntityTypeD__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress2D__c, legalEntityCityD__c, legalEntityStateProvinceD__c, legalEntityPostalCodeD__c, legalEntityCountryCodeD__c, legalEntityFirstNameD__c, legalEntityLastNameD__c, legalEntityEmailAddressD__c, legalEntityContactPhoneD__c, legalEntityDateOfBirthD__c, legalEntityDriversLicenseD__c, legalEntityDriversLicenseStateD__c, legalEntitySsnD__c, legalEntityTaxIdD__c, legalEntityIsExclusiveToPspD__c, legalEntityIsPciComplianceValidatedD__c, legalEntityPciLevelD__c, legalEntityScanningVendorD__c, legalEntityQualifiedSecurityAssessorD__c, legalEntityMostRecentlyPassedScanD__c, legalEntityReportOnComplianceD__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityNameX__c, legalEntityTypeX__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2X__c, legalEntityCityX__c, legalEntityStateProvinceX__c, legalEntityPostalCodeX__c, legalEntityCountryCodeX__c, legalEntityFirstNameX__c, legalEntityLastNameX__c, legalEntityEmailAddressX__c, legalEntityContactPhoneX__c, legalEntityDateOfBirthX__c, legalEntityDriversLicenseX__c, legalEntityDriversLicenseStateX__c, legalEntitySsnX__c, legalEntityTaxIdX__c, legalEntityIsExclusiveToPspX__c, legalEntityIsPciComplianceValidatedX__c, legalEntityPciLevelX__c, legalEntityScanningVendorX__c, legalEntityQualifiedSecurityAssessorX__c, legalEntityMostRecentlyPassedScanX__c, legalEntityReportOnComplianceX__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityHasAcceptedCreditCardsX__c  from SalesforceLitleMappingsObject__c limit 1];
-    	
-	 	//salesforceLitleMappingController.currentMappings = null;
-	 	try{
-	 		//salesforceLitleMappingController.currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c = 'hello';
-			salesforceLitleMappingController.saveMappings();
+		try{
+	 		salesforceLitleMappingController.saveMappings();
 	 	}catch(DMLException e){
-	 		
 	 		System.assertEquals(1, Apexpages.getMessages().size());
 	 	}
 	}
@@ -1279,17 +1092,9 @@ private class SalesforceLitleMappingControllerTest {
 		delete customObject;
 	}
 	
-	/*static testMethod void testCancelMappingsPageRedirect(){
-		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-		apexpages.currentpage().getparameters().put('id' , testString);
-		salesforceLitleMappingController.cancelMappings();
-		//Apexpages.currentPage().
-	}*/
-	
 	static testMethod void testSaveMappingsPageRedirect(){
 		SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 		apexpages.currentpage().getparameters().put('id' , testString);
 		salesforceLitleMappingController.saveMappings();
-		//Apexpages.currentPage().
 	}     
 }
