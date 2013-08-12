@@ -29,8 +29,6 @@ private class VerificationResultTest {
     	DescriptionDetails descriptionDetails = new DescriptionDetails();
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
-        // Check null initially
-        System.assertEquals(verificationResult.getOverallScore(), null);
         verificationResult.setOverallScore(descriptionDetails);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getOverallScore(), null);
@@ -43,8 +41,6 @@ private class VerificationResultTest {
     	DescriptionDetails descriptionDetails = new DescriptionDetails();
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
-        // Check null initially
-        System.assertEquals(verificationResult.getNameAddressTaxOrSsnIdAssociation(), null);
         verificationResult.setNameAddressTaxOrSsnIdAssociation(descriptionDetails);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getNameAddressTaxOrSsnIdAssociation(), null);
@@ -57,8 +53,6 @@ private class VerificationResultTest {
     	DescriptionDetails descriptionDetails = new DescriptionDetails();
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
-        // Check null initially
-        System.assertEquals(verificationResult.getNameAddressPhoneAssociation(), null);
         verificationResult.setNameAddressPhoneAssociation(descriptionDetails);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getNameAddressPhoneAssociation(), null);
@@ -75,8 +69,6 @@ private class VerificationResultTest {
     	verificationIndicators.setZipVerified(testString);
     	verificationIndicators.setPhoneVerified(testString);
     	verificationIndicators.setTaxIdVerified(testString);
-        // Check null initially
-        System.assertEquals(verificationResult.getVerificationIndicator(), null);
         verificationResult.setVerificationIndicator(verificationIndicators);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getVerificationIndicator(), null);
@@ -91,8 +83,6 @@ private class VerificationResultTest {
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
     	riskIndicators.add(descriptionDetails);
-        // Check null initially
-        System.assertEquals(verificationResult.getRiskIndicators(), null);
         verificationResult.setRiskIndicators(riskIndicators);
         // First check if the value is set
         System.assertNotEquals(verificationResult.getRiskIndicators(), null);

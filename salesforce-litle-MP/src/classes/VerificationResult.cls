@@ -5,6 +5,14 @@ public class VerificationResult {
 	private VerificationIndicators verificationIndicator;
 	private List<DescriptionDetails> riskIndicators;
 	
+	public VerificationResult(){
+		overallScore = new DescriptionDetails();
+		nameAddressPhoneAssociation = new DescriptionDetails();
+		nameAddressTaxOrSsnIdAssociation = new DescriptionDetails();
+		verificationIndicator = new VerificationIndicators();
+		riskIndicators = new List<DescriptionDetails>();
+	}
+	
 	
     public DescriptionDetails getOverallScore() {
         return overallScore;
