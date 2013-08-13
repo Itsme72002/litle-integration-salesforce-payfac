@@ -228,10 +228,41 @@ private class XmlUtilTest {
     	xml = '<foos><foo></foo><foos>';
     	System.assertEquals('<foo></foo>', XmlUtil.getXmlOfNode(xml, 'foo'));
     	
+    	xml = '<foos><foo/><foos>';
+    	System.assertEquals('<foo/>', XmlUtil.getXmlOfNode(xml, 'foo'));
+    	
     	//ugly cases
     	System.assertEquals(null, XmlUtil.getXmlOfNode(xml, 'invalidTag'));
     	System.assertEquals(null, XmlUtil.getXmlOfNode(xml, ''));
     	System.assertEquals(null, XmlUtil.getXmlOfNode(null, 'books'));
+    }
+    
+    static testMethod void getListOfChildrenOfNode(){
+    	String xml = '<Articles><books title="First Book"><book>1</book></books><books title="Second Book"><book>2</book></books>'+
+    					'<Magazines title="First Magazine"><Magazine>10</Magazine></Magazines></Articles>';
+    	System.assertEquals(2, XmlUtil.getListOfChildrenOfNode(xml, 'books').size());
+    	System.assertEquals('<books title="First Book"><book>1</book></books>', XmlUtil.getListOfChildrenOfNode(xml, 'books').get(0));
+    	System.assertEquals('<books title="Second Book"><book>2</book></books>', XmlUtil.getListOfChildrenOfNode(xml, 'books').get(1));
+    	
+    	System.assertEquals(1, XmlUtil.getListOfChildrenOfNode(xml, 'Magazine').size());
+    	System.assertEquals('<Magazine>10</Magazine>', XmlUtil.getListOfChildrenOfNode(xml, 'Magazine').get(0));
+    	
+    	xml = '<foos><foo></foo><foo></foo><foos>';
+    	System.assertEquals(2, XmlUtil.getListOfChildrenOfNode(xml, 'foo').size());
+    	System.assertEquals('<foo></foo>', XmlUtil.getListOfChildrenOfNode(xml, 'foo').get(0));
+    	System.assertEquals('<foo></foo>', XmlUtil.getListOfChildrenOfNode(xml, 'foo').get(1));
+    	
+    	xml = '<foos><foo/><foo/><foos>';
+    	System.assertEquals(2, XmlUtil.getListOfChildrenOfNode(xml, 'foo').size());
+    	System.assertEquals('<foo/>', XmlUtil.getListOfChildrenOfNode(xml, 'foo').get(0));
+    	System.assertEquals('<foo/>', XmlUtil.getListOfChildrenOfNode(xml, 'foo').get(1));
+    	
+    	//ugly cases
+    	System.assert(XmlUtil.getListOfChildrenOfNode(xml, 'invalidTag').isEmpty());
+    	System.assert(XmlUtil.getListOfChildrenOfNode(xml, '').isEmpty());
+    	System.assert(XmlUtil.getListOfChildrenOfNode('', 'foo').isEmpty());
+    	System.assert(XmlUtil.getListOfChildrenOfNode(null, 'foo').isEmpty());
+    	
     }
     
 }

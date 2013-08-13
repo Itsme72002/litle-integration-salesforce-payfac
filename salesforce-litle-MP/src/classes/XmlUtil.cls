@@ -177,11 +177,15 @@ public class XmlUtil {
 		if(String.isNotEmpty(xml) && String.isNotEmpty(tagName)){
 			String startTagWithArrtibute = '<' + tagName + ' ';
 			String startTag = '<' + tagName + '>';
+			String singleTagClosed = '<' + tagName + '/>';
 			String endTag = '</' + tagName + '>';
+			Integer singleTagClosedIndex = xml.indexOf(singleTagClosed);
 			Integer startTagIndex = xml.indexOf(startTag);
 			Integer endTagIndex = xml.indexOf(endTag);
 			Integer startTagWithAttributeIndex = xml.indexOf(startTagWithArrtibute);
-			if((startTagIndex != -1 || startTagWithAttributeIndex != -1) && endTagIndex != -1){
+			if(singleTagClosedIndex != -1){
+				outputXmlString = singleTagClosed;
+			}else if((startTagIndex != -1 || startTagWithAttributeIndex != -1) && endTagIndex != -1){
 				if(startTagIndex != -1 && startTagWithAttributeIndex != -1){
 					if(startTagIndex < startTagWithAttributeIndex){
 						outputXmlString = xml.substring(startTagIndex, endTagIndex + endTag.length());
@@ -196,5 +200,43 @@ public class XmlUtil {
 			}
 		}
 		return outputXmlString;
+	}
+	
+	
+	public static List<String> getListOfChildrenOfNode(String xml, String childTagName){
+		List<String> childXmls = new List<String>();
+		if(String.isNotEmpty(xml) && String.isNotEmpty(childTagName)){
+			while(String.isNotEmpty(xml)){
+				String startTagWithArrtibute = '<' + childTagName + ' ';
+				String startTag = '<' + childTagName + '>';
+				String endTag = '</' + childTagName + '>';
+				String singleTagClosed = '<' + childTagName + '/>';
+				Integer singleTagClosedIndex = xml.indexOf(singleTagClosed);
+				Integer startTagIndex = xml.indexOf(startTag);
+				Integer endTagIndex = xml.indexOf(endTag);
+				Integer startTagWithAttributeIndex = xml.indexOf(startTagWithArrtibute);
+				if(singleTagClosedIndex != -1){
+					childXmls.add(singleTagClosed);
+					xml = xml.substring(singleTagClosedIndex + singleTagClosed.length());
+					continue;
+				}else if((startTagIndex != -1 || startTagWithAttributeIndex != -1) && endTagIndex != -1){
+					if(startTagIndex != -1 && startTagWithAttributeIndex != -1){
+						if(startTagIndex < startTagWithAttributeIndex){
+							childXmls.add(xml.substring(startTagIndex, endTagIndex + endTag.length()));
+						}else{
+							childXmls.add(xml.substring(startTagWithAttributeIndex, endTagIndex + endTag.length()));
+						}
+					}else if(startTagWithAttributeIndex != -1){
+						childXmls.add(xml.substring(startTagWithAttributeIndex, endTagIndex + endTag.length()));
+					}else if(startTagIndex != -1){
+						childXmls.add(xml.substring(startTagIndex, endTagIndex + endTag.length()));
+					}
+					xml = xml.substring(endTagIndex + endTag.length());
+				}else{
+					break;
+				}
+			}
+		}
+		return childXmls;		
 	}
 }
