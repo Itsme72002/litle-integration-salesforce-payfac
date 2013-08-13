@@ -143,7 +143,7 @@ private class LegalEntityResponseTest {
         System.assertEquals(legalEntityResponse.getPrincipalVerificationResult(), verificationResult);
     }
     
-    static testMethod void testReponsePrincipal(){
+    static testMethod void testResponsePrincipal(){
     	LegalEntityResponse legalEntityResponse = new LegalEntityResponse();
     	Principal principal = new Principal();
     	Address address = new Address();
@@ -162,11 +162,11 @@ private class LegalEntityResponseTest {
 		principal.setDriversLicense(testString);
 		principal.setDriversLicenseState(testString);
 		principal.setSsn(testString);
-		legalEntityResponse.setReponsePrincipal(principal);
+		legalEntityResponse.setResponsePrincipal(principal);
         // First check if the value is set
-        System.assertNotEquals(legalEntityResponse.getReponsePrincipal(), null);
+        System.assertNotEquals(legalEntityResponse.getResponsePrincipal(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityResponse.getReponsePrincipal(), principal);    	
+        System.assertEquals(legalEntityResponse.getResponsePrincipal(), principal);    	
     	
     }
     

@@ -2,7 +2,7 @@ public class LegalEntityResponse {
 
 	private String transactionId;
 	private String legalEntityId;
-	private Principal reponsePrincipal;
+	private Principal responsePrincipal;
 	private String responseCode;
 	private String responseDespcription;
 	private VerificationResult businessVerificationResult;
@@ -13,7 +13,7 @@ public class LegalEntityResponse {
 	private LienResult responseLienResult;
 	
 	public LegalEntityResponse(){
-		reponsePrincipal = new Principal();
+		responsePrincipal = new Principal();
 		businessVerificationResult = new VerificationResult();
 		principalVerificationResult = new VerificationResult();
 		businessToPrincipalAssociation = new DescriptionDetails();
@@ -33,11 +33,11 @@ public class LegalEntityResponse {
     public void setLegalEntityId(String legalEntityId) {
         this.legalEntityId = legalEntityId;
     }
-    public Principal getReponsePrincipal() {
-        return reponsePrincipal;
+    public Principal getResponsePrincipal() {
+        return responsePrincipal;
     }
-    public void setReponsePrincipal(Principal reponsePrincipal) {
-        this.reponsePrincipal = reponsePrincipal;
+    public void setResponsePrincipal(Principal responsePrincipal) {
+        this.responsePrincipal = responsePrincipal;
     }
     public String getResponseCode() {
         return responseCode;
