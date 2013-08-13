@@ -90,4 +90,25 @@ private class VerificationIndicatorsTest {
         System.assertEquals(verificationIndicators.getTaxIdVerified(), testString);
     }
     
+    static testMethod void testSsnVerified(){
+    	VerificationIndicators verificationIndicators = new VerificationIndicators();
+        // Check null initially
+        System.assertEquals(verificationIndicators.getSsnVerified(), null);
+        verificationIndicators.setSsnVerified(testString);
+        // First check if the value is set
+        System.assertNotEquals(verificationIndicators.getSsnVerified(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(verificationIndicators.getSsnVerified(), testString);
+    }
+    
+    static testMethod void testDobVerified(){
+    	VerificationIndicators verificationIndicators = new VerificationIndicators();
+        // Check null initially
+        System.assertEquals(verificationIndicators.getDobVerified(), null);
+        verificationIndicators.setDobVerified(testString);
+        // First check if the value is set
+        System.assertNotEquals(verificationIndicators.getDobVerified(), null);
+        // and then confirm if the value is set correctly
+        System.assertEquals(verificationIndicators.getDobVerified(), testString);
+    }
 }

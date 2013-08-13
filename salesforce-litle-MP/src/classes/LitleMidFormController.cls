@@ -9,7 +9,7 @@ public class LitleMidFormController {
 	public List<SelectOption> submerchantMccList{get; set;}
 	public SubMerchantResponse subMerchantResponse {get; set;}
 	// stores litle mid / error information
-	public String litleMid;
+	public String litleMid{get; set;}
 	public String submerchantId;
 	public List<SelectOption> opportunityOptions {get; set;}
 	public String selectedOpportunityId {get; set;}
@@ -38,6 +38,10 @@ public class LitleMidFormController {
         		}
         	}
         }
+        
+        // if the litle mid is non null on the account in question
+        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+        
         
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
@@ -2416,16 +2420,11 @@ public class LitleMidFormController {
         			&&  XmlUtil.extractAttributeValue(lEResponse, 'legalEntityCreateResponse', 'duplicate').equals('true')
         			&& XmlUtil.elementExists(lEResponse, 'originalLegalEntity')){
         			//duplicate response, extract from original entity
-        			legalEntityResponse.setResponseCode(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity', LitleConstants.XML_TAG_RESPONSE_CODE));
-	        		legalEntityResponse.setResponseDespcription(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity',LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
-	        		legalEntityResponse.setLegalEntityId(XmlUtil.extractTagValueWithParentTag(lEResponse, 'originalLegalEntity', LitleConstants.XML_TAG_LEGALENTITY_ID));
+        			legalEntityResponse = populateLegalEntityResponse(legalEntityResponse, lEResponse.getBody(), true);
         		}else{
-	        		legalEntityResponse.setResponseCode(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_CODE));
-	        		legalEntityResponse.setResponseDespcription(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
-	        		legalEntityResponse.setLegalEntityId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_LEGALENTITY_ID));
+	        		legalEntityResponse = populateLegalEntityResponse(legalEntityResponse, lEResponse.getBody(), false);
     			}
-    			legalEntityResponse.setTransactionId(XmlUtil.extractXmlTagText(lEResponse, LitleConstants.XML_TAG_TRANSACTION_ID));
-        		litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
+    			litleMid = legalEntityResponse.getResponseCode() + ' : ' + legalEntityResponse.getResponseDespcription();
         		//Log response codes and legal entity id
         		litleRequestResponseLog.legalEntityResponseCode__c = legalEntityResponse.getResponseCode();
         		litleRequestResponseLog.legalEntityId__c = legalEntityResponse.getLegalEntityId();
@@ -2448,6 +2447,86 @@ public class LitleMidFormController {
         }
         
         return legalEntityResponse;
+	}
+	
+	public LegalEntityResponse populateLegalEntityResponse(LegalEntityResponse leResponse, String xml, boolean isOriginalLegalEntityPresent){
+		if(leResponse != null && String.isNotEmpty(xml) && isOriginalLegalEntityPresent != null){
+			leResponse.setTransactionId(XmlUtil.getTagTextFromXml(xml, LitleConstants.XML_TAG_TRANSACTION_ID));
+			//Get principal details
+    		String principalDetailXml = XmlUtil.getXmlOfNode(xml, 'principal');
+    		leResponse.setResponsePrincipal(getPrincipalFromXml(principalDetailXml));
+			if(isOriginalLegalEntityPresent){
+				// extract from original legal entity
+				String orignalEntityXml = XmlUtil.getXmlOfNode(xml, 'originalLegalEntity');
+				if(String.isNotEmpty(orignalEntityXml)){
+					leResponse.setResponseCode(XmlUtil.getTagTextFromXml(orignalEntityXml, LitleConstants.XML_TAG_RESPONSE_CODE));
+	        		leResponse.setResponseDespcription(XmlUtil.getTagTextFromXml(orignalEntityXml, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
+	        		leResponse.setLegalEntityId(XmlUtil.getTagTextFromXml(orignalEntityXml, LitleConstants.XML_TAG_LEGALENTITY_ID));
+	        		String backgroundResultsXml = XmlUtil.getXmlOfNode(orignalEntityXml, 'backgroundCheckResults');
+					String businessXml = XmlUtil.getXmlOfNode(backgroundResultsXml, 'business');
+					leResponse.setBusinessVerificationResult(getVerificationResultFromXml(businessXml));
+					String principalXml = XmlUtil.getXmlOfNode(backgroundResultsXml, 'principal');
+					leResponse.setPrincipalVerificationResult(getVerificationResultFromXml(principalXml));
+				}
+			}else{
+				leResponse.setResponseCode(XmlUtil.getTagTextFromXml(xml, LitleConstants.XML_TAG_RESPONSE_CODE));
+        		leResponse.setResponseDespcription(XmlUtil.getTagTextFromXml(xml, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION));
+        		leResponse.setLegalEntityId(XmlUtil.getTagTextFromXml(xml, LitleConstants.XML_TAG_LEGALENTITY_ID));
+				String backgroundResultsXml = XmlUtil.getXmlOfNode(xml, 'backgroundCheckResults');
+				String businessXml = XmlUtil.getXmlOfNode(backgroundResultsXml, 'business');
+				leResponse.setBusinessVerificationResult(getVerificationResultFromXml(businessXml));
+				String principalXml = XmlUtil.getXmlOfNode(backgroundResultsXml, 'principal');
+				leResponse.setPrincipalVerificationResult(getVerificationResultFromXml(principalXml));
+			}
+		}
+		return leResponse;
+	}
+	
+	public Principal getPrincipalFromXml(String xml){
+		Principal principal = new Principal();
+		if(String.isNotEmpty(xml)){
+			principal.setFirstName(XmlUtil.getTagTextFromXml(xml,'firstName'));
+			principal.setLastName(XmlUtil.getTagTextFromXml(xml,'lastName'));
+			principal.setPrincipalId(XmlUtil.getTagTextFromXml(xml,'principalId'));
+		}
+		return principal;
+	}
+	
+	public VerificationResult getVerificationResultFromXml(String xml){
+		VerificationResult vResult = new VerificationResult();
+		if(String.isNotEmpty(xml)){
+			String overallScoreXml = XmlUtil.getXmlOfNode(xml, 'overallScore');
+			vResult.setOverallScore(getDescriptionDetailFromXml(overallScoreXml,'score'));
+			String taxAssnXml = XmlUtil.getXmlOfNode(xml, 'nameAddressTaxIdAssociation');
+			vResult.setNameAddressTaxOrSsnIdAssociation(getDescriptionDetailFromXml(taxAssnXml,'code'));
+			String phoneAssnXml = XmlUtil.getXmlOfNode(xml, 'nameAddressPhoneAssociation');
+			vResult.setNameAddressPhoneAssociation(getDescriptionDetailFromXml(phoneAssnXml,'code'));
+			String vIndicatorXml = XmlUtil.getXmlOfNode(xml, 'verificationIndicators');
+			vResult.setVerificationIndicator(getVerificationIndicatorFromXml(vIndicatorXml));
+		}
+		return vResult;
+	}
+	
+	public DescriptionDetails getDescriptionDetailFromXml(String xml, String codeOrScoreTagName){
+		DescriptionDetails descDetails = new DescriptionDetails();
+		if(String.isNotEmpty(xml) && String.isNotEmpty(codeOrScoreTagName)){
+			descDetails.setCodeOrScore(XmlUtil.getTagTextFromXml(xml,codeOrScoreTagName));
+			descDetails.setDescription(XmlUtil.getTagTextFromXml(xml,'description'));
+		}
+		return descDetails;
+	}
+	
+	public VerificationIndicators getVerificationIndicatorFromXml(String xml){
+		VerificationIndicators vIndicators = new VerificationIndicators();
+		if(String.isNotEmpty(xml)){
+			vIndicators.setNameVerfied(XmlUtil.getTagTextFromXml(xml,'nameVerified'));
+			vIndicators.setAddressVerified(XmlUtil.getTagTextFromXml(xml,'addressVerified'));
+			vIndicators.setCityVerified(XmlUtil.getTagTextFromXml(xml,'cityVerified'));
+			vIndicators.setZipVerified(XmlUtil.getTagTextFromXml(xml,'zipVerified'));
+			vIndicators.setPhoneVerified(XmlUtil.getTagTextFromXml(xml,'phoneVerified'));
+			vIndicators.setTaxIdVerified(XmlUtil.getTagTextFromXml(xml,'taxIdVerified'));
+		}
+		return vIndicators;
 	}
 	
 	public void generateErrorMessages(Httpresponse response){

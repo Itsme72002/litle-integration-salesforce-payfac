@@ -136,34 +136,65 @@ public class XmlUtil {
 		return isElementPresent;
 	}
 	
-	public static Xmlstreamreader getXmlReaderTillNode(Xmlstreamreader inputXmlReader, String tagName){
+	public static Xmlstreamreader getXmlReaderTillNode(String xml, String tagName){
 		Xmlstreamreader xmlReader;
-		if(inputXmlReader != null && String.isNotEmpty(tagName)){
-			while(inputXmlReader.hasNext()) {
-		         if (inputXmlReader.getEventType() == XmlTag.START_ELEMENT && tagName == inputXmlReader.getLocalName()) {
-		            	xmlReader = inputXmlReader;
-		            	break;
+		Xmlstreamreader outputReader;
+		if(String.isNotEmpty(xml) && String.isNotEmpty(tagName)){
+			xmlReader = new Xmlstreamreader(xml);
+			xmlReader.setCoalescing(true);
+			while(xmlReader.hasNext()) {
+		         if (xmlReader.getEventType() == XmlTag.START_ELEMENT && tagName == xmlReader.getLocalName()) {
+		         	outputReader = xmlReader;
+	            	break;
 	            }
-	        	inputXmlReader.next();
+	        	xmlReader.next();
 	     	}
 		}
-		return xmlReader;
+		return outputReader;
 	}
 	
-	public static String getTagTextFromXmlStreamReader(Xmlstreamreader inputXmlReader, String tagName){
+	public static String getTagTextFromXml(String inputXml, String tagName){
 		String tagValue;
-		if(inputXmlReader != null && String.isNotEmpty(tagName)){
-			while(inputXmlReader.hasNext()) {
-		        if(XmlTag.START_ELEMENT == inputXmlReader.getEventType() && tagName == inputXmlReader.getLocalName()){
-		        	inputXmlReader.next();
-			        if (XmlTag.END_ELEMENT != inputXmlReader.getEventType() && inputXmlReader.getEventType() == XmlTag.CHARACTERS) {
-			           tagValue = inputXmlReader.getText();
+		if(String.isNotEmpty(inputXml) && String.isNotEmpty(tagName)){
+			Xmlstreamreader xmlReader = new Xmlstreamreader(inputXml);
+			xmlReader.setCoalescing(true);
+			while(xmlReader.hasNext()) {
+		        if(XmlTag.START_ELEMENT == xmlReader.getEventType() && tagName == xmlReader.getLocalName()){
+		        	xmlReader.next();
+			        if (XmlTag.END_ELEMENT != xmlReader.getEventType() && xmlReader.getEventType() == XmlTag.CHARACTERS) {
+			           tagValue = xmlReader.getText();
 			           break;
 			        }
 				}
-		        inputXmlReader.next();
+		        xmlReader.next();
 		     }
 		}
      	return tagValue;
+	}
+	
+	public static String getXmlOfNode(String xml, String tagName){
+		String outputXmlString;
+		if(String.isNotEmpty(xml) && String.isNotEmpty(tagName)){
+			String startTagWithArrtibute = '<' + tagName + ' ';
+			String startTag = '<' + tagName + '>';
+			String endTag = '</' + tagName + '>';
+			Integer startTagIndex = xml.indexOf(startTag);
+			Integer endTagIndex = xml.indexOf(endTag);
+			Integer startTagWithAttributeIndex = xml.indexOf(startTagWithArrtibute);
+			if((startTagIndex != -1 || startTagWithAttributeIndex != -1) && endTagIndex != -1){
+				if(startTagIndex != -1 && startTagWithAttributeIndex != -1){
+					if(startTagIndex < startTagWithAttributeIndex){
+						outputXmlString = xml.substring(startTagIndex, endTagIndex + endTag.length());
+					}else{
+						outputXmlString = xml.substring(startTagWithAttributeIndex, endTagIndex + endTag.length());
+					}
+				}else if(startTagWithAttributeIndex != -1){
+					outputXmlString = xml.substring(startTagWithAttributeIndex, endTagIndex + endTag.length());
+				}else if(startTagIndex != -1){
+					outputXmlString = xml.substring(startTagIndex, endTagIndex + endTag.length());
+				}
+			}
+		}
+		return outputXmlString;
 	}
 }
