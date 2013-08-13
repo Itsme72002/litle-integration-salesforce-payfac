@@ -1309,6 +1309,23 @@ private class LitleFormControllerTest {
     	delete mappingObject;
 	}
     
+    static testMethod void testLitleMidPopulation(){
+    	Account account = new Account(name = ACCOUNT_NAME);
+    	account.Litle_Mid__c = '8675309';
+    	insert account;
+    	
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	LitleMidFormController litleMidFormController = new LitleMidFormController();
+    	System.assertEquals('8675309', litleMidFormController.litleMid);
+    	
+    	delete account;
+    	account = new Account(name = ACCOUNT_NAME);
+    	insert account;
+    	
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+        litleMidFormController = new LitleMidFormController();
+        System.assertEquals(null, litleMidFormController.litleMid);
+    }
     /*
     static testMethod void testPopulateLEIsExclusiveToPsp(){
     	Account account = new Account(name=ACCOUNT_NAME);
