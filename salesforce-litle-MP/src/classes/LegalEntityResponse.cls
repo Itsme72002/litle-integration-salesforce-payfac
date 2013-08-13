@@ -12,6 +12,15 @@ public class LegalEntityResponse {
 	private BankruptcyData responseBankruptcyData;
 	private LienResult responseLienResult;
 	
+	public LegalEntityResponse(){
+		reponsePrincipal = new Principal();
+		businessVerificationResult = new VerificationResult();
+		principalVerificationResult = new VerificationResult();
+		businessToPrincipalAssociation = new DescriptionDetails();
+		responseBankruptcyData = new BankruptcyData();
+		responseLienResult = new LienResult();
+	}
+	
 	public String getTransactionId() {
         return transactionId;
     }

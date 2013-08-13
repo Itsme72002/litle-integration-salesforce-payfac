@@ -29,8 +29,6 @@ private class LegalEntityResponseTest {
     	DescriptionDetails descriptionDetails = new DescriptionDetails();
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
-        // Check null initially
-        System.assertEquals(legalEntityResponse.getBusinessToPrincipalAssociation(), null);
         legalEntityResponse.setBusinessToPrincipalAssociation(descriptionDetails);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getBusinessToPrincipalAssociation(), null);
@@ -111,9 +109,7 @@ private class LegalEntityResponseTest {
     	List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
     	riskIndicators.add(descriptionDetails);
     	verificationResult.setRiskIndicators(riskIndicators);
-    	// Check null initially
-        System.assertEquals(legalEntityResponse.getBusinessVerificationResult(), null);
-        legalEntityResponse.setBusinessVerificationResult(verificationResult);
+    	 legalEntityResponse.setBusinessVerificationResult(verificationResult);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getBusinessVerificationResult(), null);
         // and then confirm if the value is set correctly
@@ -140,8 +136,6 @@ private class LegalEntityResponseTest {
     	List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
     	riskIndicators.add(descriptionDetails);
     	verificationResult.setRiskIndicators(riskIndicators);
-        // Check null initially
-        System.assertEquals(legalEntityResponse.getPrincipalVerificationResult(), null);
         legalEntityResponse.setPrincipalVerificationResult(verificationResult);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getPrincipalVerificationResult(), null);
@@ -168,9 +162,7 @@ private class LegalEntityResponseTest {
 		principal.setDriversLicense(testString);
 		principal.setDriversLicenseState(testString);
 		principal.setSsn(testString);
-		// Check null initially
-        System.assertEquals(legalEntityResponse.getReponsePrincipal(), null);
-        legalEntityResponse.setReponsePrincipal(principal);
+		legalEntityResponse.setReponsePrincipal(principal);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getReponsePrincipal(), null);
         // and then confirm if the value is set correctly
@@ -190,8 +182,6 @@ private class LegalEntityResponseTest {
     	bankruptcyData.setZip(testString);
     	bankruptcyData.setZip4(testString);
     	bankruptcyData.setFilingDate(testString);
-        // Check null initially
-        System.assertEquals(legalEntityResponse.getResponseBankruptcyData(), null);
         legalEntityResponse.setResponseBankruptcyData(bankruptcyData);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getResponseBankruptcyData(), null);
@@ -212,8 +202,6 @@ private class LegalEntityResponseTest {
     	lienResult.setZip(testString);
     	lienResult.setZip4(testString);
     	lienResult.setFilingDate(testString);
-        // Check null initially
-        System.assertEquals(legalEntityResponse.getResponseLienResult(), null);
         legalEntityResponse.setResponseLienResult(lienResult);
         // First check if the value is set
         System.assertNotEquals(legalEntityResponse.getResponseLienResult(), null);
