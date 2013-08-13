@@ -5,8 +5,6 @@ public class VerificationIndicators {
 	private String zipVerified;
 	private String phoneVerified;
 	private String taxIdVerified;
-	private String ssnVerified;
-	private String dobVerified;
 	
 	
     public String getNameVerfied() {
@@ -44,20 +42,6 @@ public class VerificationIndicators {
     }
     public void setTaxIdVerified(String taxIdVerified) {
         this.taxIdVerified = taxIdVerified;
-    }
-    
-    public String getSsnVerified() {
-        return ssnVerified;
-    }
-    public void setSsnVerified(String ssnVerified) {
-        this.ssnVerified = ssnVerified;
-    }
-    
-    public String getDobVerified() {
-        return dobVerified;
-    }
-    public void setDobVerified(String dobVerified) {
-        this.dobVerified = dobVerified;
     }
 
 }
