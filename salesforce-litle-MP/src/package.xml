@@ -59,7 +59,9 @@
     </types>
     <types>
         <members>Account.Get_Litle_MID</members>
+        <members>Account.Litle_KYC_Information</members>
         <members>Opportunity.Get_Litle_MID</members>
+        <members>Opportunity.Litle_KYC_Information</members>
         <name>WebLink</name>
     </types>
     <version>27.0</version>

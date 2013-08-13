@@ -32,4 +32,16 @@
         <protected>false</protected>
         <url>/apex/forcemock__GetLitleMidForm?oppid={!Opportunity.Id}</url>
     </webLinks>
+    <webLinks>
+        <fullName>Litle_KYC_Information</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Litle KYC Information</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/forcemock__Litle_KYC?oppid={!Opportunity.Id}</url>
+    </webLinks>
 </CustomObject>
