@@ -43,6 +43,10 @@ public class LitleMidFormController {
         litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
         
         
+        // if the litle mid is non null on the account in question
+        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+        
+        
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
         	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
