@@ -9,7 +9,7 @@ public class LitleMidFormController {
 	public List<SelectOption> submerchantMccList{get; set;}
 	public SubMerchantResponse subMerchantResponse {get; set;}
 	// stores litle mid / error information
-	public String litleMid;
+	public String litleMid{get; set;}
 	public String submerchantId;
 	public List<SelectOption> opportunityOptions {get; set;}
 	public String selectedOpportunityId {get; set;}
@@ -38,6 +38,10 @@ public class LitleMidFormController {
         		}
         	}
         }
+        
+        // if the litle mid is non null on the account in question
+        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+        
         
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
