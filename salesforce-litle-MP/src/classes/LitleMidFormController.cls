@@ -2529,6 +2529,8 @@ public class LitleMidFormController {
 			vIndicators.setZipVerified(XmlUtil.getTagTextFromXml(xml,'zipVerified'));
 			vIndicators.setPhoneVerified(XmlUtil.getTagTextFromXml(xml,'phoneVerified'));
 			vIndicators.setTaxIdVerified(XmlUtil.getTagTextFromXml(xml,'taxIdVerified'));
+			vIndicators.setDobVerified(XmlUtil.getTagTextFromXml(xml,'dobVerified'));
+			vIndicators.setSsnVerified(XmlUtil.getTagTextFromXml(xml,'ssnVerified'));
 		}
 		return vIndicators;
 	}
