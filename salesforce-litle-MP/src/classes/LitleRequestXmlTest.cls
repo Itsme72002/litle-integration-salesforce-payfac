@@ -130,7 +130,7 @@ private class LitleRequestXmlTest {
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
- 	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT, request.getEndpoint());
+ 	    System.assertEquals(LitleConstants.LITLE_ENV_CERT + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_URI, request.getEndpoint());
     	System.assertEquals(authorizationHeader, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
@@ -151,8 +151,8 @@ private class LitleRequestXmlTest {
     	Blob headerValue = Blob.valueOf(TEST_STRING+':'+TEST_STRING); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
  	    
- 	    System.assertEquals(LitleConstants.LEGAL_ENTITY_REQUEST_ENDPOINT+LitleConstants.URL_SEPARATOR
- 	    						+ TEST_STRING + LitleConstants.URL_SEPARATOR + 'submerchant' , request.getEndpoint());
+ 	    System.assertEquals(LitleConstants.LITLE_ENV_CERT + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_URI +LitleConstants.URL_SEPARATOR
+ 	    						+ TEST_STRING + LitleConstants.URL_SEPARATOR + LitleConstants.SUBMERCHANT_URI , request.getEndpoint());
     	System.assertEquals(authorizationHeader, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
