@@ -19,6 +19,7 @@ private class HttpUtilTest {
  	    System.assertEquals(TEST_STRING, request.getEndpoint());
     	System.assertEquals(TEST_STRING, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
  	    System.assertEquals(TEST_STRING, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
+ 	    System.assertEquals(LitleConstants.REQUEST_HEADER_PLATFORM_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_PLATFORM));
  		System.assertEquals(TEST_STRING, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
     }
@@ -38,6 +39,7 @@ private class HttpUtilTest {
  	    System.assertEquals(null, request.getEndpoint());
     	System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
  	    System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
+ 	    System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_PLATFORM));
  		System.assertEquals(null, request.getMethod());
  		System.assertEquals('', request.getBody());
  		
@@ -49,6 +51,7 @@ private class HttpUtilTest {
  	    System.assertEquals(TEST_STRING, request.getEndpoint());
     	System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE));
  	    System.assertEquals(LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT));
+ 		System.assertEquals(LitleConstants.REQUEST_HEADER_PLATFORM_VALUE, request.getHeader(LitleConstants.REQUEST_HEADER_PLATFORM));
  		System.assertEquals(TEST_STRING, request.getMethod());
  		System.assertEquals(TEST_STRING, request.getBody());
     }

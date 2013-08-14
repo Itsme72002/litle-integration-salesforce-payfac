@@ -15,8 +15,10 @@ public class LitleConstants {
 	public static final String REQUEST_HEADER_CONTENT_TYPE = 'Content-Type';
 	public static final String REQUEST_HEADER_ACCEPT = 'Accept';
 	public static final String REQUEST_HEADER_AUTHORIZATION = 'Authorization';
+	public static final String REQUEST_HEADER_PLATFORM = 'Platform';
 	public static final String REQUEST_HEADER_CONTENT_TYPE_VALUE = 'application/com.litle.psp-v5+xml';
 	public static final String REQUEST_HEADER_ACCEPT_VALUE = 'application/com.litle.psp-v5+xml';
+	public static final String REQUEST_HEADER_PLATFORM_VALUE = 'salesforce';
 	public static final String URL_SEPARATOR = '/';
 	public static final String PAY_FAC_PORTAL_URI = 'metaui' + URL_SEPARATOR + 'payfacPortal';
 	
@@ -53,7 +55,7 @@ public class LitleConstants {
 	
 	// litle environment constants
 	public static final String LITLE_ENV_PROD = 'https://psp.litle.com';
-	public static final String LITLE_ENV_CERT = 'https://psp-cert.litle.com';
+	public static final String LITLE_ENV_CERT = 'https://provision-postlive.litle.com';
 	public static final String LITLE_ENV_PRE_CERT = 'https://psp-cert.litle.com';
 	public static final String LITLE_ENV_PRE_LIVE = 'https://psp-cert.litle.com';
 	public static final String LITLE_ENV_SANDBOX = 'https://psp-cert.litle.com';

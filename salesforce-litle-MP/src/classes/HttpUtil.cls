@@ -11,6 +11,7 @@ public class HttpUtil {
 			request.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, authorizationHeader);
 			request.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, contentTypeHeader);
 			request.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, acceptHeader);
+			request.setHeader(LitleConstants.REQUEST_HEADER_PLATFORM, LitleConstants.REQUEST_HEADER_PLATFORM_VALUE);
 			request.setEndpoint(requestEndpoint);
 			request.setMethod(requestMethod);
 			request.setBody(requestBody);
@@ -30,6 +31,7 @@ public class HttpUtil {
 	        request.setHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION, getBasicAuthorizationHeader(username, password));
 	        request.setHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE, LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE);
 			request.setHeader(LitleConstants.REQUEST_HEADER_ACCEPT, LitleConstants.REQUEST_HEADER_ACCEPT_VALUE);
+			request.setHeader(LitleConstants.REQUEST_HEADER_PLATFORM, LitleConstants.REQUEST_HEADER_PLATFORM_VALUE);
 			request.setEndpoint(endPoint);
 			request.setMethod(method);
 			request.setBody(body);
