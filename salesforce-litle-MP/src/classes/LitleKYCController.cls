@@ -92,7 +92,9 @@ public class LitleKYCController {
 						Overall_Score__c,
 						Phone_Verified__c,
 						TaxId_Verified__c,
-						Zip_Verified__c 
+						Zip_Verified__c,
+						Ssn_Verified__c,
+						Dob_Verified__c 
 					from Litle_Verification_Result__c 
 					where Litle_Principal__c =:litlePrincipal.Id];
 			}catch(QueryException e){
@@ -116,7 +118,9 @@ public class LitleKYCController {
 						Overall_Score__c,
 						Phone_Verified__c,
 						TaxId_Verified__c,
-						Zip_Verified__c 
+						Zip_Verified__c,
+						Ssn_Verified__c,
+						Dob_Verified__c 
 					from Litle_Verification_Result__c 
 					where Litle_Business__c =:litleBusiness.Id];
 			}catch(QueryException e){

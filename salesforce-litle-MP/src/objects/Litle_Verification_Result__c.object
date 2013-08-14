@@ -67,6 +67,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Dob_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Of Birth Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Litle_Business__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -155,6 +164,15 @@
         <fullName>Phone_Verified__c</fullName>
         <externalId>false</externalId>
         <label>Phone Verified</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ssn_Verified__c</fullName>
+        <externalId>false</externalId>
+        <label>Ssn Verified</label>
         <length>10</length>
         <required>false</required>
         <type>Text</type>
