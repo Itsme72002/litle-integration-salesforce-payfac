@@ -41,11 +41,10 @@ public class LitleMidFormController {
         
         // if the litle mid is non null on the account in question
         litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
-        
-        
-        // if the litle mid is non null on the account in question
-        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
-        
+        // if the litle mid is an error code, null it back out and proceed
+        if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
+        	litleMid = null;    
+        }
         
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
@@ -2356,6 +2355,7 @@ public class LitleMidFormController {
 		        	// Make Legal entity request 
 		        	if(createLegalEntityRequest != null){
 		        		LegalEntityResponse legalEntityResponse = makeCreateLegalEntityRequest(litleRequestResponseLog, createLegalEntityRequest);
+		        		//TODO Save the KYC info
 		        		//check if legal entity id is populated
 						if(String.isNotEmpty(legalEntityResponse.getLegalEntityId())){
 							Httprequest createSubMerchantRequest = LitleRequestXml.getCreateSubMerchantRequest(savedMappings.merchantUsername__c, 
@@ -2409,6 +2409,113 @@ public class LitleMidFormController {
 		
 	}
 	
+	public void saveKYCInformation(LegalEntityResponse leResponse){
+		if(leResponse != null){
+			Litle_KYC__c litleKYC;
+			Litle_Principal__c litlePrincipal;
+			Litle_Business__c litleBusiness;
+			Litle_Verification_Result__c businessVerification;
+			Litle_Verification_Result__c principalVerification;
+			
+			if(String.isNotEmpty(urlOpportunityId)){
+				//check litle kyc
+				List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c where Opportunity__c =:urlOpportunityId limit 1];
+				if(litleKYCs.isEmpty()){
+					//no kyc records present for this account
+					litleKYC = new Litle_KYC__c();
+					litleKYC.Opportunity__c = urlOpportunityId;		
+					insert litleKYC;			
+				}else{
+					//record already present use it
+					litleKYC = litleKYCs.get(0);
+				}				
+			}else if(String.isNotEmpty(urlAccountId)){
+				//check litle kyc
+				List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:urlAccountId limit 1];
+				if(litleKYCs.isEmpty()){
+					//no kyc records present for this account
+					litleKYC = new Litle_KYC__c();
+					litleKYC.Account__c = urlAccountId;		
+					insert litleKYC;			
+				}else{
+					//record already present use it
+					litleKYC = litleKYCs.get(0);
+				}
+			}
+			
+			
+			if(litleKYC != null){
+				//check litle business
+				List<Litle_Business__c> litleBusinesses = [select Id, Name from Litle_Business__c where Litle_KYC__c = :litleKYC.Id limit 1];
+				if(litleBusinesses.isEmpty()){
+					litleBusiness = new Litle_Business__c();
+					litleBusiness.Litle_KYC__c = litleKYC.Id;
+					insert litleBusiness;						
+				}else{
+					//record already present use it
+					litleBusiness = litleBusinesses.get(0);
+				}
+				
+				//check litle principal
+				List<Litle_Principal__c> litlePrincipals = [select Id, Name from Litle_Principal__c where Litle_KYC__c = :litleKYC.Id limit 1];
+				if(litlePrincipals.isEmpty()){
+					litlePrincipal = new Litle_Principal__c();
+					litlePrincipal.Litle_KYC__c = litleKYC.Id;
+					litlePrincipal.Principal_Id__c = leResponse.getResponsePrincipal().getPrincipalId(); 
+					litlePrincipal.First_Name__c = leResponse.getResponsePrincipal().getFirstName();
+					litlePrincipal.Last_Name__c = leResponse.getResponsePrincipal().getLastName();
+					insert litlePrincipal;						
+				}else{
+					//record already present use it
+					litlePrincipal = litlePrincipals.get(0);
+					litlePrincipal.Principal_Id__c = leResponse.getResponsePrincipal().getPrincipalId(); 
+					litlePrincipal.First_Name__c = leResponse.getResponsePrincipal().getFirstName();
+					litlePrincipal.Last_Name__c = leResponse.getResponsePrincipal().getLastName();
+					upsert litlePrincipal;
+				}
+			}
+			
+			if(litleBusiness != null){
+				List<Litle_Verification_Result__c> businessVerifications = 
+						[select Address_Verified__c,
+								City_Verified__c,
+								Litle_Business__c,
+								Litle_Principal__c,
+								Name_Address_Phone_Association_Code__c,
+								Name_Address_Phone_Association_Desc__c,
+								Name_Address_TaxId_Association_Code__c,
+								Name_Address_TaxId_Association_Desc__c,
+								Name_Verified__c,
+								Overall_Description__c,
+								Overall_Score__c,
+								Phone_Verified__c,
+								TaxId_Verified__c,
+								Zip_Verified__c,
+								Ssn_Verified__c,
+								Dob_Verified__c 
+							from Litle_Verification_Result__c 
+							where Litle_Business__c =:litleBusiness.Id];
+				if(businessVerifications.isEmpty()){
+					businessVerification = new Litle_Verification_Result__c();
+					businessVerification.Overall_Score__c = leResponse.getBusinessVerificationResult().getOverallScore().getCodeOrScore();
+			    	businessVerification.Overall_Description__c = leResponse.getBusinessVerificationResult().getOverallScore().getDescription();
+			    	businessVerification.Name_Address_TaxId_Association_Code__c =
+	    								leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore();
+			    	businessVerification.Name_Address_TaxId_Association_Desc__c = 
+			    						leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription();
+			    	businessVerification.Name_Address_Phone_Association_Code__c = 
+			    						leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore();
+			    	businessVerification.Name_Address_Phone_Association_Desc__c = 
+		    							leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription();
+		    							
+					insert businessVerification;
+				}else{
+					businessVerification = businessVerifications.get(0);
+					upsert businessVerification;
+				}
+			}
+		}
+	}
 	
 	public LegalEntityResponse makeCreateLegalEntityRequest(LitleRequestResponseLog__c litleRequestResponseLog, Httprequest createLegalEntityRequest){
 		Http h = new Http();
