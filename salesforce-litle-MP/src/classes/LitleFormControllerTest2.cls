@@ -1444,7 +1444,7 @@ private class LitleFormControllerTest2 {
 		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
-		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
 		
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(insertedaccount.Id, litleRequestResponseLog.Account__c);
@@ -1527,7 +1527,7 @@ private class LitleFormControllerTest2 {
 		Opportunity thisOpportunity = [select Litle_Mid__c, PayFac_Portal_Link__c from Opportunity where Id = :opportunity.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisOpportunity.Litle_Mid__c);
-		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisOpportunity.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisOpportunity.PayFac_Portal_Link__c);
 		
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(opportunity.Id, litleRequestResponseLog.Opportunity__c);
@@ -2088,7 +2088,7 @@ private class LitleFormControllerTest2 {
 		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
-		System.assertEquals('https://psp-cert.litle.com/metaui/payfacPortal/legalEntity/82821203948912667/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821203948912667/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
 		Test.stopTest();
      }
 }
