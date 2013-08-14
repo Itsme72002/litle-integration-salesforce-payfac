@@ -1325,7 +1325,16 @@ private class LitleFormControllerTest {
     	ApexPages.currentPage().getParameters().put('accid',account.Id);
         litleMidFormController = new LitleMidFormController();
         System.assertEquals(null, litleMidFormController.litleMid);
+        
+        account = new Account(name = ACCOUNT_NAME);
+        account.Litle_Mid__C = 'Error: 404, yo';
+        insert account;
+        
+        ApexPages.currentPage().getParameters().put('accid',account.Id);
+        litleMidFormController = new LitleMidFormController();
+        System.assertEquals(null, litleMidFormController.litleMid);
     }
+    
     /*
     static testMethod void testPopulateLEIsExclusiveToPsp(){
     	Account account = new Account(name=ACCOUNT_NAME);

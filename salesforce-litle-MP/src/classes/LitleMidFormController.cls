@@ -41,11 +41,10 @@ public class LitleMidFormController {
         
         // if the litle mid is non null on the account in question
         litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
-        
-        
-        // if the litle mid is non null on the account in question
-        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
-        
+        // if the litle mid is an error code, null it back out and proceed
+        if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
+        	litleMid = null;    
+        }
         
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
