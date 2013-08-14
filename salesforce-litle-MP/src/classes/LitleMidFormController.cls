@@ -2507,8 +2507,21 @@ public class LitleMidFormController {
 			vResult.setNameAddressPhoneAssociation(getDescriptionDetailFromXml(phoneAssnXml,'code'));
 			String vIndicatorXml = XmlUtil.getXmlOfNode(xml, 'verificationIndicators');
 			vResult.setVerificationIndicator(getVerificationIndicatorFromXml(vIndicatorXml));
+			String riskIndicatorsXml = XmlUtil.getXmlOfNode(xml, 'riskIndicators');
+			vResult.setRiskIndicators(getRiskIndicators(riskIndicatorsXml));
 		}
 		return vResult;
+	}
+	
+	public List<DescriptionDetails> getRiskIndicators(String xml){
+		List<DescriptionDetails> riskIndicators = new List<DescriptionDetails>();
+		if(String.isNotEmpty(xml)){
+			List<String> riskIndicatorXmls = XmlUtil.getListOfChildrenOfNode(xml, 'riskIndicator');
+			for(String riskIndicatorXml : riskIndicatorXmls){
+				riskIndicators.add(getDescriptionDetailFromXml(riskIndicatorXml, 'code'));
+			}
+		}
+		return riskIndicators;
 	}
 	
 	public DescriptionDetails getDescriptionDetailFromXml(String xml, String codeOrScoreTagName){
