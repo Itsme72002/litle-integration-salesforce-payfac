@@ -201,9 +201,9 @@ private class XmlUtilTest {
     	Xmlutil.addTagToXml(writer, 'book', 'Let us C');
     	System.assertEquals('<book>Let us C</book>', writer.getXmlString());
     	Xmlutil.addTagToXml(writer, 'book', '');
-    	System.assertEquals('<book>Let us C</book><book></book>', writer.getXmlString());
+    	System.assertEquals('<book>Let us C</book>', writer.getXmlString());
     	Xmlutil.addTagToXml(writer, 'book', null);
-    	System.assertEquals('<book>Let us C</book><book></book>', writer.getXmlString());
+    	System.assertEquals('<book>Let us C</book>', writer.getXmlString());
     	
     	//ugly cases
     	writer = new Xmlstreamwriter();
@@ -214,6 +214,7 @@ private class XmlUtilTest {
     	System.assertEquals('', writer.getXmlString());
     	
     	System.assertEquals(null, Xmlutil.addTagToXml(null, 'book', 'Let us C'));
+    	System.assertEquals('', Xmlutil.addTagToXml(writer, 'book', '').getXmlString());
     }
     
     static testMethod void getXmlOfNode(){

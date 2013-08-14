@@ -39,12 +39,32 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
-		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getBusinessVerificationResult().getRiskIndicators().size());
+		System.assertEquals('ZIP_BELONGS_POST_OFFICE', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input zip code belongs to a post office box', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getDescription());
+		
+		System.assertEquals('40',leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore());
+		System.assertEquals('Last name, address & SSN or phone verified; first name, phone or SSN verification failures',leResponse.getPrincipalVerificationResult().getOverallScore().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
+		System.assertEquals('ZIP_BELONGS_POST_OFFICE', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input zip code belongs to a post office box', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getDescription());
 	}
 	
 	
@@ -65,12 +85,33 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
-		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getBusinessVerificationResult().getRiskIndicators().size());
+		System.assertEquals('UNKNOWN', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('Unknown Risk Factor', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getDescription());
+		
+		System.assertEquals('10',leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore());
+		System.assertEquals('Critical ID elements not verified, are associated with different person(s,) or indications such as OFAC matches, deceased/invalid SSN, or SSN issued prior to birth date provided, etc. exist',
+								leResponse.getPrincipalVerificationResult().getOverallScore().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
+		System.assertEquals('UNKNOWN', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('Unknown Risk Factor', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getDescription());
 	}
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_DuplicateResponse(){
@@ -96,6 +137,26 @@ private class LitleMidFormControllerTest {
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getBusinessVerificationResult().getRiskIndicators().size());
+		System.assertEquals('ADDRESS_MATCHES_PRISON', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input address matches a prisonaddress', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getDescription());
+		
+		System.assertEquals('50',leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore());
+		System.assertEquals('Full name, address, phone, SSN verified',
+								leResponse.getPrincipalVerificationResult().getOverallScore().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
+		System.assertEquals('ADDRESS_MATCHES_PRISON', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input address matches a prisonaddress', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getDescription());
 	}
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_FullDupeResponse(){
@@ -121,6 +182,22 @@ private class LitleMidFormControllerTest {
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(0, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
+		
+		System.assertEquals('50',leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore());
+		System.assertEquals('Full name, address, phone , SSN verified',
+								leResponse.getPrincipalVerificationResult().getOverallScore().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(0, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
 	}
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_ManualReviewResponse(){
@@ -147,6 +224,24 @@ private class LitleMidFormControllerTest {
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals('ZIP_BELONGS_POST_OFFICE', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input zip code belongs to a post office box', leResponse.getBusinessVerificationResult().getRiskIndicators().get(0).getDescription());
+		
+		System.assertEquals('50',leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore());
+		System.assertEquals('Full name, address, phone , SSN verified',leResponse.getPrincipalVerificationResult().getOverallScore().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
+		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
+		System.assertEquals(1, leResponse.getPrincipalVerificationResult().getRiskIndicators().size());
+		System.assertEquals('ZIP_BELONGS_POST_OFFICE', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getCodeOrScore());
+		System.assertEquals('The input zip code belongs to a post office box', leResponse.getPrincipalVerificationResult().getRiskIndicators().get(0).getDescription());
 	}
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_UglyCases(){
@@ -432,7 +527,48 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,descDetails.getDescription());
 	}
 		
-		// TODO Handle risk indicators
+	static testMethod void getRiskIndicators_Good(){
+		String riskBody = '<riskIndicators>'
+						 + '<riskIndicator>'
+						 + '<code>ZIP_BELONGS_POST_OFFICE</code>'
+						 + '<description>The input zip code belongs to a post office box</description>'
+						 + '</riskIndicator>'
+						 + '<riskIndicator>'
+						 + '<code>ADDRESS_SUSPICIOUS</code>'
+						 + '<description>The input address is suspicious</description>'
+						 + '</riskIndicator>'
+						 + '</riskIndicators>';
+		 LitleMidFormController controller = new LitleMidFormController();
+		 List<DescriptionDetails> risks = controller.getRiskIndicators(riskBody);
+		 System.assertEquals(2, risks.size());
+		 System.assertEquals('ZIP_BELONGS_POST_OFFICE', risks.get(0).getCodeOrScore());
+		 System.assertEquals('The input address is suspicious', risks.get(1).getDescription());
+		 
+		 riskBody = '<riskIndicators>'
+						 + '<riskIndicator>'
+						 + '<code>ZIP_BELONGS_POST_OFFICE</code>'
+						 + '</riskIndicator>'
+						 + '<riskIndicator>'
+						 + '<description>The input address is suspicious</description>'
+						 + '</riskIndicator>'
+						 + '</riskIndicators>';
+		 risks = controller.getRiskIndicators(riskBody);
+		 System.assertEquals(2, risks.size());
+		 System.assertEquals('ZIP_BELONGS_POST_OFFICE', risks.get(0).getCodeOrScore());
+		 System.assertEquals(null, risks.get(0).getDescription());
+		 System.assertEquals(null, risks.get(1).getCodeOrScore());
+		 System.assertEquals('The input address is suspicious', risks.get(1).getDescription());
+		 
+		 riskBody = '<riskIndicators>'
+						 + '<riskIndicator/>'
+						 + '</riskIndicators>';
+		 risks = controller.getRiskIndicators(riskBody);
+		 System.assertEquals(1, risks.size());
+		 System.assertEquals(null, risks.get(0).getCodeOrScore());
+		 System.assertEquals(null, risks.get(0).getDescription());
+		
+		 
+	}
 	
 		
 }

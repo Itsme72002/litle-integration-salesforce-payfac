@@ -111,7 +111,7 @@ public class XmlUtil {
 	//e.g: tagName = 'legalEntity' value='Individual'
 	//outputs <legalEntity>Individual</legalEntity>
 	public static Xmlstreamwriter addTagToXml(Xmlstreamwriter xmlWriter, String tagName, String value){
-		if(xmlWriter != null && String.isNotEmpty(tagName) && value != null){
+		if(xmlWriter != null && String.isNotEmpty(tagName) && String.isNotEmpty(value)){
 			xmlWriter.writeStartElement(null, tagName, null);	//start tagName
 			xmlWriter.writeCharacters(value.escapeXml());
 			xmlWriter.writeEndElement();	//end tagName
