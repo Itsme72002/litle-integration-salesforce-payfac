@@ -2409,6 +2409,7 @@ public class LitleMidFormController {
 		
 	}
 	
+	//TODO Refactor
 	public void saveKYCInformation(LegalEntityResponse leResponse){
 		if(leResponse != null){
 			Litle_KYC__c litleKYC;
@@ -2497,6 +2498,7 @@ public class LitleMidFormController {
 							where Litle_Business__c =:litleBusiness.Id];
 				if(businessVerifications.isEmpty()){
 					businessVerification = new Litle_Verification_Result__c();
+					businessVerification.Litle_Business__c = litleBusiness.Id;
 					businessVerification.Overall_Score__c = leResponse.getBusinessVerificationResult().getOverallScore().getCodeOrScore();
 			    	businessVerification.Overall_Description__c = leResponse.getBusinessVerificationResult().getOverallScore().getDescription();
 			    	businessVerification.Name_Address_TaxId_Association_Code__c =
@@ -2507,11 +2509,156 @@ public class LitleMidFormController {
 			    						leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore();
 			    	businessVerification.Name_Address_Phone_Association_Desc__c = 
 		    							leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription();
-		    							
+					businessVerification.Address_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified();
+					businessVerification.City_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified();
+					businessVerification.Name_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified();
+					businessVerification.Phone_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified();
+					businessVerification.TaxId_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified();
+					businessVerification.Zip_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified();
+					businessVerification.Ssn_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getSsnVerified();
+					businessVerification.Dob_Verified__c =  leResponse.getBusinessVerificationResult().getVerificationIndicator().getDobVerified();
 					insert businessVerification;
 				}else{
 					businessVerification = businessVerifications.get(0);
+					businessVerification.Overall_Score__c = leResponse.getBusinessVerificationResult().getOverallScore().getCodeOrScore();
+			    	businessVerification.Overall_Description__c = leResponse.getBusinessVerificationResult().getOverallScore().getDescription();
+			    	businessVerification.Name_Address_TaxId_Association_Code__c =
+	    								leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore();
+			    	businessVerification.Name_Address_TaxId_Association_Desc__c = 
+			    						leResponse.getBusinessVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription();
+			    	businessVerification.Name_Address_Phone_Association_Code__c = 
+			    						leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore();
+			    	businessVerification.Name_Address_Phone_Association_Desc__c = 
+		    							leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription();
+					businessVerification.Address_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified();
+					businessVerification.City_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified();
+					businessVerification.Name_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified();
+					businessVerification.Phone_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified();
+					businessVerification.TaxId_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified();
+					businessVerification.Zip_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified();
+					businessVerification.Ssn_Verified__c = leResponse.getBusinessVerificationResult().getVerificationIndicator().getSsnVerified();
+					businessVerification.Dob_Verified__c =  leResponse.getBusinessVerificationResult().getVerificationIndicator().getDobVerified();
 					upsert businessVerification;
+				}
+			}
+			
+			if(litlePrincipal != null){
+				List<Litle_Verification_Result__c> principalVerifications = 
+						[select Address_Verified__c,
+								City_Verified__c,
+								Litle_Business__c,
+								Litle_Principal__c,
+								Name_Address_Phone_Association_Code__c,
+								Name_Address_Phone_Association_Desc__c,
+								Name_Address_TaxId_Association_Code__c,
+								Name_Address_TaxId_Association_Desc__c,
+								Name_Verified__c,
+								Overall_Description__c,
+								Overall_Score__c,
+								Phone_Verified__c,
+								TaxId_Verified__c,
+								Zip_Verified__c,
+								Ssn_Verified__c,
+								Dob_Verified__c 
+							from Litle_Verification_Result__c 
+							where Litle_Principal__c =:litlePrincipal.Id];
+				if(principalVerifications.isEmpty()){
+					principalVerification = new Litle_Verification_Result__c();
+					principalVerification.Litle_Principal__c = litlePrincipal.Id;
+					principalVerification.Overall_Score__c = leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore();
+			    	principalVerification.Overall_Description__c = leResponse.getPrincipalVerificationResult().getOverallScore().getDescription();
+			    	principalVerification.Name_Address_TaxId_Association_Code__c =
+	    								leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore();
+			    	principalVerification.Name_Address_TaxId_Association_Desc__c = 
+			    						leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription();
+			    	principalVerification.Name_Address_Phone_Association_Code__c = 
+			    						leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore();
+			    	principalVerification.Name_Address_Phone_Association_Desc__c = 
+		    							leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription();
+					principalVerification.Address_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified();
+					principalVerification.City_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified();
+					principalVerification.Name_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified();
+					principalVerification.Phone_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified();
+					principalVerification.TaxId_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified();
+					principalVerification.Zip_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified();
+					principalVerification.Ssn_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getSsnVerified();
+					principalVerification.Dob_Verified__c =  leResponse.getPrincipalVerificationResult().getVerificationIndicator().getDobVerified();
+					insert principalVerification;
+				}else{
+					principalVerification = principalVerifications.get(0);
+					principalVerification.Overall_Score__c = leResponse.getPrincipalVerificationResult().getOverallScore().getCodeOrScore();
+			    	principalVerification.Overall_Description__c = leResponse.getPrincipalVerificationResult().getOverallScore().getDescription();
+			    	principalVerification.Name_Address_TaxId_Association_Code__c =
+	    								leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getCodeOrScore();
+			    	principalVerification.Name_Address_TaxId_Association_Desc__c = 
+			    						leResponse.getPrincipalVerificationResult().getNameAddressTaxOrSsnIdAssociation().getDescription();
+			    	principalVerification.Name_Address_Phone_Association_Code__c = 
+			    						leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore();
+			    	principalVerification.Name_Address_Phone_Association_Desc__c = 
+		    							leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription();
+					principalVerification.Address_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified();
+					principalVerification.City_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified();
+					principalVerification.Name_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified();
+					principalVerification.Phone_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified();
+					principalVerification.TaxId_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified();
+					principalVerification.Zip_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified();
+					principalVerification.Ssn_Verified__c = leResponse.getPrincipalVerificationResult().getVerificationIndicator().getSsnVerified();
+					principalVerification.Dob_Verified__c =  leResponse.getPrincipalVerificationResult().getVerificationIndicator().getDobVerified();
+					upsert principalVerification;
+				}
+			}
+			
+			if(businessVerification != null){
+				List<Litle_Risk_Indicator__c> businessRisks = [select Code__c, Description__c 
+																from Litle_Risk_Indicator__c 
+																where Litle_Verification_Result__c =:businessVerification.Id];
+				if(businessRisks.isEmpty()){
+					for(DescriptionDetails riskIndicator: leResponse.getBusinessVerificationResult().getRiskIndicators()){
+						Litle_Risk_Indicator__c businessRisk = new Litle_Risk_Indicator__c();
+						businessRisk.Code__c = riskIndicator.getCodeOrScore();
+						businessRisk.Description__c = riskIndicator.getDescription();
+						businessRisk.Litle_Verification_Result__c = businessVerification.Id;
+						insert businessRisk;
+					}
+				}else{
+					//previous risks present delete them
+					for(Litle_Risk_Indicator__c riskIndicator : businessRisks){
+						delete riskIndicator;
+					}
+					for(DescriptionDetails riskIndicator: leResponse.getBusinessVerificationResult().getRiskIndicators()){
+						Litle_Risk_Indicator__c businessRisk = new Litle_Risk_Indicator__c();
+						businessRisk.Code__c = riskIndicator.getCodeOrScore();
+						businessRisk.Description__c = riskIndicator.getDescription();
+						businessRisk.Litle_Verification_Result__c = businessVerification.Id;
+						insert businessRisk;
+					}
+				}
+			}
+			
+			if(principalVerification != null){
+				List<Litle_Risk_Indicator__c> principalRisks = [select Code__c, Description__c 
+																from Litle_Risk_Indicator__c 
+																where Litle_Verification_Result__c =:principalVerification.Id];
+				if(principalRisks.isEmpty()){
+					for(DescriptionDetails riskIndicator: leResponse.getPrincipalVerificationResult().getRiskIndicators()){
+						Litle_Risk_Indicator__c principalRisk = new Litle_Risk_Indicator__c();
+						principalRisk.Code__c = riskIndicator.getCodeOrScore();
+						principalRisk.Description__c = riskIndicator.getDescription();
+						principalRisk.Litle_Verification_Result__c = principalVerification.Id;
+						insert principalRisk;
+					}
+				}else{
+					//previous risks present delete them
+					for(Litle_Risk_Indicator__c riskIndicator : principalRisks){
+						delete riskIndicator;
+					}
+					for(DescriptionDetails riskIndicator: leResponse.getPrincipalVerificationResult().getRiskIndicators()){
+						Litle_Risk_Indicator__c principalRisk = new Litle_Risk_Indicator__c();
+						principalRisk.Code__c = riskIndicator.getCodeOrScore();
+						principalRisk.Description__c = riskIndicator.getDescription();
+						principalRisk.Litle_Verification_Result__c = principalVerification.Id;
+						insert principalRisk;
+					}
 				}
 			}
 		}
@@ -2643,7 +2790,7 @@ public class LitleMidFormController {
 	public VerificationIndicators getVerificationIndicatorFromXml(String xml){
 		VerificationIndicators vIndicators = new VerificationIndicators();
 		if(String.isNotEmpty(xml)){
-			vIndicators.setNameVerfied(XmlUtil.getTagTextFromXml(xml,'nameVerified'));
+			vIndicators.setNameVerified(XmlUtil.getTagTextFromXml(xml,'nameVerified'));
 			vIndicators.setAddressVerified(XmlUtil.getTagTextFromXml(xml,'addressVerified'));
 			vIndicators.setCityVerified(XmlUtil.getTagTextFromXml(xml,'cityVerified'));
 			vIndicators.setZipVerified(XmlUtil.getTagTextFromXml(xml,'zipVerified'));

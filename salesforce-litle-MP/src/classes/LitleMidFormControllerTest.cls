@@ -42,7 +42,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
@@ -58,7 +58,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
@@ -88,7 +88,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
@@ -105,7 +105,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
@@ -133,7 +133,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
@@ -150,7 +150,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
@@ -178,7 +178,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getCodeOrScore());
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
@@ -193,7 +193,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
@@ -220,7 +220,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getBusinessVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',leResponse.getBusinessVerificationResult().getVerificationIndicator().getZipVerified());
@@ -235,7 +235,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',leResponse.getPrincipalVerificationResult().getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,leResponse.getPrincipalVerificationResult().getVerificationIndicator().getZipVerified());
@@ -301,7 +301,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals('Business confirmed at the input address',vResult.getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',vResult.getVerificationIndicator().getAddressVerified());
 		System.assertEquals('false',vResult.getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',vResult.getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',vResult.getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',vResult.getVerificationIndicator().getPhoneVerified());
 		System.assertEquals('false',vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals('false',vResult.getVerificationIndicator().getZipVerified());
@@ -342,7 +342,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,vResult.getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals('false',vResult.getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getCityVerified());
-		System.assertEquals('false',vResult.getVerificationIndicator().getNameVerfied());
+		System.assertEquals('false',vResult.getVerificationIndicator().getNameVerified());
 		System.assertEquals('false',vResult.getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getZipVerified());
@@ -377,7 +377,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,vResult.getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals(null,vResult.getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getCityVerified());
-		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerfied());
+		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getZipVerified());
@@ -394,7 +394,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,vResult.getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals(null,vResult.getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getCityVerified());
-		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerfied());
+		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getZipVerified());
@@ -408,7 +408,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,vResult.getNameAddressPhoneAssociation().getDescription());
 		System.assertEquals(null,vResult.getVerificationIndicator().getAddressVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getCityVerified());
-		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerfied());
+		System.assertEquals(null,vResult.getVerificationIndicator().getNameVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getPhoneVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getZipVerified());

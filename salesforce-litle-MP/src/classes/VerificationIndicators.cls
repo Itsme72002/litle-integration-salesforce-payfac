@@ -1,5 +1,5 @@
 public class VerificationIndicators {
-	private String nameVerfied;
+	private String nameVerified;
 	private String addressVerified;
 	private String cityVerified;
 	private String zipVerified;
@@ -9,11 +9,11 @@ public class VerificationIndicators {
 	private String dobVerified;
 	
 	
-    public String getNameVerfied() {
-        return nameVerfied;
+    public String getNameVerified() {
+        return nameVerified;
     }
-    public void setNameVerfied(String nameVerfied) {
-        this.nameVerfied = nameVerfied;
+    public void setNameVerified(String nameVerified) {
+        this.nameVerified = nameVerified;
     }
     public String getAddressVerified() {
         return addressVerified;

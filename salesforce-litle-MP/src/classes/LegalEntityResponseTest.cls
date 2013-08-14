@@ -94,7 +94,7 @@ private class LegalEntityResponseTest {
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
     	VerificationIndicators verificationIndicators = new VerificationIndicators();
-    	verificationIndicators.setNameVerfied(testString);
+    	verificationIndicators.setNameVerified(testString);
     	verificationIndicators.setAddressVerified(testString);
     	verificationIndicators.setCityVerified(testString);
     	verificationIndicators.setZipVerified(testString);
@@ -122,7 +122,7 @@ private class LegalEntityResponseTest {
     	descriptionDetails.setCodeOrScore(testString);
     	descriptionDetails.setDescription(testString);
     	VerificationIndicators verificationIndicators = new VerificationIndicators();
-    	verificationIndicators.setNameVerfied(testString);
+    	verificationIndicators.setNameVerified(testString);
     	verificationIndicators.setAddressVerified(testString);
     	verificationIndicators.setCityVerified(testString);
     	verificationIndicators.setZipVerified(testString);

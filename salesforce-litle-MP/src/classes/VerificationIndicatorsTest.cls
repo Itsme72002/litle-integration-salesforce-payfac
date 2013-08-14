@@ -24,15 +24,15 @@ private class VerificationIndicatorsTest {
 
     public static final String testString = 'test';
 
-    static testMethod void testNameVerfied(){
+    static testMethod void testNameVerified(){
     	VerificationIndicators verificationIndicators = new VerificationIndicators();
         // Check null initially
-        System.assertEquals(verificationIndicators.getNameVerfied(), null);
-        verificationIndicators.setNameVerfied(testString);
+        System.assertEquals(verificationIndicators.getNameVerified(), null);
+        verificationIndicators.setNameVerified(testString);
         // First check if the value is set
-        System.assertNotEquals(verificationIndicators.getNameVerfied(), null);
+        System.assertNotEquals(verificationIndicators.getNameVerified(), null);
         // and then confirm if the value is set correctly
-        System.assertEquals(verificationIndicators.getNameVerfied(), testString);
+        System.assertEquals(verificationIndicators.getNameVerified(), testString);
     }
     
     static testMethod void testAddressVerified(){

@@ -63,7 +63,7 @@ private class VerificationResultTest {
     static testMethod void testVerificationIndicator(){
     	VerificationResult verificationResult = new VerificationResult();
     	VerificationIndicators verificationIndicators = new VerificationIndicators();
-    	verificationIndicators.setNameVerfied(testString);
+    	verificationIndicators.setNameVerified(testString);
     	verificationIndicators.setAddressVerified(testString);
     	verificationIndicators.setCityVerified(testString);
     	verificationIndicators.setZipVerified(testString);
