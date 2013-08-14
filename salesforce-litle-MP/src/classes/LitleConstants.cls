@@ -15,8 +15,10 @@ public class LitleConstants {
 	public static final String REQUEST_HEADER_CONTENT_TYPE = 'Content-Type';
 	public static final String REQUEST_HEADER_ACCEPT = 'Accept';
 	public static final String REQUEST_HEADER_AUTHORIZATION = 'Authorization';
+	public static final String REQUEST_HEADER_PLATFORM = 'Platform';
 	public static final String REQUEST_HEADER_CONTENT_TYPE_VALUE = 'application/com.litle.psp-v5+xml';
 	public static final String REQUEST_HEADER_ACCEPT_VALUE = 'application/com.litle.psp-v5+xml';
+	public static final String REQUEST_HEADER_PLATFORM_VALUE = 'salesforce';
 	public static final String URL_SEPARATOR = '/';
 	public static final String PAY_FAC_PORTAL_URI = 'metaui' + URL_SEPARATOR + 'payfacPortal';
 	
