@@ -45,13 +45,13 @@ global class ManualReviewStatusScheduler implements Schedulable{
 																		litleRequestResponse.subMerchantContentTypeHeader__c, 
 																		litleRequestResponse.subMerchantAcceptHeader__c, 
 																		'');
-					HttpResponse legalEntityResponse = new HttpResponse();
+					HttpResponse leHttpResponse = new HttpResponse();
 					try{
-						legalEntityResponse = h.send(legalEntityRequest);
-						if(legalEntityResponse != null && legalEntityResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
+						leHttpResponse = h.send(legalEntityRequest);
+						if(leHttpResponse != null && leHttpResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
 							// response success, check its litle response code
-							String legalEntityResponseCode = XmlUtil.extractXmlTagText(legalEntityResponse, LitleConstants.XML_TAG_RESPONSE_CODE);
-							String legalEntityResponseDescription = XmlUtil.extractXmlTagText(legalEntityResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION);
+							String legalEntityResponseCode = XmlUtil.extractXmlTagText(leHttpResponse, LitleConstants.XML_TAG_RESPONSE_CODE);
+							String legalEntityResponseDescription = XmlUtil.extractXmlTagText(leHttpResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION);
 							litleMid = legalEntityResponseCode + ' : ' + legalEntityResponseDescription;
 							//update the value of response code in the log object
 							litleRequestResponse.legalEntityResponseCode__c = legalEntityResponseCode;
