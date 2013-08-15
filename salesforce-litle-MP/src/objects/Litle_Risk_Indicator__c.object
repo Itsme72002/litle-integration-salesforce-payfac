@@ -50,7 +50,7 @@
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
-        <length>150</length>
+        <length>255</length>
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>

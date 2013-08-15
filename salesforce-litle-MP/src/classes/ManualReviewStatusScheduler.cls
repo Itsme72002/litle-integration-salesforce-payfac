@@ -49,9 +49,12 @@ global class ManualReviewStatusScheduler implements Schedulable{
 					try{
 						leHttpResponse = h.send(legalEntityRequest);
 						if(leHttpResponse != null && leHttpResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
+							LegalEntityResponse leResponse = new LegalEntityResponse();
+							LegalEntityResponseService leService = new LegalEntityResponseService();
+							leResponse = leService.populateLegalEntityResponse(leResponse, leHttpResponse.getBody(), false);
 							// response success, check its litle response code
-							String legalEntityResponseCode = XmlUtil.extractXmlTagText(leHttpResponse, LitleConstants.XML_TAG_RESPONSE_CODE);
-							String legalEntityResponseDescription = XmlUtil.extractXmlTagText(leHttpResponse, LitleConstants.XML_TAG_RESPONSE_DESCRIPTION);
+							String legalEntityResponseCode = leResponse.getResponseCode();
+							String legalEntityResponseDescription = leResponse.getResponseDespcription();
 							litleMid = legalEntityResponseCode + ' : ' + legalEntityResponseDescription;
 							//update the value of response code in the log object
 							litleRequestResponse.legalEntityResponseCode__c = legalEntityResponseCode;
@@ -85,6 +88,10 @@ global class ManualReviewStatusScheduler implements Schedulable{
 						        	System.debug(subMerchantResponse.toString());
 								}
 							}
+							
+							//save kyc info
+							LitleKYCService kycService = new LitleKYCService();
+							kycService.saveOrUpdateAllKYCObjects(litleRequestResponse.Opportunity__c, litleRequestResponse.Account__c, leResponse);
 							//update the respective sobject with the new values
 							if(litleRequestResponse.sObjectType__c.equalsIgnoreCase('Account')){
 								//update litle mid on account page.
