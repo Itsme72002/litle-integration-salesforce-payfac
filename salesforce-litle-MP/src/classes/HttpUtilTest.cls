@@ -3,7 +3,6 @@ private class HttpUtilTest {
 	public static final String TEST_STRING = 'test';
 
     static testMethod void testGetLitleMPHttpRequest() {
-        // TO DO: implement unit test
         // test with null parameters
         Httprequest request = HttpUtil.getLitleMPHttpRequest(null, null, null, null, null, null);
         System.assertEquals(null, request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION));
@@ -25,8 +24,7 @@ private class HttpUtilTest {
     }
     
     static testMethod void testSetRequestHeaders() {
-        // TO DO: implement unit test
-    	//try with null request
+        //try with null request
     	Httprequest request = null;
     	HttpUtil.setRequestHeaders(request, TEST_STRING, TEST_STRING, TEST_STRING,TEST_STRING,TEST_STRING);
     	System.assertEquals(null, request);
@@ -57,7 +55,6 @@ private class HttpUtilTest {
     }
     
     static testMethod void testGetBasicAuthorizationHeader() {
-        // TO DO: implement unit test
         String authValue = HttpUtil.getBasicAuthorizationHeader(null, null);
         Blob headerValue = Blob.valueOf(null+':'+null); 
  	    String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);

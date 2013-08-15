@@ -1,31 +1,10 @@
-/**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
- *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
- *
- * All test methods in an organization are executed whenever Apex code is deployed
- * to a production organization to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production organization. In addition, all triggers must have some code coverage.
- * 
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the organization size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
- */
 @isTest
-private class LitleMidFormControllerTest {
+private class LegalEntityResponseServiceTest {
 
-  	static testMethod void populateLegalEntityResponseOriginalEntity_ApprovedResponse(){
-  		LitleMidFormController controller = new LitleMidFormController();
+   static testMethod void populateLegalEntityResponseOriginalEntity_ApprovedResponse(){
+  		LegalEntityResponseService service = new LegalEntityResponseService();
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityApprovedResponse.approvedResponse, false);
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityApprovedResponse.approvedResponse, false);
 		
 		System.assertEquals('1', leResponse.getResponsePrincipal().getPrincipalId());
 		System.assertEquals('p first', leResponse.getResponsePrincipal().getFirstName());
@@ -70,8 +49,8 @@ private class LitleMidFormControllerTest {
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_DeclinedResponse(){
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		LitleMidFormController controller = new LitleMidFormController();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityDeclinedResponse.response, false);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityDeclinedResponse.response, false);
 		
 		System.assertEquals('1', leResponse.getResponsePrincipal().getPrincipalId());
 		System.assertEquals('p first', leResponse.getResponsePrincipal().getFirstName());
@@ -116,8 +95,8 @@ private class LitleMidFormControllerTest {
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_DuplicateResponse(){
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		LitleMidFormController controller = new LitleMidFormController();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityDuplicateResponse.response, true);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityDuplicateResponse.response, true);
 		
 		System.assertEquals(null, leResponse.getResponsePrincipal().getPrincipalId());
 		System.assertEquals('John', leResponse.getResponsePrincipal().getFirstName());
@@ -161,8 +140,8 @@ private class LitleMidFormControllerTest {
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_FullDupeResponse(){
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		LitleMidFormController controller = new LitleMidFormController();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityFullDupeResponse.response, false);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityFullDupeResponse.response, false);
 		
 		System.assertEquals('1', leResponse.getResponsePrincipal().getPrincipalId());
 		System.assertEquals('p first', leResponse.getResponsePrincipal().getFirstName());
@@ -202,8 +181,8 @@ private class LitleMidFormControllerTest {
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_ManualReviewResponse(){
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		LitleMidFormController controller = new LitleMidFormController();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityManualReviewResponse.response, false);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityManualReviewResponse.response, false);
 		
 		System.assertEquals('1', leResponse.getResponsePrincipal().getPrincipalId());
 		System.assertEquals('p first', leResponse.getResponsePrincipal().getFirstName());
@@ -246,15 +225,15 @@ private class LitleMidFormControllerTest {
 	
 	static testMethod void populateLegalEntityResponseOriginalEntity_UglyCases(){
 		LegalEntityResponse leResponse = new LegalEntityResponse();
-		LitleMidFormController controller = new LitleMidFormController();
-		leResponse = controller.populateLegalEntityResponse(leResponse, LegalEntityManualReviewResponse.response, null);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		leResponse = service.populateLegalEntityResponse(leResponse, LegalEntityManualReviewResponse.response, null);
 		System.assertNotEquals(null, leResponse);
 				
-		leResponse = controller.populateLegalEntityResponse(null, LegalEntityManualReviewResponse.response, false);
+		leResponse = service.populateLegalEntityResponse(null, LegalEntityManualReviewResponse.response, false);
 		System.assertEquals(null, leResponse);
 		
 		leResponse = new LegalEntityResponse();
-		leResponse = controller.populateLegalEntityResponse(leResponse, null, true);
+		leResponse = service.populateLegalEntityResponse(leResponse, null, true);
 		System.assertNotEquals(null, leResponse);
 		System.assertEquals(null,leResponse.getTransactionId());
 	}
@@ -291,8 +270,8 @@ private class LitleMidFormControllerTest {
 								 + '</riskIndicators>'
 								 + '</verificationResult>'
 								 + '</business>';
-		LitleMidFormController controller = new LitleMidFormController();
-		VerificationResult vResult = controller.getVerificationResultFromXml(businessBody);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		VerificationResult vResult = service.getVerificationResultFromXml(businessBody);
 		System.assertEquals('40',vResult.getOverallScore().getCodeOrScore());
 		System.assertEquals('Business identity is confirmed at the input address',vResult.getOverallScore().getDescription());
 		System.assertEquals('40',vResult.getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
@@ -332,8 +311,8 @@ private class LitleMidFormControllerTest {
 								 + '</verificationResult>'
 								 + '</principal>';
 								 
-		LitleMidFormController controller = new LitleMidFormController();
-		VerificationResult vResult  = controller.getVerificationResultFromXml(principalBody);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		VerificationResult vResult  = service.getVerificationResultFromXml(principalBody);
 		System.assertEquals('40',vResult.getOverallScore().getCodeOrScore());
 		System.assertEquals('Last name, address & SSN or phone verified; first name, phone or SSN verification failures',vResult.getOverallScore().getDescription());
 		System.assertEquals(null,vResult.getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
@@ -367,8 +346,8 @@ private class LitleMidFormControllerTest {
 								 + '</verificationResult>'
 								 + '</principal>';
 								 
-		LitleMidFormController controller = new LitleMidFormController();
-		VerificationResult vResult  = controller.getVerificationResultFromXml(principalBody);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		VerificationResult vResult  = service.getVerificationResultFromXml(principalBody);
 		System.assertEquals(null,vResult.getOverallScore().getCodeOrScore());
 		System.assertEquals(null,vResult.getOverallScore().getDescription());
 		System.assertEquals(null,vResult.getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
@@ -384,8 +363,8 @@ private class LitleMidFormControllerTest {
 	}
 	
 	static testMethod void getVerificationResultFromXml_Ugly(){
-		LitleMidFormController controller = new LitleMidFormController();
-		VerificationResult vResult  = controller.getVerificationResultFromXml('');
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		VerificationResult vResult  = service.getVerificationResultFromXml('');
 		System.assertEquals(null,vResult.getOverallScore().getCodeOrScore());
 		System.assertEquals(null,vResult.getOverallScore().getDescription());
 		System.assertEquals(null,vResult.getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
@@ -399,7 +378,7 @@ private class LitleMidFormControllerTest {
 		System.assertEquals(null,vResult.getVerificationIndicator().getTaxIdVerified());
 		System.assertEquals(null,vResult.getVerificationIndicator().getZipVerified());
 		
-		vResult  = controller.getVerificationResultFromXml(null);
+		vResult  = service.getVerificationResultFromXml(null);
 		System.assertEquals(null,vResult.getOverallScore().getCodeOrScore());
 		System.assertEquals(null,vResult.getOverallScore().getDescription());
 		System.assertEquals(null,vResult.getNameAddressTaxOrSsnIdAssociation().getCodeOrScore());
@@ -422,21 +401,21 @@ private class LitleMidFormControllerTest {
 								'<lastName>p last</lastName>'+
 								'</principal>';
 								
-		LitleMidFormController controller = new LitleMidFormController();
-		Principal principal = controller.getPrincipalFromXml(principalBody);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		Principal principal = service.getPrincipalFromXml(principalBody);
 		System.assertEquals('1', principal.getPrincipalId());
 		System.assertEquals('p first', principal.getFirstName());
 		System.assertEquals('p last', principal.getLastName());
 	}
 	
 	static testMethod void getPrincipalFromXml_Ugly(){
-		LitleMidFormController controller = new LitleMidFormController();
-		Principal principal = controller.getPrincipalFromXml('');
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		Principal principal = service.getPrincipalFromXml('');
 		System.assertEquals(null, principal.getPrincipalId());
 		System.assertEquals(null, principal.getFirstName());
 		System.assertEquals(null, principal.getLastName());
 		
-		principal = controller.getPrincipalFromXml(null);
+		principal = service.getPrincipalFromXml(null);
 		System.assertEquals(null, principal.getPrincipalId());
 		System.assertEquals(null, principal.getFirstName());
 		System.assertEquals(null, principal.getLastName());
@@ -467,8 +446,8 @@ private class LitleMidFormControllerTest {
 								 + '</verificationResult>'
 								 + '</principal>';
 								 
-		LitleMidFormController controller = new LitleMidFormController();
-		Principal principal = controller.getPrincipalFromXml(principalBody);
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		Principal principal = service.getPrincipalFromXml(principalBody);
 		System.assertEquals(null, principal.getPrincipalId());
 		System.assertEquals(null, principal.getFirstName());
 		System.assertEquals(null, principal.getLastName());
@@ -482,8 +461,8 @@ private class LitleMidFormControllerTest {
 								 + '<description>Last name, address &amp; SSN or phone verified; first name, phone or SSN verification failures</description>'
 								 + '</overallScore>';
 								 
-		LitleMidFormController controller = new LitleMidFormController();
-		DescriptionDetails descDetails = controller.getDescriptionDetailFromXml(overallBody, 'score');
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		DescriptionDetails descDetails = service.getDescriptionDetailFromXml(overallBody, 'score');
 		System.assertEquals('40',descDetails.getCodeOrScore());
 		System.assertEquals('Last name, address & SSN or phone verified; first name, phone or SSN verification failures',descDetails.getDescription());
 		
@@ -492,15 +471,15 @@ private class LitleMidFormControllerTest {
 								 + '<description>Last name, address &amp; SSN or phone verified; first name, phone or SSN verification failures</description>'
 								 + '</overallScore>';
 								 
-		descDetails = controller.getDescriptionDetailFromXml(overallBody, 'code');
+		descDetails = service.getDescriptionDetailFromXml(overallBody, 'code');
 		System.assertEquals('40',descDetails.getCodeOrScore());
 		System.assertEquals('Last name, address & SSN or phone verified; first name, phone or SSN verification failures',descDetails.getDescription());
 	}
 	static testMethod void getDescriptionDetailsFromXml_Bad(){
 		String overallBody =  '<overallScore/>';
 								 
-		LitleMidFormController controller = new LitleMidFormController();
-		DescriptionDetails descDetails = controller.getDescriptionDetailFromXml(overallBody, 'code');
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		DescriptionDetails descDetails = service.getDescriptionDetailFromXml(overallBody, 'code');
 		System.assertEquals(null,descDetails.getCodeOrScore());
 		System.assertEquals(null,descDetails.getDescription());
 	}
@@ -509,20 +488,20 @@ private class LitleMidFormControllerTest {
 								 + '<code>40</code>'
 								 + '<description>Last name, address &amp; SSN or phone verified; first name, phone or SSN verification failures</description>'
 								 + '</overallScore>';
-		LitleMidFormController controller = new LitleMidFormController();
-		DescriptionDetails descDetails = controller.getDescriptionDetailFromXml(overallBody, '');
+		LegalEntityResponseService service = new LegalEntityResponseService();
+		DescriptionDetails descDetails = service.getDescriptionDetailFromXml(overallBody, '');
 		System.assertEquals(null,descDetails.getCodeOrScore());
 		System.assertEquals(null,descDetails.getDescription());
 		
-		descDetails = controller.getDescriptionDetailFromXml(overallBody, null);
+		descDetails = service.getDescriptionDetailFromXml(overallBody, null);
 		System.assertEquals(null,descDetails.getCodeOrScore());
 		System.assertEquals(null,descDetails.getDescription());
 		
-		descDetails = controller.getDescriptionDetailFromXml('', 'code');
+		descDetails = service.getDescriptionDetailFromXml('', 'code');
 		System.assertEquals(null,descDetails.getCodeOrScore());
 		System.assertEquals(null,descDetails.getDescription());
 		
-		descDetails = controller.getDescriptionDetailFromXml(null, 'code');
+		descDetails = service.getDescriptionDetailFromXml(null, 'code');
 		System.assertEquals(null,descDetails.getCodeOrScore());
 		System.assertEquals(null,descDetails.getDescription());
 	}
@@ -538,8 +517,8 @@ private class LitleMidFormControllerTest {
 						 + '<description>The input address is suspicious</description>'
 						 + '</riskIndicator>'
 						 + '</riskIndicators>';
-		 LitleMidFormController controller = new LitleMidFormController();
-		 List<DescriptionDetails> risks = controller.getRiskIndicators(riskBody);
+		 LegalEntityResponseService service = new LegalEntityResponseService();
+		 List<DescriptionDetails> risks = service.getRiskIndicators(riskBody);
 		 System.assertEquals(2, risks.size());
 		 System.assertEquals('ZIP_BELONGS_POST_OFFICE', risks.get(0).getCodeOrScore());
 		 System.assertEquals('The input address is suspicious', risks.get(1).getDescription());
@@ -552,7 +531,7 @@ private class LitleMidFormControllerTest {
 						 + '<description>The input address is suspicious</description>'
 						 + '</riskIndicator>'
 						 + '</riskIndicators>';
-		 risks = controller.getRiskIndicators(riskBody);
+		 risks = service.getRiskIndicators(riskBody);
 		 System.assertEquals(2, risks.size());
 		 System.assertEquals('ZIP_BELONGS_POST_OFFICE', risks.get(0).getCodeOrScore());
 		 System.assertEquals(null, risks.get(0).getDescription());
@@ -562,7 +541,7 @@ private class LitleMidFormControllerTest {
 		 riskBody = '<riskIndicators>'
 						 + '<riskIndicator/>'
 						 + '</riskIndicators>';
-		 risks = controller.getRiskIndicators(riskBody);
+		 risks = service.getRiskIndicators(riskBody);
 		 System.assertEquals(1, risks.size());
 		 System.assertEquals(null, risks.get(0).getCodeOrScore());
 		 System.assertEquals(null, risks.get(0).getDescription());

@@ -39,7 +39,6 @@ public class SalesforceLitleMappingController {
     public List < Selectoption > fetchAllAccountFields() {
         List < Selectoption > allFields = new List < Selectoption > ();
         allFields.add(new Selectoption('', '-- Select Option --'));
-        //allFields.add(new Selectoption('Opportunity.Name', 'Opportunity.Name'));
         
         // Add account fields
         SObjectType objToken = Schema.getGlobalDescribe().get('Account');
@@ -737,9 +736,7 @@ public class SalesforceLitleMappingController {
 
     public Pagereference saveMappings() {
         removeDisabledText();
-        System.debug('In Save Method');
         try{
-        	System.debug(currentMappings.legalEntityTypeD__c);
         	upsert currentMappings;
             ApexPageUtil.addConfirmMessage('Mappings Saved.');
         } catch (DmlException e) {
