@@ -1,24 +1,3 @@
-/**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
- *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
- *
- * All test methods in an organization are executed whenever Apex code is deployed
- * to a production organization to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production organization. In addition, all triggers must have some code coverage.
- * 
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the organization size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
- */
 @isTest
 private class LegalEntityModelTest {
 	
@@ -130,34 +109,6 @@ private class LegalEntityModelTest {
         // and then confirm if the value is set correctly
         System.assertEquals(legalEntityModel.getLegalEntityTaxId(), testString);
     }
-    
-     /*static testMethod void testLegalEntityPci(){
-     	LegalEntityModel legalEntityModel = new LegalEntityModel();
-        // Check if the account is null initially
-        //System.assertEquals(legalEntityModel.getLegalEntityPci(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getPciLevel(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getScanningVendor(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan(), null);
-        System.assertEquals(legalEntityModel.getLegalEntityPci().getReportOnCompliance(), null);
-        
-        PCI pci = new PCI();
-        pci.setIsExclusiveToPsp(testString);
-        pci.setIsPciComplianceValidated(testString);
-        pci.setPciLevel(testString);
-        pci.setScanningVendor(testString);
-        pci.setQualifiedSecurityAssessor(testString);
-        pci.setMostRecentlyPassedScan(testString);
-        pci.setReportOnCompliance(testString);
-        legalEntityModel.setLegalEntityPci(pci);
-        // Last check if the value is set
-        System.assertNotEquals(legalEntityModel.getLegalEntityPci(), null);
-        // and then confirm if the value is set correctly
-        System.assertEquals(legalEntityModel.getLegalEntityPci(), pci);
-     }
-     */
     
    static testMethod void testLegalEntityAnnualCreditCardSalesVolume(){
     	LegalEntityModel legalEntityModel = new LegalEntityModel();

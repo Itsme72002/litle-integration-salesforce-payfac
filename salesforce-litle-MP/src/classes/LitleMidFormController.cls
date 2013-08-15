@@ -208,35 +208,6 @@ public class LitleMidFormController {
                 populateLEAnnualCreditCardSalesVolume();
             }
             
-            /* Removed Pci Fields
-            if(legalEntityModel.getLegalEntityPci().getIsReportOnComplianceFromOpportunity()){
-                populateLEReportOnCompliance();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsMostRecentlyPassedScanFromOpportunity()){
-                populateLEMostRecentlyPassedScan();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsQualifiedSecurityAssessorFromOpportunity()){
-                populateLEQualifiedSecurityAssessor();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsScanningVendorFromOpportunity()){
-                populateLEScanningVendor();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsPciLevelFromOpportunity()){
-                populateLEPciLevel();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsIsPciComplianceValidatedFromOpportunity()){
-                populateLEIsPciComplianceValidated();
-            }
-            
-            if(legalEntityModel.getLegalEntityPci().getIsIsExclusiveToPspFromOpportunity()){
-                populateLEIsExclusiveToPsp();
-            }*/
-            
             if(legalEntityModel.getIsTaxIdFromOpportunity()){
                 populateLETaxId();
             }
@@ -313,18 +284,7 @@ public class LitleMidFormController {
         }
         return null;
     }
-    //Returns the select option list from the given list of string values
-    // starting from the given default value e.g '-- Select Option --'
-    /*public List<Selectoption> getSelectOptionList(List<String> values, String defaultValue){
-        List<SelectOption> optionList = new List<SelectOption>();
-        if(values != null && !values.isEmpty()){
-            optionList.add(new Selectoption('', defaultValue));
-            for(String value: values){
-                optionList.add(new Selectoption(value, value));
-            }
-        }
-        return optionList;
-    }*/
+    
     
     public void populateFields(){
         populateLEName();
@@ -352,15 +312,6 @@ public class LitleMidFormController {
         populateLEPrincipalDriversLicenseState();
         populateLEPrincipalSsn();
         populateLETaxId();
-        /* Removed Pci Fields
-        populateLEIsExclusiveToPsp();
-        populateLEIsPciComplianceValidated();
-        populateLEPciLevel();
-        populateLEScanningVendor();
-        populateLEQualifiedSecurityAssessor();
-        populateLEMostRecentlyPassedScan();
-        populateLEReportOnCompliance();
-        */
         populateLEAnnualCreditCardSalesVolume();
         populateLEHasAcceptedCreditCards();
         populateSMStreetAddress1();
@@ -1012,246 +963,6 @@ public class LitleMidFormController {
             }
         }
     }
-    
-    /* Removed Pci Fields
-    public void populateLEIsExclusiveToPsp(){
-        if(!savedMappings.legalEntityIsExclusiveToPspX__c){
-            legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(savedMappings.legalEntityIsExclusiveToPspD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityIsExclusiveToPsp__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsIsExclusiveToPspFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEIsPciComplianceValidated(){
-        if(!savedMappings.legalEntityIsPciComplianceValidatedX__c){
-            legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(savedMappings.legalEntityIsPciComplianceValidatedD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityIsPciComplianceValidated__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsIsPciComplianceValidatedFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPciLevel(){
-        if(!savedMappings.legalEntityPciLevelX__c){
-            legalEntityModel.getLegalEntityPci().setPciLevel(savedMappings.legalEntityPciLevelD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPciLevel__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsPciLevelFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setPciLevel(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEScanningVendor(){
-        if(!savedMappings.legalEntityScanningVendorX__c){
-            legalEntityModel.getLegalEntityPci().setScanningVendor(savedMappings.legalEntityScanningVendorD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityScanningVendor__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsScanningVendorFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setScanningVendor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEQualifiedSecurityAssessor(){
-        if(!savedMappings.legalEntityQualifiedSecurityAssessorX__c){
-            legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(savedMappings.legalEntityQualifiedSecurityAssessorD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityQualifiedSecurityAssessor__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsQualifiedSecurityAssessorFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setQualifiedSecurityAssessor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEMostRecentlyPassedScan(){
-        if(!savedMappings.legalEntityMostRecentlyPassedScanX__c){
-            legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(savedMappings.legalEntityMostRecentlyPassedScanD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityMostRecentlyPassedScan__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsMostRecentlyPassedScanFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setMostRecentlyPassedScan(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEReportOnCompliance(){
-        if(!savedMappings.legalEntityReportOnComplianceX__c){
-            legalEntityModel.getLegalEntityPci().setReportOnCompliance(savedMappings.legalEntityReportOnComplianceD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityReportOnCompliance__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPci().setIsReportOnComplianceFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPci().setReportOnCompliance(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    */
     
     public void populateLEAnnualCreditCardSalesVolume(){
         if(!savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c){
@@ -2617,56 +2328,7 @@ public class LitleMidFormController {
             }
         }
         
-        /* Removed Pci Fields
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
-            if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Is Exclusive to PSP should be either true or false');
-            }
-        }
-        
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
-            if(!ValidationUtil.validateBoolean(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Is PCI Compliance Validated should be either true or false');
-            }
-        }
-        
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
-            if(!ValidationUtil.validateIntegerValue(legalEntityModel.getLegalEntityPci().getPciLevel(), LitleConstants.PCI_LEVELS)){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('PCI Levels should be either 1,2,3 or 4');
-            }
-        }
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getScanningVendor())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getScanningVendor(), 9)){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Scanning Vendor cannot exceed 9 characters');
-            }
-        }
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPci().getQualifiedSecurityAssessor(), 50)){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Qualified Security Assessor cannot exceed 50 characters');
-            }
-        }
-        
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
-            if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getMostRecentlyPassedScan())){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Most Recently Passed Scan is not in yyyy-mm-dd format');
-            }
-        }
-        
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
-            if(!ValidationUtil.validateDate(legalEntityModel.getLegalEntityPci().getReportOnCompliance())){
-                isInputValid = false;
-                ApexPageUtil.addErrorMessage('Report On Compliance is not in yyyy-mm-dd format');
-            }
-        }
-        */
-        
-        if(String.isNotEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+		if(String.isNotEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
             if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
                 isInputValid = false;
                 ApexPageUtil.addErrorMessage('Legal Entity\'s Annual Credit Card Sales Volume should be integer');
@@ -2912,23 +2574,6 @@ public class LitleMidFormController {
                 }
             }
         }
-        /* Removed Pci Fields
-        if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsExclusiveToPsp())){
-            isAllRequiredFieldsPresent = false;
-            ApexPageUtil.addErrorMessage('Is Exclusive to PSP is Required');
-    
-        }
-        if(String.isEmpty(legalEntityModel.getLegalEntityPci().getIsPciComplianceValidated())){
-            isAllRequiredFieldsPresent = false;
-            ApexPageUtil.addErrorMessage('Is PCI Compliance Validated is Required');
-    
-        }
-        if(String.isEmpty(legalEntityModel.getLegalEntityPci().getPciLevel())){
-            isAllRequiredFieldsPresent = false;
-            ApexPageUtil.addErrorMessage('PCI Level is Required');
-    
-        }
-        */
         if(String.isEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
             isAllRequiredFieldsPresent = false;
             ApexPageUtil.addErrorMessage('Annual Credit Card Sales Volume is Required');

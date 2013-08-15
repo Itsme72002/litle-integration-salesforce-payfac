@@ -93,7 +93,6 @@ public class LoggingUtil {
 			String responseParams = '';
 			//iterate through they keys, and populate your map
 			for(String header : headerkeys){
-			   //headers.put(s,res.getHeader(s));
 			   if(String.isNotEmpty(header)){
 				   responseParams += header + ' :' + response.getHeader(header) + '\n';
 			   }
