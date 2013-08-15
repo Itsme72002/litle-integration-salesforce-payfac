@@ -2824,7 +2824,7 @@ public class LitleMidFormController {
                 payfacUrl = LitleEnvironment.getEnvironmentUrl(savedMappings.litleEnvironment__c) + LitleConstants.URL_SEPARATOR 
                     + LitleConstants.PAY_FAC_PORTAL_URI + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_META_UI_URI + LitleConstants.URL_SEPARATOR 
                     + legalEntityId + LitleConstants.URL_SEPARATOR + LitleConstants.SUBMERCHANT_META_UI_URI
-                    + LitleConstants.URL_SEPARATOR + submerchantId; 
+                    + LitleConstants.URL_SEPARATOR + submerchantId + LitleConstants.PAY_FAC_PORTAL_QUERY_STRING + subMerchantModel.getSubMerchantPspMerchantId(); 
                 
                 
                 ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    

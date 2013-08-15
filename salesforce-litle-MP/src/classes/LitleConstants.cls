@@ -21,7 +21,7 @@ public class LitleConstants {
 	public static final String REQUEST_HEADER_PLATFORM_VALUE = 'salesforce';
 	public static final String URL_SEPARATOR = '/';
 	public static final String PAY_FAC_PORTAL_URI = 'metaui' + URL_SEPARATOR + 'payfacPortal';
-	
+	public static final String PAY_FAC_PORTAL_QUERY_STRING = '?pspSubmerchantId=';
 	// auth has space at the end
 	public static final String REQUEST_AUTH_TYPE = 'Basic ';
 	
