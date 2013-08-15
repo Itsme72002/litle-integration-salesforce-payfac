@@ -20,8 +20,8 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class LitleMidFormControllerTestKYCSave {
-    
+private class LitleKYCServiceTest {
+
     public static final String ACCOUNT_NAME = 'Test Account';
     public static final String OPPORTUNITY_NAME = 'Test Opportunity';
     public static final String DEFAULT_STRING = 'ab';
@@ -35,9 +35,8 @@ private class LitleMidFormControllerTestKYCSave {
         System.assertEquals(0, litleKYCs.size());
         LegalEntityResponse leResponse = mockLegalEntityResponse(DEFAULT_STRING, 2);
         
-        ApexPages.currentPage().getParameters().put('accid',account.Id);
-        LitleMidFormController controller = new LitleMidFormController();
-        controller.saveKYCInformation(leResponse);
+        LitleKYCService litleService = new LitleKYCService();
+        litleService.saveOrUpdateAllKYCObjects(null, account.Id, leResponse);
         
         //check kyc
         litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
@@ -205,9 +204,8 @@ private class LitleMidFormControllerTestKYCSave {
         System.assertEquals(1, litleKYCs.size());
         LegalEntityResponse leResponse = mockLegalEntityResponse(DEFAULT_STRING, 2);
         
-        ApexPages.currentPage().getParameters().put('accid',account.Id);
-        LitleMidFormController controller = new LitleMidFormController();
-        controller.saveKYCInformation(leResponse);
+        LitleKYCService litleService = new LitleKYCService();
+        litleService.saveOrUpdateAllKYCObjects(null, account.Id, leResponse);
         
         //check kyc
         litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
@@ -313,9 +311,8 @@ private class LitleMidFormControllerTestKYCSave {
         System.assertEquals(0, litleKYCs.size());
         LegalEntityResponse leResponse = new LegalEntityResponse();
         
-        ApexPages.currentPage().getParameters().put('accid',account.Id);
-        LitleMidFormController controller = new LitleMidFormController();
-        controller.saveKYCInformation(leResponse);
+        LitleKYCService litleService = new LitleKYCService();
+        litleService.saveOrUpdateAllKYCObjects(null, account.Id, leResponse);
         
         //check kyc
         litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
@@ -411,9 +408,14 @@ private class LitleMidFormControllerTestKYCSave {
         insert account;
         List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
         System.assertEquals(0, litleKYCs.size());
-        ApexPages.currentPage().getParameters().put('accid',account.Id);
-        LitleMidFormController controller = new LitleMidFormController();
-        controller.saveKYCInformation(null);
+        LitleKYCService litleService = new LitleKYCService();
+        litleService.saveOrUpdateAllKYCObjects(null, account.Id, null);
+        
+        //check kyc
+        litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
+        System.assertEquals(0, litleKYCs.size());
+        
+        litleService.saveOrUpdateAllKYCObjects(null, null, new LegalEntityResponse());
         
         //check kyc
         litleKYCs = [select Id, Name from Litle_KYC__c where Account__c =:account.Id];
