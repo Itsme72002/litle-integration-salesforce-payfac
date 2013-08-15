@@ -57,7 +57,6 @@ public class LoggingUtil {
 	}
 	
 	public static void logCreateLegalEntityResponse(HttpResponse response, LitleRequestResponseLog__c litleRequestResponseLog){
-		system.debug('!!response:'+response);
 		if(litleRequestResponseLog != null && response != null){
 			litleRequestResponseLog.createLegalEntityResponseDate__c = Datetime.now();
 	    	litleRequestResponseLog.createLegalEntityResponseXml__c = getResponseParamsLog(response);
@@ -96,7 +95,6 @@ public class LoggingUtil {
 			for(String header : headerkeys){
 			   //headers.put(s,res.getHeader(s));
 			   if(String.isNotEmpty(header)){
-				   System.debug('header: ' + header + ' value: ' + response.getHeader(header));
 				   responseParams += header + ' :' + response.getHeader(header) + '\n';
 			   }
 			}

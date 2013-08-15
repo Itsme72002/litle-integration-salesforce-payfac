@@ -111,7 +111,6 @@ public class LitleMidFormController {
             if(subMerchantModel.getSubMerchantPrimaryContact().getIsFirstNameFromOpportunity()){
                 populateSMFirstName();
             }
-            system.debug('!why: ' + subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity());
             if(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity()){
                 populateSMMerchantName();
             }

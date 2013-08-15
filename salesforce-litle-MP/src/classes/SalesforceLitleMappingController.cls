@@ -737,9 +737,7 @@ public class SalesforceLitleMappingController {
 
     public Pagereference saveMappings() {
         removeDisabledText();
-        System.debug('In Save Method');
         try{
-        	System.debug(currentMappings.legalEntityTypeD__c);
         	upsert currentMappings;
             ApexPageUtil.addConfirmMessage('Mappings Saved.');
         } catch (DmlException e) {
