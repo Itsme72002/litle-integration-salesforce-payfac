@@ -2369,7 +2369,13 @@ public class LitleMidFormController {
                             }
                         }
                         LitleKYCService kycService = new LitleKYCService();
-                        kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
+                        try{
+                        	kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
+                        	ApexPageUtil.addConfirmMessage('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
+                        }catch(DmlException e){
+                        	ApexPageUtil.addErrorMessage('There was an error saving KYC Information.');
+                        	System.debug('Error saving KYC' + e.getMessage());
+                        }
                     }
                     
                     LoggingUtil.logSObjectDetails(urlAccountId, urlOpportunityId, litleRequestResponseLog);
@@ -2569,7 +2575,7 @@ public class LitleMidFormController {
                 payfacUrl = LitleEnvironment.getEnvironmentUrl(savedMappings.litleEnvironment__c) + LitleConstants.URL_SEPARATOR 
                     + LitleConstants.PAY_FAC_PORTAL_URI + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_META_UI_URI + LitleConstants.URL_SEPARATOR 
                     + legalEntityId + LitleConstants.URL_SEPARATOR + LitleConstants.SUBMERCHANT_META_UI_URI
-                    + LitleConstants.URL_SEPARATOR + submerchantId; 
+                    + LitleConstants.URL_SEPARATOR + submerchantId + LitleConstants.PAY_FAC_PORTAL_QUERY_STRING + subMerchantModel.getSubMerchantPspMerchantId(); 
                 
                 
                 ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    
