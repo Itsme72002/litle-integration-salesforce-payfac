@@ -1437,6 +1437,7 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
 			actualMessageList.add(message.getSummary());
@@ -1444,7 +1445,7 @@ private class LitleFormControllerTest2 {
 		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
-		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003?pspSubmerchantId=MA', thisAccount.PayFac_Portal_Link__c);
 		
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(insertedaccount.Id, litleRequestResponseLog.Account__c);
@@ -1520,6 +1521,7 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
 			actualMessageList.add(message.getSummary());
@@ -1527,7 +1529,7 @@ private class LitleFormControllerTest2 {
 		Opportunity thisOpportunity = [select Litle_Mid__c, PayFac_Portal_Link__c from Opportunity where Id = :opportunity.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisOpportunity.Litle_Mid__c);
-		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003', thisOpportunity.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821536565084223/subMerchant/1100003?pspSubmerchantId=MA', thisOpportunity.PayFac_Portal_Link__c);
 		
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(opportunity.Id, litleRequestResponseLog.Opportunity__c);
@@ -1602,6 +1604,7 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
+		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
 			actualMessageList.add(message.getSummary());
@@ -1681,6 +1684,7 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
+		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
 			actualMessageList.add(message.getSummary());
@@ -2081,6 +2085,7 @@ private class LitleFormControllerTest2 {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
 			actualMessageList.add(message.getSummary());
@@ -2088,7 +2093,7 @@ private class LitleFormControllerTest2 {
 		Account thisAccount = [select Litle_Mid__c, PayFac_Portal_Link__c from Account where Id = :insertedaccount.Id];	
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('01100003', thisAccount.Litle_Mid__c);
-		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821203948912667/subMerchant/1100003', thisAccount.PayFac_Portal_Link__c);
+		System.assertEquals(LitleConstants.LITLE_ENV_CERT + '/metaui/payfacPortal/legalEntity/82821203948912667/subMerchant/1100003?pspSubmerchantId=MA', thisAccount.PayFac_Portal_Link__c);
 		Test.stopTest();
      }
 }
