@@ -739,6 +739,18 @@ public class SalesforceLitleMappingController {
         try{
         	upsert currentMappings;
             ApexPageUtil.addConfirmMessage('Mappings Saved.');
+            LitleMappingsSaveLog__c log = new LitleMappingsSaveLog__c();
+            LoggingUtil.logSaveLitleMappings(currentMappings, log);
+            
+            try{
+            	insert log;
+            }
+            catch(Exception e){
+            	System.debug('Error in logging mappings save');
+            	for(Integer i = 0; i < e.getNumDml(); i++){
+            		System.debug(e.getDmlMessage(i));
+            	}
+            }
         } catch (DmlException e) {
         	ApexPageUtil.addErrorMessage('Error in Saving Mappings.');
         }

@@ -41,6 +41,7 @@
     </types>
     <types>
         <members>LitleRequestResponseLog__c</members>
+        <members>LitleSaveMappingsLog__c</members>
         <members>Litle_Mapping</members>
         <name>CustomTab</name>
     </types>
@@ -51,6 +52,10 @@
     </types>
     <types>
         <members>LitleRequestResponseLog__c.LitleLogView</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>LitleSaveMappingsLog__c.LitleLogView</members>
         <name>ListView</name>
     </types>
     <types>

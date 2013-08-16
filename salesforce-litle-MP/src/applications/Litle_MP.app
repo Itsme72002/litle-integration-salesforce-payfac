@@ -4,4 +4,5 @@
     <label>Litle MP</label>
     <tab>Litle_Mapping</tab>
     <tab>LitleRequestResponseLog__c</tab>
+    <tab>LitleMappingsSaveLog__c</tab>
 </CustomApplication>
