@@ -61,8 +61,8 @@ OTHER DEALINGS IN THE SOFTWARE.
         <name>CustomObject</name>
     </types>
     <types>
+        <members>LitleMappingsSaveLog__c</members>
         <members>LitleRequestResponseLog__c</members>
-        <members>LitleSaveMappingsLog__c</members>
         <members>Litle_Mapping</members>
         <name>CustomTab</name>
     </types>
@@ -72,11 +72,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         <name>Layout</name>
     </types>
     <types>
-        <members>LitleRequestResponseLog__c.LitleLogView</members>
-        <name>ListView</name>
-    </types>
-    <types>
-        <members>LitleSaveMappingsLog__c.LitleLogView</members>
+        <members>LitleMappingsSaveLog__c.LitleLogView</members>
         <name>ListView</name>
     </types>
     <types>
