@@ -16,6 +16,7 @@ public class LitleMidFormController {
     public Boolean isOpportunityMappingPresent{get; set;}
     public LitleKYCService kycService;
     public LegalEntityResponseService leResponseService;
+    public MappingSobjectService mappingService;
     
     
     public String payfacUrl;
@@ -43,6 +44,8 @@ public class LitleMidFormController {
                 }
             }
         }
+        
+        mappingService = new MappingSobjectService(urlAccountId, urlOpportunityId);
         
         // if the litle mid is non null on the account in question
         litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
@@ -349,37 +352,8 @@ public class LitleMidFormController {
     }
     
     public void populateLEName(){
-        if(!savedMappings.legalEntityNameX__c){
-            legalEntityModel.setLegalEntityName(savedMappings.legalEntityNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
+    	legalEntityModel.setLegalEntityName(mappingService.fetchMappedValue(savedMappings.legalEntityName__c, savedMappings.legalEntityNameD__c, savedMappings.legalEntityNameX__c, selectedOpportunityId));
+		legalEntityModel.setIsNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount (savedMappings.legalEntityName__c, savedMappings.legalEntityNameX__c));
     }
     
     public void populateLEType(){
@@ -387,1670 +361,249 @@ public class LitleMidFormController {
     }
     
     public void populateLEDoingBusinessAs(){
-        if(!savedMappings.legalEntityDoingBusinessAsX__c){
-            legalEntityModel.setLegalEntityDoingBusinessAs(savedMappings.legalEntityDoingBusinessAsD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityDoingBusinessAs__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsDoingBusinessAsFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityDoingBusinessAs(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
+    	legalEntityModel.setLegalEntityDoingBusinessAs(mappingService.fetchMappedValue(savedMappings.legalEntityDoingBusinessAs__c,savedMappings.legalEntityDoingBusinessAsD__c,savedMappings.legalEntityDoingBusinessAsX__c,selectedOpportunityId));
+		legalEntityModel.setIsDoingBusinessAsFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityDoingBusinessAs__c,savedMappings.legalEntityDoingBusinessAsX__c));
     }
     
     public void populateLEAddress1(){
-        if(!savedMappings.legalEntityStreetAddress1X__c){
-            legalEntityModel.getLegalEntityAddress().setStreetAddress1(savedMappings.legalEntityStreetAddress1D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStreetAddress1__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsStreetAddress1FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+        legalEntityModel.getLegalEntityAddress().setStreetAddress1(mappingService.fetchMappedValue(savedMappings.legalEntityStreetAddress1__c,savedMappings.legalEntityStreetAddress1D__c,savedMappings.legalEntityStreetAddress1X__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsStreetAddress1FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityStreetAddress1__c,savedMappings.legalEntityStreetAddress1X__c));
+	}
     
     public void populateLEAddress2(){
-        if(!savedMappings.legalEntityStreetAddress2X__c){
-            legalEntityModel.getLegalEntityAddress().setStreetAddress2(savedMappings.legalEntityStreetAddress2D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStreetAddress2__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsStreetAddress2FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	legalEntityModel.getLegalEntityAddress().setStreetAddress2(mappingService.fetchMappedValue(savedMappings.legalEntityStreetAddress2__c,savedMappings.legalEntityStreetAddress2D__c,savedMappings.legalEntityStreetAddress2X__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsStreetAddress2FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityStreetAddress2__c,savedMappings.legalEntityStreetAddress2X__c));
+	}
     
     public void populateLECity(){
-        if(!savedMappings.legalEntityCityX__c){
-            legalEntityModel.getLegalEntityAddress().setCity(savedMappings.legalEntityCityD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityCity__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsCityFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    /////////////////////////////////////////////////////////////
+    	legalEntityModel.getLegalEntityAddress().setCity(mappingService.fetchMappedValue(savedMappings.legalEntityCity__c,savedMappings.legalEntityCityD__c,savedMappings.legalEntityCityX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsCityFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityCity__c,savedMappings.legalEntityCityX__c));
+	}
+	
     public void populateLEStateProvince(){
-        if(!savedMappings.legalEntityStateProvinceX__c){
-            legalEntityModel.getLegalEntityAddress().setStateProvince(savedMappings.legalEntityStateProvinceD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityStateProvince__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsStateProvinceFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPostalCode(){
-        if(!savedMappings.legalEntityPostalCodeX__c){
-            legalEntityModel.getLegalEntityAddress().setPostalCode(savedMappings.legalEntityPostalCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPostalCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsPostalCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
+    	legalEntityModel.getLegalEntityAddress().setStateProvince(mappingService.fetchMappedValue(savedMappings.legalEntityStateProvince__c,savedMappings.legalEntityStateProvinceD__c,savedMappings.legalEntityStateProvinceX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsStateProvinceFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityStateProvince__c,savedMappings.legalEntityStateProvinceX__c));
+	}
+	
     public void populateLECountryCode(){
-        if(!savedMappings.legalEntityCountryCodeX__c){
-            legalEntityModel.getLegalEntityAddress().setCountryCode(savedMappings.legalEntityCountryCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityCountryCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityAddress().setIsCountryCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalFirstName(){
-        if(!savedMappings.legalEntityPrincipalFirstNameX__c){
-            legalEntityModel.getLegalEntityPrincipal().setFirstName(savedMappings.legalEntityPrincipalFirstNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalFirstName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsFirstNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalLastName(){
-        if(!savedMappings.legalEntityPrincipalLastNameX__c){
-            legalEntityModel.getLegalEntityPrincipal().setLastName(savedMappings.legalEntityPrincipalLastNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalLastName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsLastNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalEmailAddress(){
-        if(!savedMappings.legalEntityPrincipalEmailAddressX__c){
-            legalEntityModel.getLegalEntityPrincipal().setEmailAddress(savedMappings.legalEntityPrincipalEmailAddressD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalEmailAddress__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsEmailAddressFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEContactPhone(){
-        if(!savedMappings.legalEntityContactPhoneX__c){
-            legalEntityModel.setLegalEntityContactPhone(savedMappings.legalEntityContactPhoneD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityContactPhone__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityContactPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsContactPhoneFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalContactPhone(){
-        if(!savedMappings.legalEntityPrincipalContactPhoneX__c){
-            legalEntityModel.getLegalEntityPrincipal().setContactPhone(savedMappings.legalEntityPrincipalContactPhoneD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalContactPhone__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsContactPhoneFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setContactPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalDateOfBirth(){
-        if(!savedMappings.legalEntityPrincipalDateOfBirthX__c){
-            legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(savedMappings.legalEntityPrincipalDateOfBirthD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDateOfBirth__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsDateOfBirthFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalDriversLicense(){
-        if(!savedMappings.legalEntityPrincipalDriversLicenseX__c){
-            legalEntityModel.getLegalEntityPrincipal().setDriversLicense(savedMappings.legalEntityPrincipalDriversLicenseD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDriversLicense__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setDriversLicense(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalDriversLicenseState(){
-        if(!savedMappings.legalEntityPrincipalDriversLicenseStateX__c){
-            legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(savedMappings.legalEntityPrincipalDriversLicenseStateD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalDriversLicenseState__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseStateFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalSsn(){
-        if(!savedMappings.legalEntityPrincipalSsnX__c){
-            legalEntityModel.getLegalEntityPrincipal().setSsn(savedMappings.legalEntityPrincipalSsnD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalSsn__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().setIsSsnFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().setSsn(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	legalEntityModel.getLegalEntityAddress().setCountryCode(mappingService.fetchMappedValue(savedMappings.legalEntityCountryCode__c,savedMappings.legalEntityCountryCodeD__c,savedMappings.legalEntityCountryCodeX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsCountryCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityCountryCode__c,savedMappings.legalEntityCountryCodeX__c));
+	}
+	
+    public void populateLEPostalCode(){
+    	legalEntityModel.getLegalEntityAddress().setPostalCode(mappingService.fetchMappedValue(savedMappings.legalEntityPostalCode__c,savedMappings.legalEntityPostalCodeD__c,savedMappings.legalEntityPostalCodeX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityAddress().setIsPostalCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPostalCode__c,savedMappings.legalEntityPostalCodeX__c));
+	}
     
     public void populateLETaxId(){
-        if(!savedMappings.legalEntityTaxIdX__c){
-            legalEntityModel.setLegalEntityTaxId(savedMappings.legalEntityTaxIdD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityTaxId__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityTaxId(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityTaxId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsTaxIdFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityTaxId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
+    	legalEntityModel.setLegalEntityTaxId(mappingService.fetchMappedValue(savedMappings.legalEntityTaxId__c,savedMappings.legalEntityTaxIdD__c,savedMappings.legalEntityTaxIdX__c,selectedOpportunityId));
+		legalEntityModel.setIsTaxIdFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityTaxId__c,savedMappings.legalEntityTaxIdX__c));
+	}
+	
     public void populateLEAnnualCreditCardSalesVolume(){
-        if(!savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c){
-            legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(savedMappings.legalEntityAnnualCreditCardSalesVolumeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityAnnualCreditCardSalesVolume__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsAnnualCreditCardSalesVolumeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	legalEntityModel.setLegalEntityAnnualCreditCardSalesVolume(mappingService.fetchMappedValue(savedMappings.legalEntityAnnualCreditCardSalesVolume__c,savedMappings.legalEntityAnnualCreditCardSalesVolumeD__c,savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c,selectedOpportunityId));
+		legalEntityModel.setIsAnnualCreditCardSalesVolumeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityAnnualCreditCardSalesVolume__c,savedMappings.legalEntityAnnualCreditCardSalesVolumeX__c));
+	}
     
     public void populateLEHasAcceptedCreditCards(){
-        if(!savedMappings.legalEntityHasAcceptedCreditCardsX__c){
-            legalEntityModel.setLegalEntityHasAcceptedCreditCards(savedMappings.legalEntityHasAcceptedCreditCardsD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityHasAcceptedCreditCards__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.setIsHasAcceptedCreditCardsFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.setLegalEntityHasAcceptedCreditCards(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
+    	legalEntityModel.setLegalEntityHasAcceptedCreditCards(mappingService.fetchMappedValue(savedMappings.legalEntityHasAcceptedCreditCards__c,savedMappings.legalEntityHasAcceptedCreditCardsD__c,savedMappings.legalEntityHasAcceptedCreditCardsX__c,selectedOpportunityId));
+		legalEntityModel.setIsHasAcceptedCreditCardsFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityHasAcceptedCreditCards__c,savedMappings.legalEntityHasAcceptedCreditCardsX__c));
+	}
+	
+	public void populateLEContactPhone(){
+		legalEntityModel.setLegalEntityContactPhone(mappingService.fetchMappedValue(savedMappings.legalEntityContactPhone__c,savedMappings.legalEntityContactPhoneD__c,savedMappings.legalEntityContactPhoneX__c,selectedOpportunityId));
+		legalEntityModel.setIsContactPhoneFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityContactPhone__c,savedMappings.legalEntityContactPhoneX__c));
+	}
+	
+    public void populateLEPrincipalFirstName(){
+    	legalEntityModel.getLegalEntityPrincipal().setFirstName(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalFirstName__c,savedMappings.legalEntityPrincipalFirstNameD__c,savedMappings.legalEntityPrincipalFirstNameX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsFirstNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalFirstName__c,savedMappings.legalEntityPrincipalFirstNameX__c));
+	}
+	
+	public void populateLEPrincipalLastName(){
+    	legalEntityModel.getLegalEntityPrincipal().setLastName(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalLastName__c,savedMappings.legalEntityPrincipalLastNameD__c,savedMappings.legalEntityPrincipalLastNameX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsLastNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalLastName__c,savedMappings.legalEntityPrincipalLastNameX__c));
+	}
+	
+	public void populateLEPrincipalEmailAddress(){
+    	legalEntityModel.getLegalEntityPrincipal().setEmailAddress(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalEmailAddress__c,savedMappings.legalEntityPrincipalEmailAddressD__c,savedMappings.legalEntityPrincipalEmailAddressX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsEmailAddressFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalEmailAddress__c,savedMappings.legalEntityPrincipalEmailAddressX__c));
+	}
+	
+	public void populateLEPrincipalContactPhone(){
+    	legalEntityModel.getLegalEntityPrincipal().setContactPhone(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalContactPhone__c,savedMappings.legalEntityPrincipalContactPhoneD__c,savedMappings.legalEntityPrincipalContactPhoneX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsContactPhoneFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalContactPhone__c,savedMappings.legalEntityPrincipalContactPhoneX__c));
+	}
+	
+	public void populateLEPrincipalDateOfBirth(){
+    	legalEntityModel.getLegalEntityPrincipal().setDateOfBirth(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalDateOfBirth__c,savedMappings.legalEntityPrincipalDateOfBirthD__c,savedMappings.legalEntityPrincipalDateOfBirthX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsDateOfBirthFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalDateOfBirth__c,savedMappings.legalEntityPrincipalDateOfBirthX__c));
+	}
+	
+	public void populateLEPrincipalDriversLicense(){
+    	legalEntityModel.getLegalEntityPrincipal().setDriversLicense(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalDriversLicense__c,savedMappings.legalEntityPrincipalDriversLicenseD__c,savedMappings.legalEntityPrincipalDriversLicenseX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalDriversLicense__c,savedMappings.legalEntityPrincipalDriversLicenseX__c));
+	}
+	
+	public void populateLEPrincipalDriversLicenseState(){
+    	legalEntityModel.getLegalEntityPrincipal().setDriversLicenseState(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalDriversLicenseState__c,savedMappings.legalEntityPrincipalDriversLicenseStateD__c,savedMappings.legalEntityPrincipalDriversLicenseStateX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsDriversLicenseStateFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalDriversLicenseState__c,savedMappings.legalEntityPrincipalDriversLicenseStateX__c));
+	}
+	
+	public void populateLEPrincipalSsn(){
+    	legalEntityModel.getLegalEntityPrincipal().setSsn(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalSsn__c,savedMappings.legalEntityPrincipalSsnD__c,savedMappings.legalEntityPrincipalSsnX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().setIsSsnFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalSsn__c,savedMappings.legalEntityPrincipalSsnX__c));
+	}
+	
     public void populateLEPrincipalAddress1(){
-        if(!savedMappings.legalEntityPrincipalStreetAddress1X__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(savedMappings.legalEntityPrincipalStreetAddress1D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStreetAddress1__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress1FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalAddress2(){
-        if(!savedMappings.legalEntityPrincipalStreetAddress2X__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(savedMappings.legalEntityPrincipalStreetAddress2D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStreetAddress2__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress2FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalCity(){
-        if(!savedMappings.legalEntityPrincipalCityX__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(savedMappings.legalEntityPrincipalCityD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalCity__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCityFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalStateProvince(){
-        if(!savedMappings.legalEntityPrincipalStateProvinceX__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(savedMappings.legalEntityPrincipalStateProvinceD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalStateProvince__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStateProvinceFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalPostalCode(){
-        if(!savedMappings.legalEntityPrincipalPostalCodeX__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(savedMappings.legalEntityPrincipalPostalCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalPostalCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsPostalCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateLEPrincipalCountryCode(){
-        if(!savedMappings.legalEntityPrincipalCountryCodeX__c){
-            legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(savedMappings.legalEntityPrincipalCountryCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.legalEntityPrincipalCountryCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCountryCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress1(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalStreetAddress1__c,savedMappings.legalEntityPrincipalStreetAddress1D__c,savedMappings.legalEntityPrincipalStreetAddress1X__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress1FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalStreetAddress1__c,savedMappings.legalEntityPrincipalStreetAddress1X__c));
+	}
+	
+	public void populateLEPrincipalAddress2(){
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setStreetAddress2(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalStreetAddress2__c,savedMappings.legalEntityPrincipalStreetAddress2D__c,savedMappings.legalEntityPrincipalStreetAddress2X__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStreetAddress2FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalStreetAddress2__c,savedMappings.legalEntityPrincipalStreetAddress2X__c));
+	}
+	
+	public void populateLEPrincipalCity(){
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setCity(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalCity__c,savedMappings.legalEntityPrincipalCityD__c,savedMappings.legalEntityPrincipalCityX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCityFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalCity__c,savedMappings.legalEntityPrincipalCityX__c));
+	}
+	
+	public void populateLEPrincipalStateProvince(){
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setStateProvince(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalStateProvince__c,savedMappings.legalEntityPrincipalStateProvinceD__c,savedMappings.legalEntityPrincipalStateProvinceX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsStateProvinceFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalStateProvince__c,savedMappings.legalEntityPrincipalStateProvinceX__c));
+	}
+	
+	public void populateLEPrincipalPostalCode(){
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setPostalCode(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalPostalCode__c,savedMappings.legalEntityPrincipalPostalCodeD__c,savedMappings.legalEntityPrincipalPostalCodeX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsPostalCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalPostalCode__c,savedMappings.legalEntityPrincipalPostalCodeX__c));
+	}
+	
+	public void populateLEPrincipalCountryCode(){
+    	legalEntityModel.getLegalEntityPrincipal().getAddress().setCountryCode(mappingService.fetchMappedValue(savedMappings.legalEntityPrincipalCountryCode__c,savedMappings.legalEntityPrincipalCountryCodeD__c,savedMappings.legalEntityPrincipalCountryCodeX__c,selectedOpportunityId));
+		legalEntityModel.getLegalEntityPrincipal().getAddress().setIsCountryCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.legalEntityPrincipalCountryCode__c,savedMappings.legalEntityPrincipalCountryCodeX__c));
+	}
     
     public void populateSMStreetAddress1(){
-        if(!savedMappings.subMerchantStreetAddress1X__c){
-            subMerchantModel.getSubMerchantAddress().setStreetAddress1(savedMappings.subMerchantStreetAddress1D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStreetAddress1__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsStreetAddress1FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setStreetAddress1(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMStreetAddress2(){
-        if(!savedMappings.subMerchantStreetAddress2X__c){
-            subMerchantModel.getSubMerchantAddress().setStreetAddress2(savedMappings.subMerchantStreetAddress2D__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStreetAddress2__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsStreetAddress2FromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setStreetAddress2(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMCity(){
-        if(!savedMappings.subMerchantCityX__c){
-            subMerchantModel.getSubMerchantAddress().setCity(savedMappings.subMerchantCityD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCity__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsCityFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setCity(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMStateProvince(){
-        if(!savedMappings.subMerchantStateProvinceX__c){
-            subMerchantModel.getSubMerchantAddress().setStateProvince(savedMappings.subMerchantStateProvinceD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantStateProvince__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));  
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsStateProvinceFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setStateProvince(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMPostalCode(){
-        if(!savedMappings.subMerchantPostalCodeX__c){
-            subMerchantModel.getSubMerchantAddress().setPostalCode(savedMappings.subMerchantPostalCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPostalCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsPostalCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setPostalCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMCountryCode(){
-        if(!savedMappings.subMerchantCountryCodeX__c){
-            subMerchantModel.getSubMerchantAddress().setCountryCode(savedMappings.subMerchantCountryCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCountryCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantAddress().setIsCountryCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantAddress().setCountryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	subMerchantModel.getSubMerchantAddress().setStreetAddress1(mappingService.fetchMappedValue(savedMappings.subMerchantStreetAddress1__c,savedMappings.subMerchantStreetAddress1D__c,savedMappings.subMerchantStreetAddress1X__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsStreetAddress1FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantStreetAddress1__c,savedMappings.subMerchantStreetAddress1X__c));
+	}
+	
+	public void populateSMStreetAddress2(){
+    	subMerchantModel.getSubMerchantAddress().setStreetAddress2(mappingService.fetchMappedValue(savedMappings.subMerchantStreetAddress2__c,savedMappings.subMerchantStreetAddress2D__c,savedMappings.subMerchantStreetAddress2X__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsStreetAddress2FromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantStreetAddress2__c,savedMappings.subMerchantStreetAddress2X__c));
+	}
+	
+	public void populateSMCity(){
+    	subMerchantModel.getSubMerchantAddress().setCity(mappingService.fetchMappedValue(savedMappings.subMerchantCity__c,savedMappings.subMerchantCityD__c,savedMappings.subMerchantCityX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsCityFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantCity__c,savedMappings.subMerchantCityX__c));
+	}
+	
+	public void populateSMStateProvince(){
+    	subMerchantModel.getSubMerchantAddress().setStateProvince(mappingService.fetchMappedValue(savedMappings.subMerchantStateProvince__c,savedMappings.subMerchantStateProvinceD__c,savedMappings.subMerchantStateProvinceX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsStateProvinceFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantStateProvince__c,savedMappings.subMerchantStateProvinceX__c));
+	}
+	
+	public void populateSMCountryCode(){
+    	subMerchantModel.getSubMerchantAddress().setCountryCode(mappingService.fetchMappedValue(savedMappings.subMerchantCountryCode__c,savedMappings.subMerchantCountryCodeD__c,savedMappings.subMerchantCountryCodeX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsCountryCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantCountryCode__c,savedMappings.subMerchantCountryCodeX__c));
+	}
+	
+	public void populateSMPostalCode(){
+    	subMerchantModel.getSubMerchantAddress().setPostalCode(mappingService.fetchMappedValue(savedMappings.subMerchantPostalCode__c,savedMappings.subMerchantPostalCodeD__c,savedMappings.subMerchantPostalCodeX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantAddress().setIsPostalCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantPostalCode__c,savedMappings.subMerchantPostalCodeX__c));
+	}
     
     public void populateSMAmexMid(){
-        if(!savedMappings.subMerchantAmexMidX__c){
-            subMerchantModel.setsubMerchantAmexMid(savedMappings.subMerchantAmexMidD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantAmexMid__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantAmexMid(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantAmexMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantAmexMidFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantAmexMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMBankAccountNumber(){
-        if(!savedMappings.subMerchantBankAccountNumberX__c){
-            subMerchantModel.setsubMerchantBankAccountNumber(savedMappings.subMerchantBankAccountNumberD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantBankAccountNumber__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantBankAccountNumberFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantBankAccountNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMBankRoutingNumber(){
-        if(!savedMappings.subMerchantBankRoutingNumberX__c){
-            subMerchantModel.setsubMerchantBankRoutingNumber(savedMappings.subMerchantBankRoutingNumberD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantBankRoutingNumber__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantBankRoutingNumberFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantBankRoutingNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMCreateCredentials(){
-        if(!savedMappings.subMerchantCreateCredentialsX__c){
-            subMerchantModel.setsubMerchantCreateCredentials(savedMappings.subMerchantCreateCredentialsD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCreateCredentials__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantCreateCredentialsFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantCreateCredentials(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMCustomerServiceNumber(){
-        if(!savedMappings.subMerchantCustomerServiceNumberX__c){
-            subMerchantModel.setsubMerchantCustomerServiceNumber(savedMappings.subMerchantCustomerServiceNumberD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantCustomerServiceNumber__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantCustomerServiceNumberFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantCustomerServiceNumber(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMDiscoverConveyMid(){
-        if(!savedMappings.subMerchantDiscoverConveyMidX__c){
-            subMerchantModel.setsubMerchantDiscoverConveyMid(savedMappings.subMerchantDiscoverConveyMidD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantDiscoverConveyMid__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantDiscoverConveyMidFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantDiscoverConveyMid(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMHardCodeBillingDescriptor(){
-        if(!savedMappings.subMerchantHardCodeBillingDescriptorX__c){
-            subMerchantModel.setsubMerchantHardCodeBillingDescriptor(savedMappings.subMerchantHardCodeBillingDescD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantHardCodeBillingDescriptor__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantHardCodeBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMMaxTransactionAmount(){
-        if(!savedMappings.subMerchantMaxTransactionAmountX__c){
-            subMerchantModel.setsubMerchantMaxTransactionAmount(savedMappings.subMerchantMaxTransactionAmountD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMaxTransactionAmount__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantMaxTransactionAmountFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantMaxTransactionAmount(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMMerchantCategoryCode(){
-        if(!savedMappings.subMerchantMerchantCategoryCodeX__c){
-            subMerchantModel.setsubMerchantMerchantCategoryCode(savedMappings.subMerchantMerchantCategoryCodeD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMerchantCategoryCode__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantMerchantCategoryCodeFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantMerchantCategoryCode(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMMerchantName(){
-        if(!savedMappings.subMerchantMerchantNameX__c){
-            subMerchantModel.setsubMerchantMerchantName(savedMappings.subMerchantMerchantNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantMerchantName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMerchantName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantMerchantName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantMerchantNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantMerchantName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	subMerchantModel.setsubMerchantAmexMid(mappingService.fetchMappedValue(savedMappings.subMerchantAmexMid__c,savedMappings.subMerchantAmexMidD__c,savedMappings.subMerchantAmexMidX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantAmexMidFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantAmexMid__c,savedMappings.subMerchantAmexMidX__c));
+	}
+	
+	public void populateSMBankAccountNumber(){
+    	subMerchantModel.setsubMerchantBankAccountNumber(mappingService.fetchMappedValue(savedMappings.subMerchantBankAccountNumber__c,savedMappings.subMerchantBankAccountNumberD__c,savedMappings.subMerchantBankAccountNumberX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantBankAccountNumberFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantBankAccountNumber__c,savedMappings.subMerchantBankAccountNumberX__c));
+	}
+	
+	public void populateSMBankRoutingNumber(){
+    	subMerchantModel.setsubMerchantBankRoutingNumber(mappingService.fetchMappedValue(savedMappings.subMerchantBankRoutingNumber__c,savedMappings.subMerchantBankRoutingNumberD__c,savedMappings.subMerchantBankRoutingNumberX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantBankRoutingNumberFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantBankRoutingNumber__c,savedMappings.subMerchantBankRoutingNumberX__c));
+	}
+	
+	public void populateSMCreateCredentials(){
+    	subMerchantModel.setsubMerchantCreateCredentials(mappingService.fetchMappedValue(savedMappings.subMerchantCreateCredentials__c,savedMappings.subMerchantCreateCredentialsD__c,savedMappings.subMerchantCreateCredentialsX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantCreateCredentialsFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantCreateCredentials__c,savedMappings.subMerchantCreateCredentialsX__c));
+	}
+	
+	public void populateSMCustomerServiceNumber(){
+    	subMerchantModel.setsubMerchantCustomerServiceNumber(mappingService.fetchMappedValue(savedMappings.subMerchantCustomerServiceNumber__c,savedMappings.subMerchantCustomerServiceNumberD__c,savedMappings.subMerchantCustomerServiceNumberX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantCustomerServiceNumberFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantCustomerServiceNumber__c,savedMappings.subMerchantCustomerServiceNumberX__c));
+	}
+	
+	public void populateSMDiscoverConveyMid(){
+    	subMerchantModel.setsubMerchantDiscoverConveyMid(mappingService.fetchMappedValue(savedMappings.subMerchantDiscoverConveyMid__c,savedMappings.subMerchantDiscoverConveyMidD__c,savedMappings.subMerchantDiscoverConveyMidX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantDiscoverConveyMidFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantDiscoverConveyMid__c,savedMappings.subMerchantDiscoverConveyMidX__c));
+	}
+	
+	public void populateSMHardCodeBillingDescriptor(){
+    	subMerchantModel.setsubMerchantHardCodeBillingDescriptor(mappingService.fetchMappedValue(savedMappings.subMerchantHardCodeBillingDescriptor__c,savedMappings.subMerchantHardCodeBillingDescD__c,savedMappings.subMerchantHardCodeBillingDescriptorX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantHardCodeBillingDescriptorFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantHardCodeBillingDescriptor__c,savedMappings.subMerchantHardCodeBillingDescriptorX__c));
+	}
+	
+	public void populateSMMaxTransactionAmount(){
+    	subMerchantModel.setsubMerchantMaxTransactionAmount(mappingService.fetchMappedValue(savedMappings.subMerchantMaxTransactionAmount__c,savedMappings.subMerchantMaxTransactionAmountD__c,savedMappings.subMerchantMaxTransactionAmountX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantMaxTransactionAmountFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantMaxTransactionAmount__c,savedMappings.subMerchantMaxTransactionAmountX__c));
+	}
+	
+	public void populateSMMerchantCategoryCode(){
+    	subMerchantModel.setsubMerchantMerchantCategoryCode(mappingService.fetchMappedValue(savedMappings.subMerchantMerchantCategoryCode__c,savedMappings.subMerchantMerchantCategoryCodeD__c,savedMappings.subMerchantMerchantCategoryCodeX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantMerchantCategoryCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantMerchantCategoryCode__c,savedMappings.subMerchantMerchantCategoryCodeX__c));
+	}
+	
+	public void populateSMMerchantName(){
+    	subMerchantModel.setsubMerchantMerchantName(mappingService.fetchMappedValue(savedMappings.subMerchantMerchantName__c,savedMappings.subMerchantMerchantNameD__c,savedMappings.subMerchantMerchantNameX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantMerchantNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantMerchantName__c,savedMappings.subMerchantMerchantNameX__c));
+	}
+	
+	public void populateSMPspMerchantId(){
+    	subMerchantModel.setsubMerchantPspMerchantId(mappingService.fetchMappedValue(savedMappings.subMerchantPspMerchantId__c,savedMappings.subMerchantPspMerchantIdD__c,savedMappings.subMerchantPspMerchantIdX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantPspMerchantIdFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantPspMerchantId__c,savedMappings.subMerchantPspMerchantIdX__c));
+	}
+	
+	public void populateSMUrl(){
+    	subMerchantModel.setsubMerchantUrl(mappingService.fetchMappedValue(savedMappings.subMerchantUrl__c,savedMappings.subMerchantUrlD__c,savedMappings.subMerchantUrlX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchantUrlFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantUrl__c,savedMappings.subMerchantUrlX__c));
+	}
+	
+	public void populateSMeCheckBillingDescriptor(){
+    	subMerchantModel.setsubMerchanteCheckBillingDescriptor(mappingService.fetchMappedValue(savedMappings.subMerchanteCheckBillingDescriptor__c,savedMappings.subMerchanteCheckBillingDescD__c,savedMappings.subMerchanteCheckBillingDescriptorX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchanteCheckBillingDescriptorFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchanteCheckBillingDescriptor__c,savedMappings.subMerchanteCheckBillingDescriptorX__c));
+	}
+	
+	public void populateSMeCheckCompanyName(){
+    	subMerchantModel.setsubMerchanteCheckCompanyName(mappingService.fetchMappedValue(savedMappings.subMerchanteCheckCompanyName__c,savedMappings.subMerchanteCheckCompanyNameD__c,savedMappings.subMerchanteCheckCompanyNameX__c,selectedOpportunityId));
+		subMerchantModel.setIsSubMerchanteCheckCompanyNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchanteCheckCompanyName__c,savedMappings.subMerchanteCheckCompanyNameX__c));
+	}
     
     public void populateSMFirstName(){
-        if(!savedMappings.subMerchantFirstNameX__c){
-            subMerchantModel.getSubMerchantPrimaryContact().setFirstName(savedMappings.subMerchantFirstNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantFirstName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantPrimaryContact().setIsFirstNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantPrimaryContact().setFirstName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMLastName(){
-        if(!savedMappings.subMerchantLastNameX__c){
-            subMerchantModel.getSubMerchantPrimaryContact().setLastName(savedMappings.subMerchantLastNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantLastName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantPrimaryContact().setIsLastNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantPrimaryContact().setLastName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMEmailAddress(){
-        if(!savedMappings.subMerchantEmailAddressX__c){
-            subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(savedMappings.subMerchantEmailAddressD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantEmailAddress__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));    
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantPrimaryContact().setIsEmailAddressFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMPhone(){
-        if(!savedMappings.subMerchantPhoneX__c){
-            subMerchantModel.getSubMerchantPrimaryContact().setPhone(savedMappings.subMerchantPhoneD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPhone__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.getSubMerchantPrimaryContact().setIsPhoneFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.getSubMerchantPrimaryContact().setPhone(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMPspMerchantId(){
-        if(!savedMappings.subMerchantPspMerchantIdX__c){
-            subMerchantModel.setsubMerchantPspMerchantId(savedMappings.subMerchantPspMerchantIdD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantPspMerchantId__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantPspMerchantIdFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantPspMerchantId(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMUrl(){
-        if(!savedMappings.subMerchantUrlX__c){
-            subMerchantModel.setsubMerchantUrl(savedMappings.subMerchantUrlD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchantUrl__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantUrl(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchantUrl(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchantUrlFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchantUrl(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMeCheckBillingDescriptor(){
-        if(!savedMappings.subMerchanteCheckBillingDescriptorX__c){
-            subMerchantModel.setsubMerchanteCheckBillingDescriptor(savedMappings.subMerchanteCheckBillingDescD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchanteCheckBillingDescriptor__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId)); 
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchanteCheckBillingDescriptorFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchanteCheckBillingDescriptor(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    public void populateSMeCheckCompanyName(){
-        if(!savedMappings.subMerchanteCheckCompanyNameX__c){
-            subMerchantModel.setsubMerchanteCheckCompanyName(savedMappings.subMerchanteCheckCompanyNameD__c);
-        }else{
-            String sObjectName, sObjectFieldName;
-            //split saved mapping to get sobject type and its field name
-            List<String> customObjectFieldParts = splitSObjectNameAndField(savedMappings.subMerchanteCheckCompanyName__c);
-            if(customObjectFieldParts != null && customObjectFieldParts.size() == 2){
-                sObjectName = customObjectFieldParts.get(0);
-                sObjectFieldName = customObjectFieldParts.get(1);
-            }
-            if(String.isNotEmpty(sObjectName) && String.isNotEmpty(sObjectFieldName)){
-                if(sObjectName.equalsIgnoreCase('Account')){
-                    if(String.isNotEmpty(urlAccountId)){
-                        // we have account id, get the field value
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getAccountFieldValue(sObjectFieldName, urlAccountId));   
-                    }
-                }else if(sObjectName.equalsIgnoreCase('Opportunity')){
-                    if(String.isNotEmpty(urlOpportunityId)){
-                        //request from opportunity page, and we have the opportunity id
-                        // set it as legal entity name
-                        subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, urlOpportunityId));
-                    }else if(String.isNotEmpty(urlAccountId)){
-                        subMerchantModel.setIsSubMerchanteCheckCompanyNameFromOpportunity(true);
-                        if(String.isNotEmpty(selectedOpportunityId)){
-                            subMerchantModel.setsubMerchanteCheckCompanyName(QueryUtil.getOpportunityFieldValue(sObjectFieldName, selectedOpportunityId));
-                        }
-                    }
-                }    
-            }
-        }
-    }
+    	subMerchantModel.getSubMerchantPrimaryContact().setFirstName(mappingService.fetchMappedValue(savedMappings.subMerchantFirstName__c,savedMappings.subMerchantFirstNameD__c,savedMappings.subMerchantFirstNameX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantPrimaryContact().setIsFirstNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantFirstName__c,savedMappings.subMerchantFirstNameX__c));
+	}
+	
+	public void populateSMLastName(){
+    	subMerchantModel.getSubMerchantPrimaryContact().setLastName(mappingService.fetchMappedValue(savedMappings.subMerchantLastName__c,savedMappings.subMerchantLastNameD__c,savedMappings.subMerchantLastNameX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantPrimaryContact().setIsLastNameFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantLastName__c,savedMappings.subMerchantLastNameX__c));
+	}
+	
+	public void populateSMEmailAddress(){
+    	subMerchantModel.getSubMerchantPrimaryContact().setEmailAddress(mappingService.fetchMappedValue(savedMappings.subMerchantEmailAddress__c,savedMappings.subMerchantEmailAddressD__c,savedMappings.subMerchantEmailAddressX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantPrimaryContact().setIsEmailAddressFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantEmailAddress__c,savedMappings.subMerchantEmailAddressX__c));
+	}
+	
+	public void populateSMPhone(){
+    	subMerchantModel.getSubMerchantPrimaryContact().setPhone(mappingService.fetchMappedValue(savedMappings.subMerchantPhone__c,savedMappings.subMerchantPhoneD__c,savedMappings.subMerchantPhoneX__c,selectedOpportunityId));
+		subMerchantModel.getSubMerchantPrimaryContact().setIsPhoneFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(savedMappings.subMerchantPhone__c,savedMappings.subMerchantPhoneX__c));
+	}
     
     public Pagereference submit(){
         if(areRequiredFieldsFilled()){
