@@ -227,6 +227,7 @@ private class LitleFormControllerTest {
         ApexPages.currentPage().getParameters().put('accid',account.Id);
         litleMidFormController = new LitleMidFormController();
         System.assertEquals(null, litleMidFormController.litleMid);
+
     }
     
     static testMethod void testConstructor(){

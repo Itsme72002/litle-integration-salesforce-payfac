@@ -31,5 +31,4 @@ private class LitleFormControllerTest2 {
 	public static final String DEFAULT_STRING = 'Default String';
 	public static final Date DEFAULT_DATE = Date.today();
 
-    
 }
