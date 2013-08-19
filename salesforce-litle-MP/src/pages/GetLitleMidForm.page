@@ -23,7 +23,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 	<apex:includeScript value="{!URLFOR($Resource.jQuery)}"  />
 
     <apex:form id="midForm">
-        <apex:pageBlock title="Get Litle MID" mode="maindetail">
+        <apex:pageBlock title="Get Litle MID" mode="maindetail" rendered="{!ISNULL(litleMid)}">
             <apex:pageBlockSection columns="1">
                 Fill the form below to apply for Litle MID. Once done, click Submit.
                 <apex:pageBlockSectionItem >
@@ -32,13 +32,16 @@ OTHER DEALINGS IN THE SOFTWARE.
             </apex:pageBlockSection>
         </apex:pageBlock>
         
-        <apex:pageBlock title="Merchant Already Registered!" mode="detail" rendered="{!NOT(ISNULL(litleMid))}">
+        <apex:pageBlock title="Merchant Registered." mode="detail" rendered="{!NOT(ISNULL(litleMid))}">
             <apex:pageBlockSection columns="1">
-                <apex:outputText value="This account has already been registered with Litle with the id: {!litleMid}" />
                 <apex:pageBlockSectionItem >
                     <apex:pageMessages />
                 </apex:pageBlockSectionItem>
+                <apex:outputText value="This account is registered with Litle MID: {!litleMid}" />
             </apex:pageBlockSection>
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+            </apex:pageBlockButtons>
         </apex:pageBlock>
         
         <apex:pageBlock title="Add A Sub Merchant" mode="edit" id="smBlock" rendered="{!ISNULL(litleMid)}">
