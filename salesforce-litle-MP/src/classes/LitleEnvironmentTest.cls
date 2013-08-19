@@ -24,7 +24,7 @@ private class LitleEnvironmentTest {
 
     static testMethod void testStringValue() {
         System.assertEquals('Production',LitleEnvironment.stringValue('PRODUCTION'));
-        System.assertEquals('Cert',LitleEnvironment.stringValue('CERT'));
+        System.assertEquals('Test',LitleEnvironment.stringValue('CERT'));
         System.assertEquals('Pre-Cert',LitleEnvironment.stringValue('PRE_CERT'));
         System.assertEquals('Pre-Live',LitleEnvironment.stringValue('PRE_LIVE'));
         System.assertEquals('Sandbox',LitleEnvironment.stringValue('SANDBOX'));

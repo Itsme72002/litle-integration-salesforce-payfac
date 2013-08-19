@@ -34,7 +34,7 @@ public class LitleEnvironment {
 			if(name.equals(LitleEnvironmentEnum.PRODUCTION.name())){
 				return 'Production';
 			}else if(name.equals(LitleEnvironmentEnum.CERT.name())){
-				return 'Cert';
+				return 'Test';
 			}else if(name.equals(LitleEnvironmentEnum.PRE_CERT.name())){
 				return 'Pre-Cert';
 			}else if(name.equals(LitleEnvironmentEnum.PRE_LIVE.name())){
