@@ -45,6 +45,16 @@ public class LitleMidFormController {
         isOpportunityMappingPresent = false;
         this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
+        //check if litle mid is already present
+        if(String.isNotEmpty(urlOpportunityId)){
+        	litleMid = QueryUtil.getOpportunityFieldValue('Litle_MID__c', urlOpportunityId);
+        }else if(String.isNotEmpty(urlAccountId)){
+        	litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+        }
+        // if the litle mid is an error code, null it back out and proceed
+        if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
+            litleMid = null;    
+        }
         //populate all opportunities of this account id
         if(String.isNotEmpty(urlAccountId)){
             opportunityOptions = QueryUtil.getOpportunityNameOptions(urlAccountId);
@@ -64,13 +74,6 @@ public class LitleMidFormController {
         
         leModelService = new LegalEntityModelService(urlAccountId, urlOpportunityId);
         smModelService = new SubMerchantModelService(urlAccountId, urlOpportunityId);
-        
-        // if the litle mid is non null on the account in question
-        litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
-        // if the litle mid is an error code, null it back out and proceed
-        if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
-            litleMid = null;    
-        }
         
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
