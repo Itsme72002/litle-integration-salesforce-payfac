@@ -72,44 +72,33 @@ public class ResetService {
 	}
 	
 	public void deleteLitleMappingsSaveLog(){
-		List<LitleMappingsSaveLog__c> litleMappingsSaveLogs = [select Id, Name from LitleMappingsSaveLog__c];
-		for(LitleMappingsSaveLog__c litleMappingsSaveLog : litleMappingsSaveLogs){
-			delete litleMappingsSaveLog;
-		}
-		
+		List<LitleMappingsSaveLog__c> litleMappingsSaveLogsToBeDeleted = [select Id, Name from LitleMappingsSaveLog__c];
+		delete litleMappingsSaveLogsToBeDeleted;		
 	}
 	
 	public void deleteLitleRequestResponseLogOfAccount(String accountId){
 		if(String.isNotEmpty(accountId)){
-			List<LitleRequestResponseLog__c> LitleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Account__c =:accountId];
-			for(LitleRequestResponseLog__c litleRequestResponseLog : litleRequestResponseLogs){
-				delete litleRequestResponseLog;
-			}
+			List<LitleRequestResponseLog__c> LitleRequestResponseLogsToBeDeleted = [select Id, Name from LitleRequestResponseLog__c where Account__c =:accountId];
+			delete litleRequestResponseLogsToBeDeleted;
 		}
 	}
 	
 	public void deleteLitleRequestResponseLogOfOpportunity(String opportunityId){
 		if(String.isNotEmpty(opportunityId)){
-			List<LitleRequestResponseLog__c> LitleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunityId];
-			for(LitleRequestResponseLog__c litleRequestResponseLog : litleRequestResponseLogs){
-				delete litleRequestResponseLog;
-			}
+			List<LitleRequestResponseLog__c> LitleRequestResponseLogsToBeDeleted = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunityId];
+			delete litleRequestResponseLogsToBeDeleted;
 		}
 	}
 	
 	public void deleteSalesforceLitleMappingsObject(){
-		List<SalesforceLitleMappingsObject__c> mappingObjects = [select Id, Name from SalesforceLitleMappingsObject__c];
-		for(SalesforceLitleMappingsObject__c mappingObject:mappingObjects){
-			delete mappingObject;
-		}
+		List<SalesforceLitleMappingsObject__c> mappingObjectsToBeDeleted = [select Id, Name from SalesforceLitleMappingsObject__c];
+		delete mappingObjectsToBeDeleted;
 	}
 	
 	public void resetAccount(String accountId){
 		if(String.isNotEmpty(accountId)){
-			List<Account> accounts = [select Id, Name from Account where Id !=:accountId];
-			for(Account account : accounts){
-				delete account;
-			}
+			List<Account> accountsToBeDeleted = [select Id, Name from Account where Id !=:accountId];
+			delete accountsToBeDeleted;
 			
 			Account account = [Select a.PayFac_Portal_Link__c, 
     								a.Litle_MID__c, a.Website, a.Type, 
@@ -149,10 +138,8 @@ public class ResetService {
 	
 	public void resetOpportunity(String opportunityId){
 		if(String.isNotEmpty(opportunityId)){
-			List<Opportunity> opportunities = [select Id, Name from Opportunity where Id !=:opportunityId];
-			for(Opportunity opportunity : opportunities){
-				delete opportunity;
-			}
+			List<Opportunity> opportunitiesToBeDeleted = [select Id, Name from Opportunity where Id !=:opportunityId];
+			delete opportunitiesToBeDeleted;
 			
 			Opportunity opportunity = [Select o.PayFac_Portal_Link__c, o.Litle_MID__c, o.DeliveryInstallationStatus__c,
 		    							o.Type, o.StageName, o.Probability, o.Name, 
