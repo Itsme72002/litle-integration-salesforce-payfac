@@ -1,24 +1,24 @@
-/**
- * This class contains unit tests for validating the behavior of Apex classes
- * and triggers.
- *
- * Unit tests are class methods that verify whether a particular piece
- * of code is working properly. Unit test methods take no arguments,
- * commit no data to the database, and are flagged with the testMethod
- * keyword in the method definition.
- *
- * All test methods in an organization are executed whenever Apex code is deployed
- * to a production organization to confirm correctness, ensure code
- * coverage, and prevent regressions. All Apex classes are
- * required to have at least 75% code coverage in order to be deployed
- * to a production organization. In addition, all triggers must have some code coverage.
- * 
- * The @isTest class annotation indicates this class only contains test
- * methods. Classes defined with the @isTest annotation do not count against
- * the organization size limit for all Apex scripts.
- *
- * See the Apex Language Reference for more information about Testing and Code Coverage.
- */
+/*
+Copyright (c) 2013 Litle & Co.
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+*/
 @isTest
 private class ResetServiceTest {
 	public static final String ACCOUNT_NAME = 'Test Account';
@@ -26,18 +26,16 @@ private class ResetServiceTest {
 	public static final String DEFAULT_STRING = 'Default String';
 	public static final Date DEFAULT_DATE = Date.today();
 
-    static testMethod void deleteKYCForAccount_NoKYCRecords(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	List<Litle_KYC__c> accountKYCs = [select Id, Name from Litle_KYC__c];
-    	System.assertEquals(0, accountKYCs.size());
+    static testMethod void deleteAllLitleKYC_NoKYCRecords(){
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+    	System.assertEquals(0, litleKYCs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForAccount(account.Id);
-    	accountKYCs = [select Id, Name from Litle_KYC__c];
-    	System.assertEquals(0, accountKYCs.size());
+    	service.deleteAllLitleKYC();
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+    	System.assertEquals(0, litleKYCs.size());
     }
     
-    static testMethod void deleteKYCForAccount_WithKYCRecord(){
+    static testMethod void deleteAllLitleKYC_WithKYCRecord(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
     	Litle_KYC__c litleKYC = new Litle_KYC__c();
@@ -46,12 +44,12 @@ private class ResetServiceTest {
     	List<Litle_KYC__c> accountKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1, accountKYCs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForAccount(account.Id);
+    	service.deleteAllLitleKYC();
     	accountKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, accountKYCs.size());
     }
     
-    static testMethod void deleteKYCForAccount_WithKYCDetails(){
+    static testMethod void deleteAllKYCForAccount_WithKYCDetails(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
     	
@@ -126,7 +124,7 @@ private class ResetServiceTest {
     	System.assertEquals(2, riskIndicators.size());
     	
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForAccount(account.Id);
+    	service.deleteAllLitleKYC();
     	accountKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, accountKYCs.size());
     	accountPrincipals = [select Id, Name from Litle_Principal__c];
@@ -145,7 +143,7 @@ private class ResetServiceTest {
     	List<Litle_KYC__c> opportunityKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, opportunityKYCs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForOpportunity(opportunity.Id);
+    	service.deleteAllLitleKYC();
     	opportunityKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, opportunityKYCs.size());
     }
@@ -159,7 +157,7 @@ private class ResetServiceTest {
     	List<Litle_KYC__c> opportunityKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1, opportunityKYCs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForOpportunity(opportunity.Id);
+    	service.deleteAllLitleKYC();
     	opportunityKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, opportunityKYCs.size());
     }
@@ -239,7 +237,7 @@ private class ResetServiceTest {
     	System.assertEquals(2, riskIndicators.size());
     	
     	ResetService service = new ResetService();
-    	service.deleteLitleKYCForOpportunity(opportunity.Id);
+    	service.deleteAllLitleKYC();
     	opportunityKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(0, opportunityKYCs.size());
     	opportunityPrincipals = [select Id, Name from Litle_Principal__c];
@@ -252,7 +250,7 @@ private class ResetServiceTest {
     	System.assertEquals(0, riskIndicators.size());
     }
     
-    static testMethod void deleteRiskIndicator_NoRecords(){
+    static testMethod void deleteRiskIndicatorOfVerificationResult_NoRecords(){
     	Litle_Verification_Result__c verification = new Litle_Verification_Result__c();
         verification.Address_Verified__c = 'test';
         verification.City_Verified__c = 'test';
@@ -270,12 +268,12 @@ private class ResetServiceTest {
         List<Litle_Risk_Indicator__c> riskIndicators = [select Id, Name from Litle_Risk_Indicator__c];
         System.assertEquals(0, riskIndicators.size());
         ResetService service = new ResetService();
-    	service.deleteRiskIndicator(verification.Id);
+    	service.deleteRiskIndicatorOfVerificationResult(verification.Id);
     	riskIndicators = [select Id, Name from Litle_Risk_Indicator__c];
         System.assertEquals(0, riskIndicators.size());
     }
     
-    static testMethod void deleteRiskIndicator_MultipleRecords(){
+    static testMethod void deleteRiskIndicatorOfVerificationResult_MultipleRecords(){
     	Litle_Verification_Result__c verification = new Litle_Verification_Result__c();
         verification.Address_Verified__c = 'test';
         verification.City_Verified__c = 'test';
@@ -306,7 +304,7 @@ private class ResetServiceTest {
         List<Litle_Risk_Indicator__c> riskIndicators = [select Id, Name from Litle_Risk_Indicator__c];
         System.assertEquals(2, riskIndicators.size());
         ResetService service = new ResetService();
-    	service.deleteRiskIndicator(verification.Id);
+    	service.deleteRiskIndicatorOfVerificationResult(verification.Id);
     	riskIndicators = [select Id, Name from Litle_Risk_Indicator__c];
         System.assertEquals(0, riskIndicators.size());
         
@@ -498,7 +496,7 @@ private class ResetServiceTest {
         System.assertEquals(0, riskIndicators.size());
     }    
     
-    static testMethod void deleteBusiness_NoRecord(){
+    static testMethod void deleteBusinessOfKYC_NoRecord(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -507,14 +505,14 @@ private class ResetServiceTest {
     	List<Litle_Business__c> businesses = [select Id, Name from Litle_Business__c];
     	System.assertEquals(0,businesses.size());
     	ResetService service = new ResetService();
-    	service.deleteBusiness(litleKYC.Id);
+    	service.deleteBusinessOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	businesses = [select Id, Name from Litle_Business__c];
     	System.assertEquals(0,businesses.size());    	    	
     }
     
-    static testMethod void deleteBusiness_WithRecord_NoVerification(){
+    static testMethod void deleteBusinessOfKYC_WithRecord_NoVerification(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -527,14 +525,14 @@ private class ResetServiceTest {
     	List<Litle_Business__c> businesses = [select Id, Name from Litle_Business__c];
     	System.assertEquals(1,businesses.size());
     	ResetService service = new ResetService();
-    	service.deleteBusiness(litleKYC.Id);
+    	service.deleteBusinessOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	businesses = [select Id, Name from Litle_Business__c];
     	System.assertEquals(0,businesses.size());    	    	
     }    
     
-    static testMethod void deleteBusiness_WithRecord_WithVerification(){
+    static testMethod void deleteBusinessOfKYC_WithRecord_WithVerification(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -566,7 +564,7 @@ private class ResetServiceTest {
     	System.assertEquals(1, verificationResults.size());    	
     	
     	ResetService service = new ResetService();
-    	service.deleteBusiness(litleKYC.Id);
+    	service.deleteBusinessOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	businesses = [select Id, Name from Litle_Business__c];
@@ -575,7 +573,7 @@ private class ResetServiceTest {
     	System.assertEquals(0, verificationResults.size());    	    	
     }  
     
-    static testMethod void deletePrincipal_NoRecord(){
+    static testMethod void deletePrincipalOfKYC_NoRecord(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -584,14 +582,14 @@ private class ResetServiceTest {
     	List<Litle_Principal__c> principales = [select Id, Name from Litle_Principal__c];
     	System.assertEquals(0,principales.size());
     	ResetService service = new ResetService();
-    	service.deletePrincipal(litleKYC.Id);
+    	service.deletePrincipalOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	principales = [select Id, Name from Litle_Principal__c];
     	System.assertEquals(0,principales.size());    	    	
     }
     
-    static testMethod void deletePrincipal_WithRecord_NoVerification(){
+    static testMethod void deletePrincipalOfKYC_WithRecord_NoVerification(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -604,14 +602,14 @@ private class ResetServiceTest {
     	List<Litle_Principal__c> principales = [select Id, Name from Litle_Principal__c];
     	System.assertEquals(1,principales.size());
     	ResetService service = new ResetService();
-    	service.deletePrincipal(litleKYC.Id);
+    	service.deletePrincipalOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	principales = [select Id, Name from Litle_Principal__c];
     	System.assertEquals(0,principales.size());    	    	
     }    
     
-    static testMethod void deletePrincipal_WithRecord_WithVerification(){
+    static testMethod void deletePrincipalOfKYC_WithRecord_WithVerification(){
 		Litle_KYC__c litleKYC = new Litle_KYC__c();
     	insert litleKYC;
     	
@@ -643,7 +641,7 @@ private class ResetServiceTest {
     	System.assertEquals(1, verificationResults.size());    	
     	
     	ResetService service = new ResetService();
-    	service.deletePrincipal(litleKYC.Id);
+    	service.deletePrincipalOfKYC(litleKYC.Id);
     	litleKYCs = [select Id, Name from Litle_KYC__c];
     	System.assertEquals(1,litleKYCs.size());
     	principales = [select Id, Name from Litle_Principal__c];
@@ -652,38 +650,38 @@ private class ResetServiceTest {
     	System.assertEquals(0, verificationResults.size());    	    	
     } 
     
-    static testMethod void deleteLitleMappingsSaveLog_NoRecord(){
+    static testMethod void deleteAllLitleMappingsSaveLogs_NoRecord(){
     	List<LitleMappingsSaveLog__c> litleMappingsSaveLogs = [select Id, Name from LitleMappingsSaveLog__c];
     	System.assertEquals(0, litleMappingsSaveLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleMappingsSaveLog();
+    	service.deleteAllLitleMappingsSaveLogs();
     	litleMappingsSaveLogs = [select Id, Name from LitleMappingsSaveLog__c];
     	System.assertEquals(0, litleMappingsSaveLogs.size());
     }
     
-    static testMethod void deleteLitleMappingsSaveLog_WithRecord(){
+    static testMethod void deleteAllLitleMappingsSaveLogs_WithRecord(){
     	LitleMappingsSaveLog__c litleMappingsSaveLog = new LitleMappingsSaveLog__c();
     	insert litleMappingsSaveLog;
     	List<LitleMappingsSaveLog__c> litleMappingsSaveLogs = [select Id, Name from LitleMappingsSaveLog__c];
     	System.assertEquals(1, litleMappingsSaveLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleMappingsSaveLog();
+    	service.deleteAllLitleMappingsSaveLogs();
     	litleMappingsSaveLogs = [select Id, Name from LitleMappingsSaveLog__c];
     	System.assertEquals(0, litleMappingsSaveLogs.size());
     }
     
-    static testMethod void deleteLitleRequestResponseLogOfAccount_NoRecord(){
+    static testMethod void deleteAllLitleRequestResponseLog_NoRecord(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
     	List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Account__c =:account.Id ];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleRequestResponseLogOfAccount(account.Id);
+    	service.deleteAllLitleRequestResponseLogs();
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Account__c =:account.Id ];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     }
     
-    static testMethod void deleteLitleRequestResponseLogOfAccount_WithRecord(){
+    static testMethod void deleteAllLitleRequestResponseLog_WithRecord(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
     	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
@@ -699,11 +697,11 @@ private class ResetServiceTest {
     	List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c];
     	System.assertEquals(2, litleRequestResponseLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleRequestResponseLogOfAccount(account.Id);
+    	service.deleteAllLitleRequestResponseLogs();
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Account__c =:account.Id];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunity.Id];
-    	System.assertEquals(1, litleRequestResponseLogs.size());
+    	System.assertEquals(0, litleRequestResponseLogs.size());
     }
     
     static testMethod void deleteLitleRequestResponseLogOfOpportunity_NoRecord(){
@@ -712,7 +710,7 @@ private class ResetServiceTest {
     	List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunity.Id ];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleRequestResponseLogOfOpportunity(opportunity.Id);
+    	service.deleteAllLitleRequestResponseLogs();
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunity.Id ];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     }
@@ -733,18 +731,18 @@ private class ResetServiceTest {
     	List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c];
     	System.assertEquals(2, litleRequestResponseLogs.size());
     	ResetService service = new ResetService();
-    	service.deleteLitleRequestResponseLogOfOpportunity(opportunity.Id);
+    	service.deleteAllLitleRequestResponseLogs();
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Opportunity__c =:opportunity.Id];
     	System.assertEquals(0, litleRequestResponseLogs.size());
     	litleRequestResponseLogs = [select Id, Name from LitleRequestResponseLog__c where Account__c =:account.Id];
-    	System.assertEquals(1, litleRequestResponseLogs.size());
+    	System.assertEquals(0, litleRequestResponseLogs.size());
     }
     
     static testMethod void deleteSalesforceMappingsObject_NoRecord(){
     	List<SalesforceLitleMappingsObject__c> mappingObjects = [select Id, Name from SalesforceLitleMappingsObject__c];
     	System.assertEquals(0, mappingObjects.size());
     	ResetService service = new ResetService();
-    	service.deleteSalesforceLitleMappingsObject();
+    	service.deleteAllSalesforceLitleMappingsObjects();
     	mappingObjects = [select Id, Name from SalesforceLitleMappingsObject__c];
     	System.assertEquals(0, mappingObjects.size());
     }
@@ -756,72 +754,80 @@ private class ResetServiceTest {
     	List<SalesforceLitleMappingsObject__c> mappingObjects = [select Id, Name from SalesforceLitleMappingsObject__c];
     	System.assertEquals(1, mappingObjects.size());
     	ResetService service = new ResetService();
-    	service.deleteSalesforceLitleMappingsObject();
+    	service.deleteAllSalesforceLitleMappingsObjects();
     	mappingObjects = [select Id, Name from SalesforceLitleMappingsObject__c];
     	System.assertEquals(0, mappingObjects.size());
     }
     
-    static testMethod void resetAccount_SingleAccountRecord(){
+    static testMethod void deleteAllCasesOfAccount_NoCaseRecords(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
-    	List<Account> accounts = [Select Id, Name From Account a];
+    	List<Account> accounts = [select Id from Account];
     	System.assertEquals(1, accounts.size());
+    	List<Case> cases = [select Id from Case];
+    	System.assertEquals(0, cases.size());
     	ResetService service = new ResetService();
-    	service.resetAccount(account.Id);
-    	accounts = [Select a.PayFac_Portal_Link__c, 
-    								a.Litle_MID__c, a.Website, a.Type, 
-    								a.TickerSymbol, a.Sic, a.ShippingStreet, 
-    								a.ShippingState, a.ShippingPostalCode, 
-    								a.ShippingCountry, a.ShippingCity, a.Description, a.Phone,
-    								a.Name, a.Industry, a.Id, a.Fax, 
-    								a.BillingStreet, a.BillingState, a.BillingPostalCode, 
-    								a.BillingCountry, a.BillingCity, a.AnnualRevenue 
-								From Account a];
+    	service.deleteAllCasesOfAccount(account.Id);
+    	cases = [select Id from Case];
+    	System.assertEquals(0, cases.size());
+    	accounts = [select Id from Account];
     	System.assertEquals(1, accounts.size());
-    	System.assertEquals(null, accounts.get(0).PayFac_Portal_Link__c);
-    	System.assertEquals(null, accounts.get(0).Litle_MID__c);
-    	System.assertEquals('http://www.pyramid.com', accounts.get(0).Website);
-    	System.assertEquals('Customer - Channel', accounts.get(0).Type);
-    	System.assertEquals('PYR', accounts.get(0).TickerSymbol);
-    	System.assertEquals('4253', accounts.get(0).Sic);
-    	System.assertEquals('2 Place Jussieu', accounts.get(0).ShippingStreet);
-    	System.assertEquals(null, accounts.get(0).ShippingState);
-    	System.assertEquals('Paris', accounts.get(0).ShippingCity);
-    	System.assertEquals('This is a demo Account', accounts.get(0).Description);
-    	System.assertEquals('(014) 427-4427', accounts.get(0).Phone);
-    	System.assertEquals('Pyramid Construction Inc', accounts.get(0).Name);
-    	System.assertEquals('Construction', accounts.get(0).Industry);
-    	System.assertEquals('(014) 427-4428', accounts.get(0).Fax);
-    	System.assertEquals('2 Place Jussieu', accounts.get(0).BillingStreet);
-    	System.assertEquals(null, accounts.get(0).BillingState);
-    	System.assertEquals('75251', accounts.get(0).BillingPostalCode);
-    	System.assertEquals('France', accounts.get(0).BillingCountry);
-    	System.assertEquals('Paris', accounts.get(0).BillingCity);
-    	System.assertEquals(950000000, accounts.get(0).AnnualRevenue);
     }
     
-    static testMethod void resetAccount_TwoAccountRecords(){
+    static testMethod void deleteAllCasesOfAccount_TwoCaseRecords(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;
-    	
-    	Account secondAccount = new Account(name=ACCOUNT_NAME);
-    	insert secondAccount;
-    	
-    	List<Account> accounts = [Select Id, Name From Account a];
+    	Case case1 = new Case(AccountId = account.Id);
+    	insert case1;
+    	Case case2 = new Case(AccountId = account.Id);
+    	insert case2;
+    	List<Account> accounts = [select Id from Account];
+    	System.assertEquals(1, accounts.size());
+    	List<Case> cases = [select Id from Case];
+    	System.assertEquals(2, cases.size());
+    	ResetService service = new ResetService();
+    	service.deleteAllCasesOfAccount(account.Id);
+    	cases = [select Id from Case];
+    	System.assertEquals(0, cases.size());
+    	accounts = [select Id from Account];
+    	System.assertEquals(1, accounts.size());
+    }
+    
+    static testMethod void deleteAllAccounts_NoAccount(){
+    	ResetService service = new ResetService();
+    	service.deleteAllAccounts();
+    	List<Account> accounts = [Select Id From Account];
+    	System.assertEquals(0, accounts.size());
+    }
+    
+    static testMethod void deleteAllAccounts_TwoAccount(){
+    	Account account = new Account(name=ACCOUNT_NAME);
+    	insert account;
+    	account = new Account(name=ACCOUNT_NAME+'1');
+    	insert account;
+    	List<Account> accounts = [Select Id From Account];
     	System.assertEquals(2, accounts.size());
     	ResetService service = new ResetService();
-    	service.resetAccount(account.Id);
-    	accounts = [Select a.PayFac_Portal_Link__c, 
+    	service.deleteAllAccounts();
+    	accounts = [Select Id From Account];
+    	System.assertEquals(0, accounts.size());
+    }
+    
+    static testMethod void createDefaultAccount(){
+    	ResetService service = new ResetService();
+    	service.createDefaultAccount();
+    	List<Account> accounts = [Select a.PayFac_Portal_Link__c, 
     								a.Litle_MID__c, a.Website, a.Type, 
     								a.TickerSymbol, a.Sic, a.ShippingStreet, 
     								a.ShippingState, a.ShippingPostalCode, 
+    								a.Ownership, a.Rating, a.Active__c,
+    								a.SLAExpirationDate__c, a.UpsellOpportunity__c, a.SLA__c,
     								a.ShippingCountry, a.ShippingCity, a.Description,  a.Phone,
     								a.Name, a.Industry, a.Id, a.Fax, 
     								a.BillingStreet, a.BillingState, a.BillingPostalCode, 
     								a.BillingCountry, a.BillingCity, a.AnnualRevenue 
 								From Account a];
     	System.assertEquals(1, accounts.size());
-    	System.assertEquals(account.ID, accounts.get(0).Id);
     	System.assertEquals(null, accounts.get(0).PayFac_Portal_Link__c);
     	System.assertEquals(null, accounts.get(0).Litle_MID__c);
     	System.assertEquals('http://www.pyramid.com', accounts.get(0).Website);
@@ -831,6 +837,14 @@ private class ResetServiceTest {
     	System.assertEquals('2 Place Jussieu', accounts.get(0).ShippingStreet);
     	System.assertEquals(null, accounts.get(0).ShippingState);
     	System.assertEquals('Paris', accounts.get(0).ShippingCity);
+    	System.assertEquals('75251', accounts.get(0).ShippingPostalCode);
+    	System.assertEquals('France', accounts.get(0).ShippingCountry);
+    	System.assertEquals('Private', accounts.get(0).Ownership);
+    	System.assertEquals('Warm', accounts.get(0).Rating);
+    	System.assertEquals('Yes', accounts.get(0).Active__c);
+    	System.assertEquals(Date.Today(), accounts.get(0).SLAExpirationDate__c);
+    	System.assertEquals('Maybe', accounts.get(0).UpsellOpportunity__c);
+    	System.assertEquals('Silver', accounts.get(0).SLA__c);
     	System.assertEquals('This is a demo Account', accounts.get(0).Description);
     	System.assertEquals('(014) 427-4427', accounts.get(0).Phone);
     	System.assertEquals('Pyramid Construction Inc', accounts.get(0).Name);
@@ -841,46 +855,34 @@ private class ResetServiceTest {
     	System.assertEquals('75251', accounts.get(0).BillingPostalCode);
     	System.assertEquals('France', accounts.get(0).BillingCountry);
     	System.assertEquals('Paris', accounts.get(0).BillingCity);
-    	System.assertEquals(950000000, accounts.get(0).AnnualRevenue);    	
+    	System.assertEquals(950000000, accounts.get(0).AnnualRevenue);    
     }
     
-    static testMethod void resetOpportunity_SingleOpportunityRecord(){
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	List<Opportunity> opportunities = [Select Id, Name From Opportunity a];
-    	System.assertEquals(1, opportunities.size());
+    static testMethod void deleteAllOpportunities_NoAccount(){
     	ResetService service = new ResetService();
-    	service.resetOpportunity(opportunity.Id);
-    	opportunities = [Select o.PayFac_Portal_Link__c, o.Litle_MID__c, o.DeliveryInstallationStatus__c,
-    							o.Type, o.StageName, o.Probability, o.Name, 
-    							o.LeadSource, o.LastModifiedDate, 
-    							o.Description, o.CloseDate
-								From Opportunity o];
-    	System.assertEquals(1, opportunities.size());
-    	System.assertEquals(null, opportunities.get(0).PayFac_Portal_Link__c);
-    	System.assertEquals(null, opportunities.get(0).Litle_MID__c);
-    	System.assertEquals('In progress', opportunities.get(0).DeliveryInstallationStatus__c);
-    	System.assertEquals('New Customer', opportunities.get(0).Type);
-    	System.assertEquals('Prospecting', opportunities.get(0).StageName);
-    	System.assertEquals(10, opportunities.get(0).Probability);
-    	System.assertEquals('Pyramid Construction Lowell Branch', opportunities.get(0).Name);
-    	System.assertEquals('Web', opportunities.get(0).LeadSource);
-    	System.assertEquals('This is a demo Opportunity', opportunities.get(0).Description);
-    	System.assertEquals(Date.today(), opportunities.get(0).CloseDate);
+    	service.deleteAllOpportunities();
+    	List<Opportunity> opportunities = [Select Id, Name From Opportunity];
+    	System.assertEquals(0, opportunities.size());
     }
     
-    static testMethod void resetOpportunity_TwoOpportunityRecords(){
+    static testMethod void deleteAllOpportunities_TwoAccount(){
     	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
     	insert opportunity;
     	
     	Opportunity secondOpportunity = new Opportunity(name=OPPORTUNITY_NAME+'2', stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
     	insert secondOpportunity;
-    	
     	List<Opportunity> opportunities = [Select Id, Name From Opportunity a];
     	System.assertEquals(2, opportunities.size());
     	ResetService service = new ResetService();
-    	service.resetOpportunity(opportunity.Id);
-    	opportunities = [Select o.PayFac_Portal_Link__c, o.Litle_MID__c, o.DeliveryInstallationStatus__c,
+    	service.deleteAllOpportunities();
+    	opportunities = [Select Id, Name From Opportunity a];
+    	System.assertEquals(0, opportunities.size());
+    }
+    
+     static testMethod void createDefaultOpportunity(){
+     	ResetService service = new ResetService();
+    	service.createDefaultOpportunity();
+    	List<Opportunity> opportunities = [Select o.PayFac_Portal_Link__c, o.Litle_MID__c, o.DeliveryInstallationStatus__c,
     							o.Type, o.StageName, o.Probability, o.Name, 
     							o.LeadSource, o.LastModifiedDate,  
     							o.Description, o.CloseDate
@@ -896,6 +898,6 @@ private class ResetServiceTest {
     	System.assertEquals('Web', opportunities.get(0).LeadSource);
     	System.assertEquals('This is a demo Opportunity', opportunities.get(0).Description);
     	System.assertEquals(Date.today(), opportunities.get(0).CloseDate);	
-    }
+     }
         
 }
