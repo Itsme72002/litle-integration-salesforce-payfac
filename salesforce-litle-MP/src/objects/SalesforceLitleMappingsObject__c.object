@@ -201,33 +201,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>legalEntityFirstNameD__c</fullName>
-        <description>Legal Entity FirstNameD</description>
-        <externalId>false</externalId>
-        <label>Default Legal Entity FirstName</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityFirstNameX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Default Legal Entity FirstName?</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityFirstName__c</fullName>
-        <description>Legal Entity FirstName</description>
-        <externalId>false</externalId>
-        <label>SF Legal Entity FirstName</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>legalEntityHasAcceptedCreditCardsD__c</fullName>
         <description>Legal Entity HasAcceptedCreditCardsD</description>
         <externalId>false</externalId>
@@ -249,33 +222,6 @@
         <description>Legal Entity HasAcceptedCreditCards</description>
         <externalId>false</externalId>
         <label>SF Legal Entity HasAcceptedCCs</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityLastNameD__c</fullName>
-        <description>Legal Entity LastNameD</description>
-        <externalId>false</externalId>
-        <label>Default Legal Entity LastName</label>
-        <length>60</length>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>legalEntityLastNameX__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Default Legal Entity LastName?</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>legalEntityLastName__c</fullName>
-        <description>Legal Entity LastName</description>
-        <externalId>false</externalId>
-        <label>SF Legal Entity LastName</label>
         <length>60</length>
         <required>false</required>
         <type>Text</type>

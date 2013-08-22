@@ -111,15 +111,9 @@ public class LoggingUtil {
 		log.legalEntityDoingBusinessAs__c = mappings.legalEntityDoingBusinessAs__c;
 		log.legalEntityDoingBusinessAsD__c = mappings.legalEntityDoingBusinessAsD__c;
 		log.legalEntityDoingBusinessAsX__c = mappings.legalEntityDoingBusinessAsX__c;
-		log.legalEntityFirstName__c = mappings.legalEntityFirstName__c;
-		log.legalEntityFirstNameD__c = mappings.legalEntityFirstNameD__c;
-		log.legalEntityFirstNameX__c = mappings.legalEntityFirstNameX__c;
 		log.legalEntityHasAcceptedCreditCards__c = mappings.legalEntityHasAcceptedCreditCards__c;
 		log.legalEntityHasAcceptedCreditCardsD__c = mappings.legalEntityHasAcceptedCreditCardsD__c;
 		log.legalEntityHasAcceptedCreditCardsX__c = mappings.legalEntityHasAcceptedCreditCardsX__c;
-		log.legalEntityLastName__c = mappings.legalEntityLastName__c;
-		log.legalEntityLastNameD__c = mappings.legalEntityLastNameD__c;
-		log.legalEntityLastNameX__c = mappings.legalEntityLastNameX__c;
 		log.legalEntityName__c = mappings.legalEntityName__c;
 		log.legalEntityNameD__c = mappings.legalEntityNameD__c;
 		log.legalEntityNameX__c = mappings.legalEntityNameX__c;

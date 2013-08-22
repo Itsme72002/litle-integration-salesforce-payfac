@@ -231,15 +231,9 @@ private class LogginUtilTest {
         mappings.legalEntityDoingBusinessAs__c = DEFAULT_VAL;
         mappings.legalEntityDoingBusinessAsD__c = DEFAULT_VAL;
         mappings.legalEntityDoingBusinessAsX__c = DEFAULT_BOOL;
-        mappings.legalEntityFirstName__c = DEFAULT_VAL;
-        mappings.legalEntityFirstNameD__c = DEFAULT_VAL;
-        mappings.legalEntityFirstNameX__c = DEFAULT_BOOL;
         mappings.legalEntityHasAcceptedCreditCards__c = DEFAULT_VAL;
         mappings.legalEntityHasAcceptedCreditCardsD__c = DEFAULT_VAL;
         mappings.legalEntityHasAcceptedCreditCardsX__c = DEFAULT_BOOL;
-        mappings.legalEntityLastName__c = DEFAULT_VAL;
-        mappings.legalEntityLastNameD__c = DEFAULT_VAL;
-        mappings.legalEntityLastNameX__c = DEFAULT_BOOL;
         mappings.legalEntityName__c = DEFAULT_VAL;
         mappings.legalEntityNameD__c = DEFAULT_VAL;
         mappings.legalEntityNameX__c = DEFAULT_BOOL;
@@ -403,17 +397,9 @@ private class LogginUtilTest {
         System.assertEquals(DEFAULT_VAL, mappings.legalEntityDoingBusinessAsD__c);
         System.assertEquals(DEFAULT_BOOL, mappings.legalEntityDoingBusinessAsX__c);
         
-        System.assertEquals(DEFAULT_VAL, mappings.legalEntityFirstName__c);
-        System.assertEquals(DEFAULT_VAL, mappings.legalEntityFirstNameD__c);
-        System.assertEquals(DEFAULT_BOOL, mappings.legalEntityFirstNameX__c);
-        
         System.assertEquals(DEFAULT_VAL, mappings.legalEntityHasAcceptedCreditCards__c);
         System.assertEquals(DEFAULT_VAL, mappings.legalEntityHasAcceptedCreditCardsD__c);
         System.assertEquals(DEFAULT_BOOL, mappings.legalEntityHasAcceptedCreditCardsX__c);
-        
-        System.assertEquals(DEFAULT_VAL, mappings.legalEntityLastName__c);
-        System.assertEquals(DEFAULT_VAL, mappings.legalEntityLastNameD__c);
-        System.assertEquals(DEFAULT_BOOL, mappings.legalEntityLastNameX__c);
         
         System.assertEquals(DEFAULT_VAL, mappings.legalEntityName__c);
         System.assertEquals(DEFAULT_VAL, mappings.legalEntityNameD__c);
