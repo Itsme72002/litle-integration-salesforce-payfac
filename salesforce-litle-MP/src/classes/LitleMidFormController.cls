@@ -119,6 +119,7 @@ public class LitleMidFormController {
                     ApexPageUtil.addErrorMessage('Merchant Username or Password are not set in the Mappings page. Request Failed.');
                 } else {
                     LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+                    litleRequestResponseLog.Log_Source__c = LitleConstants.LOG_SOURCE_GET_LITLE_MID;
                     // Get the request
                     Httprequest createLegalEntityRequest = LitleRequestXml.getCreateLegalEntityRequest(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c,legalEntityModel, false, savedMappings.litleEnvironment__c);
                     // create masked entity request

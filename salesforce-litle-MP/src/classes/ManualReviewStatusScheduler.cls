@@ -42,7 +42,8 @@ global class ManualReviewStatusScheduler implements Schedulable{
 				sObjectType__c, 
 				createSubMerchantRequestXml__c 
 					from LitleRequestResponseLog__c 
-			where legalEntityResponseCode__c= :LitleConstants.RESPONSE_MANUAL_REVIEW];
+			where legalEntityResponseCode__c= :LitleConstants.RESPONSE_MANUAL_REVIEW
+			and Log_Source__c =:LitleConstants.LOG_SOURCE_GET_LITLE_MID];
 		if(litleRequestResponseLogs != null && litleRequestResponseLogs.size() > 0){
 				for (litleRequestResponseLog__c litleRequestResponse: litleRequestResponseLogs){
 					//check if all fields are present
@@ -55,6 +56,8 @@ global class ManualReviewStatusScheduler implements Schedulable{
 						(String.isNotEmpty(litleRequestResponse.Account__c) || String.isNotEmpty(litleRequestResponse.Opportunity__c)) && 
 						String.isNotEmpty(litleRequestResponse.sObjectType__c) && 
 						String.isNotEmpty(litleRequestResponse.createSubMerchantRequestXml__c)){
+					litleRequestResponseLog__c schedulerLog = new litleRequestResponseLog__c();
+					schedulerLog.Log_Source__c = LitleConstants.LOG_SOURCE_SCHEDULER;
 					String litleMid;
 					String submerchantId;
 					String payfacUrl;
@@ -66,9 +69,11 @@ global class ManualReviewStatusScheduler implements Schedulable{
 																		litleRequestResponse.subMerchantContentTypeHeader__c, 
 																		litleRequestResponse.subMerchantAcceptHeader__c, 
 																		'');
+					LoggingUtil.logCreateLegalEntityRequest(legalEntityRequest, schedulerLog); 
 					HttpResponse leHttpResponse = new HttpResponse();
 					try{
 						leHttpResponse = h.send(legalEntityRequest);
+						LoggingUtil.logCreateLegalEntityResponse(leHttpResponse, schedulerLog);
 						if(leHttpResponse != null && leHttpResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
 							LegalEntityResponse leResponse = new LegalEntityResponse();
 							LegalEntityResponseService leService = new LegalEntityResponseService();
@@ -91,10 +96,13 @@ global class ManualReviewStatusScheduler implements Schedulable{
 																		litleRequestResponse.subMerchantContentTypeHeader__c, 
 																		litleRequestResponse.subMerchantAcceptHeader__c, 
 																		litleRequestResponse.createSubMerchantRequestXml__c);
+								LoggingUtil.logCreateSubMerchantRequest(subMerchantRequest, schedulerLog);
 								HttpResponse subMerchantResponse = new HttpResponse();
 								try{
 									subMerchantResponse = h.send(subMerchantRequest);
-									// check http response code 
+									// log new response
+									LoggingUtil.logCreateSubMerchantResponse(subMerchantResponse, schedulerLog);
+									LoggingUtil.logCreateSubMerchantResponse(subMerchantResponse, litleRequestResponse);
 									if(subMerchantResponse != null && subMerchantResponse.getStatusCode() == LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE){
 										// response success, extract the sub merchant id
 										litleMid = XmlUtil.extractXmlTagText(subMerchantResponse, LitleConstants.XML_TAG_MERCHANT_IDENT_STRING);
@@ -143,14 +151,19 @@ global class ManualReviewStatusScheduler implements Schedulable{
 					}catch(System.CalloutException e){
 				       	System.debug('Legal Entity Request Callout error: '+ e);
 					}
+					LoggingUtil.logSObjectDetails(litleRequestResponse.Account__c, litleRequestResponse.Opportunity__c, schedulerLog);
+					try{
+						insert schedulerLog;					
+					}catch(DMLException e){
+						System.debug('Error inserting scheduler log for response log id: '+ litleRequestResponse.name);
+					}
 				}
-				
 				//update log
 				try{
-					update litleRequestResponse;
+					update litleRequestResponse;					
 				}catch(DMLException e){
 					System.debug('Error updating log for id: '+ litleRequestResponse.name);
-				}
+				}				
 			}
 		}
 	}

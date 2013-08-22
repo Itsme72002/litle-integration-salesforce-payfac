@@ -51,6 +51,24 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Log_Source__c</fullName>
+        <description>Displays if the source of this log is from the get litle mid form or from the scheduler</description>
+        <externalId>false</externalId>
+        <label>Log Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Get Litle MID action</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Opportunity__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Opportunity causing this log entry</description>

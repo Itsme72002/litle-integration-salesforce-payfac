@@ -75,7 +75,7 @@ public class LitleConstants {
 	
 	
 	// litle environment constants
-	public static final String LITLE_ENV_PROD = 'https://psp.litle.com';
+	public static final String LITLE_ENV_PROD = 'https://provision.litle.com';
 	public static final String LITLE_ENV_CERT = 'https://provision-postlive.litle.com';
 	public static final String LITLE_ENV_PRE_CERT = 'https://psp-cert.litle.com';
 	public static final String LITLE_ENV_PRE_LIVE = 'https://psp-cert.litle.com';
@@ -139,7 +139,9 @@ public class LitleConstants {
 	public static final String XML_TAG_MERCHANT_IDENT_STRING = 'merchantIdentString';
 	public static final String XML_TAG_SUBMERCHANT_ID = 'subMerchantId';
 	
-	
+	//log constants
+	public static final String LOG_SOURCE_GET_LITLE_MID = 'Get Litle MID action';
+	public static final String LOG_SOURCE_SCHEDULER = 'Scheduler';
 	//scheduler constants
 	public static final String SCHEDULER_CRON_EXP = '0 0 * * * ?';
 	
