@@ -116,7 +116,7 @@ public class ResetService {
 		}
 	}
 	
-	public void createDefaultAccount(){
+	public String createDefaultAccount(){
 		Account account = new Account();
 		account.PayFac_Portal_Link__c = null;
     	account.Litle_MID__c = null;
@@ -124,36 +124,32 @@ public class ResetService {
     	account.Type = 'Customer - Channel';
     	account.TickerSymbol = 'PYR';
     	account.Sic = '4253';
-		account.ShippingStreet = '2 Place Jussieu';
-		account.ShippingState = null;
-		account.ShippingCity = 'Paris';
-		account.ShippingPostalCode = '75251';
-		account.ShippingCountry = 'France';
+		account.ShippingStreet = '900 Chelmsford St';
+		account.ShippingState = 'MA';
+		account.ShippingCity = 'Lowell';
+		account.ShippingPostalCode = '01851';
+		account.ShippingCountry = 'USA';
 		account.Ownership = 'Private';
 		account.Rating = 'Warm';
-		account.Active__c = 'Yes';
-		account.SLAExpirationDate__c = Date.today();
-		account.UpsellOpportunity__c = 'Maybe';
-		account.SLA__c = 'Silver';
 		account.Description = 'This is a demo Account';
 		account.Phone = '(014) 427-4427';
 		account.Name = 'Pyramid Construction Inc';
 		account.Industry = 'Construction';
 		account.Fax = '(014) 427-4428';
-		account.BillingStreet = '2 Place Jussieu';
-		account.BillingState = null;
-		account.BillingPostalCode = '75251';
-		account.BillingCountry = 'France';
-		account.BillingCity = 'Paris';
+		account.BillingStreet = '900 Chelmsford St';
+		account.BillingState = 'MA';
+		account.BillingPostalCode = '01851';
+		account.BillingCountry = 'USA';
+		account.BillingCity = 'Lowell';
 		account.AnnualRevenue = 950000000;
 		insert account;
+		return account.Id;
 	}
 	
 	public void createDefaultOpportunity(){
 		Opportunity opportunity = new Opportunity();
 		opportunity.PayFac_Portal_Link__c = null;
     	opportunity.Litle_MID__c = null;
-    	opportunity.DeliveryInstallationStatus__c = 'In progress';
     	opportunity.Type = 'New Customer';
     	opportunity.StageName = 'Prospecting';
     	opportunity.Probability = 10;
@@ -162,5 +158,117 @@ public class ResetService {
 		opportunity.Description = 'This is a demo Opportunity';
 		opportunity.CloseDate = Date.today();
 		insert opportunity;
+	}
+	
+	public void createDefaultOpportunityWithLinkedAccount(String accountId){
+		if(String.isNotEmpty(accountId)){
+			try{
+				Opportunity opportunity = new Opportunity();
+				opportunity.AccountId = accountId;
+				opportunity.PayFac_Portal_Link__c = null;
+		    	opportunity.Litle_MID__c = null;
+		    	opportunity.Type = 'New Customer';
+		    	opportunity.StageName = 'Prospecting';
+		    	opportunity.Probability = 10;
+		    	opportunity.Name = 'Pyramid Construction Lowell Branch';
+				opportunity.LeadSource = 'Web';
+				opportunity.Description = 'This is a demo Opportunity';
+				opportunity.CloseDate = Date.today();
+				insert opportunity;
+			}catch(Queryexception e){
+				System.debug('Unable to insert opportunity for account id:' + accountId + 'Error: '+ e.getMessage());
+			}catch(Stringexception e){
+				System.debug('Unable to insert opportunity for account id:' + accountId + 'Error: '+ e.getMessage());
+			}
+		}
+	}
+	
+	public void createDefaultMapping(){
+		SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+		mappingObject.merchantUsername__c = 'PSPXMLV8';
+		mappingObject.litleEnvironment__c = LitleEnvironment.LitleEnvironmentEnum.CERT.name();
+		//psp sub merchant id - mapped to sf field
+		mappingObject.subMerchantPspMerchantId__c = 'Account.Industry';
+        mappingObject.subMerchantPspMerchantIdX__c = true;
+		//merchant name - mapped to account name
+		mappingObject.subMerchantMerchantName__c = 'Account.Name';
+        mappingObject.subMerchantMerchantNameX__c = true;
+		//merchant category code mapped to default value
+        mappingObject.subMerchantMerchantCategoryCodeD__c = '7997';
+        mappingObject.subMerchantMerchantCategoryCodeX__c = false;
+		//default billing descriptor mapped to default value
+        mappingObject.subMerchantHardCodeBillingDescriptor__c = 'Account.Industry';
+        mappingObject.subMerchantHardCodeBillingDescriptorX__c = true;
+		//customer service number mapped to account phone number
+		mappingObject.subMerchantCustomerServiceNumber__c = 'Account.Phone';
+        mappingObject.subMerchantCustomerServiceNumberX__c = true;
+		//Max transaction amount mapped to opportunity 
+		mappingObject.subMerchantMaxTransactionAmount__c = 'Account.AnnualRevenue';
+        mappingObject.subMerchantMaxTransactionAmountX__c = true;
+		//addresses mapped to account address
+		mappingObject.subMerchantStateProvince__c = 'Account.BillingState';
+        mappingObject.subMerchantStateProvinceX__c = true;
+        mappingObject.subMerchantStreetAddress1__c= 'Account.BillingStreet';
+        mappingObject.subMerchantStreetAddress1X__c = true;
+        mappingObject.subMerchantCity__c= 'Account.BillingCity';
+        mappingObject.subMerchantCityX__c = true;
+        mappingObject.subMerchantCountryCode__c= 'Account.BillingCountry';
+        mappingObject.subMerchantCountryCodeX__c = true;
+        mappingObject.subMerchantPostalCode__c= 'Account.BillingPostalCode';
+        mappingObject.subMerchantPostalCodeX__c = true;
+        
+        mappingObject.legalEntityStateProvince__c= 'Account.BillingState';
+		mappingObject.legalEntityStateProvinceX__c = true;
+		mappingObject.legalEntityStreetAddress1__c= 'Account.BillingStreet';
+		mappingObject.legalEntityStreetAddress1X__c = true;
+		mappingObject.legalEntityCity__c= 'Account.BillingCity';
+		mappingObject.legalEntityCityX__c = true;
+        mappingObject.legalEntityPostalCode__c= 'Account.BillingPostalCode';
+		mappingObject.legalEntityPostalCodeX__c = true;
+		mappingObject.legalEntityCountryCode__c= 'Account.BillingCountry';
+		mappingObject.legalEntityCountryCodeX__c = true;
+		
+		mappingObject.legalEntityPrincipalCity__c= 'Account.BillingCity';
+		mappingObject.legalEntityPrincipalCityX__c = true;
+		mappingObject.legalEntityPrincipalCountryCode__c= 'Account.BillingCountry';
+		mappingObject.legalEntityPrincipalCountryCodeX__c = true;
+		mappingObject.legalEntityPrincipalPostalCode__c= 'Account.BillingPostalCode';
+		mappingObject.legalEntityPrincipalPostalCodeX__c = true;
+        mappingObject.legalEntityPrincipalStateProvince__c= 'Account.BillingState';
+		mappingObject.legalEntityPrincipalStateProvinceX__c = true;
+		mappingObject.legalEntityPrincipalStreetAddress1__c= 'Account.BillingStreet';
+		mappingObject.legalEntityPrincipalStreetAddress1X__c = true;
+		
+		
+		mappingObject.legalEntityContactPhone__c = 'Account.Phone';
+		mappingObject.legalEntityContactPhoneX__c = true;
+		//legal entity name mapped to opportunity name
+		mappingObject.legalEntityName__c = 'Account.Name';
+		mappingObject.legalEntityNameX__c = true;
+		//type individual sole
+		mappingObject.legalEntityTypeD__c = 'Individual Sole Proprietorship';
+		mappingObject.legalEntityHasAcceptedCreditCardsD__c = 'false';
+		mappingObject.legalEntityHasAcceptedCreditCardsX__c = false;
+		//annual credit card sales volume mapped to annual revenue
+		mappingObject.legalEntityAnnualCreditCardSalesVolume__c = 'Account.AnnualRevenue';
+		mappingObject.legalEntityAnnualCreditCardSalesVolumeX__c = true;
+		//first name,last name, phone from accounte
+		mappingObject.legalEntityPrincipalContactPhone__c = 'Account.Phone';
+		mappingObject.legalEntityPrincipalContactPhoneX__c = true;
+		mappingObject.legalEntityPrincipalFirstNameD__c = 'John';
+		mappingObject.legalEntityPrincipalFirstNameX__c = false;
+		mappingObject.legalEntityPrincipalLastNameD__c = 'Doe';
+		mappingObject.legalEntityPrincipalLastNameX__c = false;
+		
+        mappingObject.subMerchantFirstNameD__c = 'John';
+        mappingObject.subMerchantFirstNameX__c = false;
+        mappingObject.subMerchantLastNameD__c = 'Doe';
+        mappingObject.subMerchantLastNameX__c = false;
+        mappingObject.subMerchantEmailAddressD__c = 'johnDoe@pyramid.com';
+        mappingObject.subMerchantEmailAddressX__c = false;
+        mappingObject.subMerchantPhone__c = 'Account.Phone';
+        mappingObject.subMerchantPhoneX__c = true;
+		
+		insert mappingObject;
 	}
 }

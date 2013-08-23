@@ -39,13 +39,14 @@ public class ResetController {
 			//delete mappings
 			resetService.deleteAllSalesforceLitleMappingsObjects();
 			//create default mapping
-			//TODO
+			resetService.createDefaultMapping();
 			//create demo account
-			resetService.createDefaultAccount(); 
+			String accountId = resetService.createDefaultAccount(); 
 			//create demo opportunity
-			resetService.createDefaultOpportunity();
+			resetService.createDefaultOpportunityWithLinkedAccount(accountId);
 			ApexPages.addmessage(new ApexPages.Message(ApexPages.severity.CONFIRM,'Instance Reset Successful.'));
 		}catch(DmlException e){
+			System.debug(e.getMessage());
 			ApexPages.addmessage(new ApexPages.Message(ApexPages.severity.ERROR,'Error resetting all values.'));
 		}
 		return null;
