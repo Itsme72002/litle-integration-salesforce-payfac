@@ -51,6 +51,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Legal_Entity_Request_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Legal Entity Request Method</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Log_Source__c</fullName>
         <description>Displays if the source of this log is from the get litle mid form or from the scheduler</description>
         <externalId>false</externalId>
@@ -79,6 +88,15 @@
         <relationshipName>LitleRequestResponseLogs</relationshipName>
         <required>false</required>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Merchant_Request_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Merchant Request Method</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>createLegalEntityRequestDate__c</fullName>

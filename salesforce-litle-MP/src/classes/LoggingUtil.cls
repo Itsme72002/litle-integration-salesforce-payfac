@@ -63,6 +63,7 @@ public class LoggingUtil {
 			litleRequestResponseLog.legalEntityContentTypeHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE);
 			litleRequestResponseLog.legalEntityAuthorizationHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION);
 			litleRequestResponseLog.createLegalEntityRequestXml__c = request.getBody();
+			litleRequestResponseLog.Legal_Entity_Request_Method__c = request.getMethod();
 		}
 	}
 	
@@ -74,6 +75,7 @@ public class LoggingUtil {
 			litleRequestResponseLog.subMerchantContentTypeHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE);
 			litleRequestResponseLog.subMerchantAuthorizationHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION);
 			litleRequestResponseLog.createSubMerchantRequestXml__c = request.getBody();
+			litleRequestResponseLog.Sub_Merchant_Request_Method__c = request.getMethod();
 		}
 	}
 	

@@ -35,7 +35,9 @@ public class HttpUtil {
 			request.setHeader(LitleConstants.REQUEST_HEADER_PLATFORM, LitleConstants.REQUEST_HEADER_PLATFORM_VALUE);
 			request.setEndpoint(requestEndpoint);
 			request.setMethod(requestMethod);
-			request.setBody(requestBody);
+			if(!requestMethod.equalsIgnoreCase('GET')){
+				request.setBody(requestBody);
+			}
 		}
 		return request;
 	}

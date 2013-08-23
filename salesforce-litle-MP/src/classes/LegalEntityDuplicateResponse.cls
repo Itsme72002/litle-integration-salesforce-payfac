@@ -22,7 +22,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 public class LegalEntityDuplicateResponse implements TestResponse{
 
 	public static final String STATUS_MESSAGE = 'Success';
-    public static final Integer STATUS_CODE = 201;
+    public static Integer STATUS_CODE = 201;
     public static final String RESPONSE_CODE = '36';
     public static final String RESPONSE_DESCRIPTION = 'Duplicate';
     public static final String TRANSACTION_ID = '82821203948749101';
@@ -173,6 +173,12 @@ public class LegalEntityDuplicateResponse implements TestResponse{
 						 + '<transactionId>82821203948749028</transactionId>'
 						 + '</originalLegalEntity>'
 						 + '</legalEntityCreateResponse>';
+		
+		public LegalEntityDuplicateResponse(Boolean isCreateCall){
+			if(!isCreateCall){
+				STATUS_CODE = 200;
+			}
+		}
 								 
 		public String getStatusMessage(){
 			return STATUS_MESSAGE;

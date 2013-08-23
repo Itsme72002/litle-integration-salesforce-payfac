@@ -22,7 +22,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 public class LegalEntityFullDupeResponse implements TestResponse{
 
 	public static final String STATUS_MESSAGE = 'Success';
-    public static final Integer STATUS_CODE = 201;
+    public static Integer STATUS_CODE = 201;
     public static final String RESPONSE_CODE = '10';
     public static final String RESPONSE_DESCRIPTION = 'Approved';
     
@@ -85,6 +85,12 @@ public class LegalEntityFullDupeResponse implements TestResponse{
 					        '</businessToPrincipalAssociation>' + 
 					    '</backgroundCheckResults>' + 
 					'</legalEntityCreateResponse>' ;
+		
+		public LegalEntityFullDupeResponse(Boolean isCreateCall){
+			if(!isCreateCall){
+				STATUS_CODE = 200;
+			}
+		}
 								 
 		public String getStatusMessage(){
 			return STATUS_MESSAGE;

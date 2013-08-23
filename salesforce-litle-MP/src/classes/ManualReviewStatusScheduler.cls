@@ -21,6 +21,11 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 global class ManualReviewStatusScheduler implements Schedulable{
 	
+	global static String scheduleIt(String cron){
+		ManualReviewStatusScheduler m = new ManualReviewStatusScheduler();
+		return System.schedule('ManualReviewStatusScheduler', cron, m);
+	}
+	
 	//implement execute method
 	global void execute(SchedulableContext sc){
 		scheduleManualReviews();
@@ -47,15 +52,7 @@ global class ManualReviewStatusScheduler implements Schedulable{
 		if(litleRequestResponseLogs != null && litleRequestResponseLogs.size() > 0){
 				for (litleRequestResponseLog__c litleRequestResponse: litleRequestResponseLogs){
 					//check if all fields are present
-					if(String.isNotEmpty(litleRequestResponse.legalEntityId__c) && 
-						String.isNotEmpty(litleRequestResponse.legalEntityEndpoint__c) &&
-						String.isNotEmpty(litleRequestResponse.legalEntityResponseCode__c) &&
-						String.isNotEmpty(litleRequestResponse.subMerchantAcceptHeader__c) && 
-						String.isNotEmpty(litleRequestResponse.subMerchantAuthorizationHeader__c) && 
-						String.isNotEmpty(litleRequestResponse.subMerchantContentTypeHeader__c) && 
-						(String.isNotEmpty(litleRequestResponse.Account__c) || String.isNotEmpty(litleRequestResponse.Opportunity__c)) && 
-						String.isNotEmpty(litleRequestResponse.sObjectType__c) && 
-						String.isNotEmpty(litleRequestResponse.createSubMerchantRequestXml__c)){
+					if(areAllRequiredFieldsPresentInLogObject(litleRequestResponse)){
 					litleRequestResponseLog__c schedulerLog = new litleRequestResponseLog__c();
 					schedulerLog.Log_Source__c = LitleConstants.LOG_SOURCE_SCHEDULER;
 					String litleMid;
@@ -68,13 +65,13 @@ global class ManualReviewStatusScheduler implements Schedulable{
 																		litleRequestResponse.subMerchantAuthorizationHeader__c, 
 																		litleRequestResponse.subMerchantContentTypeHeader__c, 
 																		litleRequestResponse.subMerchantAcceptHeader__c, 
-																		'');
+																		'');									
 					LoggingUtil.logCreateLegalEntityRequest(legalEntityRequest, schedulerLog); 
 					HttpResponse leHttpResponse = new HttpResponse();
 					try{
 						leHttpResponse = h.send(legalEntityRequest);
 						LoggingUtil.logCreateLegalEntityResponse(leHttpResponse, schedulerLog);
-						if(leHttpResponse != null && leHttpResponse.getStatusCode() == LitleConstants.LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
+						if(leHttpResponse != null && leHttpResponse.getStatusCode() == LitleConstants.RETRIEVE_LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
 							LegalEntityResponse leResponse = new LegalEntityResponse();
 							LegalEntityResponseService leService = new LegalEntityResponseService();
 							leResponse = leService.populateLegalEntityResponse(leResponse, leHttpResponse.getBody(), false);
@@ -83,6 +80,8 @@ global class ManualReviewStatusScheduler implements Schedulable{
 							String legalEntityResponseDescription = leResponse.getResponseDespcription();
 							litleMid = legalEntityResponseCode + ' : ' + legalEntityResponseDescription;
 							//update the value of response code in the log object
+							schedulerLog.legalEntityResponseCode__c = legalEntityResponseCode;
+							schedulerLog.legalEntityId__c = leResponse.getLegalEntityId();
 							litleRequestResponse.legalEntityResponseCode__c = legalEntityResponseCode;
 							if(String.isNotEmpty(legalEntityResponseCode) && legalEntityResponseCode.equals(LitleConstants.RESPONSE_APPROVED)){
 								// legal entity approved, make the sub merchant request
@@ -166,5 +165,17 @@ global class ManualReviewStatusScheduler implements Schedulable{
 				}				
 			}
 		}
+	}
+	
+	public static Boolean areAllRequiredFieldsPresentInLogObject(litleRequestResponseLog__c litleRequestResponse){
+		return String.isNotEmpty(litleRequestResponse.legalEntityId__c) && 
+				String.isNotEmpty(litleRequestResponse.legalEntityEndpoint__c) &&
+				String.isNotEmpty(litleRequestResponse.legalEntityResponseCode__c) &&
+				String.isNotEmpty(litleRequestResponse.subMerchantAcceptHeader__c) && 
+				String.isNotEmpty(litleRequestResponse.subMerchantAuthorizationHeader__c) && 
+				String.isNotEmpty(litleRequestResponse.subMerchantContentTypeHeader__c) && 
+				(String.isNotEmpty(litleRequestResponse.Account__c) || String.isNotEmpty(litleRequestResponse.Opportunity__c)) && 
+				String.isNotEmpty(litleRequestResponse.sObjectType__c) && 
+				String.isNotEmpty(litleRequestResponse.createSubMerchantRequestXml__c);
 	}
 }

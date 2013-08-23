@@ -22,7 +22,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 public class LegalEntityManualReviewResponse implements TestResponse{
 
 	public static final String STATUS_MESSAGE = 'Success';
-    public static final Integer STATUS_CODE = 201;
+    public static Integer STATUS_CODE = 201;
     public static final String RESPONSE_CODE = '20';
     public static final String RESPONSE_DESCRIPTION = 'Manual Review';
     public static final String TRANSACTION_ID = '82821536819527712';
@@ -96,6 +96,12 @@ public class LegalEntityManualReviewResponse implements TestResponse{
 						 + '</businessToPrincipalAssociation>'
 						 + '</backgroundCheckResults>'
 						 + '</legalEntityCreateResponse>';
+	 	
+	 	public LegalEntityManualReviewResponse(Boolean isCreateCall){
+			if(!isCreateCall){
+				STATUS_CODE = 200;
+			}
+		}
 								 
 		public String getStatusMessage(){
 			return STATUS_MESSAGE;

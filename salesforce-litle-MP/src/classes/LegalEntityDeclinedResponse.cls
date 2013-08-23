@@ -22,7 +22,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 public class LegalEntityDeclinedResponse implements TestResponse{
 
 	public static final String STATUS_MESSAGE = 'Success';
-    public static final Integer STATUS_CODE = 201;
+    public static Integer STATUS_CODE = 201;
     
     public static final String response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
 										'<legalEntityCreateResponse xmlns="http://psp.litle.com/api/merchant/onboard">'+
@@ -92,7 +92,11 @@ public class LegalEntityDeclinedResponse implements TestResponse{
 										        '</businessToPrincipalAssociation>'+
 										    '</backgroundCheckResults>'+
 										'</legalEntityCreateResponse>';
-
+		public LegalEntityDeclinedResponse(Boolean isCreateCall){
+			if(!isCreateCall){
+				STATUS_CODE = 200;
+			}
+		}
 								 
 		public String getStatusMessage(){
 			return STATUS_MESSAGE;

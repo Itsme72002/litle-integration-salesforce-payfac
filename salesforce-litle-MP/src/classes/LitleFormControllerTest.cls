@@ -430,7 +430,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
 		Test.startTest();
 		
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(), new SubMerchantApprovedResponse()));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
@@ -514,7 +514,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
 		Test.startTest();
 		
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(), new SubMerchantApprovedResponse()));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
@@ -597,7 +597,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
 		Test.startTest();
 		
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(true), null));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
@@ -677,7 +677,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
 		Test.startTest();
 		
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(true), null));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
@@ -699,25 +699,25 @@ private class LitleFormControllerTest {
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
     	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(), null));
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), null));
     	//Enter username and password
     	String authorizationHeader = HttpUtil.getBasicAuthorizationHeader(controller.savedMappings.merchantUsername__c,controller.savedMappings.merchantPassword__c);
         Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
     	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
         // check request xml in log
     	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLegalEntityApprovedResponse.STATUS_CODE)
+    	System.assertEquals(String.valueOf(LegalEntityApprovedResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LegalEntityApprovedResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
+    	System.assertEquals(LegalEntityApprovedResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(LegalEntityApprovedResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
+    	System.assertEquals(LegalEntityApprovedResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
     	System.assertEquals('10 : Approved', controller.litleMid);
     	// check if response code is approved
     	System.assertEquals(LitleConstants.RESPONSE_APPROVED, legalEntityResponse.getResponseCode());
     	// check legal entity id
-    	System.assertEquals(MockCreateLegalEntityApprovedResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
+    	System.assertEquals(LegalEntityApprovedResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
     }
     
     
@@ -727,18 +727,18 @@ private class LitleFormControllerTest {
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
     	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(), null));
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(true), null));
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
     	
     	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
     	
     	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLegalEntityDuplicateResponse.STATUS_CODE)
+    	System.assertEquals(String.valueOf(LegalEntityDuplicateResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LegalEntityDuplicateResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLegalEntityDuplicateResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(LegalEntityDuplicateResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
     	System.assertEquals('10', legalEntityResponse.getResponseCode());
     	System.assertEquals('Approved', legalEntityResponse.getResponseDespcription());
     	System.assertEquals('10 : Approved', controller.litleMid);
@@ -751,7 +751,7 @@ private class LitleFormControllerTest {
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
     	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityFullDupeResponse(), null));
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityFullDupeResponse(true), null));
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
     	
@@ -774,25 +774,25 @@ private class LitleFormControllerTest {
     	controller.savedMappings.merchantPassword__c = DEFAULT_STRING;
     	//LitleRequestXml LitleRequestXml = new LitleRequestXml(controller.legalEntityModel, controller.subMerchantModel);
     	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
-    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(), null));
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(true), null));
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
     	Httprequest request = LitleRequestXml.getCreateLegalEntityRequest(controller.savedMappings.merchantUsername__c, controller.savedMappings.merchantPassword__c,controller.legalEntityModel, false, 'CERT');
     	
     	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
     	
     	//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLEManualReviewResponse.STATUS_CODE)
+    	System.assertEquals(String.valueOf(LegalEntityManualReviewResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLEManualReviewResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LegalEntityManualReviewResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(MockCreateLEManualReviewResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
-    	System.assertEquals(MockCreateLEManualReviewResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
+    	System.assertEquals(LegalEntityManualReviewResponse.TRANSACTION_ID, legalEntityResponse.getTransactionId());
+    	System.assertEquals(LegalEntityManualReviewResponse.RESPONSE_CODE, legalEntityResponse.getResponseCode());
+    	System.assertEquals(LegalEntityManualReviewResponse.RESPONSE_DESCRIPTION, legalEntityResponse.getResponseDespcription());
     	System.assertEquals('20 : Manual Review', controller.litleMid);
     	// check if response code is manual review
     	System.assertEquals(LitleConstants.RESPONSE_MANUAL_REVIEW, legalEntityResponse.getResponseCode());
     	// check legal entity id to be null
-    	System.assertEquals(MockCreateLEManualReviewResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
+    	System.assertEquals(LegalEntityManualReviewResponse.LEGAL_ENTITY_ID, legalEntityResponse.getLegalEntityId());
     }
     
     static testMethod void testMakeCreateLegalEntityRequest_ErrorResponse(){	
@@ -807,11 +807,11 @@ private class LitleFormControllerTest {
     	
     	LegalEntityResponse legalEntityResponse = controller.makeCreateLegalEntityRequest(litleRequestResponseLog, request);
 		//check response log status code and message
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE)
+    	System.assertEquals(String.valueOf(LitleErrorResponse.STATUS_CODE)
     							, litleRequestResponseLog.createLegalEntityResponseStatusCode__c);
-    	System.assertEquals(MockCreateLEErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LitleErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createLegalEntityResponseStatusMessage__c);
     	//check legal entity response fields;
-    	System.assertEquals(String.valueOf(MockCreateLEErrorResponse.STATUS_CODE), legalEntityResponse.getResponseCode());
+    	System.assertEquals(String.valueOf(LitleErrorResponse.STATUS_CODE), legalEntityResponse.getResponseCode());
     	System.assertEquals('Unauthorized', legalEntityResponse.getResponseDespcription());
     	System.assertEquals('401 : Unauthorized', controller.litleMid);
 		System.assertEquals(null, legalEntityResponse.getLegalEntityId());
@@ -876,8 +876,8 @@ private class LitleFormControllerTest {
 		controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request, '123');
     	//check log response status code and status message
     	System.assertEquals(String.valueOf(LitleConstants.SUB_MERCHANT_SUCCESS_RESPONSE_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
-    	System.assertEquals(MockCreateSMSuccess.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
-    	System.assertEquals(MockCreateSMSuccess.LITLE_MID, controller.litleMid);
+    	System.assertEquals(SubMerchantApprovedResponse.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
+    	System.assertEquals(SubMerchantApprovedResponse.LITLE_MID, controller.litleMid);
     }
     
     static testMethod void testMakeCreateSubMerchantRequest_PartialDupeResponse(){
@@ -923,10 +923,10 @@ private class LitleFormControllerTest {
     	litleRequestResponseLog = new LitleRequestResponseLog__c();
     	controller.makeCreateSubMerchantRequest(litleRequestResponseLog, request, '123');
     	//check log response status code and status message
-    	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
-    	System.assertEquals(MockCreateSMErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
-    	System.assertEquals(String.valueOf(MockCreateSMErrorResponse.STATUS_CODE) + ' : '+
-    	MockCreateSMErrorResponse.STATUS_MESSAGE, controller.litleMid);
+    	System.assertEquals(String.valueOf(SubMerchantErrorResponse.STATUS_CODE), litleRequestResponseLog.createSubMerchantResponseStatusCode__c);
+    	System.assertEquals(SubMerchantErrorResponse.STATUS_MESSAGE , litleRequestResponseLog.createSubMerchantResponseStatusMessage__c);
+    	System.assertEquals(String.valueOf(SubMerchantErrorResponse.STATUS_CODE) + ' : '+
+    	SubMerchantErrorResponse.STATUS_MESSAGE, controller.litleMid);
     	
     }
     
@@ -1078,7 +1078,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.subMerchantModel.setSubMerchanteCheckCompanyName(STATE);
 		Test.startTest();
 		
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(), new SubMerchantApprovedResponse()));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');

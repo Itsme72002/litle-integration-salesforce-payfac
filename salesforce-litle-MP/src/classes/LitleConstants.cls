@@ -70,6 +70,7 @@ public class LitleConstants {
 	// http response codes
 	public static final Integer LEGAL_ENTITY_SUCCESS_RESPONSE_CODE = 201;
 	public static final Integer SUB_MERCHANT_SUCCESS_RESPONSE_CODE = 201;
+	public static final Integer RETRIEVE_LEGAL_ENTITY_SUCCESS_RESPONSE_CODE = 200;
 	
 	public static final List<Integer> PCI_LEVELS = new List<Integer>{ 1, 2, 3, 4 };
 	

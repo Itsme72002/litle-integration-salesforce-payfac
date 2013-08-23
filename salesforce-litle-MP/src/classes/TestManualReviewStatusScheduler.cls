@@ -131,7 +131,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(), new SubMerchantApprovedResponse()));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), new SubMerchantApprovedResponse()));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
@@ -172,7 +172,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(), new SubMerchantApprovedResponse()));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), new SubMerchantApprovedResponse()));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
@@ -212,7 +212,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDeclinedResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDeclinedResponse(false), null));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
@@ -252,7 +252,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDeclinedResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDeclinedResponse(false), null));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
@@ -292,7 +292,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(false), null));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
@@ -332,7 +332,7 @@ private class TestManualReviewStatusScheduler {
 		insert logObject;
 		
 		Test.startTest();
-		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(), null));
+		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(false), null));
 		ManualReviewStatusScheduler.scheduleManualReviews();
 		Test.stopTest();
 		List<LitleRequestResponseLog__c> litleRequestResponseLogs = [select name,
