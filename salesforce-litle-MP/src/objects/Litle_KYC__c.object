@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Stores the Litle KYC Information</description>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -42,7 +43,9 @@
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Stores the originating Account of the KYC object</description>
         <externalId>false</externalId>
+        <inlineHelpText>Stores the originating Account of the KYC object</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Litle KYC</relationshipLabel>
@@ -54,7 +57,9 @@
         <fullName>Opportunity__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Stores the originating Opportunity of the KYC object</description>
         <externalId>false</externalId>
+        <inlineHelpText>Stores the originating Opportunity of the KYC object</inlineHelpText>
         <label>Opportunity</label>
         <referenceTo>Opportunity</referenceTo>
         <relationshipLabel>Litle KYC</relationshipLabel>

@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Stores the principal details of the KYC information</description>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -41,7 +42,9 @@
     <fields>
         <fullName>First_Name__c</fullName>
         <deprecated>false</deprecated>
+        <description>First Name of the Principal</description>
         <externalId>false</externalId>
+        <inlineHelpText>First Name of the Principal</inlineHelpText>
         <label>First Name</label>
         <length>20</length>
         <required>false</required>
@@ -51,7 +54,9 @@
     <fields>
         <fullName>Last_Name__c</fullName>
         <deprecated>false</deprecated>
+        <description>Last Name of the Principal</description>
         <externalId>false</externalId>
+        <inlineHelpText>Last Name of the Principal</inlineHelpText>
         <label>Last Name</label>
         <length>20</length>
         <required>false</required>
@@ -62,7 +67,9 @@
         <fullName>Litle_KYC__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Parent KYC of the Principal</description>
         <externalId>false</externalId>
+        <inlineHelpText>Parent KYC of the Principal</inlineHelpText>
         <label>Litle KYC</label>
         <referenceTo>Litle_KYC__c</referenceTo>
         <relationshipLabel>Litle Principals</relationshipLabel>
@@ -73,7 +80,9 @@
     <fields>
         <fullName>Principal_Id__c</fullName>
         <deprecated>false</deprecated>
+        <description>Principal Id of the Principal</description>
         <externalId>false</externalId>
+        <inlineHelpText>Principal Id of the Principal</inlineHelpText>
         <label>Principal Id</label>
         <length>10</length>
         <required>false</required>

@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Risk indicators of the background check results</description>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -41,7 +42,9 @@
     <fields>
         <fullName>Code__c</fullName>
         <deprecated>false</deprecated>
+        <description>Code of the Risk Indicator</description>
         <externalId>false</externalId>
+        <inlineHelpText>Code of the Risk Indicator</inlineHelpText>
         <label>Code</label>
         <length>50</length>
         <required>false</required>
@@ -51,7 +54,9 @@
     <fields>
         <fullName>Description__c</fullName>
         <deprecated>false</deprecated>
+        <description>Description of the Risk Indicator</description>
         <externalId>false</externalId>
+        <inlineHelpText>Description of the Risk Indicator</inlineHelpText>
         <label>Description</label>
         <length>255</length>
         <required>false</required>
@@ -62,7 +67,9 @@
         <fullName>Litle_Verification_Result__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Parent Verification Result of the Risk Indicator</description>
         <externalId>false</externalId>
+        <inlineHelpText>Parent Verification Result of the Risk Indicator</inlineHelpText>
         <label>Litle Verification Result</label>
         <referenceTo>Litle_Verification_Result__c</referenceTo>
         <relationshipLabel>Litle Risk Indicators</relationshipLabel>

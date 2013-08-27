@@ -44,7 +44,9 @@
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Origination Account of the log</description>
         <externalId>false</externalId>
+        <inlineHelpText>Origination Account of the log</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
@@ -55,7 +57,9 @@
     <fields>
         <fullName>Legal_Entity_Request_Method__c</fullName>
         <deprecated>false</deprecated>
+        <description>Legal Entity Request Method</description>
         <externalId>false</externalId>
+        <inlineHelpText>Legal Entity Request Method</inlineHelpText>
         <label>Legal Entity Request Method</label>
         <length>100</length>
         <required>false</required>
@@ -67,6 +71,7 @@
         <deprecated>false</deprecated>
         <description>Displays if the source of this log is from the get litle mid form or from the scheduler</description>
         <externalId>false</externalId>
+        <inlineHelpText>Displays if the source of this log is from the get litle mid form or from the scheduler</inlineHelpText>
         <label>Log Source</label>
         <picklist>
             <picklistValues>
@@ -87,6 +92,7 @@
         <deprecated>false</deprecated>
         <description>Opportunity causing this log entry</description>
         <externalId>false</externalId>
+        <inlineHelpText>Opportunity causing this log entry</inlineHelpText>
         <label>Opportunity</label>
         <referenceTo>Opportunity</referenceTo>
         <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
@@ -97,7 +103,9 @@
     <fields>
         <fullName>Sub_Merchant_Request_Method__c</fullName>
         <deprecated>false</deprecated>
+        <description>Sub Merchant Request Method</description>
         <externalId>false</externalId>
+        <inlineHelpText>Sub Merchant Request Method</inlineHelpText>
         <label>Sub Merchant Request Method</label>
         <length>100</length>
         <required>false</required>
@@ -107,8 +115,9 @@
     <fields>
         <fullName>createLegalEntityRequestDate__c</fullName>
         <deprecated>false</deprecated>
-        <description>Request/response date for create legal entity request</description>
+        <description>Request date for create legal entity request</description>
         <externalId>false</externalId>
+        <inlineHelpText>Request date for create legal entity request</inlineHelpText>
         <label>Create LegalEntity  RequestDate</label>
         <required>false</required>
         <type>DateTime</type>
@@ -116,8 +125,9 @@
     <fields>
         <fullName>createLegalEntityRequestXml__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Legal Entity Request Xml</description>
+        <description>Create Legal Entity Request Xml</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Legal Entity Request Xml</inlineHelpText>
         <label>Create LegalEntity  RequestXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
@@ -126,8 +136,9 @@
     <fields>
         <fullName>createLegalEntityResponseDate__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Legal Entity Response Date</description>
+        <description>Create Legal Entity Response Date</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Legal Entity Response Date</inlineHelpText>
         <label>Create LegalEntity  ResponseDate</label>
         <required>false</required>
         <type>DateTime</type>
@@ -135,8 +146,9 @@
     <fields>
         <fullName>createLegalEntityResponseStatusCode__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Legal Entity Response Status Code</description>
+        <description>Create Legal Entity Response Status Code</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Legal Entity Response Status Code</inlineHelpText>
         <label>Create LegalEntity  ResponseStatusCode</label>
         <length>60</length>
         <required>false</required>
@@ -146,8 +158,9 @@
     <fields>
         <fullName>createLegalEntityResponseStatusMessage__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Legal Entity Response Status Message</description>
+        <description>Create Legal Entity Response Status Message</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Legal Entity Response Status Message</inlineHelpText>
         <label>Create LegalEntity  ResponseStatusMsg</label>
         <length>60</length>
         <required>false</required>
@@ -157,8 +170,9 @@
     <fields>
         <fullName>createLegalEntityResponseXml__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Legal Entity Response Xml</description>
+        <description>Create Legal Entity Response Xml</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Legal Entity Response Xml</inlineHelpText>
         <label>Create LegalEntity  ResponseXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
@@ -167,8 +181,9 @@
     <fields>
         <fullName>createSubMerchantRequestDate__c</fullName>
         <deprecated>false</deprecated>
-        <description>Request/response date for create Sub Merchant request</description>
+        <description>Request date for create Sub Merchant request</description>
         <externalId>false</externalId>
+        <inlineHelpText>Request date for create Sub Merchant request</inlineHelpText>
         <label>Create SubMerchantRequestDate</label>
         <required>false</required>
         <type>DateTime</type>
@@ -176,8 +191,9 @@
     <fields>
         <fullName>createSubMerchantRequestXml__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Sub Merchant Request Xml</description>
+        <description>Create Sub Merchant Request Xml</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Sub Merchant Request Xml</inlineHelpText>
         <label>Create SubMerchantRequestXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
@@ -186,8 +202,9 @@
     <fields>
         <fullName>createSubMerchantResponseDate__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Sub Merchant Response Date</description>
+        <description>Create Sub Merchant Response Date</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Sub Merchant Response Date</inlineHelpText>
         <label>Create SubMerchantResponseDate</label>
         <required>false</required>
         <type>DateTime</type>
@@ -195,8 +212,9 @@
     <fields>
         <fullName>createSubMerchantResponseStatusCode__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Sub Merchant Response Status Code</description>
+        <description>Create Sub Merchant Response Status Code</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Sub Merchant Response Status Code</inlineHelpText>
         <label>Create SubMerchantResponseStatusCode</label>
         <length>60</length>
         <required>false</required>
@@ -206,8 +224,9 @@
     <fields>
         <fullName>createSubMerchantResponseStatusMessage__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Sub Merchant Response Status Message</description>
+        <description>Create Sub Merchant Response Status Message</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Sub Merchant Response Status Message</inlineHelpText>
         <label>Create SubMerchantResponseStatusMessage</label>
         <length>60</length>
         <required>false</required>
@@ -217,8 +236,9 @@
     <fields>
         <fullName>createSubMerchantResponseXml__c</fullName>
         <deprecated>false</deprecated>
-        <description>create Sub Merchant Response Xml</description>
+        <description>Create Sub Merchant Response Xml</description>
         <externalId>false</externalId>
+        <inlineHelpText>Create Sub Merchant Response Xml</inlineHelpText>
         <label>Create SubMerchantResponseXml</label>
         <length>32768</length>
         <type>LongTextArea</type>
@@ -302,6 +322,7 @@
         <deprecated>false</deprecated>
         <description>The name of the sObject of the logged request.</description>
         <externalId>false</externalId>
+        <inlineHelpText>The name of the sObject of the logged request.</inlineHelpText>
         <label>sObject Name</label>
         <length>50</length>
         <required>false</required>
@@ -313,6 +334,7 @@
         <deprecated>false</deprecated>
         <description>Type Of Object (Account/Opportunity) which is logged.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Type Of Object (Account/Opportunity) which is logged.</inlineHelpText>
         <label>sObject Type</label>
         <length>30</length>
         <required>false</required>

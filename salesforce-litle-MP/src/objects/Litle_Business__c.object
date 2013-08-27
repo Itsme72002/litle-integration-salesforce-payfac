@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Stores the business details of the KYC information</description>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -42,7 +43,9 @@
         <fullName>Litle_KYC__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Link to the parent KYC</description>
         <externalId>false</externalId>
+        <inlineHelpText>Stores the parent KYC Object</inlineHelpText>
         <label>Litle KYC</label>
         <referenceTo>Litle_KYC__c</referenceTo>
         <relationshipLabel>Litle Business</relationshipLabel>

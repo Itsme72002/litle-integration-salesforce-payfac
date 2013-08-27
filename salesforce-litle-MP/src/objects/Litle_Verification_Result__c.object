@@ -34,6 +34,7 @@
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Stores the verification results of the KYC information</description>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -42,7 +43,9 @@
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Originating Account  of this verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Originating Account  of this verification result</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Litle Verification Result</relationshipLabel>
@@ -53,7 +56,9 @@
     <fields>
         <fullName>Address_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is address verified in the KYC information</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is address verified in the KYC information</inlineHelpText>
         <label>Address Verified</label>
         <length>10</length>
         <required>false</required>
@@ -63,7 +68,9 @@
     <fields>
         <fullName>City_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is city verified in the KYC information</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is city verified in the KYC information</inlineHelpText>
         <label>City Verified</label>
         <length>10</length>
         <required>false</required>
@@ -73,7 +80,9 @@
     <fields>
         <fullName>Dob_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is date of birth verified in the KYC information</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is date of birth verified in the KYC information</inlineHelpText>
         <label>Date Of Birth Verified</label>
         <length>10</length>
         <required>false</required>
@@ -84,7 +93,9 @@
         <fullName>Litle_Business__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Originating business of the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Originating business of the verification result</inlineHelpText>
         <label>Litle Business</label>
         <referenceTo>Litle_Business__c</referenceTo>
         <relationshipLabel>Litle Verification Result</relationshipLabel>
@@ -96,7 +107,9 @@
         <fullName>Litle_Principal__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
+        <description>Originating principal of the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Originating principal of the verification result</inlineHelpText>
         <label>Litle Principal</label>
         <referenceTo>Litle_Principal__c</referenceTo>
         <relationshipLabel>Litle Verification Result</relationshipLabel>
@@ -107,7 +120,9 @@
     <fields>
         <fullName>Name_Address_Phone_Association_Code__c</fullName>
         <deprecated>false</deprecated>
+        <description>Code of the name address phone association indicator of verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Code of the name address phone association indicator of verification result</inlineHelpText>
         <label>Name Address Phone Association Code</label>
         <length>50</length>
         <required>false</required>
@@ -117,7 +132,9 @@
     <fields>
         <fullName>Name_Address_Phone_Association_Desc__c</fullName>
         <deprecated>false</deprecated>
+        <description>Description of the name address phone association indicator of verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Description of the name address phone association indicator of verification result</inlineHelpText>
         <label>Name Address Phone Association Desc</label>
         <length>255</length>
         <required>false</required>
@@ -127,7 +144,9 @@
     <fields>
         <fullName>Name_Address_TaxId_Association_Code__c</fullName>
         <deprecated>false</deprecated>
+        <description>Code of the name address taxId association indicator of verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Code of the name address taxId association indicator of verification result</inlineHelpText>
         <label>Name Address TaxId Association Code</label>
         <length>50</length>
         <required>false</required>
@@ -137,7 +156,9 @@
     <fields>
         <fullName>Name_Address_TaxId_Association_Desc__c</fullName>
         <deprecated>false</deprecated>
+        <description>Description of the name address taxId association indicator of verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Description of the name address taxId association indicator of verification result</inlineHelpText>
         <label>Name Address TaxId Association Desc</label>
         <length>255</length>
         <required>false</required>
@@ -147,7 +168,9 @@
     <fields>
         <fullName>Name_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is name verified in the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is name verified in the verification result</inlineHelpText>
         <label>Name Verified</label>
         <length>10</length>
         <required>false</required>
@@ -157,7 +180,9 @@
     <fields>
         <fullName>Overall_Description__c</fullName>
         <deprecated>false</deprecated>
+        <description>Overall description of the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Overall description of the verification result</inlineHelpText>
         <label>Overall Description</label>
         <length>255</length>
         <required>false</required>
@@ -167,7 +192,9 @@
     <fields>
         <fullName>Overall_Score__c</fullName>
         <deprecated>false</deprecated>
+        <description>Overall score of the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Overall score of the verification result</inlineHelpText>
         <label>Overall Score</label>
         <length>2</length>
         <required>false</required>
@@ -177,7 +204,9 @@
     <fields>
         <fullName>Phone_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is phone verified in the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is phone verified in the verification result</inlineHelpText>
         <label>Phone Verified</label>
         <length>10</length>
         <required>false</required>
@@ -187,7 +216,9 @@
     <fields>
         <fullName>Ssn_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is ssn verified in the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is ssn verified in the verification result</inlineHelpText>
         <label>Ssn Verified</label>
         <length>10</length>
         <required>false</required>
@@ -197,7 +228,9 @@
     <fields>
         <fullName>TaxId_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is tax id verified in the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is tax id verified in the verification result</inlineHelpText>
         <label>Tax Id Verified</label>
         <length>10</length>
         <required>false</required>
@@ -207,7 +240,9 @@
     <fields>
         <fullName>Zip_Verified__c</fullName>
         <deprecated>false</deprecated>
+        <description>Is zip verified in the verification result</description>
         <externalId>false</externalId>
+        <inlineHelpText>Is zip verified in the verification result</inlineHelpText>
         <label>Zip Verified</label>
         <length>10</length>
         <required>false</required>
