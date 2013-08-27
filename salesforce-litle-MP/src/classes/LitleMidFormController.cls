@@ -256,7 +256,7 @@ public class LitleMidFormController {
                     + LitleConstants.URL_SEPARATOR + submerchantId + LitleConstants.PAY_FAC_PORTAL_QUERY_STRING + subMerchantModel.getSubMerchantPspMerchantId(); 
                 
                 
-                //ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    
+                ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    
             }else{
                 //set litle mid with the error description
                 litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + sMResponse.getStatus();

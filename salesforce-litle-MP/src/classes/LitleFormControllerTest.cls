@@ -433,7 +433,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -601,7 +601,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -1249,7 +1249,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
