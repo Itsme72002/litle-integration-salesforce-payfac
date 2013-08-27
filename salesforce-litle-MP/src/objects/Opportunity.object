@@ -2,8 +2,10 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <fullName>Litle_MID__c</fullName>
+        <deprecated>false</deprecated>
         <description>Merchant Identifer</description>
         <externalId>false</externalId>
+        <inlineHelpText>Stores the status of Litle MID request or the Litle MID if successfully registered.</inlineHelpText>
         <label>Litle MID</label>
         <length>255</length>
         <required>false</required>
@@ -13,7 +15,10 @@
     </fields>
     <fields>
         <fullName>PayFac_Portal_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The link to the PayFac portal page for this sub-merchant</description>
         <externalId>false</externalId>
+        <inlineHelpText>Stores the link to the PayFac portal page for the sub-merchant to view/edit information.</inlineHelpText>
         <label>PayFac Portal Link</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

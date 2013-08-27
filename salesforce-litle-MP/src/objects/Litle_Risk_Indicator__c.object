@@ -33,12 +33,14 @@
         <type>Default</type>
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
     <fields>
         <fullName>Code__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Code</label>
         <length>50</length>
@@ -48,6 +50,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Description</label>
         <length>255</length>
@@ -58,6 +61,7 @@
     <fields>
         <fullName>Litle_Verification_Result__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Litle Verification Result</label>
         <referenceTo>Litle_Verification_Result__c</referenceTo>

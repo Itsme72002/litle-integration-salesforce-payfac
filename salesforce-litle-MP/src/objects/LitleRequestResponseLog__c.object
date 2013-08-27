@@ -33,6 +33,7 @@
         <type>Default</type>
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <description>Object to log all the requests and responses to Litle MP</description>
     <enableActivities>false</enableActivities>
     <enableEnhancedLookup>false</enableEnhancedLookup>
@@ -42,6 +43,7 @@
     <fields>
         <fullName>Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
@@ -52,6 +54,7 @@
     </fields>
     <fields>
         <fullName>Legal_Entity_Request_Method__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Legal Entity Request Method</label>
         <length>100</length>
@@ -61,6 +64,7 @@
     </fields>
     <fields>
         <fullName>Log_Source__c</fullName>
+        <deprecated>false</deprecated>
         <description>Displays if the source of this log is from the get litle mid form or from the scheduler</description>
         <externalId>false</externalId>
         <label>Log Source</label>
@@ -80,6 +84,7 @@
     <fields>
         <fullName>Opportunity__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
         <description>Opportunity causing this log entry</description>
         <externalId>false</externalId>
         <label>Opportunity</label>
@@ -91,6 +96,7 @@
     </fields>
     <fields>
         <fullName>Sub_Merchant_Request_Method__c</fullName>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Sub Merchant Request Method</label>
         <length>100</length>
@@ -100,6 +106,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityRequestDate__c</fullName>
+        <deprecated>false</deprecated>
         <description>Request/response date for create legal entity request</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  RequestDate</label>
@@ -108,6 +115,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityRequestXml__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Legal Entity Request Xml</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  RequestXml</label>
@@ -117,6 +125,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityResponseDate__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Legal Entity Response Date</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  ResponseDate</label>
@@ -125,6 +134,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityResponseStatusCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Legal Entity Response Status Code</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  ResponseStatusCode</label>
@@ -135,6 +145,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityResponseStatusMessage__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Legal Entity Response Status Message</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  ResponseStatusMsg</label>
@@ -145,6 +156,7 @@
     </fields>
     <fields>
         <fullName>createLegalEntityResponseXml__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Legal Entity Response Xml</description>
         <externalId>false</externalId>
         <label>Create LegalEntity  ResponseXml</label>
@@ -154,6 +166,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantRequestDate__c</fullName>
+        <deprecated>false</deprecated>
         <description>Request/response date for create Sub Merchant request</description>
         <externalId>false</externalId>
         <label>Create SubMerchantRequestDate</label>
@@ -162,6 +175,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantRequestXml__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Sub Merchant Request Xml</description>
         <externalId>false</externalId>
         <label>Create SubMerchantRequestXml</label>
@@ -171,6 +185,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantResponseDate__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Sub Merchant Response Date</description>
         <externalId>false</externalId>
         <label>Create SubMerchantResponseDate</label>
@@ -179,6 +194,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantResponseStatusCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Sub Merchant Response Status Code</description>
         <externalId>false</externalId>
         <label>Create SubMerchantResponseStatusCode</label>
@@ -189,6 +205,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantResponseStatusMessage__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Sub Merchant Response Status Message</description>
         <externalId>false</externalId>
         <label>Create SubMerchantResponseStatusMessage</label>
@@ -199,6 +216,7 @@
     </fields>
     <fields>
         <fullName>createSubMerchantResponseXml__c</fullName>
+        <deprecated>false</deprecated>
         <description>create Sub Merchant Response Xml</description>
         <externalId>false</externalId>
         <label>Create SubMerchantResponseXml</label>
@@ -208,6 +226,7 @@
     </fields>
     <fields>
         <fullName>legalEntityAcceptHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Accept header for legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Accept header for legal entity request</inlineHelpText>
@@ -219,6 +238,7 @@
     </fields>
     <fields>
         <fullName>legalEntityAuthorizationHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Authorization header for legal entity requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Authorization header for legal entity requests</inlineHelpText>
@@ -231,6 +251,7 @@
     </fields>
     <fields>
         <fullName>legalEntityContentTypeHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Content type header for legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Content type header for legal entity request</inlineHelpText>
@@ -242,6 +263,7 @@
     </fields>
     <fields>
         <fullName>legalEntityEndpoint__c</fullName>
+        <deprecated>false</deprecated>
         <description>Endpoint for legal entity requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Endpoint for legal entity requests</inlineHelpText>
@@ -253,6 +275,7 @@
     </fields>
     <fields>
         <fullName>legalEntityId__c</fullName>
+        <deprecated>false</deprecated>
         <description>Stores the legal entity id from the create legal entity response</description>
         <externalId>false</externalId>
         <inlineHelpText>Stores the legal entity id from the create legal entity response</inlineHelpText>
@@ -264,6 +287,7 @@
     </fields>
     <fields>
         <fullName>legalEntityResponseCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Stores the legal entity response code from the create legal entity request</description>
         <externalId>false</externalId>
         <inlineHelpText>Stores the legal entity response code from the create legal entity request</inlineHelpText>
@@ -275,6 +299,7 @@
     </fields>
     <fields>
         <fullName>sObjectName__c</fullName>
+        <deprecated>false</deprecated>
         <description>The name of the sObject of the logged request.</description>
         <externalId>false</externalId>
         <label>sObject Name</label>
@@ -285,6 +310,7 @@
     </fields>
     <fields>
         <fullName>sObjectType__c</fullName>
+        <deprecated>false</deprecated>
         <description>Type Of Object (Account/Opportunity) which is logged.</description>
         <externalId>false</externalId>
         <label>sObject Type</label>
@@ -295,6 +321,7 @@
     </fields>
     <fields>
         <fullName>subMerchantAcceptHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Accept Header of sub merchant request</description>
         <externalId>false</externalId>
         <inlineHelpText>Accept Header of sub merchant request</inlineHelpText>
@@ -306,6 +333,7 @@
     </fields>
     <fields>
         <fullName>subMerchantAuthorizationHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Authorization header for sub merchant requests</description>
         <externalId>false</externalId>
         <inlineHelpText>Authorization header for sub merchant requests</inlineHelpText>
@@ -318,6 +346,7 @@
     </fields>
     <fields>
         <fullName>subMerchantContentTypeHeader__c</fullName>
+        <deprecated>false</deprecated>
         <description>Content Type Header of sub merchant request</description>
         <externalId>false</externalId>
         <inlineHelpText>Content Type Header of sub merchant request</inlineHelpText>
@@ -329,6 +358,7 @@
     </fields>
     <fields>
         <fullName>subMerchantEndpoint__c</fullName>
+        <deprecated>false</deprecated>
         <description>Endpoint for create submerchant request</description>
         <externalId>false</externalId>
         <inlineHelpText>Endpoint for create submerchant request</inlineHelpText>

@@ -33,6 +33,7 @@
         <type>Default</type>
     </actionOverrides>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <description>Object to log saves of the Litle Mapping</description>
     <enableActivities>false</enableActivities>
     <enableEnhancedLookup>false</enableEnhancedLookup>
@@ -41,6 +42,7 @@
     <enableReports>false</enableReports>
     <fields>
         <fullName>legalEntityAnnualCreditCardSalesVolumeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity AnnualCreditCardSalesVolumeD</description>
         <externalId>false</externalId>
         <label>Default Annual CreditCard Sales Volume</label>
@@ -52,12 +54,14 @@
     <fields>
         <fullName>legalEntityAnnualCreditCardSalesVolumeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Annual CreditCard Sales Volume?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityAnnualCreditCardSalesVolume__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity AnnualCreditCardSalesVolume</description>
         <externalId>false</externalId>
         <label>SF Annual CreditCard Sales Volume</label>
@@ -68,6 +72,7 @@
     </fields>
     <fields>
         <fullName>legalEntityCityD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CityD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity City</label>
@@ -79,12 +84,14 @@
     <fields>
         <fullName>legalEntityCityX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityCity__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity City</description>
         <externalId>false</externalId>
         <label>SF Legal Entity City</label>
@@ -95,6 +102,7 @@
     </fields>
     <fields>
         <fullName>legalEntityContactPhoneD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity ContactPhoneD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity ContactPhone</label>
@@ -106,12 +114,14 @@
     <fields>
         <fullName>legalEntityContactPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity ContactPhone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityContactPhone__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity ContactPhone</description>
         <externalId>false</externalId>
         <label>SF Legal Entity ContactPhone</label>
@@ -122,6 +132,7 @@
     </fields>
     <fields>
         <fullName>legalEntityCountryCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CountryCodeD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity CountryCode</label>
@@ -133,12 +144,14 @@
     <fields>
         <fullName>legalEntityCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityCountryCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CountryCode</description>
         <externalId>false</externalId>
         <label>SF Legal Entity CountryCode</label>
@@ -149,6 +162,7 @@
     </fields>
     <fields>
         <fullName>legalEntityDateOfBirthD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity DateOfBirthD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity DOB</label>
@@ -160,12 +174,14 @@
     <fields>
         <fullName>legalEntityDateOfBirthX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity DOB?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDateOfBirth__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity DateOfBirth</description>
         <externalId>false</externalId>
         <label>SF Legal Entity DOB</label>
@@ -176,6 +192,7 @@
     </fields>
     <fields>
         <fullName>legalEntityDoingBusinessAsD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity DoingBusinessAsD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity DoingBusinessAs</label>
@@ -187,12 +204,14 @@
     <fields>
         <fullName>legalEntityDoingBusinessAsX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity DoingBusinessAs?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityDoingBusinessAs__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity DoingBusinessAs</description>
         <externalId>false</externalId>
         <label>SF Legal Entity DoingBusinessAs</label>
@@ -203,6 +222,7 @@
     </fields>
     <fields>
         <fullName>legalEntityFirstNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity FirstNameD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity FirstName</label>
@@ -214,12 +234,14 @@
     <fields>
         <fullName>legalEntityFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityFirstName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity FirstName</description>
         <externalId>false</externalId>
         <label>SF Legal Entity FirstName</label>
@@ -230,6 +252,7 @@
     </fields>
     <fields>
         <fullName>legalEntityHasAcceptedCreditCardsD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity HasAcceptedCreditCardsD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity HasAcceptedCCs</label>
@@ -241,12 +264,14 @@
     <fields>
         <fullName>legalEntityHasAcceptedCreditCardsX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity HasAcceptedCCs?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityHasAcceptedCreditCards__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity HasAcceptedCreditCards</description>
         <externalId>false</externalId>
         <label>SF Legal Entity HasAcceptedCCs</label>
@@ -257,6 +282,7 @@
     </fields>
     <fields>
         <fullName>legalEntityLastNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity LastNameD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity LastName</label>
@@ -268,12 +294,14 @@
     <fields>
         <fullName>legalEntityLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityLastName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity LastName</description>
         <externalId>false</externalId>
         <label>SF Legal Entity LastName</label>
@@ -284,6 +312,7 @@
     </fields>
     <fields>
         <fullName>legalEntityNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity NameD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity Name</label>
@@ -295,12 +324,14 @@
     <fields>
         <fullName>legalEntityNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity Name?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Name</description>
         <externalId>false</externalId>
         <label>SF Legal Entity Name</label>
@@ -311,6 +342,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPostalCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity PostalCodeD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity PostalCode</label>
@@ -322,12 +354,14 @@
     <fields>
         <fullName>legalEntityPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPostalCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity PostalCode</description>
         <externalId>false</externalId>
         <label>SF Legal Entity PostalCode</label>
@@ -338,6 +372,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCityD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CityD</description>
         <externalId>false</externalId>
         <label>Default Principal City</label>
@@ -349,12 +384,14 @@
     <fields>
         <fullName>legalEntityPrincipalCityX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCity__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity City</description>
         <externalId>false</externalId>
         <label>SF Principal City</label>
@@ -365,6 +402,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalContactPhoneD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity ContactPhoneD</description>
         <externalId>false</externalId>
         <label>Default Principal ContactPhone</label>
@@ -376,12 +414,14 @@
     <fields>
         <fullName>legalEntityPrincipalContactPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal ContactPhone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalContactPhone__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity ContactPhone</description>
         <externalId>false</externalId>
         <label>SF Principal ContactPhone</label>
@@ -392,6 +432,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCountryCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CountryCodeD</description>
         <externalId>false</externalId>
         <label>Default Principal CountryCode</label>
@@ -403,12 +444,14 @@
     <fields>
         <fullName>legalEntityPrincipalCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalCountryCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity CountryCode</description>
         <externalId>false</externalId>
         <label>SF Principal CountryCode</label>
@@ -419,6 +462,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDateOfBirthD__c</fullName>
+        <deprecated>false</deprecated>
         <description>legal Entity Principal Date Of Birth Default</description>
         <externalId>false</externalId>
         <label>Default Principal DOB</label>
@@ -430,12 +474,14 @@
     <fields>
         <fullName>legalEntityPrincipalDateOfBirthX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal DOB?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDateOfBirth__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal DateOfBirth</description>
         <externalId>false</externalId>
         <label>SF Principal DOB</label>
@@ -446,6 +492,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal DriversLicenseD</description>
         <externalId>false</externalId>
         <label>Default Principal DL</label>
@@ -456,6 +503,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseStateD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal DriversLicenseStateD</description>
         <externalId>false</externalId>
         <label>Default Principal DL State</label>
@@ -467,12 +515,14 @@
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseStateX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal DL State?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseState__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal DriversLicenseState</description>
         <externalId>false</externalId>
         <label>SF Principal DL State</label>
@@ -484,12 +534,14 @@
     <fields>
         <fullName>legalEntityPrincipalDriversLicenseX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal DL?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalDriversLicense__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal DriversLicense</description>
         <externalId>false</externalId>
         <label>SF Principal DL</label>
@@ -500,6 +552,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalEmailAddressD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal EmailAddressD</description>
         <externalId>false</externalId>
         <label>Default Principal EmailAddress</label>
@@ -511,12 +564,14 @@
     <fields>
         <fullName>legalEntityPrincipalEmailAddressX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal EmailAddress?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalEmailAddress__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal EmailAddress</description>
         <externalId>false</externalId>
         <label>SF Principal EmailAddress</label>
@@ -527,6 +582,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalFirstNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal FirstNameD</description>
         <externalId>false</externalId>
         <label>Default Principal FirstName</label>
@@ -538,12 +594,14 @@
     <fields>
         <fullName>legalEntityPrincipalFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalFirstName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal FirstName</description>
         <externalId>false</externalId>
         <label>SF Principal FirstName</label>
@@ -554,6 +612,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalLastNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal LastNameD</description>
         <externalId>false</externalId>
         <label>Default Principal LastName</label>
@@ -565,12 +624,14 @@
     <fields>
         <fullName>legalEntityPrincipalLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalLastName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal LastName</description>
         <externalId>false</externalId>
         <label>SF Principal LastName</label>
@@ -581,6 +642,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalPostalCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity PostalCodeD</description>
         <externalId>false</externalId>
         <label>Default Principal PostalCode</label>
@@ -592,12 +654,14 @@
     <fields>
         <fullName>legalEntityPrincipalPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalPostalCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity PostalCode</description>
         <externalId>false</externalId>
         <label>SF Principal PostalCode</label>
@@ -608,6 +672,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalSsnD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal SsnD</description>
         <externalId>false</externalId>
         <label>Default Principal Ssn</label>
@@ -619,12 +684,14 @@
     <fields>
         <fullName>legalEntityPrincipalSsnX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal Ssn?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalSsn__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Principal Ssn</description>
         <externalId>false</externalId>
         <label>SF Principal Ssn</label>
@@ -635,6 +702,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStateProvinceD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StateProvinceD</description>
         <externalId>false</externalId>
         <label>Default Principal StateProvince</label>
@@ -646,12 +714,14 @@
     <fields>
         <fullName>legalEntityPrincipalStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStateProvince__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StateProvince</description>
         <externalId>false</externalId>
         <label>SF Principal StateProvince</label>
@@ -662,6 +732,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress1D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress1D</description>
         <externalId>false</externalId>
         <label>Default Principal StreetAddress1</label>
@@ -673,12 +744,14 @@
     <fields>
         <fullName>legalEntityPrincipalStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress1__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress1</description>
         <externalId>false</externalId>
         <label>SF Principal StreetAddress1</label>
@@ -689,6 +762,7 @@
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress2D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress2D</description>
         <externalId>false</externalId>
         <label>Default Principal StreetAddress2</label>
@@ -700,12 +774,14 @@
     <fields>
         <fullName>legalEntityPrincipalStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Principal StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityPrincipalStreetAddress2__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress2</description>
         <externalId>false</externalId>
         <label>SF Principal StreetAddress2</label>
@@ -716,6 +792,7 @@
     </fields>
     <fields>
         <fullName>legalEntityStateProvinceD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StateProvinceD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity StateProvince</label>
@@ -727,12 +804,14 @@
     <fields>
         <fullName>legalEntityStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStateProvince__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StateProvince</description>
         <externalId>false</externalId>
         <label>SF Legal Entity StateProvince</label>
@@ -743,6 +822,7 @@
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress1D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress1D</description>
         <externalId>false</externalId>
         <label>Default Legal Entity StreetAddress1</label>
@@ -754,12 +834,14 @@
     <fields>
         <fullName>legalEntityStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress1__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress1</description>
         <externalId>false</externalId>
         <label>SF Legal Entity StreetAddress1</label>
@@ -770,6 +852,7 @@
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress2D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress2D</description>
         <externalId>false</externalId>
         <label>Default Legal Entity StreetAddress2</label>
@@ -781,12 +864,14 @@
     <fields>
         <fullName>legalEntityStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityStreetAddress2__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity StreetAddress2</description>
         <externalId>false</externalId>
         <label>SF Legal Entity StreetAddress2</label>
@@ -797,6 +882,7 @@
     </fields>
     <fields>
         <fullName>legalEntityTaxIdD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity TaxIdD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity TaxId</label>
@@ -808,12 +894,14 @@
     <fields>
         <fullName>legalEntityTaxIdX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity TaxId?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityTaxId__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity TaxId</description>
         <externalId>false</externalId>
         <label>SF Legal Entity TaxI</label>
@@ -824,6 +912,7 @@
     </fields>
     <fields>
         <fullName>legalEntityTypeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity TypeD</description>
         <externalId>false</externalId>
         <label>Default Legal Entity Type</label>
@@ -835,12 +924,14 @@
     <fields>
         <fullName>legalEntityTypeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default Legal Entity Type?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>legalEntityType__c</fullName>
+        <deprecated>false</deprecated>
         <description>Legal Entity Type</description>
         <externalId>false</externalId>
         <label>SF Legal Entity Type</label>
@@ -851,6 +942,7 @@
     </fields>
     <fields>
         <fullName>litleEnvironment__c</fullName>
+        <deprecated>false</deprecated>
         <description>Stores the environment for MP</description>
         <externalId>false</externalId>
         <label>Litle Environment</label>
@@ -861,6 +953,7 @@
     </fields>
     <fields>
         <fullName>merchantPassword__c</fullName>
+        <deprecated>false</deprecated>
         <description>password used to connect to make litle request</description>
         <externalId>false</externalId>
         <label>Merchant Password</label>
@@ -873,6 +966,7 @@
     <fields>
         <fullName>merchantUsername__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
         <description>Merchant username for Litle requests</description>
         <externalId>false</externalId>
         <label>Merchant Username</label>
@@ -883,6 +977,7 @@
     </fields>
     <fields>
         <fullName>subMerchantAmexMidD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant AmexMidD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant AmexMid</label>
@@ -894,12 +989,14 @@
     <fields>
         <fullName>subMerchantAmexMidX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant AmexMid?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantAmexMid__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant AmexMid</description>
         <externalId>false</externalId>
         <label>SF SubMerchant AmexMid</label>
@@ -910,6 +1007,7 @@
     </fields>
     <fields>
         <fullName>subMerchantBankAccountNumberD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant BankAccountNumberD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant BankAccountNumber</label>
@@ -921,12 +1019,14 @@
     <fields>
         <fullName>subMerchantBankAccountNumberX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant BankAccountNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantBankAccountNumber__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant BankAccountNumber</description>
         <externalId>false</externalId>
         <label>SF SubMerchant BankAccountNumber</label>
@@ -937,6 +1037,7 @@
     </fields>
     <fields>
         <fullName>subMerchantBankRoutingNumberD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant BankRoutingNumberD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant BankRoutingNumber</label>
@@ -948,12 +1049,14 @@
     <fields>
         <fullName>subMerchantBankRoutingNumberX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant BankRoutingNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantBankRoutingNumber__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant BankRoutingNumber</description>
         <externalId>false</externalId>
         <label>SF SubMerchant BankRoutingNumber</label>
@@ -964,6 +1067,7 @@
     </fields>
     <fields>
         <fullName>subMerchantCityD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CityD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant City</label>
@@ -975,12 +1079,14 @@
     <fields>
         <fullName>subMerchantCityX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant City?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCity__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant City</description>
         <externalId>false</externalId>
         <label>SF SubMerchant City</label>
@@ -991,6 +1097,7 @@
     </fields>
     <fields>
         <fullName>subMerchantCountryCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CountryCodeD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant CountryCode</label>
@@ -1002,12 +1109,14 @@
     <fields>
         <fullName>subMerchantCountryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant CountryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCountryCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CountryCode</description>
         <externalId>false</externalId>
         <label>SF SubMerchant CountryCode</label>
@@ -1018,6 +1127,7 @@
     </fields>
     <fields>
         <fullName>subMerchantCreateCredentialsD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CreateCredentialsD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant CreateCredentials</label>
@@ -1029,12 +1139,14 @@
     <fields>
         <fullName>subMerchantCreateCredentialsX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant CreateCredentials?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCreateCredentials__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CreateCredentials</description>
         <externalId>false</externalId>
         <label>SF SubMerchant CreateCredentials</label>
@@ -1045,6 +1157,7 @@
     </fields>
     <fields>
         <fullName>subMerchantCustomerServiceNumberD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CustomerServiceNumberD</description>
         <externalId>false</externalId>
         <label>Default CustomerServiceNumber</label>
@@ -1056,12 +1169,14 @@
     <fields>
         <fullName>subMerchantCustomerServiceNumberX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default CustomerServiceNumber?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantCustomerServiceNumber__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant CustomerServiceNumber</description>
         <externalId>false</externalId>
         <label>SF CustomerServiceNumber</label>
@@ -1072,6 +1187,7 @@
     </fields>
     <fields>
         <fullName>subMerchantDiscoverConveyMidD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant DiscoverConveyMidD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant DiscoverConveyMid</label>
@@ -1083,12 +1199,14 @@
     <fields>
         <fullName>subMerchantDiscoverConveyMidX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant DiscoverConveyMid?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantDiscoverConveyMid__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant DiscoverConveyMid</description>
         <externalId>false</externalId>
         <label>SF SubMerchant DiscoverConveyMid</label>
@@ -1099,6 +1217,7 @@
     </fields>
     <fields>
         <fullName>subMerchantEmailAddressD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant EmailAddressD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant EmailAddress</label>
@@ -1110,12 +1229,14 @@
     <fields>
         <fullName>subMerchantEmailAddressX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant EmailAddress?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantEmailAddress__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant EmailAddress</description>
         <externalId>false</externalId>
         <label>SF SubMerchant EmailAddress</label>
@@ -1126,6 +1247,7 @@
     </fields>
     <fields>
         <fullName>subMerchantFirstNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant FirstNameD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant FirstName</label>
@@ -1137,12 +1259,14 @@
     <fields>
         <fullName>subMerchantFirstNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant FirstName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantFirstName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant FirstName</description>
         <externalId>false</externalId>
         <label>SF SubMerchant FirstName</label>
@@ -1153,6 +1277,7 @@
     </fields>
     <fields>
         <fullName>subMerchantHardCodeBillingDescD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant HardCodeBillingDescriptorD</description>
         <externalId>false</externalId>
         <label>Default HardCodeBillingDescriptor</label>
@@ -1164,12 +1289,14 @@
     <fields>
         <fullName>subMerchantHardCodeBillingDescriptorX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default HardCodeBillingDescriptor?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantHardCodeBillingDescriptor__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant HardCodeBillingDescriptor</description>
         <externalId>false</externalId>
         <label>SF HardCodeBillingDescriptor</label>
@@ -1180,6 +1307,7 @@
     </fields>
     <fields>
         <fullName>subMerchantLastNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant LastNameD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant LastName</label>
@@ -1191,12 +1319,14 @@
     <fields>
         <fullName>subMerchantLastNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant LastName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantLastName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant LastName</description>
         <externalId>false</externalId>
         <label>SF SubMerchant LastName</label>
@@ -1207,6 +1337,7 @@
     </fields>
     <fields>
         <fullName>subMerchantMaxTransactionAmountD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MaxTransactionAmountD</description>
         <externalId>false</externalId>
         <label>Default MaxTransactionAmount</label>
@@ -1218,12 +1349,14 @@
     <fields>
         <fullName>subMerchantMaxTransactionAmountX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default MaxTransactionAmount?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMaxTransactionAmount__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MaxTransactionAmount</description>
         <externalId>false</externalId>
         <label>SF MaxTransactionAmount</label>
@@ -1234,6 +1367,7 @@
     </fields>
     <fields>
         <fullName>subMerchantMerchantCategoryCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MerchantCategoryCodeD</description>
         <externalId>false</externalId>
         <label>Default MerchantCategoryCode</label>
@@ -1245,12 +1379,14 @@
     <fields>
         <fullName>subMerchantMerchantCategoryCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default MerchantCategoryCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMerchantCategoryCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MerchantCategoryCode</description>
         <externalId>false</externalId>
         <label>SF MerchantCategoryCode</label>
@@ -1261,6 +1397,7 @@
     </fields>
     <fields>
         <fullName>subMerchantMerchantNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MerchantNameD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant MerchantName</label>
@@ -1272,12 +1409,14 @@
     <fields>
         <fullName>subMerchantMerchantNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant MerchantName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantMerchantName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant MerchantName</description>
         <externalId>false</externalId>
         <label>SF SubMerchant MerchantName</label>
@@ -1288,6 +1427,7 @@
     </fields>
     <fields>
         <fullName>subMerchantPhoneD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant PhoneD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant Phone</label>
@@ -1299,12 +1439,14 @@
     <fields>
         <fullName>subMerchantPhoneX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant Phone?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPhone__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant Phone</description>
         <externalId>false</externalId>
         <label>SF SubMerchant Phone</label>
@@ -1315,6 +1457,7 @@
     </fields>
     <fields>
         <fullName>subMerchantPostalCodeD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant PostalCodeD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant PostalCode</label>
@@ -1326,12 +1469,14 @@
     <fields>
         <fullName>subMerchantPostalCodeX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant PostalCode?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPostalCode__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant PostalCode</description>
         <externalId>false</externalId>
         <label>SF SubMerchant PostalCode</label>
@@ -1342,6 +1487,7 @@
     </fields>
     <fields>
         <fullName>subMerchantPspMerchantIdD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant PspMerchantIdD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant PspMerchantId</label>
@@ -1353,12 +1499,14 @@
     <fields>
         <fullName>subMerchantPspMerchantIdX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant PspMerchantId?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantPspMerchantId__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant PspMerchantId</description>
         <externalId>false</externalId>
         <label>SF SubMerchant PspMerchantId</label>
@@ -1369,6 +1517,7 @@
     </fields>
     <fields>
         <fullName>subMerchantStateProvinceD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StateProvinceD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant StateProvince</label>
@@ -1380,12 +1529,14 @@
     <fields>
         <fullName>subMerchantStateProvinceX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant StateProvince?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStateProvince__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StateProvince</description>
         <externalId>false</externalId>
         <label>SF SubMerchant StateProvince</label>
@@ -1396,6 +1547,7 @@
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress1D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StreetAddress1D</description>
         <externalId>false</externalId>
         <label>Default SubMerchant StreetAddress1</label>
@@ -1407,12 +1559,14 @@
     <fields>
         <fullName>subMerchantStreetAddress1X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant StreetAddress1?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress1__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StreetAddress1</description>
         <externalId>false</externalId>
         <label>SF SubMerchant StreetAddress1</label>
@@ -1423,6 +1577,7 @@
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress2D__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StreetAddress2D</description>
         <externalId>false</externalId>
         <label>Default SubMerchant StreetAddress2</label>
@@ -1434,12 +1589,14 @@
     <fields>
         <fullName>subMerchantStreetAddress2X__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant StreetAddress2?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantStreetAddress2__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant StreetAddress2</description>
         <externalId>false</externalId>
         <label>SF SubMerchant StreetAddress2</label>
@@ -1450,6 +1607,7 @@
     </fields>
     <fields>
         <fullName>subMerchantUrlD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant UrlD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant Url</label>
@@ -1461,12 +1619,14 @@
     <fields>
         <fullName>subMerchantUrlX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant Url?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchantUrl__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant Url</description>
         <externalId>false</externalId>
         <label>SF SubMerchant Url</label>
@@ -1477,6 +1637,7 @@
     </fields>
     <fields>
         <fullName>subMerchanteCheckBillingDescD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant eCheckBillingDescriptorD</description>
         <externalId>false</externalId>
         <label>Default eCheckBillingDescriptor</label>
@@ -1488,12 +1649,14 @@
     <fields>
         <fullName>subMerchanteCheckBillingDescriptorX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default eCheckBillingDescriptor?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchanteCheckBillingDescriptor__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant eCheckBillingDescriptor</description>
         <externalId>false</externalId>
         <label>SF eCheckBillingDescriptor</label>
@@ -1504,6 +1667,7 @@
     </fields>
     <fields>
         <fullName>subMerchanteCheckCompanyNameD__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant eCheckCompanyNameD</description>
         <externalId>false</externalId>
         <label>Default SubMerchant eCheckCompanyName</label>
@@ -1515,12 +1679,14 @@
     <fields>
         <fullName>subMerchanteCheckCompanyNameX__c</fullName>
         <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Default SubMerchant eCheckCompanyName?</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>subMerchanteCheckCompanyName__c</fullName>
+        <deprecated>false</deprecated>
         <description>Sub Merchant eCheckCompanyName</description>
         <externalId>false</externalId>
         <label>SF SubMerchant eCheckCompanyName</label>
