@@ -408,6 +408,16 @@ public class LegalEntityModelService {
             	}
             }
         }
+        
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityContactPhone())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Contact Phone cannot exceed 10 characters');
+           		}
+            }
+        }
+        
         if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getStreetAddress2())){
             if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getStreetAddress2(), 60)){
                 isInputValid = false;
