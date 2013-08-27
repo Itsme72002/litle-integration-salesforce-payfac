@@ -41,9 +41,7 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>LitleMappingsSaveLog__c</members>
-        <members>LitleRequestResponseLog__c</members>
-        <members>Litle_Mapping</members>
+        <members>*</members>
         <name>CustomTab</name>
     </types>
     <types>
