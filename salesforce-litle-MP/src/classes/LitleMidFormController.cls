@@ -141,13 +141,13 @@ public class LitleMidFormController {
                                     // make sub merchant request
                                     makeCreateSubMerchantRequest(litleRequestResponseLog, createSubMerchantRequest,legalEntityResponse.getLegalEntityId());
                             }
-                        }
-                        try{
-                        	kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
-                        	ApexPageUtil.addConfirmMessage('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
-                        }catch(DmlException e){
-                        	ApexPageUtil.addErrorMessage('There was an error saving KYC Information.');
-                        	System.debug('Error saving KYC' + e.getMessage());
+	                        try{
+	                        	kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
+	                        	ApexPageUtil.addConfirmMessage('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
+	                        }catch(DmlException e){
+	                        	ApexPageUtil.addErrorMessage('There was an error saving KYC Information.');
+	                        	System.debug('Error saving KYC' + e.getMessage());
+	                        }
                         }
                     }
                     
@@ -280,12 +280,12 @@ public class LitleMidFormController {
     }
     
     public Boolean isInputDataValid(){
-        return (leModelService.isLegalEntityValid(legalEntityModel, true) && 
+        return (leModelService.isLegalEntityValid(legalEntityModel, true) & 
         		smModelService.isSubMerchantModelValid(subMerchantModel, true));
     }
     
     public Boolean areRequiredFieldsFilled(){
-       return (leModelService.areRequiredFieldsPresent(legalEntityModel, true) &&
+       return (leModelService.areRequiredFieldsPresent(legalEntityModel, true) &
    				smModelService.areRequiredFieldsPresent(subMerchantModel, true));        
     }
 }
