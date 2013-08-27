@@ -29,11 +29,11 @@ OTHER DEALINGS IN THE SOFTWARE.
         	</apex:pageBlockSection>
             <apex:pageBlockSection title="Litle Context" columns="1">
                 <apex:pageBlockSectionItem >
-                    <apex:outputText value="Merchant Username: " />
+                    <apex:outputText value="PayFac Username: " />
                     <apex:inputText id="merchantUsernameTxtBox" value="{!currentMappings.merchantUsername__c}" />
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputText value="Merchant Password: " />
+                    <apex:outputText value="PayFac Password: " />
                     <apex:inputSecret id="merchantPasswordTxtBox" value="{!currentMappings.merchantPassword__c}"
                         redisplay="true" />
                 </apex:pageBlockSectionItem>
