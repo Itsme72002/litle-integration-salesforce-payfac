@@ -21,12 +21,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 -->
 <apex:page controller="SalesforceLitleMappingController">
     <apex:form >
-    
         <apex:pageBlock title="Litle Salesforce MP" mode="edit">
-        <apex:pageBlockSection columns="1">
-         <apex:pageMessages />
-        	Map Litle's fields with the appropriate value from Salesforce.com fields or enter any default value against it. Once done, click Save.
-        	</apex:pageBlockSection>
+            <apex:pageBlockSection columns="1">
+                <apex:pageMessages />
+                Map Litle's fields with the appropriate value from Salesforce.com fields or enter any default value
+                against it. Once done, click Save.
+            </apex:pageBlockSection>
             <apex:pageBlockSection title="Litle Context" columns="1">
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="PayFac Username: " />
@@ -40,7 +40,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Litle Environment " />
                     <apex:selectList size="1" value="{!currentMappings.litleEnvironment__c}">
-                    	<apex:selectOptions value="{!litleEnvironmentList}" />
+                        <apex:selectOptions value="{!litleEnvironmentList}" />
                     </apex:selectList>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
@@ -51,8 +51,8 @@ OTHER DEALINGS IN THE SOFTWARE.
                         <apex:outputText value="Litle Field" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;" />
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:355px;" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
@@ -61,7 +61,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantPspMerchantIdList" value="{!currentMappings.subMerchantPspMerchantId__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantPspMerchantIdDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantPspMerchantId}" />
@@ -77,7 +77,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantMerchantNameList" value="{!currentMappings.subMerchantMerchantName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantMerchantNameDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantMerchantName}" />
@@ -93,7 +93,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantMerchantCategoryCodeList" value="{!currentMappings.subMerchantMerchantCategoryCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantMerchantCategoryCodeDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantMerchantCategoryCode}" />
@@ -109,7 +109,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantHardCodeBillingDescriptorList" value="{!currentMappings.subMerchantHardCodeBillingDescriptor__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 rerender="subMerchantHardCodeBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchantHardCodeBillingDescriptor}" />
@@ -125,7 +125,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantCustomerServiceNumberList" value="{!currentMappings.subMerchantCustomerServiceNumber__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantCustomerServiceNumberDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantCustomerServiceNumber}" />
@@ -141,7 +141,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantUrlList" value="{!currentMappings.subMerchantUrl__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantUrlDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantUrl}" />
@@ -157,7 +157,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantAmexMidList" value="{!currentMappings.subMerchantAmexMid__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantAmexMidDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantAmexMid}" />
@@ -173,7 +173,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantDiscoverConveyMidList" value="{!currentMappings.subMerchantDiscoverConveyMid__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantDiscoverConveyMidDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantDiscoverConveyMid}" />
@@ -190,7 +190,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchanteCheckBillingDescriptorList" value="{!currentMappings.subMerchanteCheckBillingDescriptor__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 rerender="subMerchanteCheckBillingDescriptorDefaultTxtBox" action="{!onSelectChangeSubMerchanteCheckBillingDescriptor}" />
@@ -206,7 +206,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchanteCheckCompanyNameList" value="{!currentMappings.subMerchanteCheckCompanyName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchanteCheckCompanyNameDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchanteCheckCompanyName}" />
@@ -222,7 +222,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantMaxTransactionAmountList" value="{!currentMappings.subMerchantMaxTransactionAmount__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantMaxTransactionAmountDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantMaxTransactionAmount}" />
@@ -239,7 +239,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                         <apex:outputText value="Street Address 1" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:selectList value="{!currentMappings.subMerchantStreetAddress1__c}" size="1">
+                        <apex:selectList value="{!currentMappings.subMerchantStreetAddress1__c}" size="1" style="width:470px">
                             <apex:selectOptions id="subMerchantStreetAddress1List" value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress1DefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantStreetAddress1}" />
@@ -255,7 +255,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantStreetAddress2List" value="{!currentMappings.subMerchantStreetAddress2__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantStreetAddress2DefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantStreetAddress2}" />
@@ -271,7 +271,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantCityList" value="{!currentMappings.subMerchantCity__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantCityDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantCity}" />
@@ -287,7 +287,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantStateProvinceList" value="{!currentMappings.subMerchantStateProvince__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantStateProvinceDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantStateProvince}" />
@@ -303,7 +303,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantPostalCodeList" value="{!currentMappings.subMerchantPostalCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantPostalCodeDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantPostalCode}" />
@@ -319,7 +319,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantCountryCodeList" value="{!currentMappings.subMerchantCountryCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantCountryCodeDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantCountryCode}" />
@@ -335,7 +335,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantCreateCredentialsList" value="{!currentMappings.subMerchantCreateCredentials__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantCreateCredentials}" />
@@ -349,23 +349,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 
             <!-- Bank Account Details start -->
             <apex:pageBlockSection columns="1" title="Bank Account Details">
-            	<apex:pageBlockSectionItem >
+                <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Litle Field" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;" />
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:355px;" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-                
+
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Routing Number" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantBankRoutingNumberList" value="{!currentMappings.subMerchantBankRoutingNumber__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantBankRoutingNumberDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantBankRoutingNumber}" />
@@ -381,7 +381,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantBankAccountNumberList" value="{!currentMappings.subMerchantBankAccountNumber__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantBankAccountNumberDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantBankAccountNumber}" />
@@ -396,23 +396,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 
             <!-- Legal entity information start -->
             <apex:pageBlockSection columns="1" title="Legal Entity (Applicable for background checks)">
-				<apex:pageBlockSectionItem >
+                <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Litle Field" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;" />
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:355px;" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-                
+
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="EIN/Tax ID" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel styleClass="requiredInput" layout="block" id="taxInput">
                         <apex:selectList id="legalEntityTaxIdList" value="{!currentMappings.legalEntityTaxId__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityTaxId}"
                                 rerender="legalEntityTaxIdDefaultTxtBox" />
@@ -428,7 +428,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityNameList" value="{!currentMappings.legalEntityName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityName}"
                                 rerender="legalEntityNameDefaultTxtBox" />
@@ -444,10 +444,8 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityTypeList" value="{!currentMappings.legalEntityTypeD__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!legalEntityTypeList}" />
-                            <!-- <apex:actionSupport event="onchange" action="{!onChangeLegalEntityType}" rerender="legalEntityTaxIdDefaultTxtBox, 
-                                legalEntitySsnDefaultTxtBox" /> -->
                         </apex:selectList>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -458,7 +456,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityDoingBusinessAsList" value="{!currentMappings.legalEntityDoingBusinessAs__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityDoingBusinessAs}"
                                 rerender="legalEntityDoingBusinessAsDefaultTxtBox" />
@@ -475,7 +473,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityContactPhoneList" value="{!currentMappings.legalEntityContactPhone__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityContactPhone}"
                                 rerender="legalEntityContactPhoneDefaultTxtBox" />
@@ -491,7 +489,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityStreetAddress1List" value="{!currentMappings.legalEntityStreetAddress1__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress1}"
                                 rerender="legalEntityStreetAddress1DefaultTxtBox" />
@@ -508,7 +506,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityStreetAddress2List" value="{!currentMappings.legalEntityStreetAddress2__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStreetAddress2}"
                                 rerender="legalEntityStreetAddress2DefaultTxtBox" />
@@ -524,7 +522,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityCityList" value="{!currentMappings.legalEntityCity__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCity}"
                                 rerender="legalEntityCityDefaultTxtBox" />
@@ -540,7 +538,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityStateProvinceList" value="{!currentMappings.legalEntityStateProvince__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityStateProvince}"
                                 rerender="legalEntityStateProvinceDefaultTxtBox" />
@@ -549,14 +547,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityStateProvinceX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Postal Code" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPostalCodeList" value="{!currentMappings.legalEntityPostalCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPostalCode}"
                                 rerender="legalEntityPostalCodeDefaultTxtBox" />
@@ -565,14 +562,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPostalCodeX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Country Code" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityCountryCodeList" value="{!currentMappings.legalEntityCountryCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityCountryCode}"
                                 rerender="legalEntityCountryCodeDefaultTxtBox" />
@@ -581,14 +577,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityCountryCodeX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Annual Credit Card Sales Volume" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityAnnualCreditCardSalesVolumeList"
-                            value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1">
+                            value="{!currentMappings.legalEntityAnnualCreditCardSalesVolume__c}" size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityAnnualCreditCardSalesVolume}" rerender="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" />
@@ -597,14 +592,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             value="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeD__c}" disabled="{!currentMappings.legalEntityAnnualCreditCardSalesVolumeX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Accepted Credit Cards in the Past" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultTxtBox" />
@@ -615,26 +609,24 @@ OTHER DEALINGS IN THE SOFTWARE.
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             <!-- Legal entity information end -->
-
             <!-- Company Representative start -->
             <apex:pageBlockSection columns="1" title="Company Representative">
-            	<apex:pageBlockSectionItem >
+                <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Litle Field" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;" />
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:355px;" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-                
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="First Name" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalFirstNameList" value="{!currentMappings.legalEntityPrincipalFirstName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalFirstName}" rerender="legalEntityPrincipalFirstNameDefaultTxtBox" />
@@ -643,14 +635,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalFirstNameX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Last Name" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalLastNameList" value="{!currentMappings.legalEntityPrincipalLastName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalLastName}"
                                 rerender="legalEntityPrincipalLastNameDefaultTxtBox" />
@@ -659,14 +650,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalLastNameX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="SSN" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel styleClass="requiredInput" layout="block" id="ssnInput">
                         <apex:selectList id="legalEntityPrincipalSsnList" value="{!currentMappings.legalEntityPrincipalSsn__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalSsn}"
                                 rerender="legalEntityPrincipalSsnDefaultTxtBox" />
@@ -675,14 +665,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalSsnX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Date Of Birth" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalDateOfBirthList" value="{!currentMappings.legalEntityPrincipalDateOfBirth__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalDateOfBirth}" rerender="legalEntityPrincipalDateOfBirthDefaultTxtBox" />
@@ -691,14 +680,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalDateOfBirthX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Email Address" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalEmailAddressList" value="{!currentMappings.legalEntityPrincipalEmailAddress__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalEmailAddress}" rerender="legalEntityPrincipalEmailAddressDefaultTxtBox" />
@@ -707,15 +695,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalEmailAddressX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Contact Phone" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalContactPhoneList" value="{!currentMappings.legalEntityPrincipalContactPhone__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalContactPhone}" rerender="legalEntityPrincipalContactPhoneDefaultTxtBox" />
@@ -724,14 +710,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalContactPhoneX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Drivers License" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalDriversLicenseList" value="{!currentMappings.legalEntityPrincipalDriversLicense__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalDriversLicense}" rerender="legalEntityPrincipalDriversLicenseDefaultTxtBox" />
@@ -740,14 +725,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalDriversLicenseX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Drivers License State" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalDriversLicenseStateList"
-                            value="{!currentMappings.legalEntityPrincipalDriversLicenseState__c}" size="1">
+                            value="{!currentMappings.legalEntityPrincipalDriversLicenseState__c}" size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalDriversLicenseState}" rerender="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" />
@@ -756,14 +740,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             value="{!currentMappings.legalEntityPrincipalDriversLicenseStateD__c}" disabled="{!currentMappings.legalEntityPrincipalDriversLicenseStateX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Street Address 1" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalStreetAddress1List" value="{!currentMappings.legalEntityPrincipalStreetAddress1__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalStreetAddress1}" rerender="legalEntityPrincipalStreetAddress1DefaultTxtBox" />
@@ -772,14 +755,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalStreetAddress1X__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Street Address 2" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalStreetAddress2List" value="{!currentMappings.legalEntityPrincipalStreetAddress2__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalStreetAddress2}" rerender="legalEntityPrincipalStreetAddress2DefaultTxtBox" />
@@ -788,14 +770,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalStreetAddress2X__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="City" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalCityList" value="{!currentMappings.legalEntityPrincipalCity__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPrincipalCity}"
                                 rerender="legalEntityPrincipalCityDefaultTxtBox" />
@@ -804,14 +785,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalCityX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="State/Province" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalStateProvinceList" value="{!currentMappings.legalEntityPrincipalStateProvince__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalStateProvince}" rerender="legalEntityPrincipalStateProvinceDefaultTxtBox" />
@@ -820,14 +800,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalStateProvinceX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Postal Code" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalPostalCodeList" value="{!currentMappings.legalEntityPrincipalPostalCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalPostalCode}" rerender="legalEntityPrincipalPostalCodeDefaultTxtBox" />
@@ -836,14 +815,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.legalEntityPrincipalPostalCodeX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Country Code" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityPrincipalCountryCodeList" value="{!currentMappings.legalEntityPrincipalCountryCode__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange"
                                 action="{!onSelectChangeLegalEntityPrincipalCountryCode}" rerender="legalEntityPrincipalCountryCodeDefaultTxtBox" />
@@ -854,156 +832,24 @@ OTHER DEALINGS IN THE SOFTWARE.
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             <!-- Company Representative end -->
-
-
-            <!-- PCI Details start -->
-            <!--<apex:pageBlockSection columns="1" title="PCI Details">
-            	<apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Litle Field" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-                
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Is Exclusive To PSP " />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityIsExclusiveToPspList" value="{!currentMappings.legalEntityIsExclusiveToPsp__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityIsExclusiveToPsp}"
-                                rerender="legalEntityIsExclusiveToPspDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityIsExclusiveToPspDefaultTxtBox" value="{!currentMappings.legalEntityIsExclusiveToPspD__c}"
-                            disabled="{!currentMappings.legalEntityIsExclusiveToPspX__c}" />
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Is PCI Compliance Validated" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityIsPciComplianceValidatedList" value="{!currentMappings.legalEntityIsPciComplianceValidated__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange"
-                                action="{!onSelectChangeLegalEntityIsPciComplianceValidated}" rerender="legalEntityIsPciComplianceValidatedDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityIsPciComplianceValidatedDefaultTxtBox" value="{!currentMappings.legalEntityIsPciComplianceValidatedD__c}"
-                            disabled="{!currentMappings.legalEntityIsPciComplianceValidatedX__c}" />
-
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Scanning Vendor" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityScanningVendorList" value="{!currentMappings.legalEntityScanningVendor__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityScanningVendor}"
-                                rerender="legalEntityScanningVendorDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityScanningVendorDefaultTxtBox" value="{!currentMappings.legalEntityScanningVendorD__c}"
-                            disabled="{!currentMappings.legalEntityScanningVendorX__c}" />
-
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Qualified Security Assessor" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityQualifiedSecurityAssessorList" value="{!currentMappings.legalEntityQualifiedSecurityAssessor__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange"
-                                action="{!onSelectChangeLegalEntityQualifiedSecurityAssessor}" rerender="legalEntityQualifiedSecurityAssessorDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityQualifiedSecurityAssessorDefaultTxtBox" value="{!currentMappings.legalEntityQualifiedSecurityAssessorD__c}"
-                            disabled="{!currentMappings.legalEntityQualifiedSecurityAssessorX__c}" />
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Most Recently Passed Scan" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityMostRecentlyPassedScanList" value="{!currentMappings.legalEntityMostRecentlyPassedScan__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange"
-                                action="{!onSelectChangeLegalEntityMostRecentlyPassedScan}" rerender="legalEntityMostRecentlyPassedScanDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityMostRecentlyPassedScanDefaultTxtBox" value="{!currentMappings.legalEntityMostRecentlyPassedScanD__c}"
-                            disabled="{!currentMappings.legalEntityMostRecentlyPassedScanX__c}" />
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="Report On Compliance" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityReportOnComplianceList" value="{!currentMappings.legalEntityReportOnCompliance__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange"
-                                action="{!onSelectChangeLegalEntityReportOnCompliance}" rerender="legalEntityReportOnComplianceDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityReportOnComplianceDefaultTxtBox" value="{!currentMappings.legalEntityReportOnComplianceD__c}"
-                            disabled="{!currentMappings.legalEntityReportOnComplianceX__c}" />
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-
-                <apex:pageBlockSectionItem >
-                    <apex:pageBlockSectionItem >
-                        <apex:outputText value="PCI Level" />
-                    </apex:pageBlockSectionItem>
-                    <apex:outputPanel >
-                        <apex:selectList id="legalEntityPciLevelList" value="{!currentMappings.legalEntityPciLevel__c}"
-                            size="1">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange" action="{!onSelectChangeLegalEntityPciLevel}"
-                                rerender="legalEntityPciLevelDefaultTxtBox" />
-                        </apex:selectList>
-                        <apex:inputText id="legalEntityPciLevelDefaultTxtBox" value="{!currentMappings.legalEntityPciLevelD__c}"
-                            disabled="{!currentMappings.legalEntityPciLevelX__c}" />
-                    </apex:outputPanel>
-                </apex:pageBlockSectionItem>
-            </apex:pageBlockSection> -->
-            <!-- PCI Details end -->
-
-
             <!-- Primary Contact start -->
             <apex:pageBlockSection columns="1" title="Primary Contact">
-            	<apex:pageBlockSectionItem >
+                <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Litle Field" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
-                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;"/>
-                        <apex:outputText value="Default" style="font-weight:bold; margin-left:150px;"/>
+                        <apex:outputText value="Salesforce.com Field" style="font-weight:bold;" />
+                        <apex:outputText value="Default" style="font-weight:bold; margin-left:355px;" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-                
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="First Name" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantFirstNameList" value="{!currentMappings.subMerchantFirstName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantFirstNameDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantFirstName}" />
@@ -1012,14 +858,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.subMerchantFirstNameX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Last Name" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantLastNameList" value="{!currentMappings.subMerchantLastName__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantLastNameDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantLastName}" />
@@ -1029,14 +874,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Email Address" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantEmailAddressList" value="{!currentMappings.subMerchantEmailAddress__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantEmailAddressDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantEmailAddress}" />
@@ -1045,14 +889,13 @@ OTHER DEALINGS IN THE SOFTWARE.
                             disabled="{!currentMappings.subMerchantEmailAddressX__c}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
-
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Phone" />
                     </apex:pageBlockSectionItem>
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantPhoneList" value="{!currentMappings.subMerchantPhone__c}"
-                            size="1">
+                            size="1" style="width:470px">
                             <apex:selectOptions value="{!salesforceFields}" />
                             <apex:actionSupport event="onchange" rerender="subMerchantPhoneDefaultTxtBox"
                                 action="{!onSelectChangeSubMerchantPhone}" />
@@ -1062,15 +905,11 @@ OTHER DEALINGS IN THE SOFTWARE.
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 <!-- Primary Contact end -->
-
             </apex:pageBlockSection>
-			<apex:pageBlockButtons >
-				<apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}" />
-		        <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}" />
-	        </apex:pageBlockButtons>
-
+            <apex:pageBlockButtons >
+                <apex:commandButton id="saveMappingsBtn" value="Save" action="{!saveMappings}" />
+                <apex:commandButton id="cancelMappingsBtn" value="Cancel" action="{!cancelMappings}" />
+            </apex:pageBlockButtons>
         </apex:pageBlock>
-        <!-- <apex:commandButton id="resetBtn" value="Reset All Mappings" action="{!resetMappings}"/> -->
-
     </apex:form>
 </apex:page>
