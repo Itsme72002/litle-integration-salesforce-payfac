@@ -52,9 +52,10 @@ public class LitleMidFormController {
         	litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
         }
         // if the litle mid is an error code, null it back out and proceed
+        /*System.debug('Constructor called!!!!');
         if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
             litleMid = null;    
-        }
+        }*/
         //populate all opportunities of this account id
         if(String.isNotEmpty(urlAccountId)){
             opportunityOptions = QueryUtil.getOpportunityNameOptions(urlAccountId);
@@ -102,6 +103,13 @@ public class LitleMidFormController {
         }
     }
     
+    public boolean getIsLitleMidAvailable(){
+    	Boolean isLitleMidAvailable = false;
+    	if(String.isNotEmpty(litleMid) && Pattern.matches('\\A[0-9]+\\Z', litleMid)){
+            isLitleMidAvailable = true;    
+        }
+        return isLitleMidAvailable;
+    }
     
     public Pagereference onChangeOpportunityOptions(){
     	legalEntityModel = leModelService.setLegalEntityModelFromMappingObjectOnOpportunityChange
@@ -254,9 +262,7 @@ public class LitleMidFormController {
                     + LitleConstants.PAY_FAC_PORTAL_URI + LitleConstants.URL_SEPARATOR + LitleConstants.LEGAL_ENTITY_META_UI_URI + LitleConstants.URL_SEPARATOR 
                     + legalEntityId + LitleConstants.URL_SEPARATOR + LitleConstants.SUBMERCHANT_META_UI_URI
                     + LitleConstants.URL_SEPARATOR + submerchantId + LitleConstants.PAY_FAC_PORTAL_QUERY_STRING + subMerchantModel.getSubMerchantPspMerchantId(); 
-                
-                
-                ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    
+                //ApexPageUtil.addConfirmMessage(LitleConstants.getResponseMessage(LitleConstants.RESPONSE_APPROVED));    
             }else{
                 //set litle mid with the error description
                 litleMid = String.valueOf(sMResponse.getStatusCode()) +' : ' + sMResponse.getStatus();

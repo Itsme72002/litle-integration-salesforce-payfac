@@ -211,7 +211,7 @@ private class LitleFormControllerTest {
     	ApexPages.currentPage().getParameters().put('accid',account.Id);
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals('8675309', litleMidFormController.litleMid);
-    	
+    	System.assert(litleMidFormController.getIsLitleMidAvailable());
     	delete account;
     	account = new Account(name = ACCOUNT_NAME);
     	insert account;
@@ -221,12 +221,13 @@ private class LitleFormControllerTest {
         System.assertEquals(null, litleMidFormController.litleMid);
         
         account = new Account(name = ACCOUNT_NAME);
-        account.Litle_Mid__C = 'Error: 404, yo';
+        account.Litle_Mid__C = '404 : Unauthorized';
         insert account;
         
         ApexPages.currentPage().getParameters().put('accid',account.Id);
         litleMidFormController = new LitleMidFormController();
-        System.assertEquals(null, litleMidFormController.litleMid);
+        System.assertEquals('404 : Unauthorized', litleMidFormController.litleMid);
+        System.assert(!litleMidFormController.getIsLitleMidAvailable());
 
     }
     
@@ -303,6 +304,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		System.assertEquals(null, account.Litle_Mid__c);
 		System.assertEquals(null, account.PayFac_Portal_Link__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
     }
     
     static testMethod void testSubmitInvalidEntriesNoValueSavedInOpportunity(){
@@ -364,6 +366,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		System.assertEquals(null, opportunity.Litle_Mid__c);
 		System.assertEquals(null, opportunity.PayFac_Portal_Link__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
     }
        
     static testMethod void testSubmitSuccessInAccount(){
@@ -433,7 +436,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -447,6 +450,7 @@ private class LitleFormControllerTest {
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(insertedaccount.Id, litleRequestResponseLog.Account__c);
 		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);
+		System.assert(litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -531,6 +535,7 @@ private class LitleFormControllerTest {
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c];
 		System.assertEquals(insertedaccount.Id, litleRequestResponseLog.Account__c);
 		System.assertEquals(null, litleRequestResponseLog.Opportunity__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -601,7 +606,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -615,6 +620,7 @@ private class LitleFormControllerTest {
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c where legalEntityId__c = '82821536565084223'];
 		System.assertEquals(opportunity.Id, litleRequestResponseLog.Opportunity__c);
 		System.assertEquals(null, litleRequestResponseLog.Account__c);
+		System.assert(litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -699,6 +705,7 @@ private class LitleFormControllerTest {
 		LitleRequestResponseLog__c litleRequestResponseLog = [select Account__c, Opportunity__c from LitleRequestResponseLog__c];
 		System.assertEquals(opportunity.Id, litleRequestResponseLog.Opportunity__c);
 		System.assertEquals(null, litleRequestResponseLog.Account__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -778,6 +785,7 @@ private class LitleFormControllerTest {
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('20 : Manual Review', thisAccount.Litle_Mid__c);
 		System.assertEquals(null, thisAccount.PayFac_Portal_Link__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -858,6 +866,7 @@ private class LitleFormControllerTest {
 		System.assertEquals(expectedMessagesList, actualMessageList);	
 		System.assertEquals('20 : Manual Review', thisOpportunity.Litle_Mid__c);
 		System.assertEquals(null, thisOpportunity.PayFac_Portal_Link__c);
+		System.assert(!litleMidFormController.getIsLitleMidAvailable());
 		Test.stopTest();
     }
     
@@ -1249,7 +1258,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityDuplicateResponse(true), new SubMerchantApprovedResponse()));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
-		expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){

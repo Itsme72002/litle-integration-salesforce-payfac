@@ -23,7 +23,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 	<apex:includeScript value="{!URLFOR($Resource.jQuery)}"  />
 
     <apex:form id="midForm">
-        <apex:pageBlock title="Get Litle MID" mode="maindetail"> <!-- rendered="{!ISNULL(litleMid)}"> -->
+        <apex:pageBlock title="Get Litle MID" mode="maindetail" rendered="{!NOT(IsLitleMidAvailable)}"> 
             <apex:pageBlockSection columns="1">
                 Fill the form below to apply for Litle MID. Once done, click Submit.
                 <apex:pageBlockSectionItem >
@@ -32,7 +32,7 @@ OTHER DEALINGS IN THE SOFTWARE.
             </apex:pageBlockSection>
         </apex:pageBlock>
         
-        <!-- <apex:pageBlock title="Merchant Registered." mode="detail" rendered="{!NOT(ISNULL(litleMid))}">
+        <apex:pageBlock title="Merchant Registered." mode="detail" rendered="{!IsLitleMidAvailable}">
             <apex:pageBlockSection columns="1">
                 <apex:pageBlockSectionItem >
                     <apex:pageMessages />
@@ -42,9 +42,9 @@ OTHER DEALINGS IN THE SOFTWARE.
             <apex:pageBlockButtons location="top">
                 <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
             </apex:pageBlockButtons>
-        </apex:pageBlock> -->
+        </apex:pageBlock> 
         
-        <apex:pageBlock title="Add A Sub Merchant" mode="edit" id="smBlock"><!--  rendered="{!ISNULL(litleMid)}"> -->
+        <apex:pageBlock title="Add A Sub Merchant" mode="edit" id="smBlock"  rendered="{!NOT(IsLitleMidAvailable)}"> 
         	<apex:pageBlockSection columns="1" rendered="{!isOpportunityMappingPresent}">
 	        	<apex:pageBlockSectionItem >
 	            	<apex:outputText value="Select Opportunity to Map values" />
