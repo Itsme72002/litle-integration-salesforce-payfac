@@ -21,6 +21,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 public class SalesforceLitleMappingController {
     private List < Selectoption > salesforceFields;
+    public List < Selectoption > salesforceBooleanFields{get; set;}
     private final String emptyString = '';
     //Holds the current mappings from the page
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
@@ -31,6 +32,7 @@ public class SalesforceLitleMappingController {
     public SalesforceLitleMappingController() {
     	helpTextConstant = new HelpTextConstants();
     	legalEntityTypeList = new List<SelectOption>();
+    	salesforceBooleanFields = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
         	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
         }
@@ -77,6 +79,9 @@ public class SalesforceLitleMappingController {
             SObjectField fieldToken = fields.get(s);
             DescribeFieldResult selectedField = fieldToken.getDescribe();
             allFields.add(new Selectoption('Account.' + selectedField.getName(), 'Account.' + selectedField.getLabel()));
+            if(selectedField.getType() == Schema.DisplayType.BOOLEAN){
+            	salesforceBooleanFields.add(new Selectoption('Account.' + selectedField.getName(), 'Account.' + selectedField.getLabel()));
+            }
 
         }
         //Add Opportunity fields
@@ -89,6 +94,9 @@ public class SalesforceLitleMappingController {
             DescribeFieldResult selectedField = fieldToken.getDescribe();
             allFields.add(new Selectoption('Opportunity.' + selectedField.getName(),
             								 'Opportunity.' + selectedField.getLabel()));
+			if(selectedField.getType() == Schema.DisplayType.BOOLEAN){
+            	salesforceBooleanFields.add(new Selectoption('Account.' + selectedField.getName(), 'Account.' + selectedField.getLabel()));
+            }
 		}	
 		return allFields;
     }

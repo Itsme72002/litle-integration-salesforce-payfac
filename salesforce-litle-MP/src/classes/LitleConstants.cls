@@ -30,6 +30,7 @@ public class LitleConstants {
 	public static final String LEGAL_ENTITY_REQUEST_ENDPOINT = 'https://psp-cert.litle.com/legalentity';
 	public static final String LEGAL_ENTITY_URI = 'legalentity';
 	public static final String SUBMERCHANT_URI = 'submerchant';
+	public static final String MCC_URI = 'mcc';
 	public static final String LEGAL_ENTITY_META_UI_URI = 'legalEntity';
 	public static final String SUBMERCHANT_META_UI_URI = 'subMerchant';
 	
@@ -71,6 +72,7 @@ public class LitleConstants {
 	public static final Integer LEGAL_ENTITY_SUCCESS_RESPONSE_CODE = 201;
 	public static final Integer SUB_MERCHANT_SUCCESS_RESPONSE_CODE = 201;
 	public static final Integer RETRIEVE_LEGAL_ENTITY_SUCCESS_RESPONSE_CODE = 200;
+	public static final Integer MCC_SUCCESS_RESPONSE_CODE = 200;
 	
 	public static final List<Integer> PCI_LEVELS = new List<Integer>{ 1, 2, 3, 4 };
 	
