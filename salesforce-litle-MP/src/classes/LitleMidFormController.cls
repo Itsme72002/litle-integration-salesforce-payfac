@@ -38,18 +38,20 @@ public class LitleMidFormController {
     public LegalEntityResponseService leResponseService;
     public LegalEntityModelService leModelService;
     public SubMerchantModelService smModelService;
+    public HelpTextConstants helpTextConstant{get; set;}
     
     public LitleMidFormController(){
-    	kycService = new LitleKYCService();
-    	leResponseService = new LegalEntityResponseService();
+        kycService = new LitleKYCService();
+        helpTextConstant = new HelpTextConstants();
+        leResponseService = new LegalEntityResponseService();
         isOpportunityMappingPresent = false;
         this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
         //check if litle mid is already present
         if(String.isNotEmpty(urlOpportunityId)){
-        	litleMid = QueryUtil.getOpportunityFieldValue('Litle_MID__c', urlOpportunityId);
+                litleMid = QueryUtil.getOpportunityFieldValue('Litle_MID__c', urlOpportunityId);
         }else if(String.isNotEmpty(urlAccountId)){
-        	litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+                litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
         }
         // if the litle mid is an error code, null it back out and proceed
         /*System.debug('Constructor called!!!!');
@@ -104,19 +106,19 @@ public class LitleMidFormController {
     }
     
     public boolean getIsLitleMidAvailable(){
-    	Boolean isLitleMidAvailable = false;
-    	if(String.isNotEmpty(litleMid) && Pattern.matches('\\A[0-9]+\\Z', litleMid)){
+        Boolean isLitleMidAvailable = false;
+        if(String.isNotEmpty(litleMid) && Pattern.matches('\\A[0-9]+\\Z', litleMid)){
             isLitleMidAvailable = true;    
         }
         return isLitleMidAvailable;
     }
     
     public Pagereference onChangeOpportunityOptions(){
-    	legalEntityModel = leModelService.setLegalEntityModelFromMappingObjectOnOpportunityChange
-    										(legalEntityModel, savedMappings, selectedOpportunityId);
-    	subMerchantModel = smModelService.setSubMerchantModelFromMappingObjectOnOpportunityChange
-    										(subMerchantModel, savedMappings, selectedOpportunityId);
-    	return null;
+        legalEntityModel = leModelService.setLegalEntityModelFromMappingObjectOnOpportunityChange
+                                                                                (legalEntityModel, savedMappings, selectedOpportunityId);
+        subMerchantModel = smModelService.setSubMerchantModelFromMappingObjectOnOpportunityChange
+                                                                                (subMerchantModel, savedMappings, selectedOpportunityId);
+        return null;
     }
     
     public Pagereference submit(){
@@ -149,13 +151,13 @@ public class LitleMidFormController {
                                     // make sub merchant request
                                     makeCreateSubMerchantRequest(litleRequestResponseLog, createSubMerchantRequest,legalEntityResponse.getLegalEntityId());
                             }
-	                        try{
-	                        	kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
-	                        	ApexPageUtil.addConfirmMessage('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
-	                        }catch(DmlException e){
-	                        	ApexPageUtil.addErrorMessage('There was an error saving KYC Information.');
-	                        	System.debug('Error saving KYC' + e.getMessage());
-	                        }
+                                try{
+                                        kycService.saveOrUpdateAllKYCObjects(urlOpportunityId, urlAccountId, legalEntityResponse);
+                                        ApexPageUtil.addConfirmMessage('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
+                                }catch(DmlException e){
+                                        ApexPageUtil.addErrorMessage('There was an error saving KYC Information.');
+                                        System.debug('Error saving KYC' + e.getMessage());
+                                }
                         }
                     }
                     
@@ -278,7 +280,7 @@ public class LitleMidFormController {
     
     public Pagereference cancel(){
         if(String.isNotEmpty(urlOpportunityId)){
-        	return new PageReference(LitleConstants.URL_SEPARATOR + urlOpportunityId);
+                return new PageReference(LitleConstants.URL_SEPARATOR + urlOpportunityId);
         }else if(String.isNotEmpty(urlAccountId)){
             return new PageReference(LitleConstants.URL_SEPARATOR + urlAccountId);
         }
@@ -287,11 +289,11 @@ public class LitleMidFormController {
     
     public Boolean isInputDataValid(){
         return (leModelService.isLegalEntityValid(legalEntityModel, true) & 
-        		smModelService.isSubMerchantModelValid(subMerchantModel, true));
+                        smModelService.isSubMerchantModelValid(subMerchantModel, true));
     }
     
     public Boolean areRequiredFieldsFilled(){
        return (leModelService.areRequiredFieldsPresent(legalEntityModel, true) &
-   				smModelService.areRequiredFieldsPresent(subMerchantModel, true));        
+                                smModelService.areRequiredFieldsPresent(subMerchantModel, true));        
     }
 }

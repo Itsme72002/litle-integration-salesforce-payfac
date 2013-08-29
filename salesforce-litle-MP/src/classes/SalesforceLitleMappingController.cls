@@ -26,8 +26,10 @@ public class SalesforceLitleMappingController {
     public SalesforceLitleMappingsObject__c currentMappings {get; set;}
     public List<SelectOption> legalEntityTypeList{get; set;}
     public List<SelectOption> litleEnvironmentList{get; set;}
+    public HelpTextConstants helpTextConstant{get; set;}
     
     public SalesforceLitleMappingController() {
+    	helpTextConstant = new HelpTextConstants();
     	legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
         	legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
