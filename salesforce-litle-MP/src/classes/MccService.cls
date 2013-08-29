@@ -45,9 +45,10 @@ public class MccService {
 	}
 	
 	public List<Selectoption> getMccSelectOptionsForUser(String username, String password, String endpoint){
-		List<Selectoption> mccSelectOptions = new List<Selectoption>();
+		List<Selectoption> mccSelectOptions;
 		List<String> mccList = getAllMccForUser(username, password, endpoint);
-		if(mccList != null && !mccList.isEmpty()){
+		if(mccList != null){
+			mccSelectOptions = new List<Selectoption>();
 			for(String mcc: mccList){
 				mccSelectOptions.add(new Selectoption(mcc, mcc));
 			}

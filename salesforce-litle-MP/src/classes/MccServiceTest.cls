@@ -66,9 +66,9 @@ private class MccServiceTest {
     static testMethod void getAllMccForUser_Invalid() {
     	MccService service = new MccService();
     	Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), null));
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), null));
         List<String> actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint');
-        System.assertEquals(null, actualMcc);
+        System.assertEquals(0, actualMcc.size());
         Test.stopTest();
     }
     
@@ -89,34 +89,34 @@ private class MccServiceTest {
     static testMethod void getMccSelectOptionsForUser_Error() {
     	MccService service = new MccService();
     	List<Selectoption> actualMccSelectOptions = service.getMccSelectOptionsForUser('', 'pass', 'endpoint');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         actualMccSelectOptions = service.getMccSelectOptionsForUser('user', '', 'endpoint');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         actualMccSelectOptions = service.getMccSelectOptionsForUser(null, 'pass', 'endpoint');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         actualMccSelectOptions = service.getMccSelectOptionsForUser('user', null, 'endpoint');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', '');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', null);
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         
         Test.startTest();
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LitleErrorResponse(), null));
     	actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint');
-        System.assert(actualMccSelectOptions.isEmpty());
+        System.assertEquals(null, actualMccSelectOptions);
         Test.stopTest();
     }
     
     static testMethod void getMccSelectOptionsForUser_Invalid() {
     	MccService service = new MccService();
     	Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(true), null));
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), null));
         List<Selectoption>  actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint');
         System.assert(actualMccSelectOptions.isEmpty());
         Test.stopTest();
