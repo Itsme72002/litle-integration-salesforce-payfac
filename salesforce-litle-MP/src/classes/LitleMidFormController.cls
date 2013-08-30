@@ -39,12 +39,22 @@ public class LitleMidFormController {
     public LegalEntityModelService leModelService;
     public SubMerchantModelService smModelService;
     public HelpTextConstants helpTextConstant{get; set;}
+    public List<SelectOption> mccSelectList{get; set;}
+    public List < Selectoption > booleanOptions{get; set;}
+    private SalesForceSelectOptionsService salesforceSelectOptionService;
+    public MccService mccService;
     
     public LitleMidFormController(){
         kycService = new LitleKYCService();
+        salesforceSelectOptionService = new SalesForceSelectOptionsService();
+        booleanOptions = salesforceSelectOptionService.fetchAllBooleanOption();
         helpTextConstant = new HelpTextConstants();
         leResponseService = new LegalEntityResponseService();
+        mccService = new MccService();
+        mccSelectList = new List<Selectoption>();
+        mccSelectList.add(new Selectoption('', '-- Select Option --'));
         isOpportunityMappingPresent = false;
+        
         this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
         //check if litle mid is already present
@@ -102,6 +112,21 @@ public class LitleMidFormController {
             }
             legalEntityModel = leModelService.setLegalEntityModelFromMappingObject(legalEntityModel, savedMappings, selectedOpportunityId);
             subMerchantModel = smModelService.setSubMerchantModelFromMappingObject(subMerchantModel, savedMappings, selectedOpportunityId);
+        }
+        
+        //check username and password present
+        if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
+        	ApexPageUtil.addErrorMessage('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
+        }else{
+	        List<Selectoption> mccList = mccService.getMccSelectOptionsForUser(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c, 
+	        														LitleEnvironment.getEnvironmentUrl(savedMappings.litleEnvironment__c));
+	        if(mccList == null){
+	        	ApexPageUtil.addErrorMessage('Could not retrieve available Merchant Category Codes. Please contact Litle support.');
+	        }else{
+	        	for(Selectoption mccOption: mccList){
+	        		mccSelectList.add(mccOption);
+	        	}
+	        }
         }
     }
     

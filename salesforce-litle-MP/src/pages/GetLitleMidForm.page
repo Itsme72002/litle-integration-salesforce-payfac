@@ -82,7 +82,11 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Merchant Category Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" title="{!helpTextConstant.merchantCategoryCode}"/>
+                         <apex:selectList id="subMerchantMerchantCategoryCodeList" value="{!subMerchantModel.subMerchantMerchantCategoryCode}" 
+	                    	title="{!helpTextConstant.merchantCategoryCode}" size="1">
+	                        <apex:selectOptions value="{!mccSelectList}"></apex:selectOptions>
+	                    </apex:selectList>
+                        <!-- <apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" title="{!helpTextConstant.merchantCategoryCode}"/> -->
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -225,8 +229,9 @@ OTHER DEALINGS IN THE SOFTWARE.
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Create Connectivity Credentials" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantCreateCredentials}" id="subMerchantCreateCredentialsDefaultTxtBox" 
-                    	title="{!helpTextConstant.createCredential}"/>
+                     <apex:selectList id="subMerchantCreateCredentialsList" value="{!subMerchantModel.subMerchantCreateCredentials}" size="1" title="{!helpTextConstant.createCredential}">
+                        <apex:selectOptions value="{!booleanOptions}"></apex:selectOptions>
+                    </apex:selectList>
                 </apex:pageBlockSectionItem>
                 
             </apex:pageBlockSection>
@@ -454,8 +459,9 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Accepted Credit Cards in the Past" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!legalEntityModel.legalEntityHasAcceptedCreditCards}" 
-                        	title="{!helpTextConstant.hasAcceptedCreditCards}"/>
+                        <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!legalEntityModel.legalEntityHasAcceptedCreditCards}" size="1" title="{!helpTextConstant.hasAcceptedCreditCards}">
+	                        <apex:selectOptions value="{!booleanOptions}"></apex:selectOptions>
+	                    </apex:selectList>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 

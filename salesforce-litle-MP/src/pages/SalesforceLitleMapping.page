@@ -75,7 +75,8 @@
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
 
-                <apex:pageBlockSectionItem >
+                 
+                <!-- <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
                         <apex:outputText value="Merchant Category Code" />
                     </apex:pageBlockSectionItem>
@@ -89,7 +90,7 @@
                         <apex:inputText value="{!currentMappings.subMerchantMerchantCategoryCodeD__c}" title="{!helpTextConstant.merchantCategoryCode}"
                             id="subMerchantMerchantCategoryCodeDefaultTxtBox" disabled="{!currentMappings.subMerchantMerchantCategoryCodeX__c}" />
                     </apex:outputPanel>
-                </apex:pageBlockSectionItem>
+                </apex:pageBlockSectionItem>  -->
 
                 <apex:pageBlockSectionItem >
                     <apex:pageBlockSectionItem >
@@ -324,12 +325,16 @@
                     <apex:outputPanel >
                         <apex:selectList id="subMerchantCreateCredentialsList" value="{!currentMappings.subMerchantCreateCredentials__c}"
                             size="1" style="width:470px" title="{!helpTextConstant.createCredential}">
-                            <apex:selectOptions value="{!salesforceFields}" />
-                            <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultTxtBox"
+                            <apex:selectOptions value="{!salesforceBooleanFields}" />
+                            <apex:actionSupport event="onchange" rerender="subMerchantCreateCredentialsDefaultList"
                                 action="{!onSelectChangeSubMerchantCreateCredentials}" />
                         </apex:selectList>
-                        <apex:inputText value="{!currentMappings.subMerchantCreateCredentialsD__c}" id="subMerchantCreateCredentialsDefaultTxtBox"
-                            disabled="{!currentMappings.subMerchantCreateCredentialsX__c}" title="{!helpTextConstant.createCredential}"/>
+                        
+                        <apex:selectList id="subMerchantCreateCredentialsDefaultList" value="{!currentMappings.subMerchantCreateCredentialsD__c}"
+                        	size="1" title="{!helpTextConstant.createCredential}" disabled="{!currentMappings.subMerchantCreateCredentialsX__c}">
+                        	<apex:selectOptions value="{!booleanOptions}" />
+                        </apex:selectList>
+                        
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
@@ -587,12 +592,18 @@
                     <apex:outputPanel >
                         <apex:selectList id="legalEntityHasAcceptedCreditCardsList" value="{!currentMappings.legalEntityHasAcceptedCreditCards__c}"
                             size="1" style="width:470px" title="{!helpTextConstant.hasAcceptedCreditCards}">
-                            <apex:selectOptions value="{!salesforceFields}" />
+                            <apex:selectOptions value="{!salesforceBooleanFields}" />
                             <apex:actionSupport event="onchange"
-                                action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultTxtBox" />
+                                action="{!onSelectChangeLegalEntityHasAcceptedCreditCards}" rerender="legalEntityHasAcceptedCreditCardsDefaultList" />
                         </apex:selectList>
-                        <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!currentMappings.legalEntityHasAcceptedCreditCardsD__c}"
-                            disabled="{!currentMappings.legalEntityHasAcceptedCreditCardsX__c}" title="{!helpTextConstant.hasAcceptedCreditCards}"/>
+                        
+                        <apex:selectList id="legalEntityHasAcceptedCreditCardsDefaultList" value="{!currentMappings.legalEntityHasAcceptedCreditCardsD__c}"
+                        	size="1" title="{!helpTextConstant.createCredential}" disabled="{!currentMappings.legalEntityHasAcceptedCreditCardsX__c}">
+                        	<apex:selectOptions value="{!booleanOptions}" />
+                        </apex:selectList>
+                        
+                        <!-- <apex:inputText id="legalEntityHasAcceptedCreditCardsDefaultTxtBox" value="{!currentMappings.legalEntityHasAcceptedCreditCardsD__c}"
+                            disabled="{!currentMappings.legalEntityHasAcceptedCreditCardsX__c}" title="{!helpTextConstant.hasAcceptedCreditCards}"/> -->
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>

@@ -239,10 +239,58 @@ private class LitleFormControllerTest {
     	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
     	LitleMidFormController litleMidFormController = new LitleMidFormController();
     	System.assertEquals(account.id, litleMidFormController.urlAccountId);
+    	System.assertEquals('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.', Apexpages.getMessages().get(0).getSummary());
     	// bad opp id
     	ApexPages.currentPage().getParameters().put('oppid','123');
     	litleMidFormController = new LitleMidFormController();
     	System.assertEquals(null, litleMidFormController.urlAccountId);
+    	System.assertEquals(1, Apexpages.getMessages().size());
+    	System.assertEquals('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.', Apexpages.getMessages().get(0).getSummary());
+    }
+    
+    static testMethod void testConstructor_SucessMcc(){
+    	Account account = new Account(name=ACCOUNT_NAME);
+    	insert account;
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	mappingObject.merchantUsername__c = DEFAULT_STRING;
+    	mappingObject.merchantPassword__c = DEFAULT_STRING;
+    	mappingObject.litleEnvironment__c = 'CERT';
+    	insert mappingObject;
+    	Test.startTest();
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new MccSuccessResponse(), null));
+    	LitleMidFormController litleMidFormController = new LitleMidFormController();
+    	List<Selectoption> expectedMccSelectOptions = new List<Selectoption>();
+    	expectedMccSelectOptions.add(new Selectoption('', '-- Select Option --'));
+    	expectedMccSelectOptions.add(new Selectoption('5960', '5960'));
+    	expectedMccSelectOptions.add(new Selectoption('5964', '5964'));
+    	expectedMccSelectOptions.add(new Selectoption('5965', '5965'));
+    	expectedMccSelectOptions.add(new Selectoption('8220','8220'));
+    	System.assertEquals(account.id, litleMidFormController.urlAccountId);
+    	System.assertEquals(0, Apexpages.getMessages().size());
+    	System.assertEquals(litleMidFormController.mccSelectList, expectedMccSelectOptions);
+    	Test.stopTest();
+    }
+
+    static testMethod void testConstructor_ErrorMcc(){
+    	Account account = new Account(name=ACCOUNT_NAME);
+    	insert account;
+    	ApexPages.currentPage().getParameters().put('accid',account.Id);
+    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+    	// insert username and password
+    	mappingObject.merchantUsername__c = DEFAULT_STRING;
+    	mappingObject.merchantPassword__c = DEFAULT_STRING;
+    	mappingObject.litleEnvironment__c = 'CERT';
+    	insert mappingObject;
+    	List<Selectoption> expectedMccSelectOptions = new List<Selectoption>();
+    	expectedMccSelectOptions.add(new Selectoption('', '-- Select Option --'));
+    	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LitleErrorResponse(), null));
+    	LitleMidFormController litleMidFormController = new LitleMidFormController();
+    	System.assertEquals(account.id, litleMidFormController.urlAccountId);
+    	System.assertEquals(1, Apexpages.getMessages().size());
+    	System.assertEquals('Could not retrieve available Merchant Category Codes. Please contact Litle support.', Apexpages.getMessages().get(0).getSummary());
+    	System.assertEquals(expectedMccSelectOptions, litleMidFormController.mccSelectList);
     }
     
     static testMethod void testSubmitInvalidEntriesNoValueSavedInAccount(){
@@ -437,6 +485,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -522,6 +571,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('You are not authorized to access this resource. Please check your credentials.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -607,6 +657,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -692,6 +743,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('You are not authorized to access this resource. Please check your credentials.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){
@@ -775,6 +827,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(true), null));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
@@ -856,6 +909,7 @@ private class LitleFormControllerTest {
 		Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityManualReviewResponse(true), null));
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('Your request is under Manual Review. The status shall be updated within 2 business days.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
@@ -1008,8 +1062,9 @@ private class LitleFormControllerTest {
 		response.setBody(body);
 		//System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', controller.generateResponseDescForErrorResponse(response));
 		controller.generateErrorMessages(response);
-		System.assertEquals(1, Apexpages.getMessages().size());
-		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(0).getSummary());
+		System.assertEquals(2, Apexpages.getMessages().size());
+		System.assertEquals('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.', Apexpages.getMessages().get(0).getSummary());
+		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(1).getSummary());
 		
 		// multiple error response
 		String errors = '<error>Error of [may not be null] on [annualCreditCardSalesVolume]</error>'+
@@ -1034,9 +1089,10 @@ private class LitleFormControllerTest {
 		response.setBody(body);
 		
 		controller.generateErrorMessages(response);
-		System.assertEquals(12, Apexpages.getMessages().size());
-		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(0).getSummary());
-		System.assertEquals('Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]', Apexpages.getMessages().get(11).getSummary());
+		System.assertEquals(13, Apexpages.getMessages().size());
+		System.assertEquals('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.', Apexpages.getMessages().get(0).getSummary());
+		System.assertEquals('Error of [may not be null] on [annualCreditCardSalesVolume]', Apexpages.getMessages().get(1).getSummary());
+		System.assertEquals('Error of [size must be between 1 and 60] on [addressUpdatable.streetAddress2]', Apexpages.getMessages().get(12).getSummary());
     	
     }
     
@@ -1259,6 +1315,7 @@ private class LitleFormControllerTest {
 		litleMidFormController.submit();
 		List<String> expectedMessagesList = new List<String>();
 		//expectedMessagesList.add('Litle Mid has been generated successfully. It will appear on the Litle MID field.');
+		expectedMessagesList.add('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
 		expectedMessagesList.add('Your KYC Information has been successfully recorded. You can view it by clicking on the \'Litle KYC Information\' button.');
 		List<String> actualMessageList = new List<String>();
 		for(Apexpages.Message message: Apexpages.getMessages()){

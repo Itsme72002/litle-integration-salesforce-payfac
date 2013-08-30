@@ -26,7 +26,7 @@ private class SalesforceLitleMappingControllerTest {
 	// Test salesforce fields
     static testMethod void testSalesforceFields() {
         SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-        System.assert(salesforceLitleMappingController.getSalesforceFields().size()!= 0);
+        System.assert(salesforceLitleMappingController.salesforceFields.size()!= 0);
     }
 
 	static testMethod void testOnSelectChangeLegalEntityName(){
@@ -47,24 +47,6 @@ private class SalesforceLitleMappingControllerTest {
 	 }
 	 
 	 
-	 static testMethod void testOnSelectChangeLegalEntityType(){
-	 	SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
-	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
-	 	// check initial value
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityType__c, null);
-	 	// test if textbox is disabled when something is selected in the select options
-	 	salesforceLitleMappingController.currentMappings.legalEntityType__c = testString;
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityType__c, testString);
-	 	salesforceLitleMappingController.onSelectChangeLegalEntityType();
-	 	System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTypeX__c, true);
-		// test if textbox is enabled when nothing is selected in the select options
-		salesforceLitleMappingController.currentMappings.legalEntityType__c = null;
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityType__c, null);
-		salesforceLitleMappingController.onSelectChangeLegalEntityType();
-		System.assertEquals(salesforceLitleMappingController.currentMappings.legalEntityTypeX__c, false);
-	 	
-	}
-	
 	static testMethod void testOnSelectChangeLegalEntityDoingBusiness(){
 	 	SalesforceLitleMappingController salesforceLitleMappingController = new SalesforceLitleMappingController();
 	 	salesforceLitleMappingController.currentMappings = new SalesforceLitleMappingsObject__c();
