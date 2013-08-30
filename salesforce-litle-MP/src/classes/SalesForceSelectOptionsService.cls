@@ -24,7 +24,8 @@ public class SalesForceSelectOptionsService {
             DescribeFieldResult selectedField = fieldToken.getDescribe();
             allFields.add(new Selectoption('Opportunity.' + selectedField.getName(),
             								 'Opportunity.' + selectedField.getLabel()));
-		}	
+		}
+		allFields.sort();	
 		return allFields;
     }
     
@@ -57,6 +58,7 @@ public class SalesForceSelectOptionsService {
             	booleanFields.add(new Selectoption('Opportunity.' + selectedField.getName(), 'Opportunity.' + selectedField.getLabel()));
             }
 		}	
+		booleanFields.sort();
 		return booleanFields;
     }
     
