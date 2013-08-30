@@ -313,6 +313,8 @@ public class LitleMidFormController {
     }
     
     public Boolean isInputDataValid(){
+    	System.debug('!legal entity ' + leModelService.isLegalEntityValid(legalEntityModel, true));
+    	System.debug('!sub merchant ' + smModelService.isSubMerchantModelValid(subMerchantModel, true));
         return (leModelService.isLegalEntityValid(legalEntityModel, true) & 
                         smModelService.isSubMerchantModelValid(subMerchantModel, true));
     }

@@ -30,6 +30,15 @@ private class ValidationUtilTest {
         System.assertEquals(ValidationUtil.validateString(null, 2), false);
     }
     
+    static testMethod void testValidateStringWithinLimits() {
+    	String testString = 'test';
+        System.assertEquals(ValidationUtil.validateStringWithinLimits(testString, 1, 10), true);
+        System.assertEquals(ValidationUtil.validateStringWithinLimits(testString, 10, 12), false);
+        System.assertEquals(ValidationUtil.validateStringWithinLimits(testString, 1, 3), false);
+        System.assertEquals(ValidationUtil.validateStringWithinLimits('', 2, 10), false);
+        System.assertEquals(ValidationUtil.validateStringWithinLimits(null, 2, 10), false);
+    }
+    
     static testMethod void testValidateDate(){
     	System.assertEquals(ValidationUtil.validateDate('20123-06-07'), false);
     	System.assertEquals(ValidationUtil.validateDate('2013-06-07'), true);

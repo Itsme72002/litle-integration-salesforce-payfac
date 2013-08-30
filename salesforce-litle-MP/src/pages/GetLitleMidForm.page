@@ -62,7 +62,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="PayFac Sub-Merchant ID" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" title="{!helpTextConstant.pspMerchantId}"/>
+                        <apex:inputText maxlength="32" value="{!subMerchantModel.subMerchantPspMerchantId}" id="subMerchantPspMerchantIdDefaultTxtBox" title="{!helpTextConstant.pspMerchantId}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -72,7 +72,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Merchant Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" title="{!helpTextConstant.merchantname}" />
+                        <apex:inputText maxlength="50" value="{!subMerchantModel.subMerchantMerchantName}" id="subMerchantMerchantNameDefaultTxtBox" title="{!helpTextConstant.merchantname}" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -86,7 +86,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 	                    	title="{!helpTextConstant.merchantCategoryCode}" size="1">
 	                        <apex:selectOptions value="{!mccSelectList}"></apex:selectOptions>
 	                    </apex:selectList>
-                        <!-- <apex:inputText value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" title="{!helpTextConstant.merchantCategoryCode}"/> -->
+                        <!-- <apex:inputText maxlength="" value="{!subMerchantModel.subMerchantMerchantCategoryCode}" id="subMerchantMerchantCategoryCodeDefaultTxtBox" title="{!helpTextConstant.merchantCategoryCode}"/> -->
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
                 
@@ -97,7 +97,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Default Billing Descriptor" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}"
+                        <apex:inputText maxlength="25" value="{!subMerchantModel.subMerchantHardCodeBillingDescriptor}"
                             id="subMerchantHardCodeBillingDescriptorDefaultTxtBox" title="{!helpTextConstant.hardCodedBillingDescriptor}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -108,7 +108,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Customer Service Number" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantCustomerServiceNumber}" title="{!helpTextConstant.customerServiceNumber}"
+                        <apex:inputText maxlength="10" value="{!subMerchantModel.subMerchantCustomerServiceNumber}" title="{!helpTextConstant.customerServiceNumber}"
                         	id="subMerchantCustomerServiceNumberDefaultTxtBox" />
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -117,21 +117,21 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="URL" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantUrl}" id="subMerchantUrlDefaultTxtBox" title="{!helpTextConstant.url}"/>
+                    <apex:inputText maxlength="120" value="{!subMerchantModel.subMerchantUrl}" id="subMerchantUrlDefaultTxtBox" title="{!helpTextConstant.url}"/>
                 </apex:pageBlockSectionItem>
                 
                 
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Amex Merchant ID" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAmexMid}" id="subMerchantAmexMidDefaultTxtBox" title="{!helpTextConstant.amexMid}"/>
+                    <apex:inputText maxlength="11" value="{!subMerchantModel.subMerchantAmexMid}" id="subMerchantAmexMidDefaultTxtBox" title="{!helpTextConstant.amexMid}"/>
                 </apex:pageBlockSectionItem>
                 
                 
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Discover Merchant ID" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantDiscoverConveyMid}" title="{!helpTextConstant.discoverConveyedMid}"
+                    <apex:inputText maxlength="15" value="{!subMerchantModel.subMerchantDiscoverConveyMid}" title="{!helpTextConstant.discoverConveyedMid}"
                     	id="subMerchantDiscoverConveyMidDefaultTxtBox" />
                 </apex:pageBlockSectionItem>
                 
@@ -140,7 +140,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="eCheck Billing Descriptor" />
-                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckBillingDescriptor}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox" 
+                    <apex:inputText maxlength="10" value="{!subMerchantModel.subMerchanteCheckBillingDescriptor}" id="subMerchanteCheckBillingDescriptorDefaultTxtBox" 
                     	title="{!helpTextConstant.echeckBillingDescriptorId}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -148,7 +148,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="eCheck Company Name" />
-                    <apex:inputText value="{!subMerchantModel.subMerchanteCheckCompanyName}" id="subMerchanteCheckCompanyNameDefaultTxtBox" 
+                    <apex:inputText maxlength="16" value="{!subMerchantModel.subMerchanteCheckCompanyName}" id="subMerchanteCheckCompanyNameDefaultTxtBox" 
                     	title="{!helpTextConstant.echeckCompanyNameId}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -158,7 +158,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Max Transaction Amount" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" 
+                        <apex:inputText maxlength="23" value="{!subMerchantModel.subMerchantMaxTransactionAmount}" id="subMerchantMaxTransactionAmountDefaultTxtBox" 
                         	title="{!helpTextConstant.maxTransactionAmount}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -170,7 +170,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Street Address 1" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" 
+                        <apex:inputText maxlength="60" value="{!subMerchantModel.subMerchantAddress.StreetAddress1}" id="subMerchantStreetAddress1DefaultTxtBox" 
                         	title="{!helpTextConstant.subMerchantStreetAddress1}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -179,7 +179,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Street Address 2" />
-                    <apex:inputText value="{!subMerchantModel.subMerchantAddress.StreetAddress2}" id="subMerchantStreetAddress2DefaultTxtBox" 
+                    <apex:inputText maxlength="60" value="{!subMerchantModel.subMerchantAddress.StreetAddress2}" id="subMerchantStreetAddress2DefaultTxtBox" 
                     	title="{!helpTextConstant.subMerchantStreetAddress2}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -188,7 +188,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="City" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" 
+                        <apex:inputText maxlength="20" value="{!subMerchantModel.subMerchantAddress.City}" id="subMerchantCityDefaultTxtBox" 
                         	title="{!helpTextConstant.subMerchantCity}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -199,7 +199,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="State/Province" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" 
+                        <apex:inputText maxlength="2" value="{!subMerchantModel.subMerchantAddress.StateProvince}" id="subMerchantStateProvinceDefaultTxtBox" 
                         	title="{!helpTextConstant.subMerchantStateProvince}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -210,7 +210,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Postal Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" 
+                        <apex:inputText maxlength="5" value="{!subMerchantModel.subMerchantAddress.PostalCode}" id="subMerchantPostalCodeDefaultTxtBox" 
                         	title="{!helpTextConstant.subMerchantPostalCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -220,7 +220,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Country Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantAddress.CountryCode}" id="subMerchantCountryCodeDefaultTxtBox" 
+                        <apex:inputText maxlength="3" value="{!subMerchantModel.subMerchantAddress.CountryCode}" id="subMerchantCountryCodeDefaultTxtBox" 
                         	title="{!helpTextConstant.subMerchantCountryCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -245,7 +245,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Routing Number" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" 
+                        <apex:inputText maxlength="50" value="{!subMerchantModel.subMerchantBankRoutingNumber}" id="subMerchantBankRoutingNumberDefaultTxtBox" 
                         	title="{!helpTextConstant.bankRoutingNumber}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -256,7 +256,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Account Number" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" 
+                        <apex:inputText maxlength="50" value="{!subMerchantModel.subMerchantBankAccountNumber}" id="subMerchantBankAccountNumberDefaultTxtBox" 
                         	title="{!helpTextConstant.bankAccountNumber}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -274,7 +274,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="EIN/Tax ID" />
                     <apex:outputPanel styleClass="requiredInput" layout="block" id="taxInput">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" 
+                        <apex:inputText maxlength="9" id="legalEntityTaxIdDefaultTxtBox" value="{!legalEntityModel.legalEntityTaxId}" 
                         	title="{!helpTextConstant.taxId}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -284,7 +284,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
-                        <apex:inputText id="legalEntityNameDefaultTxtBox" value="{!legalEntityModel.legalEntityName}" 
+                        <apex:inputText maxlength="60" id="legalEntityNameDefaultTxtBox" value="{!legalEntityModel.legalEntityName}" 
                         	title="{!helpTextConstant.legalEntityName}"/>
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
                     </apex:outputPanel>
@@ -367,7 +367,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Doing Business As" />
-                    <apex:inputText id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!legalEntityModel.legalEntityDoingBusinessAs}" 
+                    <apex:inputText maxlength="60" id="legalEntityDoingBusinessAsDefaultTxtBox" value="{!legalEntityModel.legalEntityDoingBusinessAs}" 
                     	title="{!helpTextConstant.doingBusinessAs}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -376,7 +376,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Contact Phone" />
-                    <apex:inputText id="legalEntityContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityContactPhone}" 
+                    <apex:inputText maxlength="10" id="legalEntityContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityContactPhone}" 
                     	title="{!helpTextConstant.legalEntityContactPhone}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -386,7 +386,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Street Address 1" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress1}"
+                        <apex:inputText maxlength="60" id="legalEntityStreetAddress1DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress1}"
                              title="{!helpTextConstant.legalEntityStreetAddress1}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -396,7 +396,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Street Address 2" />
-                    <apex:inputText id="legalEntityStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress2}" 
+                    <apex:inputText maxlength="60" id="legalEntityStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StreetAddress2}" 
                     	title="{!helpTextConstant.legalEntityStreetAddress2}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -405,7 +405,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="City" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityCityDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.City}" 
+                        <apex:inputText maxlength="20" id="legalEntityCityDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.City}" 
                         	title="{!helpTextConstant.legalEntityCity}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -416,7 +416,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="State/Province" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StateProvince}" 
+                        <apex:inputText maxlength="2" id="legalEntityStateProvinceDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.StateProvince}" 
                         	title="{!helpTextConstant.legalEntityStateProvince}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -426,7 +426,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Postal Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.PostalCode}" 
+                        <apex:inputText maxlength="5" id="legalEntityPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.PostalCode}" 
                         	title="{!helpTextConstant.legalEntityPostalCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -437,7 +437,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Country Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.CountryCode}" 
+                        <apex:inputText maxlength="3" id="legalEntityCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityAddress.CountryCode}" 
                         	title="{!helpTextConstant.legalEntityCountryCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -448,7 +448,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Annual Credit Card Sales Volume" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" value="{!legalEntityModel.legalEntityAnnualCreditCardSalesVolume}" 
+                        <apex:inputText maxlength="23" id="legalEntityAnnualCreditCardSalesVolumeDefaultTxtBox" value="{!legalEntityModel.legalEntityAnnualCreditCardSalesVolume}" 
                         	title="{!helpTextConstant.annualCreditCardSalesVolume}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -476,7 +476,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="First Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.FirstName}" 
+                        <apex:inputText maxlength="20" id="legalEntityPrincipalFirstNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.FirstName}" 
                         	title="{!helpTextConstant.principalFirstName}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -487,7 +487,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Last Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.LastName}" 
+                        <apex:inputText maxlength="20" id="legalEntityPrincipalLastNameDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.LastName}" 
                         	title="{!helpTextConstant.principalLastName}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -498,7 +498,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="SSN" />
                     <apex:outputPanel styleClass="requiredInput" layout="block" id="ssnInput">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalSsnDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.Ssn}" 
+                        <apex:inputText maxlength="9" id="legalEntityPrincipalSsnDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.Ssn}" 
                         	title="{!helpTextConstant.ssn}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -515,7 +515,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Email Address" />
-                    <apex:inputText id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.EmailAddress}" 
+                    <apex:inputText maxlength="100" id="legalEntityPrincipalEmailAddressDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.EmailAddress}" 
                     	title="{!helpTextConstant.principalEmailAddress}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -524,7 +524,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Contact Phone" />
-                    <apex:inputText id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.ContactPhone}" 
+                    <apex:inputText maxlength="10" id="legalEntityPrincipalContactPhoneDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.ContactPhone}" 
                     	title="{!helpTextConstant.principalContactPhone}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -532,7 +532,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Drivers License" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicense}" 
+                    <apex:inputText maxlength="25" id="legalEntityPrincipalDriversLicenseDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicense}" 
                     	title="{!helpTextConstant.principalDriversLicense}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -540,7 +540,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Drivers License State" />
-                    <apex:inputText id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicenseState}" 
+                    <apex:inputText maxlength="2" id="legalEntityPrincipalDriversLicenseStateDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.DriversLicenseState}" 
                     	title="{!helpTextConstant.principalDriversLicenseState}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -550,7 +550,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Street Address 1" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalStreetAddress1DefaultTxtBox"
+                        <apex:inputText maxlength="60" id="legalEntityPrincipalStreetAddress1DefaultTxtBox"
                             value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress1}" title="{!helpTextConstant.principalStreetAddress1}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -559,7 +559,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
                 <apex:pageBlockSectionItem >
                     <apex:outputText value="Street Address 2" />
-                    <apex:inputText id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress2}" 
+                    <apex:inputText maxlength="60" id="legalEntityPrincipalStreetAddress2DefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.StreetAddress2}" 
                     	title="{!helpTextConstant.principalStreetAddress2}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -569,7 +569,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="City" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalCityDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.City}" 
+                        <apex:inputText maxlength="20" id="legalEntityPrincipalCityDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.City}" 
                         	title="{!helpTextConstant.principalCity}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -580,7 +580,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="State/Province" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalStateProvinceDefaultTxtBox"
+                        <apex:inputText maxlength="2" id="legalEntityPrincipalStateProvinceDefaultTxtBox"
                             value="{!legalEntityModel.legalEntityPrincipal.address.StateProvince}" title="{!helpTextConstant.principalStateProvince}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -591,7 +591,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Postal Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.PostalCode}" 
+                        <apex:inputText maxlength="5" id="legalEntityPrincipalPostalCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.PostalCode}" 
                         	title="{!helpTextConstant.principalPostalCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -602,7 +602,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Country Code" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.CountryCode}" 
+                        <apex:inputText maxlength="3" id="legalEntityPrincipalCountryCodeDefaultTxtBox" value="{!legalEntityModel.legalEntityPrincipal.address.CountryCode}" 
                         	title="{!helpTextConstant.principalCountryCode}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -617,7 +617,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="First Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" 
+                        <apex:inputText maxlength="20" value="{!subMerchantModel.subMerchantPrimaryContact.FirstName}" id="subMerchantFirstNameDefaultTxtBox" 
                         	title="{!helpTextConstant.primaryContactFirstName}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -628,7 +628,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Last Name" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" 
+                        <apex:inputText maxlength="20" value="{!subMerchantModel.subMerchantPrimaryContact.LastName}" id="subMerchantLastNameDefaultTxtBox" 
                         	title="{!helpTextConstant.primaryContactLastName}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -639,7 +639,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Email Address" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}"
+                        <apex:inputText maxlength="100" value="{!subMerchantModel.subMerchantPrimaryContact.EmailAddress}"
                             id="subMerchantEmailAddressDefaultTxtBox" title="{!helpTextConstant.primaryContactEmailAddress}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>
@@ -650,7 +650,7 @@ OTHER DEALINGS IN THE SOFTWARE.
                     <apex:outputText value="Phone" />
                     <apex:outputPanel styleClass="requiredInput" layout="block">
                         <apex:outputPanel styleClass="requiredBlock" layout="block" />
-                        <apex:inputText value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" 
+                        <apex:inputText maxlength="13" value="{!subMerchantModel.subMerchantPrimaryContact.Phone}" id="subMerchantPhoneDefaultTxtBox" 
                         	title="{!helpTextConstant.primaryContactPhone}"/>
                     </apex:outputPanel>
                 </apex:pageBlockSectionItem>

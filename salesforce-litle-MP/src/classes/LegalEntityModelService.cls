@@ -410,10 +410,11 @@ public class LegalEntityModelService {
         }
         
         if(String.isNotEmpty(legalEntityModel.getLegalEntityContactPhone())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityContactPhone(), 10)){
+            if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityContactPhone())
+            || legalEntityModel.getLegalEntityContactPhone().length() != 10){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Legal Entity\'s Contact Phone cannot exceed 10 characters');
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Contact Phone must be 10 digits');
            		}
             }
         }
@@ -443,10 +444,11 @@ public class LegalEntityModelService {
             }
         }
         if(String.isNotEmpty(legalEntityModel.getLegalEntityAddress().getPostalCode())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityAddress().getPostalCode(), 5)){
+        	if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAddress().getPostalCode()) 
+            		|| legalEntityModel.getLegalEntityAddress().getPostalCode().length() != 5){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Legal Entity\'s Postal Code cannot exceed 5 characters');
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Postal Code must be 5 digits');
             	}
             }
         }
@@ -455,6 +457,57 @@ public class LegalEntityModelService {
                 isInputValid = false;
                 if(showErrorMessageOnPage){
 					ApexPageUtil.addErrorMessage('Legal Entity\'s Country Code cannot exceed 3 characters');
+            	}
+            }
+        }
+        
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress1(), 60)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s Street Address 1 cannot exceed 60 characters');
+            	}
+            }
+        }
+        
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getAddress().getStreetAddress2(), 60)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s Street Address 2 cannot exceed 60 characters');
+            	}
+            }
+        }
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getCity())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getAddress().getCity(), 20)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s City cannot exceed 20 characters');
+            	}
+            }
+        }
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getAddress().getStateProvince(), 2)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s State/Province cannot exceed 2 characters');
+            	}
+            }
+        }
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode())){
+        	if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode()) 
+            		|| legalEntityModel.getLegalEntityPrincipal().getAddress().getPostalCode().length() != 5){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s Postal Code must be 5 digits');
+            	}
+            }
+        }
+        if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode())){
+            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getAddress().getCountryCode(), 3)){
+                isInputValid = false;
+                if(showErrorMessageOnPage){
+					ApexPageUtil.addErrorMessage('Company Representative\'s Country Code cannot exceed 3 characters');
             	}
             }
         }
@@ -483,10 +536,11 @@ public class LegalEntityModelService {
             }
         }
         if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getContactPhone())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getContactPhone(), 10)){
+            if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityPrincipal().getContactPhone())
+            || legalEntityModel.getLegalEntityPrincipal().getContactPhone().length() != 10){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Company Representative\'s Contact Phone cannot exceed 10 characters');
+					ApexPageUtil.addErrorMessage('Company Representative\'s Contact Phone must be 10 digits');
            		}
             }
         }
@@ -517,10 +571,11 @@ public class LegalEntityModelService {
             }
         }
         if(String.isNotEmpty(legalEntityModel.getLegalEntityPrincipal().getSsn())){
-            if(!ValidationUtil.validateString(legalEntityModel.getLegalEntityPrincipal().getSsn(), 9)){
+            if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityPrincipal().getSsn())
+            || legalEntityModel.getLegalEntityPrincipal().getSsn().length() != 9){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Company Representative\'s SSN cannot exceed 9 characters');
+					ApexPageUtil.addErrorMessage('Company Representative\'s SSN must be 9 digits');
             	}
             }
         }
@@ -534,10 +589,11 @@ public class LegalEntityModelService {
         }
         
 		if(String.isNotEmpty(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
-            if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())){
+            if(!ValidationUtil.validateInteger(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume())
+            || !ValidationUtil.validateString(legalEntityModel.getLegalEntityAnnualCreditCardSalesVolume(), 23)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Legal Entity\'s Annual Credit Card Sales Volume should be integer');
+					ApexPageUtil.addErrorMessage('Legal Entity\'s Annual Credit Card Sales Volume cannot exceed 23 digits');
             	}
             }
         }

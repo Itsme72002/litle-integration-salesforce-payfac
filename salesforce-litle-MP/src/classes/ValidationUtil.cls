@@ -34,6 +34,18 @@ public class ValidationUtil {
 	}
 	
 	/**
+	 * Validates given input String if its length is within the given 
+	 * minLength and maxLength
+	 */
+	public static Boolean validateStringWithinLimits(String input, Integer minLength, Integer maxLength){
+		if(String.isNotEmpty(input)){
+			return (input.length() >= minLength && input.length() <= maxLength);
+		}else{
+			return false;
+		}
+	}
+	
+	/**
 	 * Validates given input Date for the pattern yyyy-mm-dd 
 	 */
 	public static Boolean validateDate(String input){
@@ -74,12 +86,7 @@ public class ValidationUtil {
 	 */
 	public static Boolean validateInteger(String input){
 		if(String.isNotEmpty(input)){
-			try{
-				Integer myInt = integer.valueOf(input);
-				return true;
-			}catch(TypeException e){
-				return false;
-			}
+			return Pattern.matches('\\A[0-9]+\\Z', input);
 		}else{
 			return false;
 		}

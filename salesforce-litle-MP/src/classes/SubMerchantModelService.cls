@@ -448,10 +448,11 @@ public class SubMerchantModelService {
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantAddress().getPostalCode())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAddress().getPostalCode(), 5)){
+            if(!ValidationUtil.validateInteger(subMerchantModel.getSubMerchantAddress().getPostalCode()) 
+            		|| subMerchantModel.getSubMerchantAddress().getPostalCode().length() != 5){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Postal Code cannot exceed 5 characters');
+					ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Postal Code must be 5 digits');
                 }
             }
         }
@@ -466,10 +467,10 @@ public class SubMerchantModelService {
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantAmexMid())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantAmexMid(), 15)){
+            if(!ValidationUtil.validateStringWithinLimits(subMerchantModel.getSubMerchantAmexMid(), 10, 11)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Amex Merchant ID cannot exceed 15 characters');
+					ApexPageUtil.addErrorMessage('Payment Processing Configuration\'s Amex Merchant ID must be 10-11 characters');
                 }
             }
         }
@@ -502,7 +503,8 @@ public class SubMerchantModelService {
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantCustomerServiceNumber())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
+            if(!ValidationUtil.validateInteger(subMerchantModel.getSubMerchantCustomerServiceNumber())
+            || !ValidationUtil.validateString(subMerchantModel.getSubMerchantCustomerServiceNumber(), 13)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
 					ApexPageUtil.addErrorMessage('Customer Service Number cannot exceed 13 characters');
@@ -511,28 +513,29 @@ public class SubMerchantModelService {
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantDiscoverConveyMid())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantDiscoverConveyMid(), 15)){
+            if(String.isEmpty(subMerchantModel.getSubMerchantDiscoverConveyMid()) || subMerchantModel.getSubMerchantDiscoverConveyMid().length() != 15){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Discover Merchant ID cannot exceed 15 characters');
+					ApexPageUtil.addErrorMessage('Discover Merchant ID must be 15 characters');
                 }
             }
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantHardCodeBillingDescriptor())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 25)){
+            if(!ValidationUtil.validateStringWithinLimits(subMerchantModel.getSubMerchantHardCodeBillingDescriptor(), 4, 25)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Default Billing Descriptor cannot exceed 25 characters');
+					ApexPageUtil.addErrorMessage('Default Billing Descriptor must be 4-25 characters');
                 }
             }
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantMaxTransactionAmount())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 19)){
+            if(!ValidationUtil.validateInteger(subMerchantModel.getSubMerchantMaxTransactionAmount())
+            ||!ValidationUtil.validateString(subMerchantModel.getSubMerchantMaxTransactionAmount(), 23)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Max Transaction Amount cannot exceed 19 characters');
+					ApexPageUtil.addErrorMessage('Max Transaction Amount cannot exceed 23 digits');
                 }
             }
         }
@@ -583,10 +586,11 @@ public class SubMerchantModelService {
         }
 
         if(String.isNotEmpty(subMerchantModel.getSubMerchantPrimaryContact().getPhone())){
-            if(!ValidationUtil.validateString(subMerchantModel.getSubMerchantPrimaryContact().getPhone(), 13)){
+            if(!ValidationUtil.validateInteger(subMerchantModel.getSubMerchantPrimaryContact().getPhone())
+            || !ValidationUtil.validateStringWithinLimits(subMerchantModel.getSubMerchantPrimaryContact().getPhone(), 10, 13)){
                 isInputValid = false;
                 if(showErrorMessageOnPage){
-					ApexPageUtil.addErrorMessage('Primary Contact\'s Phone cannot exceed 13 characters');
+					ApexPageUtil.addErrorMessage('Primary Contact\'s Phone must be 10-13 digits');
                 }
             }
         }

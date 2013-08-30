@@ -60,7 +60,7 @@ public class HelpTextConstants {
 	public static final String SSN = 'The social security number of the principal owner/officer for the legal entity. Only required when legal entity type is \'Individual/Sole Proprietorship\'. Must be 9 digits.';
 	public static final String PRINCIPAL_DATE_OF_BIRTH = 'The date of birth of the principal owner/officer for the legal entity (mm/dd/yyyy).';
 	public static final String PRINCIPAL_EMAIL_ADDRESS = 'The email address of the principal owner/officer for the legal entity. Max. length 100 characters.';
-	public static final String PRINCIPAL_CONTACT_PHONE = 'The contact phone of the principal owner/officer for the legal entity, without hyphens. Max. length 60 characters.';
+	public static final String PRINCIPAL_CONTACT_PHONE = 'The contact phone of the principal owner/officer for the legal entity, without hyphens. Max. length 10 characters.';
 	public static final String PRINCIPAL_DRIVERS_LICENSE = 'The driver\'s license number of the Legal Entity principal owner/officer. Max. length  25 characters.';
 	public static final String PRINCIPAL_DRIVERS_LICENSE_STATE = 'The state that issued the driver\'s license of the Legal Entity principal owner/officer.';
 	public static final String PRINCIPAL_STREET_ADDRESS1 = 'The street address of the principal owner/officer for the legal entity. Only required when legal entity type is \'Individual/Sole Proprietorship\'. Max. length 60 characters';
