@@ -702,48 +702,6 @@ private class SubMerchantModelServiceTest {
     	delete mappingObject;
     }
     
-    static testMethod void testPopulateSMMerchantCategoryCode(){
-    	Account account = new Account(name=ACCOUNT_NAME);
-    	insert account;
-    	ApexPages.currentPage().getParameters().put('accid',account.Id);
-    	SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = true;
-    	mappingObject.subMerchantMerchantCategoryCode__c = 'Account.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	SubMerchantModelService service = new SubMerchantModelService(account.Id, null);
-    	System.assertEquals(ACCOUNT_NAME, service.setSubMerchantModelFromMappingObject(new SubMerchantModel(), mappingObject, null).getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    	// check default textbox value
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = false;
-    	mappingObject.subMerchantMerchantCategoryCodeD__c = DEFAULT_STRING;
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	service = new SubMerchantModelService(account.Id, null);
-    	System.assertEquals(DEFAULT_STRING, service.setSubMerchantModelFromMappingObject(new SubMerchantModel(), mappingObject, null).getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    	//Check opportunity mapping value
-    	Opportunity opportunity = new Opportunity(name=OPPORTUNITY_NAME, stageName=DEFAULT_STRING, CloseDate=DEFAULT_DATE);
-    	insert opportunity;
-    	ApexPages.currentPage().getParameters().put('oppid',opportunity.Id);
-    	mappingObject = new SalesforceLitleMappingsObject__c();
-    	// check account mapping value
-    	mappingObject.subMerchantMerchantCategoryCodeX__c = true;
-    	mappingObject.subMerchantMerchantCategoryCode__c = 'Opportunity.Name';
-    	mappingObject.litleEnvironment__c = 'CERT';
-		insert mappingObject;
-    	service = new SubMerchantModelService(null, opportunity.Id);
-    	System.assertEquals(OPPORTUNITY_NAME, service.setSubMerchantModelFromMappingObject(new SubMerchantModel(), mappingObject, null).getSubMerchantMerchantCategoryCode());
-    	
-    	// check as if initiated from account page
-    	service = new SubMerchantModelService(account.Id, opportunity.Id);
-    	System.assert(service.setSubMerchantModelFromMappingObject(new SubMerchantModel(), mappingObject, null).getIsSubMerchantMerchantCategoryCodeFromOpportunity());
-    	System.assertEquals(OPPORTUNITY_NAME, service.setSubMerchantModelFromMappingObject(new SubMerchantModel(), mappingObject, null).getSubMerchantMerchantCategoryCode());
-    	delete mappingObject;
-    }
-    
     static testMethod void testPopulateSMMerchantName(){
     	Account account = new Account(name=ACCOUNT_NAME);
     	insert account;

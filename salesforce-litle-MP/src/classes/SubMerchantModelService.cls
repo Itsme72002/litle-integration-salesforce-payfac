@@ -35,7 +35,6 @@ public class SubMerchantModelService {
 		setsubMerchantDiscoverConveyMid(subMerchantModel, savedMappings.subMerchantDiscoverConveyMid__c,savedMappings.subMerchantDiscoverConveyMidD__c,savedMappings.subMerchantDiscoverConveyMidX__c,selectedOpportunityId);
 		setsubMerchantHardCodeBillingDescriptor(subMerchantModel, savedMappings.subMerchantHardCodeBillingDescriptor__c,savedMappings.subMerchantHardCodeBillingDescD__c,savedMappings.subMerchantHardCodeBillingDescriptorX__c,selectedOpportunityId);
 		setsubMerchantMaxTransactionAmount(subMerchantModel, savedMappings.subMerchantMaxTransactionAmount__c,savedMappings.subMerchantMaxTransactionAmountD__c,savedMappings.subMerchantMaxTransactionAmountX__c,selectedOpportunityId);
-		setsubMerchantMerchantCategoryCode(subMerchantModel, savedMappings.subMerchantMerchantCategoryCode__c,savedMappings.subMerchantMerchantCategoryCodeD__c,savedMappings.subMerchantMerchantCategoryCodeX__c,selectedOpportunityId);
 		setsubMerchantMerchantName(subMerchantModel, savedMappings.subMerchantMerchantName__c,savedMappings.subMerchantMerchantNameD__c,savedMappings.subMerchantMerchantNameX__c,selectedOpportunityId);
 		setsubMerchantPspMerchantId(subMerchantModel, savedMappings.subMerchantPspMerchantId__c,savedMappings.subMerchantPspMerchantIdD__c,savedMappings.subMerchantPspMerchantIdX__c,selectedOpportunityId);
 		setsubMerchantUrl(subMerchantModel, savedMappings.subMerchantUrl__c,savedMappings.subMerchantUrlD__c,savedMappings.subMerchantUrlX__c,selectedOpportunityId);
@@ -88,9 +87,6 @@ public class SubMerchantModelService {
 		}
 		if(subMerchantModel.getIsSubMerchantMaxTransactionAmountFromOpportunity()){
             setsubMerchantMaxTransactionAmount(subMerchantModel, savedMappings.subMerchantMaxTransactionAmount__c,savedMappings.subMerchantMaxTransactionAmountD__c,savedMappings.subMerchantMaxTransactionAmountX__c,selectedOpportunityId);
-		}
-		if(subMerchantModel.getIsSubMerchantMerchantCategoryCodeFromOpportunity()){
-            setsubMerchantMerchantCategoryCode(subMerchantModel, savedMappings.subMerchantMerchantCategoryCode__c,savedMappings.subMerchantMerchantCategoryCodeD__c,savedMappings.subMerchantMerchantCategoryCodeX__c,selectedOpportunityId);
 		}
 		if(subMerchantModel.getIsSubMerchantMerchantNameFromOpportunity()){
             setsubMerchantMerchantName(subMerchantModel, savedMappings.subMerchantMerchantName__c,savedMappings.subMerchantMerchantNameD__c,savedMappings.subMerchantMerchantNameX__c,selectedOpportunityId);
@@ -195,12 +191,6 @@ public class SubMerchantModelService {
 	public SubMerchantModel setSubMerchantMaxTransactionAmount(SubMerchantModel subMerchantModel, String salesforceField, String defaultValue, Boolean isDefaultDisabled, String selectedOpportunityId){
     	subMerchantModel.setsubMerchantMaxTransactionAmount(mappingService.fetchMappedValue(salesforceField, defaultValue, isDefaultDisabled,selectedOpportunityId));
 		subMerchantModel.setIsSubMerchantMaxTransactionAmountFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(salesforceField, isDefaultDisabled));
-		return subMerchantModel;
-	}
-	
-	public SubMerchantModel setSubMerchantMerchantCategoryCode(SubMerchantModel subMerchantModel, String salesforceField, String defaultValue, Boolean isDefaultDisabled, String selectedOpportunityId){
-    	subMerchantModel.setsubMerchantMerchantCategoryCode(mappingService.fetchMappedValue(salesforceField, defaultValue, isDefaultDisabled,selectedOpportunityId));
-		subMerchantModel.setIsSubMerchantMerchantCategoryCodeFromOpportunity(mappingService.isOpportunityMappedAndAccessedFromAccount(salesforceField, isDefaultDisabled));
 		return subMerchantModel;
 	}
 	
