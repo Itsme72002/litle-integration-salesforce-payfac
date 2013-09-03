@@ -51,79 +51,55 @@ public class LitleMidFormController {
         booleanOptions = salesforceSelectOptionService.fetchAllBooleanOption();
         helpTextConstant = new HelpTextConstants();
         leResponseService = new LegalEntityResponseService();
+        subMerchantModel = new SubMerchantModel();
+        subMerchantResponse = new SubMerchantResponse();
+        legalEntityModel = new LegalEntityModel();
+        savedMappings = new SalesforceLitleMappingsObject__c();
+        savedMappings.litleEnvironment__c = 'CERT'; // default endpoint to hit
         mccService = new MccService();
         mccSelectList = new List<Selectoption>();
         mccSelectList.add(new Selectoption('', '-- Select Option --'));
         isOpportunityMappingPresent = false;
-        
         this.urlAccountId = apexpages.currentpage().getParameters().get('accid');
         this.urlOpportunityId =  apexpages.currentpage().getParameters().get('oppid');
         //check if litle mid is already present
         if(String.isNotEmpty(urlOpportunityId)){
-                litleMid = QueryUtil.getOpportunityFieldValue('Litle_MID__c', urlOpportunityId);
+            litleMid = QueryUtil.getOpportunityFieldValue('Litle_MID__c', urlOpportunityId);
         }else if(String.isNotEmpty(urlAccountId)){
-                litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
+            litleMid = QueryUtil.getAccountFieldValue('Litle_MID__c', urlAccountId);
         }
-        // if the litle mid is an error code, null it back out and proceed
-        /*System.debug('Constructor called!!!!');
-        if(litleMid != null && !Pattern.matches('\\A[0-9]+\\Z', litleMid)){
-            litleMid = null;    
-        }*/
         //populate all opportunities of this account id
         if(String.isNotEmpty(urlAccountId)){
             opportunityOptions = QueryUtil.getOpportunityNameOptions(urlAccountId);
+        }else if(String.isNotEmpty(urlOpportunityId)){
+        	urlAccountId = QueryUtil.getOpportunityFieldValue('AccountId', urlOpportunityId);
         }
-        if(String.isEmpty(urlAccountId)){
-            // call from opportunity page, fetch account id
-            if(String.isNotEmpty(urlOpportunityId)){
-                //query for account id
-                try{
-                    Opportunity opp = [select accountid from opportunity where id=:urlOpportunityId];
-                    urlAccountId = opp.accountid;
-                }catch(Queryexception e){
-                    system.debug('Error fetching account id from opportunity' + e);
-                }
-            }
-        }
-        
         leModelService = new LegalEntityModelService(urlAccountId, urlOpportunityId);
         smModelService = new SubMerchantModelService(urlAccountId, urlOpportunityId);
-        
         legalEntityTypeList = new List<SelectOption>();
         for (LegalEntityType.LegalEntityTypeEnum s: LegalEntityType.LegalEntityTypeEnum.values()){
             legalEntityTypeList.add(new SelectOption(s.name(), LegalEntityType.stringValue(s.name())));
         }
-        savedMappings = new SalesforceLitleMappingsObject__c();
-        savedMappings.litleEnvironment__c = 'CERT'; // default endpoint to hit
-        legalEntityModel = new LegalEntityModel();
-        //setting default values to required pci fields
+        setRequiredPciFields();
+        populateModelsFromMapping();
+        populateMccCodes();
+    }
+    
+    private void setRequiredPciFields(){
+    	//setting default values to required pci fields
         legalEntityModel.getLegalEntityPci().setIsExclusiveToPsp('true');
         legalEntityModel.getLegalEntityPci().setIsPciComplianceValidated('true');
         legalEntityModel.getLegalEntityPci().setPciLevel('4');
-        
-        subMerchantModel = new SubMerchantModel();
-        subMerchantResponse = new SubMerchantResponse();
-        
-        List<SalesforceLitleMappingsObject__c> mappingRecords 
-                = [select id, name, litleEnvironment__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
-        if(!mappingRecords.isEmpty()){
-            this.savedMappings =  mappingRecords.get(0);
-            if(opportunityOptions != null && opportunityOptions.size() > 0){
-                isOpportunityMappingPresent = MappingObjectUtil.isSobjectTypePresentInMapping(savedMappings, 'Opportunity');
-            }
-            legalEntityModel = leModelService.setLegalEntityModelFromMappingObject(legalEntityModel, savedMappings, selectedOpportunityId);
-            subMerchantModel = smModelService.setSubMerchantModelFromMappingObject(subMerchantModel, savedMappings, selectedOpportunityId);
-        }
-        
-        //check username and password present
-        if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
+    }
+    
+    private void populateMccCodes(){
+    	if(String.isEmpty(savedMappings.merchantUsername__c) || String.isEmpty(savedMappings.merchantPassword__c)){
         	ApexPageUtil.addErrorMessage('PayFac Username or Password not set in mappings. Please set the credentials in Litle Mapping.');
         }else{
         	mccLog = new LitleRequestResponseLog__c();
         	mccLog.Log_Source__c = 'Mcc Request';
 	        List<Selectoption> mccList = mccService.getMccSelectOptionsForUser(savedMappings.merchantUsername__c, savedMappings.merchantPassword__c, 
 	        														LitleEnvironment.getEnvironmentUrl(savedMappings.litleEnvironment__c), mccLog);
-			
 	        if(mccList == null){
 	        	ApexPageUtil.addErrorMessage('Could not retrieve available Merchant Category Codes. Please contact Litle support.');
 	        }else{
@@ -134,12 +110,27 @@ public class LitleMidFormController {
         }
     }
     
+    private void populateModelsFromMapping(){
+    	List<SalesforceLitleMappingsObject__c> mappingRecords 
+                = [select id, name, litleEnvironment__c, legalEntityAnnualCreditCardSalesVolume__c, legalEntityAnnualCreditCardSalesVolumeD__c, legalEntityAnnualCreditCardSalesVolumeX__c, legalEntityCity__c, legalEntityCityD__c, legalEntityCityX__c, legalEntityContactPhone__c, legalEntityContactPhoneD__c, legalEntityContactPhoneX__c, legalEntityCountryCode__c, legalEntityCountryCodeD__c, legalEntityCountryCodeX__c, legalEntityDateOfBirth__c, legalEntityDateOfBirthX__c, legalEntityDoingBusinessAs__c, legalEntityDoingBusinessAsD__c, legalEntityDoingBusinessAsX__c, legalEntityPrincipalEmailAddress__c, legalEntityPrincipalEmailAddressD__c, legalEntityPrincipalEmailAddressX__c, legalEntityHasAcceptedCreditCards__c, legalEntityHasAcceptedCreditCardsD__c, legalEntityHasAcceptedCreditCardsX__c, legalEntityName__c, legalEntityNameD__c, legalEntityNameX__c, legalEntityPostalCode__c, legalEntityPostalCodeD__c, legalEntityPostalCodeX__c, legalEntityPrincipalDateOfBirth__c, legalEntityPrincipalDateOfBirthD__c, legalEntityPrincipalDateOfBirthX__c, legalEntityPrincipalDriversLicense__c, legalEntityPrincipalDriversLicenseD__c, legalEntityPrincipalDriversLicenseState__c, legalEntityPrincipalDriversLicenseStateD__c, legalEntityPrincipalDriversLicenseStateX__c, legalEntityPrincipalDriversLicenseX__c, legalEntityPrincipalFirstName__c, legalEntityPrincipalFirstNameD__c, legalEntityPrincipalFirstNameX__c, legalEntityPrincipalLastName__c, legalEntityPrincipalLastNameD__c, legalEntityPrincipalLastNameX__c, legalEntityPrincipalSsn__c, legalEntityPrincipalSsnD__c, legalEntityPrincipalSsnX__c, legalEntityStateProvince__c, legalEntityStateProvinceD__c, legalEntityStateProvinceX__c, legalEntityStreetAddress1__c, legalEntityStreetAddress1D__c, legalEntityStreetAddress1X__c, legalEntityStreetAddress2__c, legalEntityStreetAddress2D__c, legalEntityStreetAddress2X__c, legalEntityTaxId__c, legalEntityTaxIdD__c, legalEntityTaxIdX__c, legalEntityType__c, legalEntityTypeD__c, legalEntityTypeX__c, merchantPassword__c, merchantUsername__c, subMerchantAmexMid__c, subMerchantAmexMidD__c, subMerchantAmexMidX__c, subMerchantBankAccountNumber__c, subMerchantBankAccountNumberD__c, subMerchantBankAccountNumberX__c, subMerchantBankRoutingNumber__c, subMerchantBankRoutingNumberD__c, subMerchantBankRoutingNumberX__c, subMerchantCity__c, subMerchantCityD__c, subMerchantCityX__c, subMerchantCountryCode__c, subMerchantCountryCodeD__c, subMerchantCountryCodeX__c, subMerchantCreateCredentials__c, subMerchantCreateCredentialsD__c, subMerchantCreateCredentialsX__c, subMerchantCustomerServiceNumber__c, subMerchantCustomerServiceNumberD__c, subMerchantCustomerServiceNumberX__c, subMerchantDiscoverConveyMid__c, subMerchantDiscoverConveyMidD__c, subMerchantDiscoverConveyMidX__c, subMerchanteCheckBillingDescD__c, subMerchanteCheckBillingDescriptor__c, subMerchanteCheckBillingDescriptorX__c, subMerchanteCheckCompanyName__c, subMerchanteCheckCompanyNameD__c, subMerchanteCheckCompanyNameX__c, subMerchantEmailAddress__c, subMerchantEmailAddressD__c, subMerchantEmailAddressX__c, subMerchantFirstName__c, subMerchantFirstNameD__c, subMerchantFirstNameX__c, subMerchantHardCodeBillingDescD__c, subMerchantHardCodeBillingDescriptor__c, subMerchantHardCodeBillingDescriptorX__c, subMerchantLastName__c, subMerchantLastNameD__c, subMerchantLastNameX__c, subMerchantMaxTransactionAmount__c, subMerchantMaxTransactionAmountD__c, subMerchantMaxTransactionAmountX__c, subMerchantMerchantCategoryCode__c, subMerchantMerchantCategoryCodeD__c, subMerchantMerchantCategoryCodeX__c, subMerchantMerchantName__c, subMerchantMerchantNameD__c, subMerchantMerchantNameX__c, subMerchantPhone__c, subMerchantPhoneD__c, subMerchantPhoneX__c, subMerchantPostalCode__c, subMerchantPostalCodeD__c, subMerchantPostalCodeX__c, subMerchantPspMerchantId__c, subMerchantPspMerchantIdD__c, subMerchantPspMerchantIdX__c, subMerchantStateProvince__c, subMerchantStateProvinceD__c, subMerchantStateProvinceX__c, subMerchantStreetAddress1__c, subMerchantStreetAddress1D__c, subMerchantStreetAddress1X__c, subMerchantStreetAddress2__c, subMerchantStreetAddress2D__c, subMerchantStreetAddress2X__c, subMerchantUrl__c, subMerchantUrlD__c, subMerchantUrlX__c, legalEntityPrincipalContactPhone__c, legalEntityPrincipalContactPhoneD__c, legalEntityPrincipalContactPhoneX__c, legalEntityPrincipalCity__c, legalEntityPrincipalCityD__c, legalEntityPrincipalCityX__c, legalEntityPrincipalCountryCode__c, legalEntityPrincipalCountryCodeD__c, legalEntityPrincipalCountryCodeX__c, legalEntityPrincipalPostalCode__c, legalEntityPrincipalPostalCodeD__c, legalEntityPrincipalPostalCodeX__c, legalEntityPrincipalStateProvince__c, legalEntityPrincipalStateProvinceD__c, legalEntityPrincipalStateProvinceX__c, legalEntityPrincipalStreetAddress1__c, legalEntityPrincipalStreetAddress1D__c, legalEntityPrincipalStreetAddress1X__c, legalEntityPrincipalStreetAddress2__c, legalEntityPrincipalStreetAddress2D__c, legalEntityPrincipalStreetAddress2X__c from SalesforceLitleMappingsObject__c limit 1];
+        if(!mappingRecords.isEmpty()){
+            this.savedMappings =  mappingRecords.get(0);
+            if(opportunityOptions != null && opportunityOptions.size() > 0){
+                this.isOpportunityMappingPresent = MappingObjectUtil.isSobjectTypePresentInMapping(savedMappings, 'Opportunity');
+            }
+            this.legalEntityModel = leModelService.setLegalEntityModelFromMappingObject(legalEntityModel, savedMappings, selectedOpportunityId);
+            this.subMerchantModel = smModelService.setSubMerchantModelFromMappingObject(subMerchantModel, savedMappings, selectedOpportunityId);
+        }
+    }
+    
     public Pagereference logMccRequest(){
-    	try{
-			insert mccLog;
-		}catch(Dmlexception e){
-			System.debug('Error inserting mcc log' + e.getMessage());
-		}
+    	if(mccLog != null){
+	    	try{
+				insert mccLog;
+			}catch(Dmlexception e){
+				System.debug('Error inserting mcc log' + e.getMessage());
+			}
+    	}
 		return null;
     }
     
@@ -326,8 +317,6 @@ public class LitleMidFormController {
     }
     
     public Boolean isInputDataValid(){
-    	System.debug('!legal entity ' + leModelService.isLegalEntityValid(legalEntityModel, true));
-    	System.debug('!sub merchant ' + smModelService.isSubMerchantModelValid(subMerchantModel, true));
         return (leModelService.isLegalEntityValid(legalEntityModel, true) & 
                         smModelService.isSubMerchantModelValid(subMerchantModel, true));
     }
