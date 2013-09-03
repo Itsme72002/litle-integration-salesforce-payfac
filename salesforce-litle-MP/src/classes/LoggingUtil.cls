@@ -67,6 +67,18 @@ public class LoggingUtil {
 		}
 	}
 	
+	public static void logMccRequest(HttpRequest request, LitleRequestResponseLog__c litleRequestResponseLog){
+		if(litleRequestResponseLog != null && request != null){
+			litleRequestResponseLog.MccRequestDate__c = Datetime.now();
+			litleRequestResponseLog.MccEndpoint__c = request.getEndpoint();
+			litleRequestResponseLog.MccAcceptHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_ACCEPT);
+			litleRequestResponseLog.MccContentTypeHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_CONTENT_TYPE);
+			litleRequestResponseLog.MccAuthorizationHeader__c = request.getHeader(LitleConstants.REQUEST_HEADER_AUTHORIZATION);
+			litleRequestResponseLog.MccRequestXml__c = request.getBody();
+			litleRequestResponseLog.Mcc_Request_Method__c = request.getMethod();
+		}
+	}
+	
 	public static void logCreateSubMerchantRequest(HttpRequest request, LitleRequestResponseLog__c litleRequestResponseLog){
 		if(litleRequestResponseLog != null && request != null){
 			litleRequestResponseLog.createSubMerchantRequestDate__c = Datetime.now();
@@ -85,6 +97,15 @@ public class LoggingUtil {
 	    	litleRequestResponseLog.createLegalEntityResponseXml__c = getResponseParamsLog(response);
 	    	litleRequestResponseLog.createLegalEntityResponseStatusCode__c = String.valueOf(response.getStatusCode());
 	    	litleRequestResponseLog.createLegalEntityResponseStatusMessage__c = response.getStatus();
+		}
+	}
+	
+	public static void logMccResponse(HttpResponse response, LitleRequestResponseLog__c litleRequestResponseLog){
+		if(litleRequestResponseLog != null && response != null){
+			litleRequestResponseLog.MccResponseDate__c = Datetime.now();
+	    	litleRequestResponseLog.MccResponseXml__c = getResponseParamsLog(response);
+	    	litleRequestResponseLog.MccResponseStatusCode__c = String.valueOf(response.getStatusCode());
+	    	litleRequestResponseLog.MccResponseStatusMessage__c = response.getStatus();
 		}
 	}
 	

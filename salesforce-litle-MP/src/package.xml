@@ -48,6 +48,11 @@
         <members>Account-LitleAccountsPage</members>
         <members>LitleMappingsSaveLog__c-LitleMappingsSaveLog Layout</members>
         <members>LitleRequestResponseLog__c-LitleRequestResponseLog Layout</members>
+        <members>Litle_Business__c-Litle Business Layout</members>
+        <members>Litle_KYC__c-Litle KYC Layout</members>
+        <members>Litle_Principal__c-Litle Principal Layout</members>
+        <members>Litle_Risk_Indicator__c-Litle Risk Indicator Layout</members>
+        <members>Litle_Verification_Result__c-Litle Verification Result Layout</members>
         <members>Opportunity-LitleOpportunityPage</members>
         <name>Layout</name>
     </types>

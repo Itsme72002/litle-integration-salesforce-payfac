@@ -31,35 +31,143 @@ private class MccServiceTest {
     	expectedMcc.add('8220');
     	Test.startTest();
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new MccSuccessResponse(), null));
-    	List<String> actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint');
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	List<String> actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(expectedMcc, actualMcc);
+        
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Success', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('200', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(MccSuccessResponse.response, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
     }
     
     static testMethod void getAllMccForUser_Error() {
     	MccService service = new MccService();
-    	List<String> actualMcc = service.getAllMccForUser('', 'pass', 'endpoint');
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	List<String> actualMcc = service.getAllMccForUser('', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
         
-        actualMcc = service.getAllMccForUser('user', '', 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMcc = service.getAllMccForUser('user', '', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
         
-        actualMcc = service.getAllMccForUser(null, 'pass', 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMcc = service.getAllMccForUser(null, 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
         
-        actualMcc = service.getAllMccForUser('user', null, 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMcc = service.getAllMccForUser('user', null, 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
         
-        actualMcc = service.getAllMccForUser('user', 'pass', '');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMcc = service.getAllMccForUser('user', 'pass', '', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
         
-        actualMcc = service.getAllMccForUser('user', 'pass', null);
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMcc = service.getAllMccForUser('user', 'pass', null, litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
         
         Test.startTest();
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LitleErrorResponse(), null));
-    	actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint');
+    	litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMcc);
+        
+       System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Unauthorized', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('401', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(LitleErrorResponse.response, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
     }
     
@@ -67,8 +175,23 @@ private class MccServiceTest {
     	MccService service = new MccService();
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), null));
-        List<String> actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint');
+        LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+        List<String> actualMcc = service.getAllMccForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(0, actualMcc.size());
+        
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Approved', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('200', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(LegalEntityApprovedResponse.approvedResponse, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
     }
     
@@ -81,35 +204,143 @@ private class MccServiceTest {
     	expectedMccSelectOptions.add(new Selectoption('8220','8220'));
     	Test.startTest();
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new MccSuccessResponse(), null));
-    	List<Selectoption> actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint');
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	List<Selectoption> actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(expectedMccSelectOptions, actualMccSelectOptions);
+        
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Success', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('200', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(MccSuccessResponse.response, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
     }
     
     static testMethod void getMccSelectOptionsForUser_Error() {
     	MccService service = new MccService();
-    	List<Selectoption> actualMccSelectOptions = service.getMccSelectOptionsForUser('', 'pass', 'endpoint');
+    	LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	List<Selectoption> actualMccSelectOptions = service.getMccSelectOptionsForUser('', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
         
-        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', '', 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', '', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
         
-        actualMccSelectOptions = service.getMccSelectOptionsForUser(null, 'pass', 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMccSelectOptions = service.getMccSelectOptionsForUser(null, 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
         
-        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', null, 'endpoint');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', null, 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
         
-        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', '');
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', '', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
         
-        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', null);
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
+        
+        litleRequestResponseLog = new LitleRequestResponseLog__c();
+        actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', null, litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccAcceptHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals(null, litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals(null, litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals(null, litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(null, litleRequestResponseLog.MccResponseXml__c);
         
         Test.startTest();
     	Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LitleErrorResponse(), null));
-    	actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint');
+    	litleRequestResponseLog = new LitleRequestResponseLog__c();
+    	actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assertEquals(null, actualMccSelectOptions);
+        
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Unauthorized', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('401', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(LitleErrorResponse.response, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
     }
     
@@ -117,8 +348,23 @@ private class MccServiceTest {
     	MccService service = new MccService();
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), null));
-        List<Selectoption>  actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint');
+        LitleRequestResponseLog__c litleRequestResponseLog = new LitleRequestResponseLog__c();
+        List<Selectoption>  actualMccSelectOptions = service.getMccSelectOptionsForUser('user', 'pass', 'endpoint', litleRequestResponseLog);
         System.assert(actualMccSelectOptions.isEmpty());
+        
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccAcceptHeader__c);
+        Blob headerValue = Blob.valueOf('user:pass'); //Enter username and password
+        String authorizationHeader = LitleConstants.REQUEST_AUTH_TYPE + Encodingutil.base64Encode(headerValue);
+        System.assertEquals(authorizationHeader, litleRequestResponseLog.MccAuthorizationHeader__c);
+        System.assertEquals('endpoint/mcc', litleRequestResponseLog.MccEndpoint__c);
+        System.assertEquals('application/com.litle.psp-v6+xml', litleRequestResponseLog.MccContentTypeHeader__c);
+        
+        System.assertEquals('GET', litleRequestResponseLog.Mcc_Request_Method__c);
+        
+        System.assertEquals('Approved', litleRequestResponseLog.MccResponseStatusMessage__c);
+        System.assertEquals('', litleRequestResponseLog.MccRequestXml__c);
+        System.assertEquals('200', litleRequestResponseLog.MccResponseStatusCode__c);
+        System.assertEquals(LegalEntityApprovedResponse.approvedResponse, litleRequestResponseLog.MccResponseXml__c);
         Test.stopTest();
      }
 }

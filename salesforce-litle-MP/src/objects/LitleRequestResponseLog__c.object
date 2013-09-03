@@ -49,7 +49,6 @@
         <inlineHelpText>Origination Account of the log</inlineHelpText>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
         <relationshipName>LitleRequestResponseLogs</relationshipName>
         <required>false</required>
         <type>Lookup</type>
@@ -82,9 +81,129 @@
                 <fullName>Scheduler</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Mcc Request</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>MccAcceptHeader__c</fullName>
+        <description>Accept header forMcc request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Accept header forMcc request</inlineHelpText>
+        <label>Mcc Accept Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MccAuthorizationHeader__c</fullName>
+        <description>Authorization header forMcc requests</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Authorization header forMcc requests</inlineHelpText>
+        <label>Mcc Authorization Header</label>
+        <length>100</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>MccContentTypeHeader__c</fullName>
+        <description>Content type header forMcc request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Content type header forMcc request</inlineHelpText>
+        <label>Mcc Content Type Header</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MccEndpoint__c</fullName>
+        <description>Endpoint forMcc requests</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Endpoint forMcc requests</inlineHelpText>
+        <label>Mcc Endpoint</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MccRequestDate__c</fullName>
+        <description>Request date for Mcc request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Request date for Mcc request</inlineHelpText>
+        <label>Mcc RequestDate</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MccRequestXml__c</fullName>
+        <description>Mcc Request Xml</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Request Xml</inlineHelpText>
+        <label>Mcc RequestXml</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MccResponseDate__c</fullName>
+        <description>Mcc Response Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Response Date</inlineHelpText>
+        <label>Mcc ResponseDate</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MccResponseStatusCode__c</fullName>
+        <description>Mcc Response Status Code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Response Status Code</inlineHelpText>
+        <label>Mcc ResponseStatusCode</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MccResponseStatusMessage__c</fullName>
+        <description>Mcc Response Status Message</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Response Status Message</inlineHelpText>
+        <label>Mcc ResponseStatusMsg</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MccResponseXml__c</fullName>
+        <description>Mcc Response Xml</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Response Xml</inlineHelpText>
+        <label>Mcc ResponseXml</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Mcc_Request_Method__c</fullName>
+        <description>Mcc Request Method</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mcc Request Method</inlineHelpText>
+        <label>Mcc Request Method</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Opportunity__c</fullName>
@@ -95,7 +214,6 @@
         <inlineHelpText>Opportunity causing this log entry</inlineHelpText>
         <label>Opportunity</label>
         <referenceTo>Opportunity</referenceTo>
-        <relationshipLabel>LitleRequestResponseLogs</relationshipLabel>
         <relationshipName>LitleRequestResponseLogs</relationshipName>
         <required>false</required>
         <type>Lookup</type>
@@ -390,7 +508,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>LitleRequestResponseLog</label>
+    <label>Litle Request Response Log</label>
     <listViews>
         <fullName>LitleLogView</fullName>
         <columns>NAME</columns>
@@ -406,7 +524,7 @@
         <label>LogId</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>LitleRequestResponseLogs</pluralLabel>
+    <pluralLabel>Litle Request Response Logs</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

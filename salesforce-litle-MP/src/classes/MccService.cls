@@ -21,7 +21,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 public class MccService {
 	
-	public List<String> getAllMccForUser(String username, String password, String endpoint){
+	public List<String> getAllMccForUser(String username, String password, String endpoint, LitleRequestResponseLog__c litleRequestResponseLog){
 		List<String> mccList;
 		if(String.isNotEmpty(username) && String.isNotEmpty(password) && String.isNotEmpty(endpoint)){
 			Http h = new Http();
@@ -31,8 +31,10 @@ public class MccService {
 																	authorizationHeader, 
 																	LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE, 
 																	LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, '');
+			LoggingUtil.logMccRequest(mccRequest, litleRequestResponseLog);
 			try{
 				Httpresponse mccResponse = h.send(mccRequest);	
+				LoggingUtil.logMccResponse(mccResponse, litleRequestResponseLog);
 				if(mccResponse !=null && mccResponse.getStatusCode() == LitleConstants.MCC_SUCCESS_RESPONSE_CODE){
 					mccList = XmlUtil.extractListOfTagText(mccResponse, 'approvedMccs', 'approvedMcc');
 				}
@@ -44,9 +46,9 @@ public class MccService {
 		return mccList;
 	}
 	
-	public List<Selectoption> getMccSelectOptionsForUser(String username, String password, String endpoint){
+	public List<Selectoption> getMccSelectOptionsForUser(String username, String password, String endpoint, LitleRequestResponseLog__c litleRequestResponseLog){
 		List<Selectoption> mccSelectOptions;
-		List<String> mccList = getAllMccForUser(username, password, endpoint);
+		List<String> mccList = getAllMccForUser(username, password, endpoint, litleRequestResponseLog);
 		if(mccList != null){
 			mccSelectOptions = new List<Selectoption>();
 			for(String mcc: mccList){
