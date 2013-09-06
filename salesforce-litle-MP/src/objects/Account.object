@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <fullName>LitleLegalEntityId__c</fullName>
+        <description>The Legal Entity ID associated with this account after making the Litle MID request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Legal Entity ID associated with this account after making the Litle MID request</inlineHelpText>
+        <label>Litle Legal Entity Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LitleSubMerchantId__c</fullName>
+        <description>The Sub Merchant ID associated with this account after making the Litle MID request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Sub Merchant ID associated with this account after making the Litle MID request</inlineHelpText>
+        <label>Litle SubMerchant Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Litle_MID__c</fullName>
         <deprecated>false</deprecated>
         <description>Merchant Identifer</description>
@@ -8,6 +32,18 @@
         <inlineHelpText>Stores the status of Litle MID request or the Litle MID if successfully registered.</inlineHelpText>
         <label>Litle MID</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PayFacSubMerchantId__c</fullName>
+        <description>The PayFac SubMerchant Id assigned to this Account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The PayFac SubMerchant Id assigned to this Account</inlineHelpText>
+        <label>PayFac SubMerchant Id</label>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>

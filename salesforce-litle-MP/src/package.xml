@@ -18,7 +18,10 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.LitleLegalEntityId__c</members>
+        <members>Account.LitleSubMerchantId__c</members>
         <members>Account.Litle_MID__c</members>
+        <members>Account.PayFacSubMerchantId__c</members>
         <members>Account.PayFac_Portal_Link__c</members>
         <members>LitleRequestResponseLog__c.Account__c</members>
         <members>LitleRequestResponseLog__c.Opportunity__c</members>
