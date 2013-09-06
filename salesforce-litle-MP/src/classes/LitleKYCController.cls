@@ -44,10 +44,33 @@ public class LitleKYCController {
         populateRiskIndicators();
 	}
 	
+	public Pagereference fetchKycIfFromImport(){
+		if(account != null && String.isNotEmpty(account.LitleLegalEntityId__c)){
+			LitleKYCService kycService = new LitleKYCService();
+			try{
+				kycService.fetchKycForAccountFromMP(account);
+		        populateLitleKYC();
+		        populateLitlePrincipal();
+		        populateLitleBusiness();
+		        populateLitleVerificationResult();
+		        populateRiskIndicators();
+		        try{
+			        account.LitleLegalEntityId__c = '';
+			        update account;
+		        }catch(Dmlexception e){
+		        	System.debug('Error deleting legalentityid from account: ' + account.Id);
+		        }
+			}catch(LitleException e){
+				ApexPageUtil.addErrorMessage(e.getMessage());
+			}
+		}
+		return null;
+	}
+	
 	private void populateAccountOrOpportunity(){
 		if(String.isNotEmpty(urlAccountId)){
         	try{
-        		account = [select id, name from Account where id= :urlAccountId];
+        		account = [select id, LitleLegalEntityId__c, name from Account where id= :urlAccountId];
         	}catch(QueryException e){
         		System.debug('Error fetching account for id:' + urlAccountId + ' '+ e.getMessage());
         	}

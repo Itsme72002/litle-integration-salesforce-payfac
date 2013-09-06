@@ -869,4 +869,126 @@ private class LitleKYCServiceTest {
         }
         return lr;
     }
+    
+    static testMethod void fetchKycForAccountFromMP_NoAccount(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+    	List<litleRequestResponseLog__c> kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+    	litleKYCService.fetchKycForAccountFromMP(null);
+    	kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+    }
+    
+    static testMethod void fetchKycForAccountFromMP_NoLitleLegalEntity(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+ 		Account account = new Account(name=ACCOUNT_NAME);
+        insert account;
+    	List<litleRequestResponseLog__c> kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+    	litleKYCService.fetchKycForAccountFromMP(account);
+    	kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+    }
+    
+    
+    static testMethod void fetchKycForAccountFromMP_NoMapping(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+ 		Account account = new Account(name=ACCOUNT_NAME, LitleLegalEntityId__c = 'testLitleLegalEntityId__c');
+        insert account;
+    	List<litleRequestResponseLog__c> kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+        try{
+     		litleKYCService.fetchKycForAccountFromMP(account);       	
+        }catch(Exception e){
+        	System.assertEquals('No Mapping record present.',e.getMessage());
+        }
+        kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());
+    }
+    
+    static testMethod void fetchKycForAccountFromMP_NoUsernameInMapping(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+ 		Account account = new Account(name=ACCOUNT_NAME, LitleLegalEntityId__c = 'testLitleLegalEntityId__c');
+        insert account;
+        SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+        mappingObject.LitleEnvironment__c = 'CERT';
+        insert mappingObject;
+		List<litleRequestResponseLog__c> kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());        
+        try{
+     		litleKYCService.fetchKycForAccountFromMP(account);       	
+        }catch(Exception e){
+        	System.assertEquals('PayFac Username, Password and Litle Environment are required to get KYC Information. One or more value missing in mappings.',e.getMessage());
+        }  
+        kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());          	
+    }
+    
+    static testMethod void fetchKycForAccountFromMP_InvalidUsernameInMapping(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+ 		Account account = new Account(name=ACCOUNT_NAME, LitleLegalEntityId__c = 'testLitleLegalEntityId__c');
+        insert account;
+        SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+        mappingObject.MerchantUsername__c = 'testUsername';
+        mappingObject.MerchantPassword__c = 'testPassword';
+        mappingObject.LitleEnvironment__c = 'CERT';
+        insert mappingObject;
+		List<litleRequestResponseLog__c> kyclog = [select Id, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size()); 
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LitleErrorResponse(), null));       
+ 		litleKYCService.fetchKycForAccountFromMP(account);       	
+        kyclog = [select Id, createLegalEntityResponseStatusCode__c, createLegalEntityResponseStatusMessage__c, createLegalEntityResponseXml__c, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(1, kyclog.size());
+    	System.assertEquals(String.valueOf(LitleErrorResponse.STATUS_CODE), kyclog.get(0).createLegalEntityResponseStatusCode__c);
+    	System.assertEquals(LitleErrorResponse.STATUS_MESSAGE, kyclog.get(0).createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LitleErrorResponse.response, kyclog.get(0).createLegalEntityResponseXml__c);
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size());         
+        Test.stopTest(); 	   	
+    }
+    
+    static testMethod void fetchKycForAccountFromMP_Success(){
+    	LitleKYCService litleKYCService = new LitleKYCService();
+ 		Account account = new Account(name=ACCOUNT_NAME, LitleLegalEntityId__c = 'testLitleLegalEntityId__c');
+        insert account;
+        SalesforceLitleMappingsObject__c mappingObject = new SalesforceLitleMappingsObject__c();
+        mappingObject.MerchantUsername__c = 'testUsername';
+        mappingObject.MerchantPassword__c = 'testPassword';
+        mappingObject.LitleEnvironment__c = 'CERT';
+        insert mappingObject;
+		List<litleRequestResponseLog__c> kyclog = [select Id, createLegalEntityResponseStatusCode__c, createLegalEntityResponseStatusMessage__c, createLegalEntityResponseXml__c, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(0, kyclog.size());
+    	List<Litle_KYC__c> litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(0, litleKYCs.size()); 
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator(new LegalEntityApprovedResponse(false), null));       
+ 		litleKYCService.fetchKycForAccountFromMP(account);       	
+        kyclog = [select Id,createLegalEntityResponseStatusCode__c, createLegalEntityResponseStatusMessage__c, createLegalEntityResponseXml__c, name from litleRequestResponseLog__c where Log_Source__c ='KYC Request'];
+    	System.assertEquals(1, kyclog.size());
+    	System.assertEquals(String.valueOf(LegalEntityApprovedResponse.STATUS_CODE), kyclog.get(0).createLegalEntityResponseStatusCode__c);
+    	System.assertEquals(LegalEntityApprovedResponse.STATUS_MESSAGE, kyclog.get(0).createLegalEntityResponseStatusMessage__c);
+    	System.assertEquals(LegalEntityApprovedResponse.approvedResponse, kyclog.get(0).createLegalEntityResponseXml__c);
+    	litleKYCs = [select Id, Name from Litle_KYC__c];
+        System.assertEquals(1, litleKYCs.size());    
+        Test.stopTest();   	
+    }
 }

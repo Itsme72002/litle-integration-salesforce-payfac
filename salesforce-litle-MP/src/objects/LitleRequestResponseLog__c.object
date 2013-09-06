@@ -85,6 +85,10 @@
                 <fullName>Mcc Request</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>KYC Request</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>

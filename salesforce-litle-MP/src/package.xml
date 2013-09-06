@@ -9,6 +9,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>Litle_MP</members>
         <members>Reset_Instance</members>
         <name>CustomApplication</name>

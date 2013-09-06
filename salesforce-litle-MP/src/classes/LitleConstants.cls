@@ -145,6 +145,8 @@ public class LitleConstants {
 	//log constants
 	public static final String LOG_SOURCE_GET_LITLE_MID = 'Get Litle MID action';
 	public static final String LOG_SOURCE_SCHEDULER = 'Scheduler';
+	public static final String LOG_SOURCE_MCC_REQUEST = 'Mcc Request';
+	public static final String LOG_SOURCE_KYC_REQUEST = 'KYC Request';
 	//scheduler constants
 	public static final String SCHEDULER_CRON_EXP = '0 0 * * * ?';
 	

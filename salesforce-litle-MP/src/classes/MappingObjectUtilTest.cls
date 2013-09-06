@@ -384,7 +384,21 @@ private class MappingObjectUtilTest {
 		System.assert(!MappingObjectUtil.isSobjectTypePresentInMapping(null, 'Opportunity'));
 		System.assert(!MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, ''));
 		System.assert(!MappingObjectUtil.isSobjectTypePresentInMapping(mappingObject, null));
-		
-
+    }
+    
+    static testMethod void getCurrentMappings_NoRecord(){
+    	SalesforceLitleMappingsObject__c mapping = MappingObjectUtil.getCurrentMappings();
+    	System.assertEquals(null, mapping);
+    }
+    
+    static testMethod void getCurrentMappings_RecordPresent(){
+    	SalesforceLitleMappingsObject__c mappingObject= new SalesforceLitleMappingsObject__c();
+		mappingObject.subMerchantUrl__c = 'Opportunity.Name';
+		mappingObject.litleEnvironment__c = 'CERT';
+		insert mappingObject;
+		SalesforceLitleMappingsObject__c mapping = MappingObjectUtil.getCurrentMappings();
+    	System.assertNotEquals(null, mapping);
+    	System.assertEquals('CERT', mapping.litleEnvironment__c);
+    	System.assertEquals('Opportunity.Name', mapping.subMerchantUrl__c);
     }
 }

@@ -19,10 +19,12 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 -->
-<apex:page controller="LitleKYCController">
+<apex:page controller="LitleKYCController" action="{!fetchKycIfFromImport}">
     <apex:form >
     
-        <apex:pageBlock title="Litle KYC Information" mode="maindetail"/>
+        <apex:pageBlock title="Litle KYC Information" mode="maindetail">
+        	<apex:pageMessages />
+        </apex:pageBlock>
             <!-- Business Verification Results start -->
             	<apex:pageBlock title="Business Verification results" mode="edit">
             	<apex:pageBlockSection columns="1" title="Overall Score">

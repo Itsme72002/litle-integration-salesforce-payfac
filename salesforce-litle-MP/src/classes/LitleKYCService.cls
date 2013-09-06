@@ -240,4 +240,51 @@ public class LitleKYCService {
 	    	}	    
 		}
 	}
+	
+	public void fetchKycForAccountFromMP(Account acc){
+		if(acc != null && String.isNotEmpty(acc.LitleLegalEntityId__c)){
+			SalesforceLitleMappingsObject__c mappingObject = MappingObjectUtil.getCurrentMappings();
+			if(mappingObject == null){
+				throw new LitleException('No Mapping record present.');
+			}
+			if(String.isNotEmpty(mappingObject.MerchantUsername__c) && String.isNotEmpty(mappingObject.Merchantpassword__c)
+				&& String.isNotEmpty(mappingObject.litleEnvironment__c)){
+				String endPoint = LitleEnvironment.getEnvironmentUrl(mappingObject.litleEnvironment__c) 
+						                       + LitleConstants.URL_SEPARATOR 
+						                       + LitleConstants.LEGAL_ENTITY_URI
+						                       + LitleConstants.URL_SEPARATOR 
+						                       + acc.LitleLegalEntityId__c;
+		       	litleRequestResponseLog__c kycLog = new litleRequestResponseLog__c();
+			  	kycLog.Log_Source__c = LitleConstants.LOG_SOURCE_KYC_REQUEST;
+			 	Http h = new Http();
+				HttpRequest legalEntityRequest = HttpUtil.getLitleMPHttpRequest(LitleConstants.RETRIEVE_HTTP_REQUEST_METHOD, endPoint, 
+		                                              HttpUtil.getBasicAuthorizationHeader(mappingObject.MerchantUsername__c, mappingObject.Merchantpassword__c),
+		                                              LitleConstants.REQUEST_HEADER_CONTENT_TYPE_VALUE,
+		                                              LitleConstants.REQUEST_HEADER_ACCEPT_VALUE, '');									
+		      	LoggingUtil.logCreateLegalEntityRequest(legalEntityRequest, kycLog); 
+		      	HttpResponse leHttpResponse = new HttpResponse();
+		      	try{
+		          	leHttpResponse = h.send(legalEntityRequest);
+		          	LoggingUtil.logCreateLegalEntityResponse(leHttpResponse, kycLog);
+	          	}catch(System.CalloutException e){
+		          	System.debug('Legal Entity Request Callout error: '+ e);
+		      	}
+	          	if(leHttpResponse != null 
+	          		&& leHttpResponse.getStatusCode() == LitleConstants.RETRIEVE_LEGAL_ENTITY_SUCCESS_RESPONSE_CODE){
+	              	LegalEntityResponse leResponse = new LegalEntityResponse();
+	              	LegalEntityResponseService leService = new LegalEntityResponseService();
+	              	leResponse = leService.populateLegalEntityResponse(leResponse, leHttpResponse.getBody(), false);
+	              	saveOrUpdateAllKYCObjects(null, acc.Id, leResponse);
+	          	}
+		      	LoggingUtil.logSObjectDetails(acc.Id, null, kycLog);
+		      	try{
+		          	insert kycLog;					
+		      	}catch(DMLException e){
+		          	System.debug('Error inserting kyc log for account id: '+ acc.Id);
+		      	}
+			}else{
+				throw new LitleException('PayFac Username, Password and Litle Environment are required to get KYC Information. One or more value missing in mappings.');
+			}
+		}
+	}
 }
